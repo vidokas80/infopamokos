@@ -1,0 +1,52 @@
+<!-- id: di3 | toc: Dirbtinis intelektas | sritis: C -->
+<section class="topic" id="di3">
+  <div class="topic-head"><span class="code">C3</span><span class="eyebrow">Duomenų tyryba ir informacija</span></div>
+  <h2>Dirbtinis intelektas ir neuroniniai tinklai</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>DI – programos, atliekančios „protingas“ užduotis. Mašininis mokymasis – kai programa mokosi iš pavyzdžių, kaip vaikas iš paveikslėlių.</li><li>Modelis tiek geras, kiek geri ir įvairūs jo mokymo pavyzdžiai.</li><li><b>Autentifikavimas</b> klausia „ar tu tikrai tu?“, <b>identifikavimas</b> – „kas tu?“.</li><li>ES DI aktas skirsto DI pagal riziką: draudžiamas, didelės, ribotos, minimalios.</li></ul></div>
+  <dl class="terms">
+    <dt>Dirbtinis intelektas</dt><dd>Sistemos, atliekančios užduotis, kurioms paprastai reikia žmogaus intelekto: atpažinti, suprasti kalbą, spręsti, prognozuoti.</dd>
+    <dt>Mašininis mokymasis</dt><dd>DI dalis: programa taisykles išmoksta iš duomenų, o ne gauna jas iš programuotojo.</dd>
+    <dt>Gilusis mokymasis</dt><dd>Mašininis mokymasis su daugiasluoksniais dirbtiniais neuroniniais tinklais.</dd>
+    <dt>Dirbtinis neuroninis tinklas</dt><dd>Modelis iš sluoksniais sujungtų „neuronų“, kurių ryšiai turi svorius. Mokantis svoriai keičiami taip, kad atsakymai būtų teisingesni.</dd>
+  </dl>
+
+  <h3>Teachable Machine</h3>
+  <p>Google naršyklinis įrankis, kuriuo be programavimo apmokomas vaizdų, garsų ar pozų atpažinimo modelis.</p>
+  <div class="flow"><span>Sukurti klases</span><i>→</i><span>surinkti pavyzdžius (kamera / failai)</span><i>→</i><span>apmokyti</span><i>→</i><span>išbandyti naujais pavyzdžiais</span><i>→</i><span>eksportuoti</span></div>
+  <p>Modelio kokybė priklauso nuo duomenų: reikia daug, įvairių ir panašaus kiekio pavyzdžių kiekvienai klasei. Jei visos „katės“ nufotografuotos ant sofos, modelis gali išmokti atpažinti sofą.</p>
+
+  <h3>Taikymai</h3>
+  <dl class="terms">
+    <dt>Tiuringo testas</dt><dd>Alano Tiuringo (1950) pasiūlytas bandymas: jei pokalbio metu žmogus negali atskirti mašinos nuo žmogaus, mašina testą išlaiko. Testas tikrina elgesį, o ne tikrą supratimą.</dd>
+    <dt>Autentifikavimas ir identifikavimas</dt><dd><b>Autentifikavimas</b> (1:1) tikrina, ar tu esi tas, kuo prisistatai (telefono atrakinimas veidu). <b>Identifikavimas</b> (1:N) ieško, kas tu esi, tarp daugelio (veido paieška duomenų bazėje).</dd>
+    <dt>Suasmenintas turinys</dt><dd>Rekomendacijų sistemos (vaizdo įrašai, muzika, prekės) iš elgesio prognozuoja, kas patiks. Rizika – „informacinis burbulas“.</dd>
+    <dt>Autonominis vairavimas</dt><dd>Automatizavimo lygiai nuo 0 (viską daro vairuotojas) iki 5 (visiškai autonominis bet kokiomis sąlygomis).</dd>
+    <dt>Daiktų internetas, robotai</dt><dd>Jutikliai renka duomenis, DI juos analizuoja ir priima sprendimus: išmanieji termostatai, robotai-siurbliai, pramonės robotai.</dd>
+  </dl>
+
+  <h3>Etika ir teisė</h3>
+  <p>Pagrindinės grėsmės:</p>
+  <ul class="tight"><li><b>šališkumas</b> – modelis kartoja klaidas ir išankstines nuostatas, kurios buvo jo mokymo duomenyse;</li><li><b>privatumas</b> – DI gali rinkti ir nutekinti asmens duomenis;</li><li><b>klaidinga informacija</b> ir <b>giliosios klastotės</b> (<i>deepfake</i>) – netikri vaizdo ar garso įrašai;</li><li><b>autorių teisės</b> ir <b>atsakomybė</b> – kas atsako, kai DI suklysta;</li><li><b>darbo vietų pokyčiai</b> ir <b>energijos sąnaudos</b>.</li></ul>
+  <p><b>Autorių teisės.</b> Autorius gali būti tik žmogus, todėl vien DI sugeneruotas turinys paprastai nelaikomas autoriaus kūriniu. Plačiau – temoje <a href="#licencijos3">„Licencijos ir autorių teisės“</a>.</p>
+  <p><b>ES dirbtinio intelekto aktas</b> (Reglamentas (ES) 2024/1689) įsigaliojo 2024 m. rugpjūčio 2 d. ir DI sistemas skirsto pagal riziką:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Rizika</th><th>Pavyzdžiai</th><th>Reikalavimai</th></tr></thead>
+    <tbody>
+      <tr><td><b>Nepriimtina</b></td><td>Socialinis reitingavimas, manipuliavimas pažeidžiamais žmonėmis, emocijų atpažinimas mokyklose ir darbe</td><td>Uždrausta nuo 2025-02-02</td></tr>
+      <tr><td><b>Didelė</b></td><td>DI švietime (vertinimas, priėmimas), įdarbinime, kritinėje infrastruktūroje, biometrijoje</td><td>Rizikos valdymas, kokybiški duomenys, žmogaus priežiūra, registracija</td></tr>
+      <tr><td><b>Ribota (skaidrumo)</b></td><td>Pokalbių robotai, DI sukurti vaizdai ir garsas</td><td>Žmogui turi būti pranešta, kad jis bendrauja su DI; sukurtas turinys ženklinamas</td></tr>
+      <tr><td><b>Minimali</b></td><td>Šlamšto filtrai, DI žaidimuose</td><td>Papildomų reikalavimų nėra</td></tr>
+    </tbody>
+  </table></div>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Kada įsigalioja DI akto reikalavimai</summary><div>
+<p>Didelės rizikos sistemų reikalavimai pagal 2026 m. vasarą priimtus pakeitimus (vadinamąjį skaitmeninį omnibusą) taikomi nuo 2027 m. gruodžio 2 d. Lietuvoje DI akto priežiūrą vykdo <b>Ryšių reguliavimo tarnyba (RRT)</b>.</p>
+</div></details>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Telefonas atrakinamas veidu. Autentifikavimas ar identifikavimas?</summary><div><b>Autentifikavimas</b>: veidas lyginamas su vieno savininko šablonu (1:1).</div></details>
+    <details><summary>Į kurią DI akto rizikos grupę patektų sistema, automatiškai vertinanti egzamino darbus?</summary><div><b>Didelės rizikos</b>: DI, lemiantis mokymosi rezultatus ir priėmimą, priskiriamas švietimo didelės rizikos sritims.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/271">Idėja pamokai „Dirbtinis intelektas“</a></li><li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">DI aktas – Reglamentas (ES) 2024/1689</a></li><li><a href="https://rrt.lt/veiklos-sritys/skaitmenine-erdve/di-informacija/di-reguliavimas">RRT: DI reguliavimas</a> <span class="src-note">– taikymo terminai, priežiūra Lietuvoje</span></li><li><a href="https://usercentrics.com/knowledge-hub/eu-ai-act-high-risk-delay-article-50-transparency-consent/">Usercentrics: DI akto pakeitimai (skaitmeninis omnibusas)</a> <span class="src-note">– didelės rizikos reikalavimų atidėjimas</span></li><li><a href="https://teachablemachine.withgoogle.com">Teachable Machine</a></li></ul></aside>
+</section>

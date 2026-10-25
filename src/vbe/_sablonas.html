@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VBE informatikos teorija – infopamokos.lt</title>
+<meta name="description" content="Informatikos VBE teorija III ir IV gimnazijos klasėms: visos Bendrosios programos sritys, išskyrus programavimą ir darbą su skaičiuokle. Schemos, testai, atvirieji klausimai ir egzaminų užduotys.">
+<link rel="icon" href="../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../">infopamokos.lt</a> <span aria-hidden="true">/</span> VBE</p>
+<header class="top">
+  <div class="eyebrow">Informatika · III–IV gimnazijos klasė · VBE</div>
+  <h1>Ko be programavimo dar reikia VBE</h1>
+  <p class="lead">Teorinė medžiaga toms Bendrosios programos temoms, kurios egzamine sudaro mažesnę dalį nei programavimas ir duomenų tyryba, bet dažnai lieka nepakartotos, ir jau vykusių egzaminų užduotys. Pasirinkite klasę arba egzaminus.</p>
+  <div class="scope"><b>Kam skirta ši svetainė.</b> Čia surinkta egzamino teorija iš visų Bendrosios programos sričių, <b>išskyrus duomenų tyrybą (darbą su skaičiuokle) ir programavimą</b>. Dirbtinis intelektas ir kriptografija, nors ir priklauso duomenų tyrybos sričiai, čia aprašyti. Programavimui ir skaičiuoklei reikia praktikos – spręskite ankstesnių metų užduotis skirtuke „Egzamino užduotys“.</div>
+  <div class="switch" role="tablist" aria-label="Klasė">
+    <button type="button" role="tab" id="tab-iii" data-go="iii" aria-selected="false">III klasė <small>VBE 1 dalis</small></button>
+    <button type="button" role="tab" id="tab-iv" data-go="iv" aria-selected="true">IV klasė <small>VBE 2 dalis</small></button>
+    <button type="button" role="tab" id="tab-egz" data-go="egz" aria-selected="false">Egzamino užduotys <small>2025–2026 m.</small></button>
+  </div>
+  <div class="split" data-grade="iii" aria-label="VBE 1 dalies taškų pasiskirstymas">
+    <div><b>25 %</b><span>Algoritmai ir programavimas (B)</span></div>
+    <div class="on"><b>20 %</b><span>Technologinių problemų sprendimas (D)</span></div>
+    <div class="on"><b>18 %</b><span>Duomenų tyryba (C), įskaitant DI ir kriptografiją</span></div>
+    <div class="on"><b>17 %</b><span>Skaitmeninio turinio kūrimas (A)</span></div>
+    <div class="on"><b>10 %</b><span>Virtualioji komunikacija (E)</span></div>
+    <div class="on"><b>10 %</b><span>Saugus elgesys (F)</span></div>
+  </div>
+  <div class="split" data-grade="iv" aria-label="VBE 2 dalies taškų pasiskirstymas">
+    <div><b>54 %</b><span>Algoritmai ir programavimas (B)</span></div>
+    <div class="on"><b>30 %</b><span>Duomenų tyryba (C), įskaitant DI</span></div>
+    <div class="on"><b>8 %</b><span>Skaitmeninio turinio kūrimas (A)</span></div>
+    <div class="on"><b>8 %</b><span>Saugus elgesys (F)</span></div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Temos">
+  <p>Temos</p>
+{{TOC_III}}
+  <ol data-grade="egz">
+    <li><a href="#egz-2026-ii-pagr"><span class="code">26</span>2026 m. egzaminai</a></li>
+    <li><a href="#egz-2025-ii-pagr"><span class="code">25</span>2025 m. egzaminai</a></li>
+    <li><a href="#egz-band-2026"><span class="code">P</span>Pavyzdžiai</a></li>
+    <li><a href="#egz-temos"><span class="code">★</span>Dažniausios temos</a></li>
+  </ol>
+{{TOC_IV}}
+</nav>
+
+<main>
+<div class="grade" data-grade="iii">
+{{TEMOS_III}}
+</div>
+<div class="grade" data-grade="iv">
+{{TEMOS_IV}}
+</div>
+<div class="grade egz" data-grade="egz">
+{{EGZAMINAI}}
+</div>
+</main>
+</div>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Parengta pagal Informatikos bendrąją programą (III–IV gimnazijos klasių mokymo(si) turinys) ir 2026 m. VBE užduoties struktūrą. III klasės turinys tikrinamas VBE 1 dalyje, IV klasės – 2 dalyje. Taškų procentai orientaciniai, galima paklaida iki 5 %. Paaiškinimai ir pavyzdžiai parašyti supaprastintai mokymuisi; prie kiekvienos temos nurodyti šaltiniai, kuriuose informaciją galima patikrinti. Datos, institucijos ir teisinės nuostatos tikrintos 2026 m. spalio mėn. Tikslūs teisės aktų tekstai – e-tar.lt ir eur-lex.europa.eu.</footer>
+</div>
+<script src="data.js"></script>
+<script src="../assets/js/vbe.js"></script>
+<script src="../assets/js/bot.js"></script>
+</body>
+</html>

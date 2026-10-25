@@ -1,0 +1,50 @@
+<!-- id: sifravimas | toc: Šifravimas | sritis: F -->
+<section class="topic" id="sifravimas">
+  <div class="topic-head"><span class="code">F3 · C3</span><span class="eyebrow">Saugus elgesys</span></div>
+  <h2>Duomenų ir pranešimų šifravimas</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>Šifravimas paverčia tekstą neperskaitomu; atgal paversti galima tik su raktu.</li><li>Viešasis raktas – kaip pašto dėžutės anga (įmesti gali visi), privatusis – kaip jos raktas (turi tik savininkas).</li><li>Šifruoji <b>gavėjo viešuoju</b> raktu, pasirašai <b>savo privačiuoju</b>.</li><li>Privačiojo rakto niekam neduodi.</li></ul></div>
+  <p><b>Šifravimas</b> paverčia atvirą tekstą neperskaitomu šifrogramu; atgal jį grąžinti galima tik turint raktą.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Simetrinis</th><th>Asimetrinis</th></tr></thead>
+    <tbody>
+      <tr><td><b>Raktai</b></td><td>Vienas bendras raktas</td><td>Raktų pora: viešasis ir privatusis</td></tr>
+      <tr><td><b>Greitis</b></td><td>Greitas, tinka dideliems kiekiams</td><td>Lėtas</td></tr>
+      <tr><td><b>Problema</b></td><td>Kaip saugiai perduoti raktą?</td><td>Kaip įsitikinti, kad viešasis raktas tikrai to žmogaus? (sprendžia sertifikatai)</td></tr>
+      <tr><td><b>Pavyzdžiai</b></td><td>AES</td><td>RSA, ECC</td></tr>
+    </tbody>
+  </table></div>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Hibridinis šifravimas</summary><div>
+<p>Praktikoje (HTTPS, OpenPGP) naudojamas <b>hibridinis</b> būdas: duomenys užšifruojami greitu simetriniu raktu, o tas raktas – gavėjo viešuoju raktu.</p>
+</div></details>
+
+  <h3>Kuris raktas kam</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Veiksmas</th><th>Kieno raktas</th><th>Kuris</th></tr></thead>
+    <tbody>
+      <tr><td>Užšifruoti laišką Jonui</td><td>Jono</td><td><b>viešasis</b></td></tr>
+      <tr><td>Iššifruoti gautą laišką</td><td>Savo</td><td><b>privatusis</b></td></tr>
+      <tr><td>Pasirašyti laišką</td><td>Savo</td><td><b>privatusis</b></td></tr>
+      <tr><td>Patikrinti Jono parašą</td><td>Jono</td><td><b>viešasis</b></td></tr>
+    </tbody>
+  </table></div>
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:540px" role="img" aria-label="Šifravimas viešuoju ir privačiuoju raktu"  viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-k2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><text x="70" y="60" text-anchor="middle" font-size="12" class="mut">Ona rašo</text><rect x="10" y="70" width="120" height="44" rx="6" class="box"/><text x="70.0" y="96.5" text-anchor="middle" font-size="13">Labas, Petrai</text><rect x="150" y="10" width="150" height="34" rx="6" class="acc"/><text x="225.0" y="31.5" text-anchor="middle" font-size="12">Petro viešasis raktas</text><line x1="225" y1="44" x2="225" y2="92" class="ln dash"/><line x1="130" y1="92" x2="298" y2="92" class="ln" marker-end="url(#ar-k2)"/><text x="225" y="112" text-anchor="middle" font-size="11" class="mut">užšifruoja</text><text x="365" y="60" text-anchor="middle" font-size="12" class="mut">šifrograma internete</text><rect x="300" y="70" width="130" height="44" rx="6" class="box"/><text x="365.0" y="96.5" text-anchor="middle" font-size="13"><tspan class="mono">x7#qL9!wZ</tspan></text><rect x="430" y="10" width="150" height="34" rx="6" class="warm"/><text x="505.0" y="31.5" text-anchor="middle" font-size="12">Petro privatusis raktas</text><line x1="505" y1="44" x2="505" y2="92" class="ln dash"/><line x1="430" y1="92" x2="578" y2="92" class="ln" marker-end="url(#ar-k2)"/><text x="505" y="112" text-anchor="middle" font-size="11" class="mut">iššifruoja</text><text x="640" y="60" text-anchor="middle" font-size="12" class="mut">Petras skaito</text><rect x="580" y="70" width="130" height="44" rx="6" class="box"/><text x="645.0" y="96.5" text-anchor="middle" font-size="13">Labas, Petrai</text><text x="360" y="160" text-anchor="middle" font-size="13">Viešąjį raktą gali turėti bet kas – juo galima tik užrakinti.</text><text x="360" y="182" text-anchor="middle" font-size="13">Atrakinti gali tik tas, kas turi privatųjį raktą.</text></svg></div><figcaption>Asimetrinis šifravimas: Ona užšifruoja Petro viešuoju raktu, o perskaityti gali tik Petras savo privačiuoju raktu.</figcaption></figure>  <div class="note"><b>Atmintinė.</b> Viešasis raktas – kaip pašto dėžutės anga: įmesti gali bet kas. Privatusis – kaip dėžutės raktas: jį turi tik savininkas ir niekam jo neduoda.</div>
+
+  <h3>Praktika: Kleopatra (Gpg4win)</h3>
+  <p>Gpg4win – nemokamas Windows programų paketas OpenPGP standartui, Kleopatra – jo raktų tvarkymo programa.</p>
+  <ol class="tight">
+    <li><b>Sukurti raktų porą</b>: <i>File → New OpenPGP Key Pair</i>, įvesti vardą, el. paštą ir slaptafrazę privačiajam raktui apsaugoti.</li>
+    <li><b>Eksportuoti viešąjį raktą</b> (<i>Export</i>, failas <code>.asc</code>) ir nusiųsti draugui.</li>
+    <li><b>Importuoti</b> draugo viešąjį raktą (<i>Import</i>) ir patikrinti jo <b>kontrolinį kodą</b> (angl. <i>fingerprint</i>), pvz., paklausus telefonu.</li>
+    <li><b>Užšifruoti</b> failą ar tekstą: <i>Sign/Encrypt</i>, gavėju pasirinkti draugą. Galima kartu ir pasirašyti savo raktu.</li>
+    <li><b>Iššifruoti ir patikrinti</b> gautą failą: <i>Decrypt/Verify</i>, įvesti savo slaptafrazę.</li>
+  </ol>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Ona nori, kad tik Petras perskaitytų jos laišką ir kad Petras žinotų, jog rašė būtent ji. Kokius raktus ji naudoja?</summary><div>Užšifruoja <b>Petro viešuoju</b> raktu (perskaitys tik Petras), pasirašo <b>savo privačiuoju</b> raktu (Petras patikrins Onos viešuoju).</div></details>
+    <details><summary>Kodėl tikrinamas viešojo rakto kontrolinis kodas?</summary><div>Kad įsitikintum, jog raktą sukūrė tas žmogus, o ne apsimetėlis, pakišęs savo raktą.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://www.gpg4win.org">Gpg4win ir Kleopatra</a></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/266">LIMA metodinė medžiaga „Kriptografija“</a></li></ul></aside>
+</section>

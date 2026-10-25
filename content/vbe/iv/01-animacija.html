@@ -1,0 +1,75 @@
+<!-- id: animacija | toc: Animacija | sritis: A -->
+<section class="topic" id="animacija">
+  <div class="topic-head"><span class="code">A2 · A3</span><span class="eyebrow">Skaitmeninio turinio kūrimas</span></div>
+  <h2>Animuotų kompiuterinės grafikos objektų kūrimas</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>Animacija – greitai rodomų kadrų seka. 25 kadrai per sekundę akiai atrodo kaip judesys.</li><li>Animatorius nupiešia <b>raktinius</b> kadrus, tarpinius apskaičiuoja programa.</li><li>Judesys atrodo gyvas dėl deformacijų, pasirengimo veiksmui ir liekamųjų veiksmų.</li><li>Animacija su garsu – MP4, trumpa ciklinė be garso – GIF.</li></ul></div>
+  <p>Animacija yra greitai rodomų nejudančių vaizdų (kadrų) seka, kurią akis suvokia kaip judesį. Kompiuterinėje animacijoje animatorius dažniausiai nustato tik svarbiausias pozas, o tarpines programa apskaičiuoja pati.</p>
+
+  <h3>Pagrindinės sąvokos</h3>
+  <dl class="terms">
+    <dt>Kadras</dt><dd>Vienas animacijos vaizdas. Animacija kuriama ant <b>laiko juostos</b> (angl. <i>timeline</i>), kurioje kadrai išdėstyti iš eilės.</dd>
+    <dt>Kadrų dažnis (fps)</dt><dd>Kiek kadrų rodoma per sekundę. Kinas – 24 fps, Europos televizija – 25 fps, internetas ir žaidimai – 30 arba 60 fps. Daugiau kadrų reiškia sklandesnį judesį ir didesnį failą.</dd>
+    <dt>Raktinis kadras</dt><dd>Kadras, kuriame animatorius pats nustato objekto padėtį, dydį, spalvą ar kitą savybę (angl. <i>keyframe</i>).</dd>
+    <dt>Interpoliacija</dt><dd>Tarpinių kadrų tarp dviejų raktinių kadrų apskaičiavimas (angl. <i>tweening</i>). Pvz., raktiniai kadrai 1 ir 25 → programa sukuria 2–24.</dd>
+    <dt>Lėtinimas</dt><dd>Judesys pradžioje įsibėgėja ir pabaigoje sulėtėja (angl. <i>ease in / ease out</i>). Tolygus judesys atrodo mechaniškai.</dd>
+    <dt>Skeletinė animacija</dt><dd>Personažui sukuriamas „skeletas“ iš kaulų ir sąnarių (angl. <i>rigging</i>), o animuojami kaulai, ne kiekvienas taškas atskirai.</dd>
+    <dt>Sluoksniai</dt><dd>Fonas, personažai ir efektai laikomi atskiruose sluoksniuose, kad juos būtų galima keisti nepriklausomai.</dd>
+  </dl>
+
+  <h3>Animacijos elementai iš Bendrosios programos</h3>
+  <p>Daugelis jų kilę iš klasikinių animacijos principų, kuriuos aprašė „Disney“ animatoriai.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Elementas</th><th>Ką reiškia</th><th>Pavyzdys</th></tr></thead>
+    <tbody>
+      <tr><td>Fonų parinkimas</td><td>Fonas nusako vietą ir nuotaiką, bet neturi nustelbti veiksmo. Dažnai kuriamas keliais sluoksniais, kurie juda skirtingu greičiu (paralaksas).</td><td>Tolimi kalnai slenka lėčiau nei artimi medžiai.</td></tr>
+      <tr><td>Judesio teorija</td><td>Judesys turi atrodyti fiziškai įtikimas: laikas (kiek kadrų užtrunka veiksmas), trajektorija lanku, inercija, svoris.</td><td>Sunkus kamuolys krenta greičiau ir mažiau atšoka nei lengvas.</td></tr>
+      <tr><td>Ėjimas</td><td>Ėjimo ciklas – kartojama žingsnio seka iš kelių pagrindinių pozų: kontaktas, žemiausia padėtis, prasilenkimas, aukščiausia padėtis.</td><td>Kartojamas ciklas + slenkantis fonas = personažas eina.</td></tr>
+      <tr><td>Kūno kalba</td><td>Poza ir siluetas parodo emociją net be veido.</td><td>Nuleisti pečiai ir galva – liūdesys.</td></tr>
+      <tr><td>Išraiška ir lūpų sinchronizacija</td><td>Veido išraiškos ir burnos formos derinamos su garsais. Garsai (fonemos) grupuojami į kelias burnos formas (vizemas).</td><td>Garsams „m“, „b“, „p“ – suspaustos lūpos.</td></tr>
+      <tr><td>Deformacijos</td><td>Suspaudimas ir ištempimas (angl. <i>squash and stretch</i>) parodo objekto elastingumą ir greitį. Tūris išlieka toks pat.</td><td>Kamuolys atsitrenkęs suplokštėja, skrisdamas ištįsta.</td></tr>
+      <tr><td>Pasirengimas veiksmui</td><td>Prieš pagrindinį veiksmą rodomas priešingos krypties judesys (angl. <i>anticipation</i>), kad žiūrovas suprastų, kas bus.</td><td>Prieš šuolį personažas pritūpia.</td></tr>
+      <tr><td>Liekamieji veiksmai</td><td>Kūnui sustojus, laisvos dalys dar kurį laiką juda iš inercijos (angl. <i>follow-through, overlapping action</i>).</td><td>Sustojus bėgikui, plaukai ir drabužiai dar siūbuoja.</td></tr>
+      <tr><td>Kadro dizainas</td><td>Kompozicija, plano dydis (bendras, vidutinis, stambus), kameros kampas, apšvietimas (angl. <i>staging</i>).</td><td>Stambus planas, kai svarbi emocija.</td></tr>
+      <tr><td>Įgarsinimas ir garso takelis</td><td>Takelį sudaro dialogai, garso efektai ir muzika, dažnai atskiruose takeliuose. Dialogas paprastai įrašomas <i>prieš</i> animuojant, kad lūpas būtų galima sinchronizuoti.</td><td>Žingsnių garsas sutampa su kontakto kadru.</td></tr>
+      <tr><td>Komponavimas ir montažas</td><td>Sluoksnių sujungimas į vieną vaizdą, scenų išdėstymas, perėjimai, eksportavimas į galutinį formatą.</td><td>Scenos sujungiamos laiko juostoje ir eksportuojamos į MP4.</td></tr>
+    </tbody>
+  </table></div>
+
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:560px" role="img" aria-label="Trys animacijos principai: kamuolys keičia formą krisdamas ir atsimušdamas; prieš šuolį personažas pritūpia; sustojus kūnui, laisvos dalys dar juda iš inercijos."  viewBox="0 0 660 230" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-anim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><text x="10" y="18" font-weight="600" font-size="12">Suspaudimas, ištempimas</text><text x="230" y="18" font-weight="600" font-size="12">Pasirengimas veiksmui</text><text x="450" y="18" font-weight="600" font-size="12">Liekamasis veiksmas</text><line x1="10" y1="200" x2="210" y2="200" class="ln"/><line x1="230" y1="200" x2="430" y2="200" class="ln"/><line x1="450" y1="200" x2="650" y2="200" class="ln"/><path d="M30 40 Q 85 40 110 191 Q 140 60 195 62" class="ln dash"/><circle cx="30" cy="40" r="13" class="acc"/><ellipse cx="78" cy="100" rx="10" ry="16" class="acc"/><ellipse cx="99" cy="158" rx="8" ry="20" class="acc"/><ellipse cx="110" cy="192" rx="21" ry="8" class="acc"/><ellipse cx="130" cy="140" rx="9" ry="18" class="acc"/><circle cx="170" cy="78" r="13" class="acc"/><text x="88" y="160" text-anchor="end" font-size="12" class="mut">ištempimas</text><text x="110" y="220" text-anchor="middle" font-size="12" class="mut">suspaudimas</text><circle cx="265" cy="120" r="10" class="skf"/><path d="M265 130V165M265 165L257 200M265 165L273 200M265 140L252 160M265 140L278 160" class="sk"/><circle cx="330" cy="146" r="10" class="skf"/><path d="M330 156L333 178M333 178L346 188L336 200M333 178L322 189L326 200M331 162L316 174M331 162L345 171" class="sk"/><circle cx="400" cy="72" r="10" class="skf"/><path d="M400 82V118M400 118L392 146M400 118L408 146M400 92L388 70M400 92L412 70" class="sk"/><line x1="400" y1="185" x2="400" y2="158" class="ln" marker-end="url(#ar-anim)"/><text x="265" y="220" text-anchor="middle" font-size="12" class="mut">1 stovi</text><text x="330" y="220" text-anchor="middle" font-size="12" class="mut">2 pritūpia</text><text x="400" y="220" text-anchor="middle" font-size="12" class="mut">3 šoka</text><line x1="465" y1="150" x2="500" y2="150" class="ln"/><line x1="465" y1="165" x2="500" y2="165" class="ln"/><line x1="465" y1="180" x2="500" y2="180" class="ln"/><path d="M540 135 L540 92" class="ln dash"/><rect x="510" y="135" width="60" height="65" rx="8" class="acc"/><path d="M540 135 Q 548 104 576 100" class="sk"/><circle cx="578" cy="99" r="5" class="inkf"/><text x="550" y="220" text-anchor="middle" font-size="12" class="mut">sustojo, bet antena dar linksta</text></svg></div><figcaption>Trys animacijos principai: kamuolys keičia formą krisdamas ir atsimušdamas; prieš šuolį personažas pritūpia; sustojus kūnui, laisvos dalys dar juda iš inercijos.</figcaption></figure>
+  <div class="bounce" aria-label="Kamuolio animacijos palyginimas">
+    <div class="lane"><div class="track"><span class="ball b1"></span></div><small>be deformacijų</small></div>
+    <div class="lane"><div class="track"><span class="ball b2"></span></div><small>su suspaudimu ir ištempimu</small></div>
+  </div>
+  <p class="why">Abu kamuoliai juda tais pačiais kadrais ir lėtinimu; dešinysis atrodo gyvesnis vien dėl deformacijų.</p>
+<details class="deep"><summary><span class="deep-label">Giliau</span> Animacijos programos</summary><div>
+  <h3>Programos</h3>
+  <ul class="tight">
+    <li><b>Blender</b> – nemokama, atviro kodo 3D modeliavimo ir animacijos programa (taip pat 2D „Grease Pencil“).</li>
+    <li><b>Synfig Studio</b> – nemokama 2D vektorinė animacija su automatine interpoliacija ir kaulais.</li>
+    <li><b>Autodesk Maya</b> – profesionali 3D animacija (kinas, žaidimai), mokama.</li>
+    <li><b>CrazyTalk</b> – veido animacija ir lūpų sinchronizacija iš nuotraukos.</li>
+    <li><b>Adobe After Effects</b> – judesio grafika, vaizdo efektai, komponavimas.</li>
+  </ul>
+
+</div></details>
+  <h3>Eksportavimas ir panaudojimas</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Formatas</th><th>Savybės</th><th>Kur tinka</th></tr></thead>
+    <tbody>
+      <tr><td class="num">GIF</td><td>Iki 256 spalvų, be garso, permatomumas tik „taip / ne“, failai dideli.</td><td>Trumpos ciklinės animacijos, žinutės.</td></tr>
+      <tr><td class="num">APNG, WebP</td><td>Milijonai spalvų, dalinis permatomumas, be garso.</td><td>Svetainės, kai reikia permatomo fono.</td></tr>
+      <tr><td class="num">MP4 (H.264)</td><td>Vaizdo įrašas su garsu, gerai suspaustas, palaikomas visur.</td><td>Vaizdo platformos, pristatymai, e. leidiniai.</td></tr>
+      <tr><td class="num">WebM</td><td>Atviras interneto vaizdo formatas, gali turėti permatomą foną.</td><td>Svetainės.</td></tr>
+      <tr><td class="num">SVG, Lottie (JSON)</td><td>Vektorinė animacija: maži failai, neišsilieja didinant.</td><td>Piktogramos ir animacijos programėlėse bei svetainėse.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Animacija trunka 4 s, kadrų dažnis 25 fps. Kiek kadrų joje?</summary><div>4 × 25 = <b>100 kadrų</b>. Jei raktiniai kadrai yra tik 1-as ir 100-asis, likusius 98 apskaičiuoja interpoliacija.</div></details>
+    <details><summary>Kuo skiriasi pasirengimas veiksmui ir liekamieji veiksmai?</summary><div>Pasirengimas vyksta <b>prieš</b> pagrindinį veiksmą (pritūpimas prieš šuolį), liekamieji veiksmai – <b>po</b> jo (siūbuojantys plaukai sustojus).</div></details>
+    <details><summary>Kokį formatą rinktis animacijai su garsu, kuri bus įdėta į elektroninį leidinį?</summary><div><b>MP4</b>: GIF, APNG ir WebP garso nepalaiko.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><i>F. Thomas, O. Johnston. The Illusion of Life: Disney Animation, 1981</i> <span class="src-note">– klasikiniai animacijos principai</span></li><li><a href="https://www.blender.org">Blender</a></li><li><a href="https://www.synfig.org">Synfig Studio</a></li></ul></aside>
+</section>

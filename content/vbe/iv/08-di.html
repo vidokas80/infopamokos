@@ -1,0 +1,74 @@
+<!-- id: di | toc: Dirbtinis intelektas | sritis: C -->
+<section class="topic" id="di">
+  <div class="topic-head"><span class="code">C3</span><span class="eyebrow">Duomenų tyryba ir informacija</span></div>
+  <h2>Dirbtinis intelektas: klasifikavimas, atpažinimas, prognozavimas</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li><b>Klasifikavimas</b> – priskirti grupei (kokia gėlė?), <b>prognozavimas</b> – nuspėti skaičių (kokia bus temperatūra?).</li><li>Duomenys dalijami į mokymo ir testavimo; modelis tikrinamas su pavyzdžiais, kurių nematė.</li><li>Sprendimų medis – klausimų seka „taip / ne“.</li><li>Neuroninis tinklas – sluoksniai „neuronų“; mokydamasis jis keičia ryšių svorius.</li><li>Jei modelis gerai atsako į mokymo pavyzdžius, bet blogai į naujus, tai <b>persimokymas</b>.</li></ul></div>
+  <p><b>Mašininis mokymasis</b> – DI sritis, kurioje programa ne gauna taisykles iš žmogaus, o pati jas „išmoksta“ iš pavyzdžių. IV klasėje nagrinėjamas <b>mokymasis su mokytoju</b>: kiekvienas mokymo pavyzdys turi teisingą atsakymą.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Užduotis</th><th>Atsakymas</th><th>Pavyzdys</th></tr></thead>
+    <tbody>
+      <tr><td><b>Klasifikavimas</b></td><td>Kategorija</td><td>Kokios rūšies vilkdalgis? Ar laiškas brukalas?</td></tr>
+      <tr><td><b>Atpažinimas</b></td><td>Kategorija iš sudėtingų duomenų</td><td>Veidas nuotraukoje, ištartas žodis, teksto nuotaika.</td></tr>
+      <tr><td><b>Prognozavimas (regresija)</b></td><td>Skaičius</td><td>Rytojaus oro temperatūra.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Darbo eiga</h3>
+  <div class="flow"><span>Duomenys</span><i>→</i><span>paruošimas</span><i>→</i><span>mokymo / testavimo aibės</span><i>→</i><span>modelio mokymas</span><i>→</i><span>įvertinimas</span><i>→</i><span>prognozė</span></div>
+  <p>Duomenys dalijami į <b>mokymo</b> ir <b>testavimo</b> aibes (pvz., 80 % / 20 %). Modelis vertinamas tik pagal duomenis, kurių mokydamasis nematė.</p>
+
+  <h3>Iris duomenų rinkinys</h3>
+  <p>150 vilkdalgių žiedų, po 50 kiekvienos iš 3 rūšių: <i>setosa</i>, <i>versicolor</i>, <i>virginica</i>. Kiekvienas žiedas aprašytas 4 <b>požymiais</b> (cm): taurėlapio ilgis ir plotis, vainiklapio ilgis ir plotis. Rūšis yra <b>klasė</b>, kurią modelis turi nuspėti.</p>
+
+  <h3>Sprendimų medis</h3>
+  <p>Modelis kaip klausimų seka. Kiekviename <b>mazge</b> tikrinama sąlyga, šakos – atsakymai, <b>lapai</b> – klasės. Lengvai suprantamas žmogui. Pavyzdys (supaprastintas):</p>
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:480px" role="img" aria-label="Sprendimų medis"  viewBox="0 0 560 240" xmlns="http://www.w3.org/2000/svg"><line x1="280" y1="50" x2="110" y2="110" class="ln"/><line x1="280" y1="50" x2="420" y2="100" class="ln"/><line x1="420" y1="140" x2="315" y2="190" class="ln"/><line x1="420" y1="140" x2="475" y2="190" class="ln"/><text x="180" y="74" font-size="12" class="mut">taip</text><text x="362" y="70" font-size="12" class="mut">ne</text><text x="350" y="170" font-size="12" class="mut">taip</text><text x="455" y="170" font-size="12" class="mut">ne</text><rect x="160" y="10" width="240" height="40" rx="6" class="box"/><text x="280.0" y="34.5" text-anchor="middle" font-size="12">vainiklapio ilgis &lt; 2,5 cm?</text><rect x="40" y="110" width="140" height="36" rx="6" class="acc"/><text x="110.0" y="132.5" text-anchor="middle" font-size="12">setosa</text><rect x="300" y="100" width="240" height="40" rx="6" class="box"/><text x="420.0" y="124.5" text-anchor="middle" font-size="12">vainiklapio plotis &lt; 1,8 cm?</text><rect x="250" y="190" width="130" height="36" rx="6" class="acc"/><text x="315.0" y="212.5" text-anchor="middle" font-size="12">versicolor</text><rect x="410" y="190" width="130" height="36" rx="6" class="acc"/><text x="475.0" y="212.5" text-anchor="middle" font-size="12">virginica</text></svg></div><figcaption>Supaprastintas sprendimų medis Iris rinkiniui: mazguose klausimai apie požymius, lapuose klasės.</figcaption></figure>
+
+  <h3>Dirbtinis neuroninis tinklas</h3>
+  <dl class="terms">
+    <dt>Sluoksniai</dt><dd><b>Įėjimo</b> (po neuroną kiekvienam požymiui, Iris – 4), <b>paslėptieji</b> (vienas ar daugiau), <b>išėjimo</b> (po neuroną kiekvienai klasei, Iris – 3).</dd>
+    <dt>Neuronas</dt><dd>Apskaičiuoja įėjimų svertinę sumą, prideda poslinkį ir pritaiko <b>aktyvacijos funkciją</b>: <code>y = f(w₁x₁ + w₂x₂ + … + b)</code>.</dd>
+    <dt>Aktyvacijos funkcijos</dt><dd>ReLU (paslėptuose sluoksniuose), sigmoidė (taip / ne atsakymui), softmax (išėjime paverčia rezultatus klasių tikimybėmis, kurių suma 1).</dd>
+  </dl>
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:520px" role="img" aria-label="Neuroninio tinklo sluoksniai"  viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg"><line x1="170" y1="60" x2="320" y2="50" class="ln faint"/><line x1="170" y1="60" x2="320" y2="100" class="ln faint"/><line x1="170" y1="60" x2="320" y2="150" class="ln faint"/><line x1="170" y1="60" x2="320" y2="200" class="ln faint"/><line x1="170" y1="60" x2="320" y2="250" class="ln faint"/><line x1="170" y1="120" x2="320" y2="50" class="ln faint"/><line x1="170" y1="120" x2="320" y2="100" class="ln faint"/><line x1="170" y1="120" x2="320" y2="150" class="ln faint"/><line x1="170" y1="120" x2="320" y2="200" class="ln faint"/><line x1="170" y1="120" x2="320" y2="250" class="ln faint"/><line x1="170" y1="180" x2="320" y2="50" class="ln faint"/><line x1="170" y1="180" x2="320" y2="100" class="ln faint"/><line x1="170" y1="180" x2="320" y2="150" class="ln faint"/><line x1="170" y1="180" x2="320" y2="200" class="ln faint"/><line x1="170" y1="180" x2="320" y2="250" class="ln faint"/><line x1="170" y1="240" x2="320" y2="50" class="ln faint"/><line x1="170" y1="240" x2="320" y2="100" class="ln faint"/><line x1="170" y1="240" x2="320" y2="150" class="ln faint"/><line x1="170" y1="240" x2="320" y2="200" class="ln faint"/><line x1="170" y1="240" x2="320" y2="250" class="ln faint"/><line x1="320" y1="50" x2="450" y2="90" class="ln faint"/><line x1="320" y1="50" x2="450" y2="150" class="ln faint"/><line x1="320" y1="50" x2="450" y2="210" class="ln faint"/><line x1="320" y1="100" x2="450" y2="90" class="ln faint"/><line x1="320" y1="100" x2="450" y2="150" class="ln faint"/><line x1="320" y1="100" x2="450" y2="210" class="ln faint"/><line x1="320" y1="150" x2="450" y2="90" class="ln faint"/><line x1="320" y1="150" x2="450" y2="150" class="ln faint"/><line x1="320" y1="150" x2="450" y2="210" class="ln faint"/><line x1="320" y1="200" x2="450" y2="90" class="ln faint"/><line x1="320" y1="200" x2="450" y2="150" class="ln faint"/><line x1="320" y1="200" x2="450" y2="210" class="ln faint"/><line x1="320" y1="250" x2="450" y2="90" class="ln faint"/><line x1="320" y1="250" x2="450" y2="150" class="ln faint"/><line x1="320" y1="250" x2="450" y2="210" class="ln faint"/><circle cx="170" cy="60" r="13" class="box"/><text x="150" y="64" text-anchor="end" font-size="12">taurėlapio ilgis</text><circle cx="170" cy="120" r="13" class="box"/><text x="150" y="124" text-anchor="end" font-size="12">taurėlapio plotis</text><circle cx="170" cy="180" r="13" class="box"/><text x="150" y="184" text-anchor="end" font-size="12">vainiklapio ilgis</text><circle cx="170" cy="240" r="13" class="box"/><text x="150" y="244" text-anchor="end" font-size="12">vainiklapio plotis</text><circle cx="320" cy="50" r="13" class="box"/><circle cx="320" cy="100" r="13" class="box"/><circle cx="320" cy="150" r="13" class="box"/><circle cx="320" cy="200" r="13" class="box"/><circle cx="320" cy="250" r="13" class="box"/><circle cx="450" cy="90" r="13" class="box"/><text x="472" y="94" font-size="12">setosa 0,02</text><circle cx="450" cy="150" r="13" class="acc"/><text x="472" y="154" font-size="12" font-weight="700">versicolor 0,91</text><circle cx="450" cy="210" r="13" class="box"/><text x="472" y="214" font-size="12">virginica 0,07</text><text x="170" y="290" text-anchor="middle" font-size="12" class="mut">Įėjimo (4)</text><text x="320" y="290" text-anchor="middle" font-size="12" class="mut">Paslėptasis (čia 5)</text><text x="450" y="290" text-anchor="middle" font-size="12" class="mut">Išėjimo (3)</text></svg></div><figcaption>Neuroninis tinklas Iris duomenims. Kiekviena linija turi svorį, kurį tinklas keičia mokydamasis. Išėjime softmax pateikia tikimybes; čia modelis atsako „versicolor“.</figcaption></figure><details class="deep"><summary><span class="deep-label">Giliau</span> Kaip neuroninis tinklas mokosi</summary><div>
+  <h3>Kaip vyksta apmokymas</h3>
+  <ol class="tight">
+    <li><b>Tiesioginis sklidimas</b>: pavyzdys praleidžiamas per tinklą, gaunama prognozė.</li>
+    <li><b>Nuostolių funkcija</b> apskaičiuoja, kiek prognozė skiriasi nuo teisingo atsakymo.</li>
+    <li><b>Atgalinis sklidimas</b>: nustatoma, kiek kiekvienas svoris prisidėjo prie klaidos.</li>
+    <li><b>Gradientinis nusileidimas</b>: svoriai šiek tiek pakeičiami klaidą mažinančia kryptimi. Žingsnio dydis – <b>mokymosi greitis</b>.</li>
+    <li>Kartojama daug kartų. Vienas perėjimas per visus mokymo duomenis – <b>epocha</b>.</li>
+  </ol>
+</div></details>
+  <div class="note"><b>Persimokymas</b> (angl. <i>overfitting</i>): modelis „iškala“ mokymo duomenis, bet blogai veikia su naujais. Požymis – mokymo tikslumas didelis, testavimo mažas.</div>
+
+  <h3>Modelio įvertinimas</h3>
+  <p><b>Tikslumas</b> = teisingų prognozių skaičius / visų prognozių skaičius. <b>Painiavos matrica</b> rodo, kurias klases modelis supainioja (eilutės – tikroji klasė, stulpeliai – prognozuota).</p>
+
+  <h3>Įrankiai</h3>
+  <p><b>Orange</b> (vizualus programavimas valdikliais): <i>File → Data Table → Tree / Neural Network → Test and Score → Confusion Matrix</i>.</p>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Neuroninis tinklas Python kalba</summary><div>
+<p><b>Python su Keras</b> (TensorFlow):</p>
+<pre><code>from tensorflow import keras
+modelis = keras.Sequential([
+    keras.layers.Input(shape=(4,)),               # 4 požymiai
+    keras.layers.Dense(8, activation="relu"),     # paslėptasis sluoksnis
+    keras.layers.Dense(3, activation="softmax")   # 3 rūšys
+])
+modelis.compile(optimizer="adam",
+                loss="sparse_categorical_crossentropy",
+                metrics=["accuracy"])
+modelis.fit(X_mokymo, y_mokymo, epochs=100)
+modelis.evaluate(X_testo, y_testo)</code></pre>
+</div></details>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Kiek neuronų turi Iris tinklo įėjimo ir išėjimo sluoksniai?</summary><div>Įėjimo – <b>4</b> (požymiai), išėjimo – <b>3</b> (rūšys).</div></details>
+    <details><summary>Modelis su mokymo duomenimis teisingas 100 %, su testavimo – 62 %. Kas atsitiko?</summary><div><b>Persimokymas</b>: modelis įsiminė mokymo pavyzdžius, bet neapibendrina. Galima mažinti tinklo dydį, epochų skaičių ar rinkti daugiau duomenų.</div></details>
+    <details><summary>Ar temperatūros prognozavimas yra klasifikavimas?</summary><div>Ne. Atsakymas yra skaičius, todėl tai <b>regresija</b> (prognozavimas).</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://archive.ics.uci.edu/dataset/53/iris">Iris duomenų rinkinys – UCI</a></li><li><a href="https://orangedatamining.com">Orange Data Mining</a></li><li><a href="https://keras.io">Keras dokumentacija</a></li></ul></aside>
+</section>

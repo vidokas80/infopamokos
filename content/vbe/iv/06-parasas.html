@@ -1,0 +1,48 @@
+<!-- id: parasas | toc: E. parašas | sritis: F -->
+<section class="topic" id="parasas">
+  <div class="topic-head"><span class="code">F3</span><span class="eyebrow">Saugus elgesys</span></div>
+  <h2>Elektroninis parašas, spaudas, laiko žyma</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>E. parašas įrodo, kas pasirašė ir kad dokumentas po to nebuvo pakeistas.</li><li>Trys lygiai: paprastas, pažangusis, kvalifikuotas. Tik <b>kvalifikuotas</b> prilygsta ranka pasirašytam.</li><li>Kvalifikuotu parašu pasirašoma ID kortele, mobiliuoju parašu, Smart-ID.</li><li><b>E. spaudas</b> – įmonės ar įstaigos parašas, <b>laiko žyma</b> – įrodymas, kada dokumentas egzistavo.</li></ul></div>
+  <p>ES taisykles nustato <b>eIDAS reglamentas</b> (Nr. 910/2014), taikomas nuo 2016 m. liepos 1 d. Lietuvoje jį papildo Elektroninės atpažinties ir elektroninių operacijų patikimumo užtikrinimo paslaugų įstatymas, o paslaugų teikėjus prižiūri Ryšių reguliavimo tarnyba (RRT).</p>
+
+  <h3>Trys parašo lygiai</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Rūšis</th><th>Reikalavimai</th><th>Pavyzdys</th><th>Teisinė galia</th></tr></thead>
+    <tbody>
+      <tr><td><b>Paprastas</b></td><td>Bet kokie elektroniniai duomenys, susieti su dokumentu ir naudojami pasirašyti.</td><td>Vardas el. laiško pabaigoje, pažymėtas langelis „Sutinku“.</td><td>Žemiausia; prilygsta rašytiniam tik jei šalys dėl to iš anksto susitarė raštu.</td></tr>
+      <tr><td><b>Pažangusis</b></td><td>Unikaliai susietas su pasirašiusiuoju, leidžia jį nustatyti, sukurtas tik jo kontroliuojamomis priemonėmis, bet koks dokumento pakeitimas po pasirašymo aptinkamas.</td><td>Pasirašymas platformoje su SMS kodu.</td><td>Galioja, bet ginčo atveju autentiškumą turi įrodyti tas, kas remiasi dokumentu.</td></tr>
+      <tr><td><b>Kvalifikuotas</b></td><td>Pažangusis + sukurtas <i>kvalifikuota parašo kūrimo įranga</i> + patvirtintas <i>kvalifikuotu sertifikatu</i>.</td><td>Asmens tapatybės kortelė, mobilusis parašas, Smart-ID.</td><td><mark>Visoje ES prilygsta ranka pasirašytam parašui.</mark> Laikomas autentišku, kol neįrodyta priešingai.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Lietuvoje kvalifikuotų sertifikatų išdavėjai yra, pvz., Registrų centras ir Migracijos departamentas (asmens tapatybės kortelė); mobilųjį parašą teikia per SIM korteles. Smart-ID išduoda Estijos įmonė, bet pagal eIDAS jis pripažįstamas visoje ES.</p>
+
+  <h3>Spaudas ir laiko žyma</h3>
+  <dl class="terms">
+    <dt>Elektroninis spaudas</dt><dd>Juridinio asmens (įmonės, įstaigos) „parašas“. Patvirtina dokumento <b>kilmę</b> ir <b>vientisumą</b>, pvz., automatiškai išrašytos sąskaitos ar pažymos.</dd>
+    <dt>Elektroninė laiko žyma</dt><dd>Įrodo, kad dokumentas egzistavo tam tikru <b>momentu</b> ir nuo to laiko nepasikeitė. Svarbi, kai reikia įrodyti, kad parašas sukurtas sertifikatui dar galiojant.</dd>
+    <dt>Sertifikatas</dt><dd>Patikimos įstaigos (sertifikavimo centro) pasirašytas elektroninis dokumentas, susiejantis viešąjį raktą su asmeniu. Turi galiojimo laiką ir gali būti atšauktas.</dd>
+  </dl>
+
+<details class="deep"><summary><span class="deep-label">Giliau</span> Kaip parašas veikia viduje (maišos funkcija, raktai, formatai)</summary><div>
+  <h3>Kaip veikia parašas</h3>
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:540px" role="img" aria-label="Elektroninio parašo kūrimas ir tikrinimas"  viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-sig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><text x="10" y="22" font-weight="600">Siuntėjas pasirašo</text><rect x="10" y="35" width="100" height="40" rx="6" class="box"/><text x="60.0" y="59.5" text-anchor="middle" font-size="12">Dokumentas</text><line x1="110" y1="55" x2="128" y2="55" class="ln" marker-end="url(#ar-sig)"/><rect x="130" y="35" width="160" height="40" rx="6" class="box"/><text x="210.0" y="59.5" text-anchor="middle" font-size="12">maišos funkcija</text><line x1="290" y1="55" x2="308" y2="55" class="ln" marker-end="url(#ar-sig)"/><rect x="310" y="35" width="110" height="40" rx="6" class="box"/><text x="365.0" y="59.5" text-anchor="middle" font-size="12"><tspan class="mono">a3f9…</tspan></text><line x1="420" y1="55" x2="438" y2="55" class="ln" marker-end="url(#ar-sig)"/><rect x="440" y="35" width="170" height="40" rx="6" class="warm"/><text x="525.0" y="59.5" text-anchor="middle" font-size="12">šifruoja savo privačiuoju</text><line x1="610" y1="55" x2="628" y2="55" class="ln" marker-end="url(#ar-sig)"/><rect x="630" y="35" width="110" height="40" rx="6" class="acc"/><text x="685.0" y="59.5" text-anchor="middle" font-size="12">parašas</text><text x="10" y="122" font-weight="600">Gavėjas tikrina</text><rect x="10" y="135" width="100" height="40" rx="6" class="box"/><text x="60.0" y="159.5" text-anchor="middle" font-size="12">Dokumentas</text><line x1="110" y1="155" x2="128" y2="155" class="ln" marker-end="url(#ar-sig)"/><rect x="130" y="135" width="160" height="40" rx="6" class="box"/><text x="210.0" y="159.5" text-anchor="middle" font-size="12">maišos funkcija</text><line x1="290" y1="155" x2="308" y2="155" class="ln" marker-end="url(#ar-sig)"/><rect x="310" y="135" width="110" height="40" rx="6" class="box"/><text x="365.0" y="159.5" text-anchor="middle" font-size="12"><tspan class="mono">a3f9…</tspan></text><rect x="10" y="205" width="100" height="40" rx="6" class="acc"/><text x="60.0" y="229.5" text-anchor="middle" font-size="12">parašas</text><line x1="110" y1="225" x2="128" y2="225" class="ln" marker-end="url(#ar-sig)"/><rect x="130" y="205" width="160" height="40" rx="6" class="acc"/><text x="210.0" y="229.5" text-anchor="middle" font-size="12">iššifruoja viešuoju</text><line x1="290" y1="225" x2="308" y2="225" class="ln" marker-end="url(#ar-sig)"/><rect x="310" y="205" width="110" height="40" rx="6" class="box"/><text x="365.0" y="229.5" text-anchor="middle" font-size="12"><tspan class="mono">a3f9…</tspan></text><line x1="420" y1="155" x2="458" y2="185" class="ln" marker-end="url(#ar-sig)"/><line x1="420" y1="225" x2="458" y2="195" class="ln" marker-end="url(#ar-sig)"/><rect x="460" y="165" width="280" height="50" rx="6" class="acc"/><text x="600.0" y="186.5" text-anchor="middle" font-size="12">Santraukos sutampa?</text><text x="600.0" y="202.5" text-anchor="middle" font-size="12">taip → parašas galioja</text></svg></div><figcaption>Pasirašoma ne visas dokumentas, o jo santrauka. Jei po pasirašymo dokumente pasikeistų bent vienas simbolis, gavėjo apskaičiuota santrauka nesutaptų.</figcaption></figure>
+  <p>Gavėjas iš dokumento pats apskaičiuoja santrauką, o parašą iššifruoja siuntėjo <b>viešuoju</b> raktu iš sertifikato. Jei santraukos sutampa, dokumentas nepakeistas ir pasirašė būtent privačiojo rakto savininkas. Parašas <b>neužslepia</b> turinio: jis įrodo autorystę ir vientisumą, bet ne konfidencialumą.</p>
+  <p><mark>Maišos funkcija</mark> (angl. <i>hash</i>) iš bet kokio dydžio duomenų apskaičiuoja trumpą fiksuoto ilgio „pirštų atspaudą“ – santrauką. SHA-256 santrauka visada 256 bitų (64 šešioliktainiai simboliai). Pakeitus nors vieną simbolį, santrauka pasikeičia visiškai, o iš santraukos atkurti duomenų neįmanoma.</p>
+  <div class="hashdemo">
+    <label for="hash-in">Išbandyk: įrašyk tekstą ir pažiūrėk jo SHA-256 santrauką</label>
+    <input id="hash-in" type="text" value="Jonas Jonaitis, informatika, pažymys 9" autocomplete="off">
+    <output id="hash-out" for="hash-in">…</output>
+    <p class="why">Pakeisk 9 į 8 – pasikeis visa santrauka, ne tik vienas simbolis.</p>
+  </div>
+  <p>Lietuvoje dažni formatai: <code>.adoc</code>, <code>.asice</code> (ASiC-E konteineris) ir PDF su įterptu parašu (PAdES). Pasirašyti ir patikrinti parašą galima programomis ar internetinėmis paslaugomis, kurias nurodo kvalifikuoto sertifikato išdavėjas.</p>
+
+</div></details>
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Kuris parašas visada prilygsta rašytiniam visose ES šalyse?</summary><div>Tik <b>kvalifikuotas</b> elektroninis parašas.</div></details>
+    <details><summary>Savivaldybė sertifikatus automatiškai pasirašo įstaigos vardu. Kas naudojama?</summary><div><b>Elektroninis spaudas</b>: jis priklauso juridiniam asmeniui, ne konkrečiam darbuotojui.</div></details>
+    <details><summary>Po pasirašymo dokumente pakeistas vienas skaičius. Kas nutiks tikrinant parašą?</summary><div>Pasikeis dokumento santrauka, ji nesutaps su parašo santrauka, todėl parašas bus pažymėtas kaip negaliojantis.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://eur-lex.europa.eu/eli/reg/2014/910/oj">eIDAS – Reglamentas (ES) Nr. 910/2014</a> <span class="src-note">– parašo rūšys ir teisinė galia</span></li><li><a href="https://elektroninisparasas.lt/?p=3345">elektroninisparasas.lt</a> <span class="src-note">– kvalifikuotų sertifikatų teikėjai Lietuvoje</span></li><li><a href="https://www.vle.lt/straipsnis/elektroninis-parasas/">VLE: Elektroninis parašas</a></li><li><a href="https://finonamai.lt/informacija/koks-turi-buti-elektroninio-pasto-parasas/">finonamai.lt: el. parašo teisinė galia</a> <span class="src-note">– paprasto parašo galia Lietuvoje</span></li></ul></aside>
+</section>

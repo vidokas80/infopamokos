@@ -1,0 +1,880 @@
+{
+ "licencijos": [
+  {
+   "klausimas": "Ką reikia padaryti, kad tavo piešinys būtų saugomas autorių teisių?",
+   "variantai": [
+    "Užregistruoti jį valstybės įstaigoje",
+    "Nieko – teisės atsiranda automatiškai sukūrus",
+    "Pažymėti ženklu ©",
+    "Paskelbti internete"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Autorių teisės atsiranda sukūrus kūrinį; registruoti ar žymėti nereikia.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ką reiškia raidės ND Creative Commons licencijoje?",
+   "variantai": [
+    "Nurodyti autorių",
+    "Negalima keisti kūrinio",
+    "Negalima naudoti komerciškai",
+    "Dalintis tokia pat licencija"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "ND – No Derivatives: kūrinį galima platinti tik nepakeistą.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas autorių teisių NESAUGOMA?",
+   "variantai": [
+    "Mokinio rašinys",
+    "Svetainės dizainas",
+    "Įstatymo tekstas",
+    "Kompiuterio programa"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Teisės aktai ir oficialūs dokumentai nesaugomi (įstatymo 5 str.).",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuri licencija leidžia naudoti kūrinį net nenurodant autoriaus?",
+   "variantai": [
+    "CC BY",
+    "CC BY-SA",
+    "CC0",
+    "CC BY-NC-ND"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "CC0 – autorius atsisakė teisių; visos kitos CC licencijos turi BY.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kiek laiko ES galioja autorių teisės?",
+   "variantai": [
+    "50 metų nuo sukūrimo",
+    "Autoriaus gyvenimą ir 70 metų po mirties",
+    "Kol autorius gyvas",
+    "Visam laikui"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Po to kūrinys tampa viešąja nuosavybe.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "vizualizavimas": [
+  {
+   "klausimas": "Kuri diagrama geriausiai parodo oro temperatūros kitimą per metus?",
+   "variantai": [
+    "Skritulinė",
+    "Linijinė",
+    "Sklaidos",
+    "Stačiakampė"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Kitimui laike rodyti naudojama linijinė diagrama.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ką rodo stačiakampė diagrama?",
+   "variantai": [
+    "Dalį nuo visumos",
+    "Reikšmių pasiskirstymą: medianą ir kvartilius",
+    "Dviejų dydžių ryšį",
+    "Kitimą laike"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Dėžutė apima reikšmes nuo 1-ojo iki 3-iojo kvartilio, brūkšnys joje – mediana.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kokiu formatu eksportuoti diagramą, kad ją būtų galima redaguoti Inkscape be kokybės praradimo?",
+   "variantai": [
+    "JPG",
+    "PNG",
+    "SVG",
+    "GIF"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "SVG yra vektorinis formatas, jo objektus galima redaguoti.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ką leidžia atvirųjų duomenų licencija CC BY?",
+   "variantai": [
+    "Naudoti tik nekomerciškai",
+    "Naudoti laisvai, nurodant šaltinį",
+    "Tik peržiūrėti, bet nekeisti",
+    "Naudoti sumokėjus"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "BY reiškia, kad būtina nurodyti autorių (šaltinį).",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "vektorine": [
+  {
+   "klausimas": "Kuris formatas vektorinis?",
+   "variantai": [
+    "PNG",
+    "TIFF",
+    "SVG",
+    "WebP"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "SVG aprašo figūras formulėmis; kiti išvardyti – taškiniai.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kiek pikselių pločio turi būti 2,54 cm pločio paveikslas, spausdinamas 300 dpi?",
+   "variantai": [
+    "254 px",
+    "300 px",
+    "762 px",
+    "118 px"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "2,54 cm = 1 colis, o 300 dpi reiškia 300 taškų colyje.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuris formatas negali turėti permatomo fono?",
+   "variantai": [
+    "PNG",
+    "GIF",
+    "JPG",
+    "SVG"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "JPG neturi permatomumo, fonas visada užpildytas.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kodėl nuotraukos saugomos taškiniu, o ne vektoriniu formatu?",
+   "variantai": [
+    "Vektoriniai formatai nepalaiko spalvų",
+    "Sudėtingus spalvų perėjimus efektyviau aprašyti taškais",
+    "Vektorinių failų neatidaro naršyklė",
+    "Vektoriniai failai visada didesni"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Nuotraukoje milijonai skirtingų atspalvių – jų neįmanoma patogiai aprašyti figūromis.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "di3": [
+  {
+   "klausimas": "Kuris teiginys teisingas?",
+   "variantai": [
+    "Gilusis mokymasis apima visą DI",
+    "Mašininis mokymasis yra DI dalis",
+    "DI ir mašininis mokymasis reiškia tą patį",
+    "Neuroniniai tinklai nėra mašininis mokymasis"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "DI ⊃ mašininis mokymasis ⊃ gilusis mokymasis.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Teachable Machine modelis atpažįsta kates tik ant sofos. Kodėl?",
+   "variantai": [
+    "Per mažai klasių",
+    "Mokymo pavyzdžiai nepakankamai įvairūs",
+    "Per lėtas kompiuteris",
+    "Neteisingai eksportuotas modelis"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Jei visos katės buvo ant sofos, modelis galėjo „išmokti“ sofą, o ne katę.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kur DI akte priskiriamas socialinis reitingavimas?",
+   "variantai": [
+    "Minimali rizika",
+    "Ribota rizika",
+    "Didelė rizika",
+    "Draudžiama praktika"
+   ],
+   "teisingas": 3,
+   "paaiskinimas": "Socialinis reitingavimas uždraustas nuo 2025 m. vasario 2 d.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ką privalo daryti pokalbių robotas pagal DI aktą?",
+   "variantai": [
+    "Turėti kvalifikuotą sertifikatą",
+    "Pranešti, kad žmogus bendrauja su DI",
+    "Veikti tik ES serveriuose",
+    "Nieko"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Tai ribotos rizikos sistema – jai taikomi skaidrumo reikalavimai.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Policija ieško nuotraukoje esančio žmogaus tarp milijono veidų duomenų bazėje. Kas tai?",
+   "variantai": [
+    "Autentifikavimas",
+    "Identifikavimas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Ieškoma vieno tarp daugelio (1:N) – identifikavimas.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "kriptografija": [
+  {
+   "klausimas": "Kokia pagrindinė simetrinio šifravimo problema?",
+   "variantai": [
+    "Jis labai lėtas",
+    "Kaip saugiai perduoti raktą gavėjui",
+    "Juo negalima šifruoti teksto",
+    "Jam reikia sertifikato"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Abi pusės turi turėti tą patį slaptą raktą, o jį reikia kažkaip perduoti.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kokiu raktu tikrinamas skaitmeninis parašas?",
+   "variantai": [
+    "Siuntėjo privačiuoju",
+    "Siuntėjo viešuoju",
+    "Gavėjo privačiuoju",
+    "Gavėjo viešuoju"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Pasirašoma savo privačiuoju, tikrinama pasirašiusiojo viešuoju raktu.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ko NĖRA svetainės sertifikate?",
+   "variantai": [
+    "Savininko viešojo rakto",
+    "Galiojimo laiko",
+    "Savininko privačiojo rakto",
+    "Išdavėjo parašo"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Privatusis raktas niekada neperduodamas ir nededamas į sertifikatą.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Ką garantuoja HTTPS spynelė naršyklėje?",
+   "variantai": [
+    "Kad svetainė patikima",
+    "Kad ryšys šifruojamas ir domenas patvirtintas, bet svetainė gali būti sukčių",
+    "Kad svetainė valstybinė",
+    "Kad joje nėra virusų"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Sukčiai taip pat gali gauti sertifikatą savo domenui – tikrinti reikia patį adresą.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "tinklai": [
+  {
+   "klausimas": "Kuris įrenginys duomenis siunčia tik tam įrenginiui, kuriam jie skirti?",
+   "variantai": [
+    "Šakotuvas",
+    "Komutatorius",
+    "Modemas",
+    "Prieigos taškas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Komutatorius žino prijungtų įrenginių MAC adresus; šakotuvas siunčia visiems.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuris IP adresas yra išorinis (viešasis)?",
+   "variantai": [
+    "10.0.0.5",
+    "192.168.1.1",
+    "172.20.3.4",
+    "84.15.200.7"
+   ],
+   "teisingas": 3,
+   "paaiskinimas": "Kiti trys priklauso privatiems intervalams 10.x, 192.168.x, 172.16–31.x.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuris protokolas skirtas el. laiškams siųsti?",
+   "variantai": [
+    "IMAP",
+    "POP3",
+    "SMTP",
+    "FTP"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "SMTP siunčia, POP3 ir IMAP – gauna.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas paverčia domeno vardą IP adresu?",
+   "variantai": [
+    "DHCP",
+    "DNS",
+    "NAT",
+    "TCP"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "DNS – domenų vardų sistema.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Iš kiek bitų sudarytas IPv4 adresas?",
+   "variantai": [
+    "16",
+    "32",
+    "64",
+    "128"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "4 skaičiai po 8 bitus = 32 bitai. IPv6 – 128 bitai.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "bendravimas": [
+  {
+   "klausimas": "Kuri priemonė asinchroninė?",
+   "variantai": [
+    "Zoom susitikimas",
+    "Teams skambutis",
+    "Internetinis forumas",
+    "Telefono pokalbis"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Forume kiekvienas atsako jam patogiu metu.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuo bendradarbiavimas skiriasi nuo bendravimo?",
+   "variantai": [
+    "Naudojama daugiau technologijų",
+    "Siekiama bendro tikslo ir rezultato",
+    "Vyksta tik realiu laiku",
+    "Dalyvauja daugiau nei du žmonės"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Bendradarbiaujant dalijamasi užduotimis ir atsakomybe dėl bendro rezultato.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kam skirta kanban lenta (pvz., Trello)?",
+   "variantai": [
+    "Failams saugoti",
+    "Užduočių eigai stebėti",
+    "Vaizdo skambučiams",
+    "Šifruoti žinutes"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Užduotys keliauja per stulpelius „Daryti → Daroma → Atlikta“.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas yra mišrusis mokymas(is)?",
+   "variantai": [
+    "Visi mokosi iš namų vienu metu",
+    "Dalis veiklų vyksta kontaktiškai, dalis nuotoliniu būdu",
+    "Vienu metu dalis klasėje, dalis prisijungę nuotoliu",
+    "Mokymasis tik iš vaizdo įrašų"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Trečias variantas apibūdina hibridinį mokymą.",
+   "lygis": "pagrindinis"
+  }
+ ],
+ "ergonomika": [
+  {
+   "klausimas": "Kur turi būti monitoriaus viršutinis kraštas?",
+   "variantai": [
+    "Gerokai virš akių",
+    "Akių lygyje arba šiek tiek žemiau",
+    "Krūtinės lygyje",
+    "Nesvarbu"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Taip kaklas lieka tiesus, žvilgsnis nukreiptas šiek tiek žemyn.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kaip statyti monitorių lango atžvilgiu?",
+   "variantai": [
+    "Priešais langą",
+    "Nugara į langą",
+    "Šonu į langą"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Priešais langą šviesa akina, nugara į langą – atsispindi ekrane.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ką reiškia taisyklė 20–20–20?",
+   "variantai": [
+    "Kas 20 min. 20 s žiūrėti į tolį (~6 m)",
+    "20 pratimų kas 20 min.",
+    "20 cm iki ekrano",
+    "Ekrano ryškumas 20 %"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Akių raumenys atsipalaiduoja žiūrint toli.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kiek rekomenduojama dirbti kompiuteriu be pertraukos?",
+   "variantai": [
+    "Iki maždaug valandos",
+    "Iki 2 valandų",
+    "Iki 3 valandų",
+    "Kiek patogu"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Kas valandą rekomenduojama 5–10 min. pertrauka ar kita veikla.",
+   "lygis": "pagrindinis"
+  }
+ ],
+ "aplinka": [
+  {
+   "klausimas": "Kokiam modeliavimui skirtas NetLogo?",
+   "variantai": [
+    "Sistemų dinamikai",
+    "Agentiniam modeliavimui",
+    "Lentelėms skaičiuoti",
+    "Vaizdo montažui"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "NetLogo modeliuoja daugybę agentų su paprastomis taisyklėmis.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas sistemų dinamikoje yra CO₂ kiekis atmosferoje?",
+   "variantai": [
+    "Srautas",
+    "Atsarga",
+    "Agentas",
+    "Grafikas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Atsarga – sukauptas kiekis; srautai (išmetimai, sugėrimas) jį keičia.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kas yra simuliacija?",
+   "variantai": [
+    "Duomenų rinkimas",
+    "Modelio vykdymas laike",
+    "Diagramos braižymas",
+    "Duomenų šifravimas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Simuliacija parodo, kaip modelis keičiasi bėgant laikui.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuri institucija Lietuvoje skelbia oro kokybės stebėjimo duomenis?",
+   "variantai": [
+    "RRT",
+    "Aplinkos apsaugos agentūra",
+    "VDAI",
+    "NKSC"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "AAA (gamta.lt) prižiūri oro kokybės stotis.",
+   "lygis": "pagrindinis"
+  }
+ ],
+ "animacija": [
+  {
+   "klausimas": "Animacija trunka 3 s, kadrų dažnis 24 fps. Kiek kadrų?",
+   "variantai": [
+    "27",
+    "48",
+    "72",
+    "8"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "3 × 24 = 72.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kamuolys, atsitrenkęs į žemę, suplokštėja. Kuris tai principas?",
+   "variantai": [
+    "Pasirengimas veiksmui",
+    "Suspaudimas ir ištempimas (deformacija)",
+    "Liekamasis veiksmas",
+    "Kadro dizainas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Deformacija parodo elastingumą ir smūgio jėgą.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kaip vadinamas tarpinių kadrų apskaičiavimas tarp raktinių?",
+   "variantai": [
+    "Interpoliacija",
+    "Montažas",
+    "Komponavimas",
+    "Įgarsinimas"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Angliškai – tweening.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuris formatas gali turėti garso takelį?",
+   "variantai": [
+    "GIF",
+    "APNG",
+    "MP4",
+    "SVG"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "MP4 – vaizdo įrašo formatas su garsu.",
+   "lygis": "pagrindinis"
+  }
+ ],
+ "leidiniai": [
+  {
+   "klausimas": "Kurio formato maketas prisitaiko prie ekrano?",
+   "variantai": [
+    "PDF",
+    "EPUB",
+    "TIFF",
+    "PSD"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "EPUB tekstas persilieja, PDF maketas fiksuotas.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas yra Scribus?",
+   "variantai": [
+    "Turinio valdymo sistema",
+    "Maketavimo programa",
+    "Animacijos programa",
+    "Šifravimo įrankis"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Scribus – nemokama atviro kodo maketavimo programa, ruošianti PDF.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuris dizaino principas reikalauja susijusius elementus dėti arti?",
+   "variantai": [
+    "Kontrastas",
+    "Lygiavimas",
+    "Artumas",
+    "Kartojimas"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Artumas grupuoja; nesusiję elementai atskiriami tuščia erdve.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kokia raiška reikalinga profesionaliai spaudai?",
+   "variantai": [
+    "72 dpi",
+    "150 dpi",
+    "300 dpi",
+    "30 dpi"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Ekranui pakanka 72–150 ppi.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas yra hipertekstas?",
+   "variantai": [
+    "Labai ilgas tekstas",
+    "Tekstas su nuorodomis, leidžiančiomis pereiti į kitas vietas",
+    "Tekstas su paveikslais",
+    "Užšifruotas tekstas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Hipertekstą galima skaityti ne iš eilės, o renkantis nuorodas.",
+   "lygis": "pagrindinis"
+  }
+ ],
+ "duomenys": [
+  {
+   "klausimas": "Kuri informacija NĖRA asmens duomenys?",
+   "variantai": [
+    "IP adresas",
+    "Nuotrauka, kurioje atpažįstamas žmogus",
+    "Klasės pažymių vidurkis be vardų",
+    "El. pašto adresas vardas.pavarde@…"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Iš bendro vidurkio neįmanoma nustatyti konkretaus žmogaus.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kur Lietuvoje teikiamas skundas dėl netinkamo asmens duomenų tvarkymo?",
+   "variantai": [
+    "NKSC",
+    "Valstybinė duomenų apsaugos inspekcija",
+    "RRT",
+    "Aplinkos apsaugos agentūra"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "VDAI – pagrindinė priežiūros institucija.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Per kiek laiko valdytojas turi pranešti priežiūros institucijai apie duomenų saugumo pažeidimą?",
+   "variantai": [
+    "24 val.",
+    "72 val.",
+    "1 mėn.",
+    "3 mėn."
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "BDAR 33 str. – per 72 valandas.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuris principas reikalauja rinkti tik tai, ko būtinai reikia?",
+   "variantai": [
+    "Tikslumas",
+    "Duomenų kiekio mažinimas",
+    "Atskaitomybė",
+    "Skaidrumas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Pvz., registruojantis į būrelį nereikia asmens kodo.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Nuo kiek metų Lietuvoje vaikas pats gali sutikti su socialinio tinklo duomenų tvarkymu?",
+   "variantai": [
+    "13",
+    "14",
+    "16",
+    "18"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Taip nustato Asmens duomenų teisinės apsaugos įstatymas.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "kibernetinis": [
+  {
+   "klausimas": "Įsilaužėlis pakeitė pažymius e. dienyne. Kuri savybė pažeista?",
+   "variantai": [
+    "Konfidencialumas",
+    "Vientisumas",
+    "Prieinamumas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Duomenys buvo pakeisti be leidimo.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kaip vadinama neatnaujinta programa su žinoma klaida?",
+   "variantai": [
+    "Kibernetinis incidentas",
+    "Tinklų ir informacinės sistemos spraga",
+    "Elektroninės informacijos prieglobos paslauga",
+    "Rizika"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Spraga – sistemos trūkumas; incidentas įvyksta, kai ja pasinaudojama.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kuri institucija Lietuvoje prižiūri kibernetinį saugumą?",
+   "variantai": [
+    "VDAI",
+    "NKSC",
+    "RRT",
+    "Policija"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Nacionalinis kibernetinio saugumo centras prie KAM.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Išpirkos virusas užšifravo mokyklos serverio failus. Kas tai?",
+   "variantai": [
+    "Kibernetinis incidentas",
+    "Spraga",
+    "Prieglobos paslauga",
+    "Kibernetinė erdvė"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Įvykis, pakenkęs sistemos prieinamumui ir vientisumui.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "parasas": [
+  {
+   "klausimas": "Kuris elektroninis parašas visoje ES prilygsta rašytiniam?",
+   "variantai": [
+    "Paprastas",
+    "Pažangusis",
+    "Kvalifikuotas",
+    "Bet kuris"
+   ],
+   "teisingas": 2,
+   "paaiskinimas": "Tik kvalifikuotas – sukurtas kvalifikuota įranga ir patvirtintas kvalifikuotu sertifikatu.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas yra įstaigos (juridinio asmens) elektroninis „parašas“?",
+   "variantai": [
+    "Laiko žyma",
+    "Elektroninis spaudas",
+    "Sertifikatas",
+    "Slaptažodis"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Spaudas patvirtina dokumento kilmę ir vientisumą.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuo užšifruojama santrauka pasirašant?",
+   "variantai": [
+    "Gavėjo viešuoju raktu",
+    "Savo privačiuoju raktu",
+    "Savo viešuoju raktu",
+    "Bendru slaptažodžiu"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Taip patikrinti gali bet kas, turintis pasirašiusiojo viešąjį raktą.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Ar elektroninis parašas paslepia dokumento turinį?",
+   "variantai": [
+    "Taip",
+    "Ne – jis įrodo autorystę ir vientisumą"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Turiniui paslėpti reikia šifravimo.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kas įrodo, kad dokumentas egzistavo tam tikru momentu?",
+   "variantai": [
+    "Elektroninis spaudas",
+    "Elektroninė laiko žyma",
+    "Maišos funkcija",
+    "Viešasis raktas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Laiko žyma susieja dokumentą su patikimu laiku.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "sifravimas": [
+  {
+   "klausimas": "Kuo užšifruoti laišką Jonui?",
+   "variantai": [
+    "Jono viešuoju raktu",
+    "Jono privačiuoju raktu",
+    "Savo privačiuoju raktu",
+    "Savo viešuoju raktu"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Iššifruoti galės tik Jonas savo privačiuoju raktu.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Ko niekam negalima duoti?",
+   "variantai": [
+    "Viešojo rakto",
+    "Privačiojo rakto",
+    "Kontrolinio kodo",
+    "Sertifikato"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Kas turi privatųjį raktą, gali skaityti tavo laiškus ir pasirašyti tavo vardu.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kodėl praktikoje naudojamas hibridinis šifravimas?",
+   "variantai": [
+    "Asimetrinis lėtas, todėl duomenys šifruojami simetriniu, o simetrinis raktas – asimetriniu",
+    "Simetrinis nesaugus",
+    "Taip reikalauja BDAR",
+    "Asimetrinis neveikia internete"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Taip gaunamas ir greitis, ir saugus rakto perdavimas.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kurio paketo dalis yra Kleopatra?",
+   "variantai": [
+    "Microsoft Office",
+    "Gpg4win",
+    "Blender",
+    "Orange"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Gpg4win – OpenPGP įrankiai Windows sistemai.",
+   "lygis": "aukstesnysis"
+  }
+ ],
+ "di": [
+  {
+   "klausimas": "Rytojaus oro temperatūros prognozė yra…",
+   "variantai": [
+    "klasifikavimas",
+    "regresija",
+    "atpažinimas",
+    "grupavimas"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Atsakymas – skaičius, todėl regresija.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kiek neuronų turi Iris tinklo išėjimo sluoksnis?",
+   "variantai": [
+    "4",
+    "3",
+    "150",
+    "2"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Po vieną kiekvienai rūšiai.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Mokymo duomenų tikslumas 99 %, testavimo 60 %. Kas tai?",
+   "variantai": [
+    "Persimokymas",
+    "Per mažas mokymosi greitis",
+    "Puikus modelis",
+    "Neteisingi duomenys"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Modelis įsiminė mokymo pavyzdžius, bet neapibendrina.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuri aktyvacijos funkcija išėjime paverčia rezultatus tikimybėmis, kurių suma 1?",
+   "variantai": [
+    "ReLU",
+    "Softmax",
+    "Sigmoidė",
+    "Tiesinė"
+   ],
+   "teisingas": 1,
+   "paaiskinimas": "Softmax naudojamas kelių klasių klasifikavimui.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Kaip vadinamas vienas perėjimas per visus mokymo duomenis?",
+   "variantai": [
+    "Epocha",
+    "Sluoksnis",
+    "Mokymosi greitis",
+    "Svoris"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Modelis mokomas per daug epochų.",
+   "lygis": "aukstesnysis"
+  }
+ ]
+}

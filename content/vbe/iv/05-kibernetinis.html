@@ -1,0 +1,51 @@
+<!-- id: kibernetinis | toc: Kibernetinis saugumas | sritis: F -->
+<section class="topic" id="kibernetinis">
+  <div class="topic-head"><span class="code">F3</span><span class="eyebrow">Saugus elgesys</span></div>
+  <h2>Kibernetinis saugumas</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>Saugoma, kad informacija būtų <b>konfidenciali</b> (mato tik tie, kam leista), <b>vientisa</b> (niekas nepakeista), <b>prieinama</b> (veikia, kai reikia) ir <b>autentiška</b> (tikrai iš to, kuo prisistato).</li><li><b>Spraga</b> – silpna vieta, kaip neužrakintas langas. <b>Incidentas</b> – įvykis, keliantis grėsmę šioms savybėms, pvz., įsilaužimas.</li><li>Lietuvoje kibernetinį saugumą prižiūri <b>NKSC</b>; jam pranešama apie incidentus.</li><li>Duomenų sauga saugo žmones, kibernetinė – sistemas; viena be kitos neveikia.</li></ul></div>
+  <p>Lietuvos <b>Kibernetinio saugumo įstatymas</b> 2024 m. buvo iš esmės atnaujintas, kad atitiktų ES direktyvą NIS2. <a href="https://copla.com/blog/compliance-regulations/nis2-direktyvos-reglamentavimas-ir-igyvendinimas-lietuvoje/">Naujoji redakcija priimta 2024-07-11 ir įsigaliojo 2024-10-18</a>. Įgyvendinimą prižiūri <b>Nacionalinis kibernetinio saugumo centras (NKSC)</b> prie Krašto apsaugos ministerijos, kuriam priklauso ir incidentų tyrimo komanda CERT-LT.</p>
+
+  <h3>Saugumo savybės</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Savybė</th><th>Reikšmė</th><th>Pažeidimo pavyzdys</th></tr></thead>
+    <tbody>
+      <tr><td><b>Konfidencialumas</b></td><td>Informaciją mato tik tie, kam leista.</td><td>Nutekinti slaptažodžiai.</td></tr>
+      <tr><td><b>Vientisumas</b></td><td>Informacija nepakeista be leidimo.</td><td>Pakeisti pažymiai e. dienyne.</td></tr>
+      <tr><td><b>Prieinamumas</b></td><td>Sistema veikia, kai jos reikia.</td><td>DDoS ataka išjungia svetainę.</td></tr>
+      <tr><td><b>Autentiškumas</b></td><td>Duomenys tikrai iš to šaltinio, kuo jie prisistato.</td><td>Sukčių laiškas „iš banko“, netikra svetainė.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="why">Pirmos trys savybės vadinamos saugumo triada (CIA). Įstatymas, apibrėždamas kibernetinį incidentą, mini visas keturias.</p>
+
+  <h3>Sąvokos iš Bendrosios programos</h3>
+  <p>Bendrojoje programoje išvardytos sąvokos paimtos iš ankstesnės įstatymo redakcijos. Dabartinėje redakcijoje (2 straipsnis, galioja nuo 2026-07-04) dalis jų vadinamos kiek kitaip – naujas pavadinimas nurodytas skliaustuose. Apibrėžimai supaprastinti.</p>
+  <dl class="terms">
+    <dt>Kibernetinė erdvė</dt><dd>Aplinka iš kompiuterių ir kitos tinklų bei informacinių technologijų įrangos, kurioje kuriami ir perduodami skaitmeniniai duomenys.<span class="ex">Pvz.: internetas, mokyklos tinklas, e. dienynas.</span></dd>
+    <dt>Kibernetinis saugumas</dt><dd>Veikla, kuria apsaugomos tinklų ir informacinės sistemos, jų naudotojai ir kiti asmenys nuo kibernetinių grėsmių. Dabartinis įstatymas šią sąvoką perima iš ES Kibernetinio saugumo akto.<span class="ex">Pvz.: mokykla naudoja ugniasienę, dviejų veiksnių prisijungimą ir daro atsargines kopijas.</span></dd>
+    <dt>Ryšių ir informacinė sistema <small>(tinklų ir informacinė sistema)</small></dt><dd>Elektroninių ryšių tinklas ar įrenginiai, kurie pagal programą automatiškai tvarko skaitmeninius duomenis, kartu su tais duomenimis.<span class="ex">Pvz.: e. dienynas su jo serveriais, duomenų baze ir tinklu.</span></dd>
+    <dt>Ryšių ir informacinės sistemos spraga <small>(tinklų ir informacinės sistemos spraga)</small></dt><dd>Sistemos trūkumas, dėl kurio gali įvykti incidentas arba kuriuo galima pasinaudoti kibernetinei grėsmei kelti.<span class="ex">Pvz.: neatnaujinta programa su žinoma klaida.</span></dd>
+    <dt>Rizika <small>(kibernetinio saugumo rizika)</small></dt><dd>Galimas nuostolis ar sutrikimas dėl kibernetinio incidento. Vertinama derinant nuostolio dydį ir incidento tikimybę.<span class="ex">Pvz.: kokia tikimybė, kad mokytojas paspaus sukčiavimo laiško nuorodą, ir kokia būtų žala.</span></dd>
+    <dt>Kibernetinis incidentas</dt><dd>Įvykis, keliantis grėsmę duomenų ar paslaugų prieinamumui, autentiškumui, vientisumui ar konfidencialumui.<span class="ex">Pvz.: išpirkos virusas užšifravo mokyklos serverio failus ir reikalauja pinigų.</span></dd>
+    <dt>Kibernetinių incidentų valdymas <small>(kibernetinio incidento valdymas)</small></dt><dd>Veiksmai, kuriais incidentams užkertamas kelias, jie nustatomi, analizuojami, sustabdomi, į juos reaguojama ir atkuriama veikla.<span class="ex">Pvz.: užkrėstas kompiuteris atjungiamas nuo tinklo, failai atkuriami iš kopijos, apie incidentą pranešama NKSC.</span></dd>
+    <dt>Elektroninės informacijos prieglobos paslaugos</dt><dd>Paslaugos, kuriomis gavėjo prašymu saugomi jo pateikti skaitmeniniai duomenys.<span class="ex">Pvz.: svetainių talpinimas, debesijos saugyklos.</span></dd>
+    <dt>Saugusis valstybinis duomenų perdavimo tinklas</dt><dd>Valstybės valdomas elektroninių ryšių tinklas, atitinkantis specialius saugumo reikalavimus ir nepriklausantis nuo viešųjų tinklų.<span class="ex">Pvz.: ministerijos ir savivaldybės keičiasi svarbia informacija net sutrikus viešajam internetui.</span></dd>
+    <dt>Ypatingos svarbos informacinė infrastruktūra</dt><dd>Sistemos, kurių sutrikimas labai pakenktų nacionaliniam saugumui, valstybės ūkiui ar visuomenės interesams (energetika, transportas, bankai). Dabartinės redakcijos 2 straipsnyje šios sąvokos nebėra; ji likusi tik pereinamosiose nuostatose.</dd>
+    <dt>Kibernetinio saugumo krizė</dt><dd>Ankstesnėje redakcijoje – incidentas ar jų grupė, kurių Lietuva negali išspręsti viena arba kurių padariniai tokie rimti, kad reikia tarptautinio koordinavimo. Dabartinės redakcijos 2 straipsnyje šios sąvokos nebėra.</dd>
+  </dl>
+
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Kaip pranešama apie didelį incidentą</summary><div>
+  <p>Įstatymo prižiūrimos organizacijos apie didelį kibernetinį incidentą NKSC praneša trimis žingsniais:</p>
+  <div class="flow"><span>per <b>24 val.</b> – ankstyvasis įspėjimas</span><i>→</i><span>per <b>72 val.</b> – pranešimas su pirminiu įvertinimu</span><i>→</i><span>per <b>1 mėn.</b> – galutinė ataskaita</span></div>
+  </div></details>
+
+  <h3>Kibernetinės ir duomenų saugos ryšys</h3>
+  <p>Duomenų sauga (BDAR) saugo <b>žmogų</b> ir jo informaciją, kibernetinė sauga saugo <b>sistemas</b>, kuriose informacija yra. Jos persidengia: BDAR reikalauja „tinkamų techninių ir organizacinių priemonių“ (šifravimo, prieigos kontrolės, atsarginių kopijų), o kibernetinis incidentas, kurio metu nutekėjo asmens duomenys, kartu yra ir asmens duomenų saugumo pažeidimas.</p>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Svetainė 3 valandas neveikė dėl DDoS atakos. Kuri saugumo savybė pažeista?</summary><div><b>Prieinamumas</b>. Duomenys nenutekėjo ir nepasikeitė, bet sistema buvo nepasiekiama.</div></details>
+    <details><summary>Atskirk: spraga, grėsmė, rizika.</summary><div>Spraga – silpna vieta (neatnaujinta programa). Grėsmė – kas gali ja pasinaudoti (virusas, įsilaužėlis). Rizika – tikimybė, kad tai įvyks, ir žalos dydis kartu.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://www.infolex.lt/teise/DocumentSinglePart.aspx?AktoId=322638&amp;StrNr=2">Kibernetinio saugumo įstatymo 2 straipsnis (redakcija nuo 2026-07-04)</a> <span class="src-note">– sąvokų apibrėžimai</span></li><li><a href="https://kam.lt/wp-content/uploads/2024/12/TIS2-brosiura_Pilnas_2024-11-29.pdf">KAM: Atnaujintas Kibernetinio saugumo įstatymas</a> <span class="src-note">– incidentų pranešimo terminai</span></li><li><a href="https://www.infolex.lt/teise/DocumentSinglePart.aspx?AktoId=488587&amp;StrNr=1">Kibernetinio saugumo įstatymas, 2018 m. redakcija</a> <span class="src-note">– ankstesni apibrėžimai (krizė, YSII)</span></li><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://copla.com/blog/compliance-regulations/nis2-direktyvos-reglamentavimas-ir-igyvendinimas-lietuvoje/">Copla: NIS2 įgyvendinimas Lietuvoje</a> <span class="src-note">– įstatymo priėmimo ir įsigaliojimo datos</span></li><li><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj">NIS2 direktyva (ES) 2022/2555</a></li><li><a href="https://www.nksc.lt">Nacionalinis kibernetinio saugumo centras</a></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/451">Metodinė medžiaga kibernetinio saugumo klausimais</a></li></ul></aside>
+</section>

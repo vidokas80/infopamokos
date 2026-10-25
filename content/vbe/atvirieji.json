@@ -1,0 +1,250 @@
+{
+ "vizualizavimas": [
+  {
+   "klausimas": "Mokinys nori parodyti, kaip per 10 metų keitėsi Lietuvos gyventojų skaičius. Kokią diagramą jis turėtų pasirinkti? Pagrįskite.",
+   "taskai": 2,
+   "pavyzdinis": "Linijinę diagramą, nes ji geriausiai parodo kitimą laike: ant x ašies – metai, ant y ašies – gyventojų skaičius.",
+   "vertinimas": "1 tšk. – teisingas diagramos tipas; 1 tšk. – pagrindimas (kitimas laike)."
+  },
+  {
+   "klausimas": "Nurodykite du dalykus, kuriuos būtina pateikti infografike, sukurtame iš atvirųjų duomenų.",
+   "taskai": 2,
+   "pavyzdinis": "Duomenų šaltinį (pvz., data.gov.lt) ir duomenų datą arba laikotarpį. Taip pat tinka: aiški pagrindinė mintis, pavadinimas.",
+   "vertinimas": "Po 1 tšk. už kiekvieną tinkamą dalyką."
+  }
+ ],
+ "vektorine": [
+  {
+   "klausimas": "Paaiškinkite, kodėl mokyklos logotipą geriau saugoti vektoriniu formatu. Nurodykite vieną vektorinės grafikos formatą.",
+   "taskai": 2,
+   "pavyzdinis": "Vektorinis vaizdas aprašomas formulėmis, todėl jį galima didinti ar mažinti be kokybės praradimo – tiks ir ženkleliui, ir plakatui. Formatas: SVG (arba AI, EPS).",
+   "vertinimas": "1 tšk. – paaiškinimas apie didinimą be kokybės praradimo; 1 tšk. – formatas."
+  },
+  {
+   "klausimas": "Iliustraciją reikia įdėti į leidinį ant spalvoto fono. Kokį taškinės grafikos formatą rinktis ir kodėl?",
+   "taskai": 2,
+   "pavyzdinis": "PNG, nes jis palaiko permatomą foną (alfa kanalą), todėl aplink iliustraciją nebus balto stačiakampio.",
+   "vertinimas": "1 tšk. – PNG (ar WebP); 1 tšk. – permatomumo paaiškinimas."
+  }
+ ],
+ "licencijos": [
+  {
+   "klausimas": "Nurodykite, ką reiškia licencija CC BY-SA, ir pateikite vieną situaciją, kai ji tinka.",
+   "taskai": 2,
+   "pavyzdinis": "Kūrinį galima naudoti ir keisti, net komerciškai, bet būtina nurodyti autorių ir perdirbinį platinti su ta pačia licencija. Tinka, kai autorius nori, kad jo kūrinio pagrindu sukurti darbai irgi liktų atviri (pvz., Vikipedijos straipsniai).",
+   "vertinimas": "1 tšk. – BY ir SA reikšmės; 1 tšk. – tinkama situacija."
+  },
+  {
+   "klausimas": "Mokinys DI programa sugeneravo iliustraciją. Kam priklauso jos autorių teisės? Paaiškinkite.",
+   "taskai": 2,
+   "pavyzdinis": "Paprastai niekam, nes pagal Lietuvos įstatymą autorius gali būti tik žmogus (fizinis asmuo). Autorių teisės gali atsirasti, jei mokinys iliustraciją kūrybiškai perkūrė. Naudojimo sąlygas dar nustato DI programos taisyklės.",
+   "vertinimas": "1 tšk. – autorius tik žmogus; 1 tšk. – išimtis (kūrybinis indėlis) arba programos sąlygos."
+  }
+ ],
+ "di3": [
+  {
+   "klausimas": "Nurodykite vieną DI taikymo privalumą ir vieną grėsmę mokykloje.",
+   "taskai": 2,
+   "pavyzdinis": "Privalumas: suasmenintos užduotys pagal mokinio lygį. Grėsmė: šališki ar klaidingi atsakymai, asmens duomenų nutekėjimas, nesąžiningas darbų atlikimas.",
+   "vertinimas": "Po 1 tšk. už privalumą ir grėsmę."
+  },
+  {
+   "klausimas": "Paaiškinkite autentifikavimo ir identifikavimo skirtumą. Pateikite po pavyzdį.",
+   "taskai": 2,
+   "pavyzdinis": "Autentifikavimas tikrina, ar žmogus yra tas, kuo prisistato (telefono atrakinimas veidu, 1:1). Identifikavimas nustato, kas jis yra tarp daugelio (veido paieška duomenų bazėje, 1:N).",
+   "vertinimas": "1 tšk. – skirtumas; 1 tšk. – abu pavyzdžiai."
+  },
+  {
+   "klausimas": "Pagal ES DI aktą nurodykite, į kurią rizikos grupę patenka pokalbių robotas ir kokį reikalavimą jis turi atitikti.",
+   "taskai": 2,
+   "pavyzdinis": "Ribotos (skaidrumo) rizikos grupę. Žmogui turi būti pranešta, kad jis bendrauja su DI.",
+   "vertinimas": "Po 1 tšk."
+  }
+ ],
+ "kriptografija": [
+  {
+   "klausimas": "Paaiškinkite, kokia simetrinio šifravimo problema išspręsta asimetriniame šifravime.",
+   "taskai": 2,
+   "pavyzdinis": "Simetriniame šifravime tą patį slaptą raktą reikia saugiai perduoti gavėjui. Asimetriniame šifruojama gavėjo viešuoju raktu, kurį gali žinoti visi, o iššifruoti gali tik privačiojo rakto savininkas, todėl slapto rakto perduoti nereikia.",
+   "vertinimas": "1 tšk. – rakto perdavimo problema; 1 tšk. – kaip ją sprendžia viešasis ir privatusis raktai."
+  },
+  {
+   "klausimas": "Nurodykite du požymius, pagal kuriuos galima spręsti, ar svetainės sertifikatas patikimas.",
+   "taskai": 2,
+   "pavyzdinis": "Sertifikatas galioja (nepasibaigęs, neatšauktas); jį išdavė patikima sertifikavimo įstaiga; domenas sertifikate sutampa su adresu; naršyklė nerodo įspėjimo.",
+   "vertinimas": "Po 1 tšk. už kiekvieną požymį."
+  }
+ ],
+ "tinklai": [
+  {
+   "klausimas": "Paaiškinkite, kuo skiriasi komutatorius ir maršrutizatorius.",
+   "taskai": 2,
+   "pavyzdinis": "Komutatorius jungia įrenginius viename vietiniame tinkle ir siunčia duomenis tik reikiamam įrenginiui (pagal MAC adresą). Maršrutizatorius jungia skirtingus tinklus (pvz., namų tinklą su internetu) ir parenka kelią paketams pagal IP adresus.",
+   "vertinimas": "Po 1 tšk. už kiekvieno įrenginio paskirtį."
+  },
+  {
+   "klausimas": "Kodėl dviejuose skirtinguose namuose kompiuteriai gali turėti tą patį IP adresą 192.168.1.10?",
+   "taskai": 2,
+   "pavyzdinis": "Tai vidinis (privatus) adresas, galiojantis tik vietiniame tinkle. Į internetą abu namai išeina per skirtingus išorinius maršrutizatorių adresus (NAT), todėl konflikto nėra.",
+   "vertinimas": "1 tšk. – vidinis adresas; 1 tšk. – išorinis adresas / NAT."
+  },
+  {
+   "klausimas": "Nurodykite, kuriuo protokolu siunčiami el. laiškai ir kuo IMAP skiriasi nuo POP3.",
+   "taskai": 2,
+   "pavyzdinis": "Siunčiama SMTP. IMAP laiškus palieka serveryje ir sinchronizuoja visuose įrenginiuose; POP3 juos parsisiunčia į vieną įrenginį.",
+   "vertinimas": "Po 1 tšk."
+  }
+ ],
+ "bendravimas": [
+  {
+   "klausimas": "Pateikite po vieną situaciją, kai geriau rinktis sinchronines ir kai asinchronines bendravimo priemones.",
+   "taskai": 2,
+   "pavyzdinis": "Sinchronines – kai reikia greitai susitarti ar diskutuoti, pvz., projekto komandos susitikimas. Asinchronines – kai dalyviai skirtingose laiko juostose arba reikia išsaugoti įrašą, pvz., ataskaitos siuntimas el. paštu.",
+   "vertinimas": "Po 1 tšk. už kiekvieną tinkamą situaciją."
+  },
+  {
+   "klausimas": "Nurodykite vieną hibridinio mokymo problemą ir būdą jos išvengti.",
+   "taskai": 2,
+   "pavyzdinis": "Problema: nuotoliniai dalyviai blogai girdi ir yra „pamirštami“. Sprendimas: kokybiškas mikrofonas, mokytojas kreipiasi ir į nuotolinius dalyvius, bendras pokalbių kanalas.",
+   "vertinimas": "Po 1 tšk."
+  }
+ ],
+ "ergonomika": [
+  {
+   "klausimas": "Nurodykite du monitoriaus padėties reikalavimus.",
+   "taskai": 2,
+   "pavyzdinis": "Viršutinis kraštas akių lygyje arba šiek tiek žemiau; atstumas – maždaug ištiestos rankos (50–70 cm); stovi tiesiai priešais; šonu į langą.",
+   "vertinimas": "Po 1 tšk. už kiekvieną reikalavimą."
+  },
+  {
+   "klausimas": "Mokiniui po pamokų prie kompiuterio dažnai skauda akis. Nurodykite dvi galimas priežastis ir prevencijos būdą.",
+   "taskai": 3,
+   "pavyzdinis": "Priežastys: ilgas darbas be pertraukų, atspindžiai ekrane, per arti esantis ekranas, per ryškus ekranas. Prevencija: pertraukos, taisyklė 20–20–20, ekraną pastatyti šonu į langą.",
+   "vertinimas": "Po 1 tšk. už kiekvieną priežastį ir 1 tšk. už prevenciją."
+  }
+ ],
+ "aplinka": [
+  {
+   "klausimas": "Nurodykite vieną neigiamą ir vieną teigiamą skaitmeninių technologijų poveikį aplinkai.",
+   "taskai": 2,
+   "pavyzdinis": "Neigiamas: elektroninės atliekos, duomenų centrų elektros sąnaudos. Teigiamas: aplinkos stebėjimas jutikliais ir palydovais, išmanusis energijos valdymas.",
+   "vertinimas": "Po 1 tšk."
+  },
+  {
+   "klausimas": "Paaiškinkite, kam naudojamas kompiuterinis modeliavimas prognozuojant poveikį aplinkai.",
+   "taskai": 2,
+   "pavyzdinis": "Modelis leidžia išbandyti scenarijus, kurių neįmanoma ar per brangu išbandyti tikrovėje (pvz., kaip keistųsi tarša, jei dalis automobilių būtų elektriniai), ir palyginti jų rezultatus.",
+   "vertinimas": "1 tšk. – bandymai be tikrovės; 1 tšk. – prognozės ar scenarijų palyginimas."
+  }
+ ],
+ "animacija": [
+  {
+   "klausimas": "Pateikite vieną deformacijos animacijoje pavyzdį ir paaiškinkite, kam ji naudojama.",
+   "taskai": 2,
+   "pavyzdinis": "Krentantis kamuolys atsitrenkęs suplokštėja, o skrisdamas ištįsta (suspaudimas ir ištempimas). Taip parodomas objekto elastingumas, greitis ir smūgio jėga, judesys atrodo gyvesnis.",
+   "vertinimas": "1 tšk. – pavyzdys; 1 tšk. – paskirtis."
+  },
+  {
+   "klausimas": "Ką animacijoje galima sinchronizuoti, be judesių? Pateikite pavyzdį.",
+   "taskai": 2,
+   "pavyzdinis": "Garsą: dialogą su lūpų judesiais (lūpų sinchronizacija), garso efektus su veiksmu (žingsnio garsas su kontaktu), muziką su scenos ritmu.",
+   "vertinimas": "1 tšk. – garsas; 1 tšk. – konkretus pavyzdys."
+  }
+ ],
+ "leidiniai": [
+  {
+   "klausimas": "Nurodykite vieną elektroninio leidinio struktūros elementą ir vieną maketavimo veiksmą.",
+   "taskai": 2,
+   "pavyzdinis": "Struktūros elementas: turinys, skyrius, antraštinis puslapis, literatūros sąrašas. Maketavimo veiksmas: paraščių nustatymas, stilių apibrėžimas, paveikslo įkėlimas ir teksto apgaubimas, puslapių numeravimas.",
+   "vertinimas": "Po 1 tšk."
+  },
+  {
+   "klausimas": "Kam naudojamos turinio valdymo sistemos? Nurodykite vieną pavyzdį.",
+   "taskai": 2,
+   "pavyzdinis": "Svetainės ar leidinio turiniui kurti ir valdyti be programavimo; turinys saugomas atskirai nuo dizaino. Pavyzdys: WordPress, Joomla!",
+   "vertinimas": "Po 1 tšk."
+  },
+  {
+   "klausimas": "Nurodykite vieną elektroninio leidinio platinimo būdą ir vieną netekstinio turinio pavyzdį.",
+   "taskai": 2,
+   "pavyzdinis": "Platinimas: svetainė, e. knygynas, biblioteka, el. paštas. Netekstinis turinys: vaizdo įrašas, garso įrašas, animacija, interaktyvi užduotis.",
+   "vertinimas": "Po 1 tšk."
+  }
+ ],
+ "duomenys": [
+  {
+   "klausimas": "Nurodykite dvi duomenų subjekto teises pagal BDAR.",
+   "taskai": 2,
+   "pavyzdinis": "Pvz.: susipažinti su savo duomenimis; ištaisyti netikslius; ištrinti („būti pamirštam“); apriboti tvarkymą; perkelti duomenis; atšaukti sutikimą; pateikti skundą.",
+   "vertinimas": "Po 1 tšk. už kiekvieną teisę."
+  },
+  {
+   "klausimas": "Bendraklasis be sutikimo paviešino tavo nuotrauką ir adresą. Kur kreiptis Lietuvoje ir kokios gali būti pasekmės paviešinusiam asmeniui?",
+   "taskai": 2,
+   "pavyzdinis": "Kreiptis į Valstybinę duomenų apsaugos inspekciją (VDAI). Pasekmės: reikalavimas pašalinti duomenis, bauda, žalos atlyginimas, sunkiais atvejais baudžiamoji atsakomybė.",
+   "vertinimas": "1 tšk. – VDAI; 1 tšk. – bent viena pasekmė."
+  }
+ ],
+ "kibernetinis": [
+  {
+   "klausimas": "Pateikite kibernetinio incidento mokykloje pavyzdį ir nurodykite, kokią grėsmę jis kelia.",
+   "taskai": 2,
+   "pavyzdinis": "Išpirkos virusas užšifravo e. dienyno serverio failus. Grėsmė: duomenys tampa neprieinami, gali būti nutekinti mokinių asmens duomenys.",
+   "vertinimas": "1 tšk. – incidentas; 1 tšk. – grėsmė."
+  },
+  {
+   "klausimas": "Apibūdinkite saugųjį valstybinį duomenų perdavimo tinklą ir nurodykite, kokia informacija juo dalijamasi.",
+   "taskai": 2,
+   "pavyzdinis": "Valstybės valdomas tinklas su specialiais saugumo reikalavimais, nepriklausantis nuo viešojo interneto. Juo valstybės institucijos keičiasi svarbia ar įslaptinta informacija, pvz., krizių valdymo duomenimis.",
+   "vertinimas": "1 tšk. – ypatybės; 1 tšk. – informacijos pavyzdys."
+  },
+  {
+   "klausimas": "Mokyklos kompiuterius užpuolė išpirkos virusas. Kam reikia pranešti ir kodėl nerekomenduojama mokėti išpirkos?",
+   "taskai": 2,
+   "pavyzdinis": "Pranešti Nacionaliniam kibernetinio saugumo centrui (NKSC) ar policijai. Mokėti nerekomenduojama, nes nėra garantijos, kad duomenys bus atkurti, be to, taip finansuojami nusikaltėliai.",
+   "vertinimas": "Po 1 tšk."
+  }
+ ],
+ "parasas": [
+  {
+   "klausimas": "Nurodykite kvalifikuoto elektroninio parašo teisinę galią ir vieną dalyką, kurio reikia norint juo pasirašyti.",
+   "taskai": 2,
+   "pavyzdinis": "Visoje ES jis prilygsta ranka pasirašytam parašui. Reikia kvalifikuoto sertifikato ir parašo kūrimo priemonės: asmens tapatybės kortelės su skaitytuvu, mobiliojo parašo ar Smart-ID (ir PIN kodo).",
+   "vertinimas": "Po 1 tšk."
+  },
+  {
+   "klausimas": "Ligoninė e. sveikatos portale išduodamas pažymas pažymi kvalifikuotu elektroniniu spaudu. Kam tai daroma?",
+   "taskai": 2,
+   "pavyzdinis": "Spaudas patvirtina, kad pažymą išdavė būtent ta ligoninė (kilmė), ir kad po išdavimo ji nebuvo pakeista (vientisumas).",
+   "vertinimas": "1 tšk. – kilmė; 1 tšk. – vientisumas."
+  }
+ ],
+ "sifravimas": [
+  {
+   "klausimas": "Nurodykite du asimetrinio šifravimo raktų tipus ir kam kiekvienas naudojamas siunčiant slaptą žinutę.",
+   "taskai": 2,
+   "pavyzdinis": "Viešasis raktas – juo siuntėjas užšifruoja žinutę gavėjui. Privatusis raktas – juo gavėjas ją iššifruoja.",
+   "vertinimas": "Po 1 tšk. už kiekvieną raktą su paskirtimi."
+  },
+  {
+   "klausimas": "Kodėl prieš šifruojant žinutę draugui verta patikrinti jo viešojo rakto kontrolinį kodą?",
+   "taskai": 1,
+   "pavyzdinis": "Kad įsitikintum, jog raktas tikrai priklauso draugui, o ne apsimetėliui, kuris galėtų perskaityti žinutę.",
+   "vertinimas": "1 tšk. – apsauga nuo apsimetėlio rakto."
+  }
+ ],
+ "di": [
+  {
+   "klausimas": "Paaiškinkite klasifikavimo ir prognozavimo (regresijos) skirtumą. Pateikite po pavyzdį.",
+   "taskai": 2,
+   "pavyzdinis": "Klasifikavimas priskiria grupei (kokios rūšies vilkdalgis), prognozavimas nuspėja skaičių (rytojaus temperatūra).",
+   "vertinimas": "1 tšk. – skirtumas; 1 tšk. – pavyzdžiai."
+  },
+  {
+   "klausimas": "Kodėl duomenys dalijami į mokymo ir testavimo aibes?",
+   "taskai": 2,
+   "pavyzdinis": "Kad modelį būtų galima įvertinti su pavyzdžiais, kurių jis nematė mokydamasis, ir pastebėti persimokymą.",
+   "vertinimas": "1 tšk. – vertinimas naujais duomenimis; 1 tšk. – persimokymo nustatymas."
+  }
+ ]
+}

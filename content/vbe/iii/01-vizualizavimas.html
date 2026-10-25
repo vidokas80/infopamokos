@@ -1,0 +1,45 @@
+<!-- id: vizualizavimas | toc: Duomenų vizualizavimas | sritis: A -->
+<section class="topic" id="vizualizavimas">
+  <div class="topic-head"><span class="code">A2</span><span class="eyebrow">Skaitmeninio turinio kūrimas</span></div>
+  <h2>Duomenų vizualizavimas</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>Gera diagrama atsako į vieną klausimą.</li><li>Kitimas laike – <b>linijinė</b>, palyginimas – <b>stulpelinė</b>, dalys nuo visumos – <b>skritulinė</b>, dviejų dydžių ryšys – <b>sklaidos</b> diagrama.</li><li>Atvirųjų duomenų ieškoma data.gov.lt; po diagrama visada nurodomas šaltinis.</li><li>Diagramą kitur geriausia įdėti kaip SVG arba PNG, ne JPG.</li></ul></div>
+  <p>Vizualizavimas paverčia apdorotus duomenis vaizdu, kad dėsningumai būtų matomi iš karto. Gera vizualizacija atsako į vieną aiškų klausimą.</p>
+
+  <h3>Atvirieji duomenys</h3>
+  <p><mark>Atvirieji duomenys</mark> – viešai paskelbti duomenys, kuriuos bet kas gali nemokamai naudoti. Juos galima apdoroti kompiuteriu. Dažniausiai reikia tik nurodyti šaltinį (licencija CC BY). Šaltiniai: Lietuvos atvirųjų duomenų portalas <b>data.gov.lt</b>, Europos portalas <b>data.europa.eu</b>, Valstybės duomenų agentūra (osp.stat.gov.lt). Dažniausi formatai: CSV, XLSX, JSON, XML.</p>
+
+  <h3>Kokią diagramą rinktis</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Ką nori parodyti</th><th>Tinka</th><th>Netinka</th></tr></thead>
+    <tbody>
+      <tr><td>Kitimą laike</td><td>Linijinė diagrama</td><td>Skritulinė</td></tr>
+      <tr><td>Kategorijų palyginimą</td><td>Stulpelinė, juostinė (kai pavadinimai ilgi)</td><td>Linijinė (kategorijos nesusijusios)</td></tr>
+      <tr><td>Dalis nuo visumos</td><td>Skritulinė (iki ~5 dalių), 100 % sudėtinė stulpelinė</td><td>Linijinė</td></tr>
+      <tr><td>Dviejų dydžių ryšį</td><td>Sklaidos diagrama</td><td>Skritulinė</td></tr>
+      <tr><td>Reikšmių pasiskirstymą</td><td>Histograma, stačiakampė (mediana ir kvartiliai – reikšmės, dalijančios surikiuotus duomenis į keturias lygias dalis)</td><td>Skritulinė</td></tr>
+      <tr><td>Skirtingų matavimo vienetų dydžius</td><td>Kombinuotoji su antra ašimi</td><td>Viena ašis abiem</td></tr>
+      <tr><td>Duomenis pagal vietą</td><td>Žemėlapis (spalvomis pagal savivaldybes)</td><td>Ilga lentelė</td></tr>
+    </tbody>
+  </table></div>
+
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:560px" role="img" aria-label="Šeši diagramų tipai"  viewBox="0 0 660 135" xmlns="http://www.w3.org/2000/svg"><text x="55" y="122" text-anchor="middle" font-size="12">Linijinė</text><path d="M10 10V100H105" class="ln"/><polyline points="15,80 30,70 45,74 60,50 75,55 90,32 102,28" class="acc-line"/><text x="165" y="122" text-anchor="middle" font-size="12">Stulpelinė</text><path d="M120 10V100H215" class="ln"/><rect x="129" y="50" width="14" height="50" class="fillacc"/><rect x="150" y="30" width="14" height="70" class="fillacc"/><rect x="171" y="65" width="14" height="35" class="fillacc"/><rect x="192" y="40" width="14" height="60" class="fillacc"/><text x="275" y="122" text-anchor="middle" font-size="12">Skritulinė</text><circle cx="275" cy="58" r="38" class="acc"/><path d="M275 58L275 20A38 38 0 0 1 304.1 82.4Z" class="warm"/><text x="385" y="122" text-anchor="middle" font-size="12">Sklaidos</text><path d="M340 10V100H435" class="ln"/><circle cx="350" cy="85" r="3" class="fillacc"/><circle cx="357" cy="78" r="3" class="fillacc"/><circle cx="365" cy="80" r="3" class="fillacc"/><circle cx="373" cy="65" r="3" class="fillacc"/><circle cx="380" cy="68" r="3" class="fillacc"/><circle cx="387" cy="56" r="3" class="fillacc"/><circle cx="395" cy="58" r="3" class="fillacc"/><circle cx="403" cy="45" r="3" class="fillacc"/><circle cx="410" cy="48" r="3" class="fillacc"/><circle cx="420" cy="34" r="3" class="fillacc"/><circle cx="427" cy="38" r="3" class="fillacc"/><text x="495" y="122" text-anchor="middle" font-size="12">Histograma</text><path d="M450 10V100H545" class="ln"/><rect x="453" y="85" width="13" height="15" class="pixb"/><rect x="466" y="65" width="13" height="35" class="pixb"/><rect x="479" y="40" width="13" height="60" class="pixb"/><rect x="492" y="28" width="13" height="72" class="pixb"/><rect x="505" y="52" width="13" height="48" class="pixb"/><rect x="518" y="75" width="13" height="25" class="pixb"/><rect x="531" y="90" width="13" height="10" class="pixb"/><text x="605" y="122" text-anchor="middle" font-size="12">Stačiakampė</text><path d="M560 10V100H655" class="ln"/><path d="M570 55H590M635 55H650M570 47V63M650 47V63" class="ln"/><rect x="590" y="42" width="45" height="26" class="acc"/><line x1="610" y1="42" x2="610" y2="68" class="sk2"/></svg></div><figcaption>Pagrindiniai diagramų tipai. Stačiakampėje diagramoje dėžutė rodo vidurinę pusę duomenų (nuo 1-ojo iki 3-iojo kvartilio), brūkšnys joje – medianą, „ūsai“ – mažiausią ir didžiausią reikšmes.</figcaption></figure>  <h3>Infografikas</h3>
+  <p>Infografikas sujungia keletą diagramų, skaičių, piktogramų ir trumpų tekstų į vieną pasakojimą. Geras infografikas:</p>
+  <ul class="tight"><li>perteikia vieną pagrindinę mintį;</li><li>skaitomas iš viršaus į apačią;</li><li>naudoja kelias spalvas, o ne visą vaivorykštę;</li><li>labiausiai išryškina svarbiausią skaičių;</li><li>nurodo duomenų šaltinį ir datą.</li></ul>
+  <div class="note"><b>Klaidinančios diagramos.</b> Stulpelių ašis ne nuo nulio, 3D efektai, iškreipiantys dydžius, skritulinė diagrama, kurios dalių suma ne 100 %, praleisti metai laiko ašyje. Tokių klaidų paieška dažnai būna VBE klausimuose.</div>
+
+  <h3>Eksportavimas kitoms programoms</h3>
+  <ul class="tight">
+    <li><b>SVG</b> – vektorinis, tinka redaguoti Inkscape ar įdėti į svetainę, neišsilieja didinant.</li>
+    <li><b>PNG</b> – taškinis, be nuostolių, palaiko permatomą foną; tinka pristatymams.</li>
+    <li><b>PDF</b> – spausdinimui ir leidiniams; išlaiko vektorius.</li>
+    <li><b>JPG</b> diagramoms netinka: suspaudimas sugadina aštrias linijas ir tekstą.</li>
+  </ul>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Kokia diagrama parodytų mokinių ūgio ir svorio ryšį?</summary><div><b>Sklaidos</b>: kiekvienas mokinys yra taškas, ašys – ūgis ir svoris.</div></details>
+    <details><summary>Diagramos stulpeliai rodo 102 ir 108, o ašis prasideda nuo 100. Kas negerai?</summary><div>Skirtumas atrodo trigubas, nors iš tiesų jis apie 6 %. Stulpelinės diagramos ašis turi prasidėti nuo nulio.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/268">LIMA metodinė medžiaga „Duomenų vizualizavimas“</a></li><li><a href="https://data.gov.lt">Lietuvos atvirųjų duomenų portalas</a></li><li><a href="https://data.europa.eu/lt">Europos duomenų portalas</a></li></ul></aside>
+</section>

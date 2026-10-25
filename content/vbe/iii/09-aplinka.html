@@ -1,0 +1,46 @@
+<!-- id: aplinka | toc: Aplinkosauga | sritis: F -->
+<section class="topic" id="aplinka">
+  <div class="topic-head"><span class="code">F2</span><span class="eyebrow">Saugus elgesys</span></div>
+  <h2>Poveikio aplinkai prognozė skaitmeninėmis technologijomis</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li>Technologijos aplinkai kenkia (elektra, e. atliekos), bet ir padeda ją stebėti ir saugoti.</li><li>Aplinkos duomenis Lietuvoje skelbia Aplinkos apsaugos agentūra ir meteo.lt.</li><li><b>Modelis</b> – supaprastinta tikrovės kopija, su kuria galima eksperimentuoti. <b>Simuliacija</b> – modelio „paleidimas“ laike.</li><li>NetLogo modeliuoja daug agentų (gyvūnų, žmonių), kurių kiekvienas laikosi paprastų taisyklių.</li></ul></div>
+
+  <h3>Skaitmeninių technologijų ir aplinkos ryšys</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Neigiamas poveikis</th><th>Teigiamas poveikis</th></tr></thead>
+    <tbody>
+      <tr><td>Įrenginių gamyba: retieji metalai, vanduo, energija</td><td>Aplinkos stebėjimas jutikliais ir palydovais</td></tr>
+      <tr><td>Duomenų centrų ir tinklų elektros sąnaudos, aušinimas</td><td>Modeliavimas ir prognozės (klimatas, potvyniai, tarša)</td></tr>
+      <tr><td>Elektroninės atliekos (e. atliekos)</td><td>Išmanusis energijos ir transporto valdymas</td></tr>
+      <tr><td>Trumpas įrenginių naudojimo laikas</td><td>Mažiau popieriaus ir kelionių (nuotolinis darbas)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Atsakingas elgesys: naudoti įrenginius ilgiau, taisyti, e. atliekas atiduoti surinkimo vietoms, išjungti nenaudojamus įrenginius.</p>
+
+  <h3>Aplinkos monitoringo sistemos ir atvirieji duomenys</h3>
+  <ul class="tight">
+    <li><b>Aplinkos apsaugos agentūra</b> (gamta.lt) – oro kokybės stotys, vandens ir dirvožemio būklė, taršos duomenys.</li>
+    <li><b>Lietuvos hidrometeorologijos tarnyba</b> (meteo.lt) – orų stebėjimai ir prognozės, atviroji API.</li>
+    <li><b>Europos aplinkos agentūra</b> (EEA) – ES šalių aplinkos duomenys, oro kokybės indeksas.</li>
+    <li><b>Copernicus</b> – ES Žemės stebėjimo palydovų programa (žemėnauda, ledynai, atmosfera).</li>
+  </ul>
+
+  <h3>Kompiuterinis modeliavimas</h3>
+  <p><b>Modelis</b> – supaprastintas tikrovės aprašas, kuriuo galima atlikti bandymus, kurių neįmanoma ar per brangu daryti tikrovėje. <b>Simuliacija</b> – modelio vykdymas laike.</p>
+  <dl class="terms">
+    <dt>Agentinis modeliavimas</dt><dd>Daug individualių „agentų“ (gyvūnų, automobilių, žmonių) su paprastomis taisyklėmis; visumos elgesys atsiranda iš jų sąveikos. Įrankiai: <b>NetLogo</b>, AnyLogic.</dd>
+    <dt>Sistemų dinamika</dt><dd>Sistema aprašoma <b>atsargomis</b> (kiekiais: CO₂ atmosferoje, žuvų populiacija) ir <b>srautais</b> (išmetimai, sugėrimas, gimstamumas), su grįžtamaisiais ryšiais. Įrankiai: <b>Vensim</b>, <b>Powersim</b>, AnyLogic.</dd>
+    <dt>Statistinis modeliavimas</dt><dd>Prognozė iš duomenų tendencijų (regresija). Įrankiai: R, Python, skaičiuoklė.</dd>
+  </dl>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Kaip vyksta modeliavimo projektas</summary><div>
+  <div class="flow"><span>Klausimas</span><i>→</i><span>duomenys</span><i>→</i><span>modelis (kintamieji, ryšiai)</span><i>→</i><span>simuliacija</span><i>→</i><span>palyginimas su tikrove</span><i>→</i><span>prognozė ir išvados</span></div>
+  <p>Pavyzdys: kaip keistųsi miesto oro tarša (KD10), jei 20 % automobilių pakeistų elektromobiliai? Duomenys imami iš AAA oro kokybės stočių ir transporto srautų. Modelis – sistemų dinamika. Rezultatas – grafikas su keliais scenarijais.</p>
+</div></details>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Koks modeliavimo tipas tinka vilkų ir elnių populiacijų sąveikai, kai kiekvienas gyvūnas juda ir elgiasi pagal taisykles?</summary><div><b>Agentinis</b> (pvz., NetLogo „Wolf Sheep Predation“ modelis).</div></details>
+    <details><summary>Kodėl modelio prognozė niekada nėra visiškai tiksli?</summary><div>Modelis yra supaprastinimas: jame yra ne visi veiksniai, o duomenys turi paklaidų. Todėl modelis tikrinamas su praeities duomenimis ir pateikiamas keliais scenarijais.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://gamta.lt">Aplinkos apsaugos agentūra</a></li><li><a href="https://www.meteo.lt">Lietuvos hidrometeorologijos tarnyba</a></li><li><a href="https://www.copernicus.eu">Copernicus</a></li><li><a href="https://ccl.northwestern.edu/netlogo/">NetLogo</a></li></ul></aside>
+</section>

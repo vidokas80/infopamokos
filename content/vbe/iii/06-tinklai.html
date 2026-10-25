@@ -1,0 +1,76 @@
+<!-- id: tinklai | toc: Kompiuterių tinklai | sritis: D -->
+<section class="topic" id="tinklai">
+  <div class="topic-head"><span class="code">D1</span><span class="eyebrow">Technologinių problemų sprendimas</span></div>
+  <h2>Kompiuterių tinklai</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li><b>LAN</b> – vieno pastato tinklas, <b>WAN</b> – didelės teritorijos tinklas (pvz., internetas).</li><li><b>Komutatorius</b> jungia įrenginius viename tinkle, <b>maršrutizatorius</b> jungia tinklus. Jis kaip paštininkas: žino, kuriam butui atiduoti laišką.</li><li>IP adresas – įrenginio adresas tinkle. Adresai 192.168.x.x – vidiniai, internete nematomi.</li><li><b>DNS</b> paverčia domeną (emokykla.lt) IP adresu, tarsi telefonų knyga.</li><li>HTTPS – tinklalapiai, SMTP – laiškų siuntimas, IMAP ir POP3 – laiškų gavimas.</li></ul></div>
+  <p><b>Kompiuterių tinklas</b> – sujungti įrenginiai, galintys keistis duomenimis ir dalytis ištekliais (spausdintuvu, failais, interneto ryšiu). <b>Internetas</b> – pasaulinis tinklų tinklas, veikiantis TCP/IP protokolais.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Tinklas</th><th>Aprėptis</th><th>Pavyzdys</th></tr></thead>
+    <tbody>
+      <tr><td><b>PAN</b> (asmeninis)</td><td>Keli metrai</td><td>Telefonas + belaidės ausinės per Bluetooth</td></tr>
+      <tr><td><b>LAN</b> (lokalusis, vietinis)</td><td>Pastatas</td><td>Mokyklos, namų tinklas</td></tr>
+      <tr><td><b>MAN</b> (miesto)</td><td>Miestas</td><td>Miesto institucijų šviesolaidinis tinklas</td></tr>
+      <tr><td><b>WAN</b> (išorinis, regioninis)</td><td>Šalis, pasaulis</td><td>Internetas, banko filialų tinklas</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Tinklo įranga</h3>
+  <dl class="terms">
+    <dt>Modemas</dt><dd>Paverčia skaitmeninius duomenis signalu, tinkamu perduoti linija (telefono, kabelinės TV, šviesolaidžio), ir atvirkščiai. Jungia namus su interneto tiekėju.</dd>
+    <dt>Šakotuvas (hub)</dt><dd>Gautus duomenis siunčia <b>visiems</b> prijungtiems įrenginiams. Paprastas, lėtas, dabar beveik nenaudojamas.</dd>
+    <dt>Komutatorius (switch)</dt><dd>Jungia įrenginius viename LAN. Duomenis siunčia <b>tik tam įrenginiui</b>, kuriam jie skirti. Įrenginį atpažįsta pagal <b>MAC adresą</b> – unikalų numerį, kurį gamintojas suteikia kiekvienai tinklo plokštei (pvz., <code>3C:52:82:1A:4F:09</code>).</dd>
+    <dt>Maršrutizatorius (router)</dt><dd>Jungia <b>skirtingus tinklus</b> (pvz., namų LAN ir internetą) ir parenka kelią paketams pagal IP adresus. Namuose dažnai sujungtas su modemu, komutatoriumi ir Wi-Fi prieigos tašku.</dd>
+    <dt>Prieigos taškas</dt><dd>Leidžia belaidžiams įrenginiams prisijungti prie laidinio tinklo (Wi-Fi).</dd>
+  </dl>
+  <p><b>Jungimo būdai</b>: laidinis (Ethernet – vytos poros kabelis, šviesolaidis), belaidis (Wi-Fi, Bluetooth), mobilusis (4G, 5G), palydovinis.</p>
+
+<figure class="fig"><div class="fig-scroll"><svg style="min-width:540px" role="img" aria-label="Kompiuterių tinklo schema"  viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-net" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><rect x="10" y="20" width="135" height="42" rx="6" class="box"/><text x="77.5" y="37.5" text-anchor="middle" font-size="12">Nešiojamas</text><text x="77.5" y="53.5" text-anchor="middle" font-size="12" class="mono mut">192.168.1.10</text><line x1="145" y1="41" x2="190" y2="120" class="ln"/><rect x="10" y="75" width="135" height="42" rx="6" class="box"/><text x="77.5" y="92.5" text-anchor="middle" font-size="12">Telefonas (Wi-Fi)</text><text x="77.5" y="108.5" text-anchor="middle" font-size="12" class="mono mut">192.168.1.11</text><line x1="145" y1="96" x2="190" y2="120" class="ln"/><rect x="10" y="130" width="135" height="42" rx="6" class="box"/><text x="77.5" y="147.5" text-anchor="middle" font-size="12">Stalinis</text><text x="77.5" y="163.5" text-anchor="middle" font-size="12" class="mono mut">192.168.1.12</text><line x1="145" y1="151" x2="190" y2="120" class="ln"/><rect x="10" y="185" width="135" height="42" rx="6" class="box"/><text x="77.5" y="202.5" text-anchor="middle" font-size="12">Spausdintuvas</text><text x="77.5" y="218.5" text-anchor="middle" font-size="12" class="mono mut">192.168.1.20</text><line x1="145" y1="206" x2="190" y2="120" class="ln"/><rect x="190" y="95" width="140" height="50" rx="6" class="box"/><text x="260.0" y="116.5" text-anchor="middle" font-size="12">Komutatorius /</text><text x="260.0" y="132.5" text-anchor="middle" font-size="12">Wi-Fi prieigos taškas</text><text x="260" y="165" text-anchor="middle" font-size="11" class="mut">siunčia pagal MAC</text><line x1="330" y1="120" x2="368" y2="120" class="ln" marker-end="url(#ar-net)"/><rect x="370" y="95" width="140" height="50" rx="6" class="acc"/><text x="440.0" y="116.5" text-anchor="middle" font-size="12">Maršrutizatorius</text><text x="440.0" y="132.5" text-anchor="middle" font-size="12">DHCP · NAT</text><text x="440" y="165" text-anchor="middle" font-size="11" class="mut">išorinis IP 203.0.113.7</text><line x1="510" y1="120" x2="548" y2="120" class="ln" marker-end="url(#ar-net)"/><rect x="550" y="95" width="90" height="50" rx="6" class="box"/><text x="595.0" y="124.5" text-anchor="middle" font-size="12">Modemas</text><line x1="640" y1="120" x2="656" y2="120" class="ln" marker-end="url(#ar-net)"/><ellipse cx="705" cy="120" rx="47" ry="30" class="box"/><text x="705" y="124" text-anchor="middle" font-size="12">Internetas</text><line x1="705" y1="150" x2="705" y2="208" class="ln" marker-end="url(#ar-net)"/><rect x="650" y="210" width="105" height="46" rx="6" class="box"/><text x="702.5" y="229.5" text-anchor="middle" font-size="12">Serveris</text><text x="702.5" y="245.5" text-anchor="middle" font-size="12" class="mono mut">emokykla.lt</text><line x1="530" y1="15" x2="530" y2="290" class="ln dash"/><text x="520" y="28" text-anchor="end" font-size="12" font-weight="600">Vidinis tinklas (LAN)</text><text x="540" y="28" font-size="12" font-weight="600">Išorinis tinklas (WAN)</text><text x="600" y="285" text-anchor="middle" font-size="11" class="mut">DNS: emokykla.lt → IP adresas</text></svg></div><figcaption>Namų ar mokyklos tinklas. Įrenginiai turi vidinius adresus, kuriuos suteikia maršrutizatoriaus DHCP; į internetą visi išeina per vieną išorinį maršrutizatoriaus adresą. Tai daro <b>NAT</b> (adresų vertimas): maršrutizatorius siunčiamuose paketuose vidinį adresą pakeičia savo išoriniu ir įsimena, kuriam įrenginiui grąžinti atsakymą.</figcaption></figure>  <h3>TCP/IP ir adresai</h3>
+  <p>Duomenys siunčiami <b>paketais</b>. <b>IP</b> (interneto protokolas) pristato paketus pagal adresą, <b>TCP</b> užtikrina, kad visi paketai ateitų teisinga tvarka ir be klaidų (prarasti siunčiami pakartotinai).</p>
+  <dl class="terms">
+    <dt>IP adresas</dt><dd>Įrenginio adresas tinkle. <b>IPv4</b> – 32 bitai, keturi skaičiai 0–255: <code>192.168.1.15</code> (apie 4,3 mlrd. adresų). <b>IPv6</b> – 128 bitai, šešioliktainiu: <code>2001:db8::1</code>.</dd>
+    <dt>Vidinis (privatus)</dt><dd>Naudojamas tik vietiniame tinkle, internete nematomas: <code>10.x.x.x</code>, <code>172.16–31.x.x</code>, <code>192.168.x.x</code>.</dd>
+    <dt>Išorinis (viešasis)</dt><dd>Unikalus internete, jį suteikia interneto tiekėjas. Visi namų įrenginiai į internetą išeina per vieną išorinį maršrutizatoriaus adresą (NAT).</dd>
+    <dt>Statinis</dt><dd>Nustatytas rankiniu būdu ir nesikeičia (serveriai, spausdintuvai).</dd>
+    <dt>Dinaminis</dt><dd>Automatiškai suteikia DHCP serveris (dažniausiai maršrutizatorius) kiekvieną kartą prisijungus.</dd>
+    <dt>Domenas ir DNS</dt><dd>Domenas – žmogui patogus pavadinimas (<code>emokykla.lt</code>). DNS serveris jį paverčia IP adresu.</dd>
+  </dl>
+  <p><b>URL dalys</b>: <code>https://</code> protokolas · <code>www.emokykla.lt</code> domenas (<code>.lt</code> – aukščiausio lygio domenas) · <code>/bendrosios-programos</code> kelias.</p>
+
+  <h3>Interneto paslaugų protokolai</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Protokolas</th><th>Paskirtis</th><th>Prievadas</th></tr></thead>
+    <tbody>
+      <tr><td class="num">HTTP / HTTPS</td><td>Tinklalapiai; HTTPS – šifruotas <b>TLS</b> protokolu (anksčiau vadintu SSL), kuris naudoja sertifikatus</td><td class="num">80 / 443</td></tr>
+      <tr><td class="num">FTP / FTPS</td><td>Failų perdavimas; FTPS – šifruotas</td><td class="num">21 / 990</td></tr>
+      <tr><td class="num">SMTP</td><td>El. laiškų <b>siuntimas</b></td><td class="num">25, 587</td></tr>
+      <tr><td class="num">POP3</td><td>Laiškų <b>parsisiuntimas</b> į vieną įrenginį (iš serverio paprastai ištrinami)</td><td class="num">110 / 995</td></tr>
+      <tr><td class="num">IMAP4</td><td>Laiškai <b>lieka serveryje</b>, sinchronizuojami visuose įrenginiuose</td><td class="num">143 / 993</td></tr>
+      <tr><td class="num">DNS</td><td>Domeno vardų vertimas į IP</td><td class="num">53</td></tr>
+    </tbody>
+  </table></div>
+
+<details class="deep"><summary><span class="deep-label">Giliau</span> Bluetooth ir tinklo diagnostikos komandos</summary><div>
+  <h3>Belaidžiai įrenginiai ir diagnostika</h3>
+  <p><b>Bluetooth susiejimas</b>: įjungti matomumą įrenginyje, rasti jį telefone ar kompiuteryje, patvirtinti kodą. Wi-Fi saugumui – WPA2 arba WPA3 šifravimas ir stiprus slaptažodis.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Komanda (Windows)</th><th>Ką parodo</th></tr></thead>
+    <tbody>
+      <tr><td class="num">ipconfig</td><td>Savo IP adresą, potinklio kaukę (pvz., <code>255.255.255.0</code> – rodo, kuri adreso dalis žymi tinklą, o kuri įrenginį), numatytąjį maršrutizatorių</td></tr>
+      <tr><td class="num">ping emokykla.lt</td><td>Ar pasiekiamas kompiuteris ir per kiek ms ateina atsakas</td></tr>
+      <tr><td class="num">tracert emokykla.lt</td><td>Per kuriuos maršrutizatorius keliauja paketai</td></tr>
+      <tr><td class="num">nslookup emokykla.lt</td><td>Kokį IP adresą DNS grąžina domenui</td></tr>
+    </tbody>
+  </table></div>
+  <p>Išorinį IP adresą parodo svetainės, pvz., <i>whatismyipaddress.com</i>.</p>
+
+</div></details>
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Ar adresas 192.168.0.25 gali būti matomas internete?</summary><div>Ne. Tai <b>vidinis (privatus)</b> adresas.</div></details>
+    <details><summary>Laiškus nori skaityti ir telefonu, ir kompiuteriu, kad abiejuose matytum tuos pačius aplankus. POP3 ar IMAP?</summary><div><b>IMAP</b>: laiškai lieka serveryje ir sinchronizuojami.</div></details>
+    <details><summary>Kuris įrenginys jungia namų tinklą su internetu?</summary><div><b>Maršrutizatorius</b> (kartu su modemu, kuris palaiko ryšį su tiekėjo linija).</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/265">LIMA metodinė medžiaga „Kompiuterių tinklai“</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc1918">RFC 1918 – privatūs IP adresai</a> <span class="src-note">– vidinių adresų intervalai</span></li></ul></aside>
+</section>

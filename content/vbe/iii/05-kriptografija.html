@@ -1,0 +1,49 @@
+<!-- id: kriptografija | toc: Kriptografija | sritis: C -->
+<section class="topic" id="kriptografija">
+  <div class="topic-head"><span class="code">C3</span><span class="eyebrow">Duomenų tyryba ir informacija</span></div>
+  <h2>Kriptografinės sistemos, raktai, sertifikatai</h2>
+  <div class="key"><div class="key-label">Svarbiausia</div><ul><li><b>Simetrinis</b> šifravimas – vienas raktas, kaip įprastos durų spynos. <b>Asimetrinis</b> – du raktai: viešasis užrakina, privatusis atrakina.</li><li>Žinutė draugui šifruojama <b>draugo viešuoju</b> raktu.</li><li>Sertifikatas – tarsi svetainės asmens tapatybės kortelė: patikima įstaiga patvirtina, kam priklauso raktas.</li><li>HTTPS spynelė reiškia šifruotą ryšį, bet ne tai, kad svetainė sąžininga.</li></ul></div>
+  <p><b>Kriptografinė sistema</b> – algoritmų, raktų ir taisyklių visuma, užtikrinanti konfidencialumą (šifravimas), vientisumą (maišos funkcijos), autentiškumą ir nepaneigiamumą (skaitmeninis parašas).</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Simetrinis šifravimas</th><th>Asimetrinis šifravimas</th></tr></thead>
+    <tbody>
+      <tr><td><b>Raktai</b></td><td>Tas pats raktas šifruoja ir iššifruoja</td><td><b>Viešasis</b> raktas (žino visi) ir <b>privatusis</b> (tik savininkas)</td></tr>
+      <tr><td><b>Privalumas</b></td><td>Greitas</td><td>Nereikia slaptai perduoti rakto</td></tr>
+      <tr><td><b>Trūkumas</b></td><td>Raktą reikia saugiai perduoti kiekvienam gavėjui</td><td>Lėtas; reikia įsitikinti, kad viešasis raktas tikras</td></tr>
+      <tr><td><b>Pavyzdžiai</b></td><td>Cezario šifras (istorinis), AES</td><td>RSA, ECC</td></tr>
+    </tbody>
+  </table></div>
+  <p>Kas užšifruota viešuoju raktu, iššifruojama tik atitinkamu privačiuoju – taip siunčiamos slaptos žinutės. Kas „užšifruota“ privačiuoju, patikrinama viešuoju – taip veikia skaitmeninis parašas.</p><figure class="fig"><div class="fig-scroll"><svg style="min-width:540px" role="img" aria-label="Šifravimas viešuoju ir privačiuoju raktu"  viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-k1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><text x="70" y="60" text-anchor="middle" font-size="12" class="mut">Ona rašo</text><rect x="10" y="70" width="120" height="44" rx="6" class="box"/><text x="70.0" y="96.5" text-anchor="middle" font-size="13">Labas, Petrai</text><rect x="150" y="10" width="150" height="34" rx="6" class="acc"/><text x="225.0" y="31.5" text-anchor="middle" font-size="12">Petro viešasis raktas</text><line x1="225" y1="44" x2="225" y2="92" class="ln dash"/><line x1="130" y1="92" x2="298" y2="92" class="ln" marker-end="url(#ar-k1)"/><text x="225" y="112" text-anchor="middle" font-size="11" class="mut">užšifruoja</text><text x="365" y="60" text-anchor="middle" font-size="12" class="mut">šifrograma internete</text><rect x="300" y="70" width="130" height="44" rx="6" class="box"/><text x="365.0" y="96.5" text-anchor="middle" font-size="13"><tspan class="mono">x7#qL9!wZ</tspan></text><rect x="430" y="10" width="150" height="34" rx="6" class="warm"/><text x="505.0" y="31.5" text-anchor="middle" font-size="12">Petro privatusis raktas</text><line x1="505" y1="44" x2="505" y2="92" class="ln dash"/><line x1="430" y1="92" x2="578" y2="92" class="ln" marker-end="url(#ar-k1)"/><text x="505" y="112" text-anchor="middle" font-size="11" class="mut">iššifruoja</text><text x="640" y="60" text-anchor="middle" font-size="12" class="mut">Petras skaito</text><rect x="580" y="70" width="130" height="44" rx="6" class="box"/><text x="645.0" y="96.5" text-anchor="middle" font-size="13">Labas, Petrai</text><text x="360" y="160" text-anchor="middle" font-size="13">Viešąjį raktą gali turėti bet kas – juo galima tik užrakinti.</text><text x="360" y="182" text-anchor="middle" font-size="13">Atrakinti gali tik tas, kas turi privatųjį raktą.</text></svg></div><figcaption>Asimetrinis šifravimas: Ona užšifruoja Petro viešuoju raktu, o perskaityti gali tik Petras savo privačiuoju raktu.</figcaption></figure>
+
+  <h3>Sertifikatas</h3>
+  <p><mark>Skaitmeninis sertifikatas</mark> – elektroninis dokumentas, kuriuo patikima <b>sertifikavimo įstaiga</b> (angl. <i>CA</i>) liudija, kad viešasis raktas priklauso konkrečiam asmeniui, organizacijai ar svetainei. Pagal X.509 standartą jame yra:</p>
+  <ul class="tight">
+    <li>savininkas (pvz., domenas <code>www.epaslaugos.lt</code>);</li>
+    <li>savininko viešasis raktas;</li>
+    <li>išdavėjas (sertifikavimo įstaiga) ir jos parašas;</li>
+    <li>galiojimo pradžia ir pabaiga;</li>
+    <li>serijos numeris, algoritmai.</li>
+  </ul>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Pasitikėjimo grandinė</summary><div>
+<p><b>Pasitikėjimo grandinė</b>: naršyklė pasitiki šakninių įstaigų sertifikatais, kurie įdiegti operacinėje sistemoje; šakninė įstaiga pasirašo tarpinę, tarpinė – svetainės sertifikatą. Tokia sistema vadinama viešojo rakto infrastruktūra (PKI). OpenPGP naudoja kitą modelį – <b>pasitikėjimo tinklą</b>: vartotojai patys tikrina ir pasirašo vienas kito raktus.</p>
+
+<figure class="fig"><div class="fig-scroll"><svg role="img" aria-label="Sertifikatų pasitikėjimo grandinė"  viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar-ch" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs><rect x="140" y="10" width="300" height="52" rx="6" class="warm"/><text x="290.0" y="32.5" text-anchor="middle" font-size="12">Šakninė sertifikavimo įstaiga</text><text x="290.0" y="48.5" text-anchor="middle" font-size="12">įdiegta naršyklėje ir OS</text><line x1="290" y1="62" x2="290" y2="98" class="ln" marker-end="url(#ar-ch)"/><text x="300" y="85" font-size="11" class="mut">pasirašo</text><rect x="140" y="100" width="300" height="46" rx="6" class="box"/><text x="290.0" y="127.5" text-anchor="middle" font-size="12">Tarpinė sertifikavimo įstaiga</text><line x1="290" y1="146" x2="290" y2="182" class="ln" marker-end="url(#ar-ch)"/><text x="300" y="169" font-size="11" class="mut">pasirašo</text><rect x="140" y="184" width="300" height="56" rx="6" class="acc"/><text x="290.0" y="208.5" text-anchor="middle" font-size="12">www.epaslaugos.lt sertifikatas</text><text x="290.0" y="224.5" text-anchor="middle" font-size="12">domenas · viešasis raktas · galioja iki</text><line x1="480" y1="215" x2="480" y2="35" class="ln" marker-end="url(#ar-ch)"/><text x="500" y="125" font-size="12" class="mut" transform="rotate(-90 500 125)" text-anchor="middle">naršyklė tikrina</text></svg></div><figcaption>Pasitikėjimo grandinė. Naršyklė tikrina svetainės sertifikato parašą, tada tarpinės įstaigos, kol pasiekia šakninę įstaigą, kuria ji jau pasitiki.</figcaption></figure></div></details>
+  <h3>Sertifikato patikimumo požymiai</h3>
+  <ol class="tight">
+    <li>Sertifikatas <b>galioja</b> (data nepasibaigusi) ir nėra atšauktas.</li>
+    <li>Išdavė <b>patikima</b> sertifikavimo įstaiga (grandinė veda į naršyklės patikimą šakninį sertifikatą), o ne pats savininkas (susipasirašytas sertifikatas).</li>
+    <li><b>Domenas</b> sertifikate sutampa su adresu naršyklės juostoje.</li>
+    <li>Naršyklė nerodo įspėjimų.</li>
+  </ol>
+  <div class="note"><b>Spynelė ≠ patikima svetainė.</b> HTTPS reiškia tik, kad ryšys šifruojamas ir domenas patvirtintas. Sukčiai taip pat gali gauti nemokamą sertifikatą domenui <code>swedbank-login.com</code>. Tikrinti reikia patį domeną.</div>
+  <p>Praktikai: OpenPGP įrankiai (pvz., Kleopatra) – raktų poros kūrimas, viešojo rakto mainai, šifravimas ir parašas. Plačiau – IV klasės skyriuje „Šifravimas“.</p>
+
+  <div class="check">
+    <h3>Pasitikrink</h3>
+    <details><summary>Kokiu raktu užšifruoti žinutę Rūtai, kad perskaitytų tik ji?</summary><div><b>Rūtos viešuoju</b> raktu. Iššifruoti galės tik jos privatusis raktas.</div></details>
+    <details><summary>Naršyklė rodo: „Sertifikatą išdavė pats savininkas“. Ką tai reiškia?</summary><div>Sertifikatas susipasirašytas – jo nepatvirtino patikima įstaiga, todėl nėra garantijos, kad svetainė yra ta, kuo dedasi.</div></details>
+  </div>
+
+  <aside class="sources"><h3>Šaltiniai</h3><ul><li><a href="https://emokykla.lt">Informatikos bendroji programa (III–IV gimnazijos klasės)</a> <span class="src-note">– temos ir mokymo(si) turinys</span></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/266">LIMA metodinė medžiaga „Kriptografija“</a></li><li><a href="https://emokykla.lt/metodine-medziaga/medziaga/perziura/451">Metodinė medžiaga kibernetinio saugumo klausimais</a></li><li><a href="https://www.gpg4win.org">Gpg4win (OpenPGP, Kleopatra)</a></li></ul></aside>
+</section>
