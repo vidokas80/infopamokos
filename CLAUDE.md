@@ -6,6 +6,8 @@ infopamokos.lt – statinė informatikos mokymosi svetainė Lietuvos mokiniams p
 
 Svetainė talpinama GitHub Pages, domenas infopamokos.lt. Publikuojama automatiškai per `.github/workflows/publikuoti.yml` po kiekvieno įkėlimo į `main`.
 
+**Pradėdamas naują darbą, perskaityk `docs/PROJEKTO-BUSENA.md`** – ten priimti sprendimai, kas padaryta, kas liko ir ką stebėti. Baigęs didesnį darbą ar priėmęs svarbų sprendimą, jį atnaujink.
+
 ## Kalba
 
 - Visas turinys, sąsaja, komentarai faile, commit pranešimai ir atsakymai savininkui – **lietuvių kalba**.
