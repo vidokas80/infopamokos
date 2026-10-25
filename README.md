@@ -74,7 +74,9 @@ Mokomosios schemos svetainėje piešiamos SVG formatu ranka (tiksliai, su lietuv
 
 **Vienkartinis paruošimas savo kompiuteryje:**
 
-1. Gaukite API raktą: [OpenAI](https://platform.openai.com/api-keys) arba [Google AI Studio](https://aistudio.google.com/apikey). Generavimas mokamas pagal kiekį.
+1. Gaukite API raktą: [OpenAI](https://platform.openai.com/api-keys) arba [Google AI Studio](https://aistudio.google.com/apikey). Generavimas mokamas pagal kiekį. **ChatGPT Plus/Pro prenumerata API neapima** – API apmokamas atskirai platform.openai.com.
+   - OpenAI vaizdų modeliams reikia **patvirtinti organizaciją** (platform.openai.com → Settings → Organization → General → Verify Organization). Be to skriptas gaus klaidą 403.
+   - Bandymams naudokite `--kokybe low` – pigiausia.
 2. Įdiekite Pillow: `pip install Pillow`
 3. Nustatykite raktą aplinkos kintamuoju (ne faile!):
    - Windows (PowerShell): `setx OPENAI_API_KEY "jūsų-raktas"` ir atidarykite terminalą iš naujo
