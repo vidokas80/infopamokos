@@ -7,9 +7,12 @@ Ką daro:
   1. Nukopijuoja src/ (pagrindinį puslapį, CSS, JS, paveikslus) į dist/.
   2. Iš content/vbe/ temų failų, testai.json ir atvirieji.json
      sudeda VBE skilties puslapį dist/vbe/index.html ir dist/vbe/data.js.
+  3. Prie CSS ir JS nuorodų prideda versiją (?v=…), kad lankytojai po
+     atnaujinimo negautų senos kopijos iš naršyklės talpyklos.
 
 Reikia tik Python 3.8+, papildomų bibliotekų nereikia.
 """
+import hashlib
 import json
 import re
 import shutil
@@ -86,6 +89,22 @@ def data_js(topics_all):
     )
 
 
+def add_versions(html_path):
+    """Prie vietinių CSS ir JS nuorodų prideda ?v=<turinio santrauka>.
+    Pakeitus failą, pasikeičia adresas, todėl naršyklė neima senos kopijos iš talpyklos."""
+    html = html_path.read_text(encoding="utf-8")
+
+    def repl(m):
+        target = (html_path.parent / m.group(2)).resolve()
+        if not target.is_file():
+            return m.group(0)
+        v = hashlib.sha256(target.read_bytes()).hexdigest()[:10]
+        return f'{m.group(1)}{m.group(2)}?v={v}"'
+
+    html = re.sub(r'((?:href|src)=")(?!https?:|//)([^"?#]+\.(?:css|js))"', repl, html)
+    html_path.write_text(html, encoding="utf-8")
+
+
 def build():
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -107,6 +126,8 @@ def build():
     (DIST / "vbe").mkdir(exist_ok=True)
     (DIST / "vbe" / "index.html").write_text(page, encoding="utf-8")
     (DIST / "vbe" / "data.js").write_text(data_js(iii + iv), encoding="utf-8")
+    for html_path in DIST.rglob("*.html"):
+        add_versions(html_path)
     print(f"Sugeneruota: dist/ (III klasė – {len(iii)} temos, IV klasė – {len(iv)} temos)")
 
 
