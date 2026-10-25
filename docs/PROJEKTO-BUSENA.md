@@ -44,6 +44,8 @@ Paskutinį kartą atnaujinta: 2026-10-25.
 - Vaiko sutikimo amžius Lietuvoje – **14 m.** (patikrinta).
 - E. parašas: kvalifikuoto parašo teisinė galia pagal eIDAS; išdavėjai – elektroninisparasas.lt.
 - Ergonomika: HN 21:2017 pavadinimas patikrintas; „50–70 cm“ pateikta kaip įprasta rekomendacija (konkretaus teisės akto skaičiaus nerasta).
+- 2026-10-25 pataisyta pagal išorinę (ChatGPT) peržiūrą: diagramos pavyzdys 102/108 (atrodo 4 kartus, ne trigubai); e. parašas – „sukuriamas privačiuoju, tikrinamas viešuoju“, o ne „šifruojamas“ (schema, kriptografijos tema, testas); BDAR 33 str. 72 val. – su sąlyga ir išimtimi; atvirieji ≠ viešai pasiekiami duomenys; ekrane svarbu matmenys pikseliais, ne ppi.
+- VBE II dalies taškai pagal NŠA 2024–2025 m. m. aprašą (Informatikos-VBE.pdf): klausimai 8–12, duomenų tyryba 16–20, programavimas 30–35 tšk. Naujesnio aprašo nerasta. „Iki šiol 8–10 / 20 / 30–32“ – iš ankstesnės versijos, su konkrečiomis užduotimis iš naujo nesutikrinta.
 
 ## Laukia (stebėti)
 

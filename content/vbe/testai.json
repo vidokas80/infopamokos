@@ -578,7 +578,7 @@
     "30 dpi"
    ],
    "teisingas": 2,
-   "paaiskinimas": "Ekranui pakanka 72–150 ppi.",
+   "paaiskinimas": "Spaudai įprastai reikia 300 dpi galutiniu spausdinamu dydžiu. Ekrane svarbu ne ppi skaičius, o vaizdo matmenys pikseliais.",
    "lygis": "pagrindinis"
   },
   {
@@ -628,7 +628,7 @@
     "3 mėn."
    ],
    "teisingas": 1,
-   "paaiskinimas": "BDAR 33 str. – per 72 valandas.",
+   "paaiskinimas": "BDAR 33 str. – nedelsiant, jei įmanoma – per 72 valandas nuo sužinojimo. Pranešti nereikia, jei pažeidimas greičiausiai nekelia pavojaus žmonių teisėms ir laisvėms.",
    "lygis": "pagrindinis"
   },
   {
@@ -731,7 +731,7 @@
    "lygis": "pagrindinis"
   },
   {
-   "klausimas": "Kuo užšifruojama santrauka pasirašant?",
+   "klausimas": "Kokiu raktu sukuriamas dokumento parašas?",
    "variantai": [
     "Gavėjo viešuoju raktu",
     "Savo privačiuoju raktu",
@@ -739,7 +739,7 @@
     "Bendru slaptažodžiu"
    ],
    "teisingas": 1,
-   "paaiskinimas": "Taip patikrinti gali bet kas, turintis pasirašiusiojo viešąjį raktą.",
+   "paaiskinimas": "Parašas sukuriamas savo privačiuoju raktu, o patikrinti jį gali bet kas, turintis pasirašiusiojo viešąjį raktą.",
    "lygis": "aukstesnysis"
   },
   {
