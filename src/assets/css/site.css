@@ -314,3 +314,21 @@ a.grade-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .ill{margin:1.1rem 0;max-width:36rem}
 .ill img{display:block;width:100%;height:auto;border-radius:8px;background:var(--surface)}
 .ill figcaption{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+/* Iliustracija su užrašais: SVG sluoksnis ant paveikslėlio, viewBox = paveikslėlio matmenys pikseliais.
+   Užrašai ir matmenys dedami tik čia – niekada neprašomi iš DI generatoriaus. */
+.ill-annot{max-width:40rem}
+.ill-annot .ill-wrap{position:relative}
+.ill-annot .ill-wrap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* Pusiau permatomas fonas po užrašu – storas kontūras po tekstu, prisitaiko prie teksto ilgio */
+.ill-annot svg text{font-family:var(--f-display);font-size:28px;font-weight:600;fill:var(--ink);
+  paint-order:stroke;stroke:var(--surface);stroke-opacity:.88;stroke-width:12px;stroke-linejoin:round}
+.ill-annot .mut{fill:var(--muted)}
+.ill-annot .ln{stroke:var(--accent);stroke-width:3.5;fill:none;stroke-linecap:round}
+.ill-annot .dash{stroke-dasharray:12 9}
+.ill-annot .arrowhead{fill:var(--accent)}
+.ill-annot .acc{fill:none;stroke:var(--accent);stroke-width:3.5}
+@media (max-width:600px){
+  .ill-annot .opt{display:none}
+  .ill-annot svg text{font-size:46px;stroke-width:16px}
+  .ill-annot .ln,.ill-annot .acc{stroke-width:6}
+}

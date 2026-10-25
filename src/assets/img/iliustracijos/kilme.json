@@ -1,0 +1,11 @@
+{
+ "ergonomika-darbo-vieta.webp": {
+  "aprasymas": "Strict side (profile) view of a teenage student sitting correctly at a computer desk, facing right. The whole body, chair, desk and monitor are fully visible. Plain light wall in the background with NO window anywhere. Correct ergonomics, shown clearly: the student sits all the way back on an office chair, the lower back pressed against and supported by the chair backrest, back upright, shoulders relaxed. Thighs horizontal, knees bent at about 90 degrees, both feet flat on the floor. Upper arms hang straight down vertically, close to the sides of the body; elbows bent at a right angle (90 degrees); forearms horizontal and resting flat on the desk surface; wrists straight. Keyboard close to the front edge of the desk, a mouse right next to the keyboard. The monitor stands directly in front of the student and close: the distance from the eyes to the screen equals the length of the student's arm (about 60 cm), so the outstretched fingertips would just touch the screen. The top edge of the screen is at eye level or slightly below eye level, never above the eyes; the student looks straight ahead or slightly down.",
+  "alt": "Mokinys sėdi prie kompiuterio, vaizdas iš šono: nugara atremta į kėdės atlošą, pėdos ant grindų, keliai ir alkūnės sulenkti maždaug stačiu kampu, dilbiai horizontaliai stalo aukštyje, ranka ant pelės. Monitorius stovi priešais ant stalo, jo viršus kiek aukščiau akių.",
+  "pastaba": "Ekrano viršus nupieštas aukščiau akių, nors buvo prašyta akių lygyje ar žemiau. Palikta kaip dekoratyvinė; tikslią padėtį rodo temos SVG schema.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ }
+}

@@ -40,7 +40,7 @@ OUT_DIR = ROOT / "src" / "assets" / "img" / "iliustracijos"
 STYLE_FILE = Path(__file__).resolve().parent / "stilius.txt"
 
 DEFAULT_MODELS = {
-    "openai": "gpt-image-1",
+    "openai": "gpt-image-2",
     "google": "gemini-2.5-flash-image",
 }
 MAX_BYTES = 150 * 1024  # tikslas – iki 150 KB
@@ -74,11 +74,14 @@ def post_json(url, payload, headers):
         fail(f"nepavyko prisijungti prie paslaugos: {e.reason}")
 
 
-def generate_openai(prompt, model, size):
+def generate_openai(prompt, model, size, quality=None):
     key = os.environ.get("OPENAI_API_KEY") or fail("nenustatytas aplinkos kintamasis OPENAI_API_KEY")
+    payload = {"model": model, "prompt": prompt, "size": size, "n": 1}
+    if quality:
+        payload["quality"] = quality
     data = post_json(
         "https://api.openai.com/v1/images/generations",
-        {"model": model, "prompt": prompt, "size": size, "n": 1},
+        payload,
         {"Authorization": f"Bearer {key}"},
     )
     try:
@@ -140,6 +143,7 @@ def main():
     p.add_argument("--paslauga", choices=["openai", "google"], default=os.environ.get("ILIUSTRACIJU_PASLAUGA", "openai"))
     p.add_argument("--modelis", help="Modelio pavadinimas (pagal nutylėjimą – " + ", ".join(f"{k}: {v}" for k, v in DEFAULT_MODELS.items()) + ")")
     p.add_argument("--dydis", default="1536x1024", help="Generuojamo vaizdo dydis, pvz., 1536x1024 arba 1024x1024")
+    p.add_argument("--kokybe", choices=["low", "medium", "high", "auto"], help="Vaizdo kokybė (tik OpenAI). low – pigiausia, tinka bandymams")
     p.add_argument("--plotis", type=int, default=1200, help="Didžiausias išsaugoto paveikslėlio plotis pikseliais")
     p.add_argument("--be-stiliaus", action="store_true", help="Nepridėti bendro stiliaus aprašymo")
     p.add_argument("--perrasyti", action="store_true", help="Perrašyti, jei toks failas jau yra")
@@ -154,7 +158,9 @@ def main():
     prompt = f"{a.aprasymas}\n\n{style}".strip()
     model = a.modelis or DEFAULT_MODELS[a.paslauga]
     print(f"Generuojama per {a.paslauga} ({model})…")
-    raw = generate_openai(prompt, model, a.dydis) if a.paslauga == "openai" else generate_google(prompt, model, a.dydis)
+    if a.kokybe and a.paslauga != "openai":
+        print("Pastaba: --kokybe taikoma tik OpenAI, Google paslaugai ji ignoruojama.")
+    raw = generate_openai(prompt, model, a.dydis, a.kokybe) if a.paslauga == "openai" else generate_google(prompt, model, a.dydis)
 
     webp, (w, h) = to_webp(raw, a.plotis)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -167,6 +173,7 @@ def main():
         "alt": a.alt,
         "paslauga": a.paslauga,
         "modelis": model,
+        **({"kokybe": a.kokybe} if a.kokybe else {}),
         "data": datetime.date.today().isoformat(),
     }
     log.write_text(json.dumps(records, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

@@ -58,6 +58,7 @@ Testai ir atvirieji klausimai prijungiami automatiškai iš JSON.
   ```
   Skriptas prideda bendrą stilių iš `scripts/stilius.txt`, išsaugo WebP iki ~150 KB į `src/assets/img/iliustracijos/`, įrašo kilmę į `kilme.json` ir atspausdina HTML fragmentą.
 - Iliustracija dedama kaip `<figure class="ill">` su prasmingu `alt` ir parašu „Iliustracija sukurta su DI“.
+- **Užrašai ir matmenys ant DI iliustracijų dedami tik SVG sluoksniu, niekada neprašomi iš generatoriaus.** Komponentas `<figure class="ill ill-annot">`: `<div class="ill-wrap">` su `<img>` ir ant jo `<svg viewBox="0 0 PLOTIS AUKŠTIS">` (paveikslėlio matmenys pikseliais), stiliai `site.css`. Klasės `.ln`, `.dash`, `.acc`, `.arrowhead`, `.mut`; užrašai, kurie telefone (≤600 px) slepiami, žymimi `.opt` – telefone lieka tik matmenys. Matmenis įrašyti ir į `alt`. Pavyzdys – ergonomikos tema.
 - Iliustracijoje neturi būti teksto, logotipų, prekių ženklų ar žinomų personažų. Bitukas – tik SVG (`src/assets/img/bitukas.svg`, `bot.js`), DI jo negeneruoja.
 - Prieš naudojant peržiūrėti rezultatą: ar nėra klaidingų detalių (pvz., neteisinga sėdėsena ergonomikos temoje). Netinkamą generuoti iš naujo.
 - **API raktai** (`OPENAI_API_KEY`, `GEMINI_API_KEY`) – tik aplinkos kintamuosiuose. Niekada nerašyti į failus, commit pranešimus ar kodą. Saugykla vieša.
