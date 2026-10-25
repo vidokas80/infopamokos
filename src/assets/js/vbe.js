@@ -151,3 +151,89 @@
   }
   btns.forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.f);});});
 })();
+
+/* Vektorinės grafikos demonstracijos: Bezjė kreivė, didinimas, raiškos skaičiuoklė.
+   Animacijų nėra – viskas keičiasi tik mokiniui tempiant ar įvedant. */
+(function(){
+  // Bezjė kreivė: 2 mazgai ir 2 rankenėlės, tempiami pele, pirštu ar rodyklėmis
+  document.querySelectorAll("[data-bez]").forEach(function(box){
+    var svg=box.querySelector("svg"), path=svg.querySelector(".acc-line"), code=box.querySelector(".bez-code code"),
+        lines=svg.querySelectorAll("[data-l]"), gs=svg.querySelectorAll(".bez-pt"), vb=svg.viewBox.baseVal,
+        names=["Pradžios mazgas","Pirmoji rankenėlė","Antroji rankenėlė","Pabaigos mazgas"],
+        P=[].map.call(gs,function(g){var m=/translate\(([\d.-]+)[ ,]+([\d.-]+)\)/.exec(g.getAttribute("transform")); return [+m[1],+m[2]];});
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+    function draw(){
+      var d="M "+P[0].join(" ")+" C "+P[1].join(" ")+", "+P[2].join(" ")+", "+P[3].join(" ");
+      path.setAttribute("d",d); code.textContent='<path d="'+d+'"/>';
+      [[0,1],[3,2]].forEach(function(p,k){lines[k].setAttribute("x1",P[p[0]][0]);lines[k].setAttribute("y1",P[p[0]][1]);lines[k].setAttribute("x2",P[p[1]][0]);lines[k].setAttribute("y2",P[p[1]][1]);});
+      gs.forEach(function(g,i){
+        g.setAttribute("transform","translate("+P[i][0]+" "+P[i][1]+")");
+        // užrašas – priešingoje pusėje nei porinis taškas (mazgo rankenėlė ar rankenėlės mazgas), kad nesusikirstų
+        var t=g.querySelector("text"), pair=P[[1,0,3,2][i]], below=P[i][1]>=pair[1];
+        if(P[i][1]>vb.height-34) below=false; else if(P[i][1]<30) below=true;
+        t.setAttribute("y",below?26:-14);
+        t.setAttribute("text-anchor",P[i][0]<34?"start":P[i][0]>vb.width-34?"end":"middle");
+        t.setAttribute("x",P[i][0]<34?-8:P[i][0]>vb.width-34?8:0);
+        g.setAttribute("aria-label",names[i]+": x "+P[i][0]+", y "+P[i][1]+". Perkelk rodyklėmis.");
+      });
+    }
+    function toSvg(e){var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse());}
+    gs.forEach(function(g,i){
+      g.addEventListener("pointerdown",function(e){
+        e.preventDefault(); g.focus({preventScroll:true}); g.setPointerCapture(e.pointerId); g.classList.add("drag");
+        function move(ev){var p=toSvg(ev); P[i]=[Math.round(clamp(p.x,6,vb.width-6)),Math.round(clamp(p.y,6,vb.height-6))]; draw();}
+        function up(){g.classList.remove("drag"); g.removeEventListener("pointermove",move); g.removeEventListener("pointerup",up); g.removeEventListener("pointercancel",up);}
+        g.addEventListener("pointermove",move); g.addEventListener("pointerup",up); g.addEventListener("pointercancel",up);
+      });
+      g.addEventListener("keydown",function(e){
+        var s=e.shiftKey?16:4, dx={ArrowLeft:-s,ArrowRight:s}[e.key]||0, dy={ArrowUp:-s,ArrowDown:s}[e.key]||0;
+        if(!dx&&!dy) return;
+        e.preventDefault(); P[i]=[clamp(P[i][0]+dx,6,vb.width-6),clamp(P[i][1]+dy,6,vb.height-6)]; draw();
+      });
+    });
+    draw();
+  });
+
+  // Didinimas: tas pats apskritimas kaip SVG ir kaip 96 × 96 px taškinis vaizdas (be glotninimo)
+  document.querySelectorAll("[data-zoom]").forEach(function(box){
+    var svg=box.querySelector(".zoom-svg"), cv=box.querySelector(".zoom-cv"), range=box.querySelector("input[type=range]"),
+        out=box.querySelector("output"), N=96, R=40, F=[48+R*Math.SQRT1_2,48-R*Math.SQRT1_2], src=document.createElement("canvas");
+    src.width=src.height=N;
+    function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+    function raster(){
+      var c=src.getContext("2d"); c.fillStyle=css("--surface"); c.fillRect(0,0,N,N);
+      c.fillStyle=css("--accent"); c.beginPath(); c.arc(48,48,R,0,Math.PI*2); c.fill();
+    }
+    function view(z){var s=N/z; return [Math.max(0,Math.min(N-s,F[0]-s/2)),Math.max(0,Math.min(N-s,F[1]-s/2)),s];}
+    function draw(){
+      var z=+range.value, v=view(z), w=Math.round(cv.clientWidth*(window.devicePixelRatio||1))||192;
+      out.textContent=z+"×";
+      svg.setAttribute("viewBox",v[0]+" "+v[1]+" "+v[2]+" "+v[2]);
+      if(cv.width!==w){cv.width=cv.height=w;}
+      var c=cv.getContext("2d"); c.imageSmoothingEnabled=false; c.clearRect(0,0,w,w);
+      c.drawImage(src,v[0],v[1],v[2],v[2],0,0,w,w);
+    }
+    raster(); draw();
+    range.addEventListener("input",draw);
+    window.addEventListener("resize",draw);
+    window.addEventListener("hashchange",function(){setTimeout(draw,0);}); // tema buvo paslėpta – perpiešti tikru dydžiu
+    if(window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){raster();draw();});
+  });
+
+  // Raiškos skaičiuoklė: pikseliai = cm ÷ 2,54 × dpi
+  document.querySelectorAll("[data-dpi]").forEach(function(box){
+    var w=box.querySelector("[data-k=w]"), h=box.querySelector("[data-k=h]"), dpi=box.querySelector("[data-k=dpi]"), out=box.querySelector(".dpi-out");
+    function num(s){var v=parseFloat(String(s).replace(",",".").trim()); return v>0&&v<10000?v:NaN;}
+    function lt(v){return String(v).replace(".",",");}
+    function line(lbl,cm,d){var px=Math.round(cm/2.54*d), s=document.createElement("span"), b=document.createElement("b");
+      s.appendChild(document.createTextNode(lbl+": "+lt(cm)+" ÷ 2,54 × "+d+" ≈ ")); b.textContent=px+" px"; s.appendChild(b); out.appendChild(s); return px;}
+    function calc(){
+      var cw=num(w.value), ch=num(h.value), d=+dpi.value; out.textContent="";
+      if(isNaN(cw)||isNaN(ch)){ out.appendChild(document.createTextNode("Įvesk teigiamą skaičių, pvz., 10 arba 12,5.")); return; }
+      var pw=line("Plotis",cw,d), ph=line("Aukštis",ch,d), s=document.createElement("span");
+      s.textContent="Iš viso: "+pw+" × "+ph+" px ≈ "+lt((pw*ph/1e6).toFixed(1))+" megapikselio"; out.appendChild(s);
+    }
+    [w,h,dpi].forEach(function(x){x.addEventListener("input",calc);});
+    calc();
+  });
+})();

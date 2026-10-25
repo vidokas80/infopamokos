@@ -159,6 +159,54 @@
    "teisingas": 1,
    "paaiskinimas": "Nuotraukoje milijonai skirtingų atspalvių – jų neįmanoma patogiai aprašyti figūromis.",
    "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Ką pakeisi, patempęs Bezjė kreivės rankenėlę?",
+   "variantai": [
+    "Kreivė išsilenks ta kryptimi, į kurią patempta rankenėlė",
+    "Pasikeis linijos storis",
+    "Pasikeis užpildo spalva",
+    "Pasislinks kreivės galas"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Rankenėlė valdo kreivės lenkimą. Kreivės galus nusako mazgai, o rankenėlės kreivė nepasiekia.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "SVG kode <path d=\"M 10 80 C 40 10, 160 10, 190 80\"/> kurie taškai yra kreivės mazgai (galai)?",
+   "variantai": [
+    "(10; 80) ir (190; 80)",
+    "(40; 10) ir (160; 10)",
+    "(10; 80) ir (40; 10)",
+    "Visi keturi taškai"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Po M rašomas pradžios mazgas, paskutinė C pora – pabaigos mazgas. Dvi vidurinės poros – rankenėlės.",
+   "lygis": "aukstesnysis"
+  },
+  {
+   "klausimas": "Iš apskritimo reikia išpjauti dalį kitu apskritimu, kad liktų pusmėnulis. Kurią loginę operaciją naudosi?",
+   "variantai": [
+    "Atimti",
+    "Sujungti",
+    "Sankirta",
+    "Grupuoti"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Atimant iš apatinės figūros pašalinama ta dalis, kurią dengia viršutinė.",
+   "lygis": "pagrindinis"
+  },
+  {
+   "klausimas": "Kuri operacija iš dviejų persidengiančių figūrų palieka tik jų bendrą dalį?",
+   "variantai": [
+    "Sankirta",
+    "Sujungti",
+    "Atimti",
+    "Skirtumas"
+   ],
+   "teisingas": 0,
+   "paaiskinimas": "Sankirta palieka tik tą plotą, kuris priklauso abiem figūroms. Skirtumas – priešingai: viską, išskyrus bendrą dalį.",
+   "lygis": "aukstesnysis"
   }
  ],
  "di3": [

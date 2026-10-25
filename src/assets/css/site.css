@@ -8,6 +8,8 @@ img{max-width:100%}
   --paper:#f6f7f5; --surface:#ffffff; --ink:#1b2430; --muted:#5a6573; --line:#d9dee3;
   --accent:#0b6b6b; --accent-soft:#e1f0ef; --marker:#f6e27a; --marker-ink:#1b2430;
   --code-bg:#eef1f3; --warm:#b4561c; --warm-soft:#f8e8dc; --ok:#1d7a3e; --bad:#b3261e;
+  /* Nekintančios abiejose temose: šešėlis ir baltas paveikslėlio fonas (JPG pavyzdys) */
+  --shade:#0b0f14; --white:#ffffff;
   --f-display:"Commissioner", "Segoe UI", system-ui, sans-serif;
   --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
   --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -120,6 +122,33 @@ footer{color:var(--muted);font-size:.88rem;padding-block:1.5rem 7rem;border-top:
 .fig .chair{stroke:var(--muted);stroke-width:5;fill:none;stroke-linecap:round}
 .fig .mon{stroke:var(--accent);stroke-width:6;fill:none;stroke-linecap:round}
 .fig .arrowhead{fill:var(--muted)}
+.fig .see{fill-opacity:.6}
+.fig .res{fill:var(--accent);fill-opacity:.85;stroke:var(--accent);stroke-width:1.5}
+.fig .bgc{fill:var(--accent)} .fig .logo{fill:var(--warm)} .fig .logo-in{fill:var(--paper)}
+.fig .shd{fill:var(--shade);opacity:.55} .fig .matte{fill:var(--white)}
+
+/* ---------- Vektorinės grafikos demonstracijos ---------- */
+.vdemo .fig-scroll{display:grid;gap:.7rem}
+.vdemo-lbl{font-family:var(--f-display);font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+.fig svg.narrow{max-width:26rem;margin:0 auto}
+.zoom-panels{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;max-width:30rem}
+.zoom-panels svg,.zoom-panels canvas{display:block;width:100%;height:auto;aspect-ratio:1;border:1px solid var(--line);border-radius:4px}
+.fig .zoom-bg{fill:var(--surface)}
+.vdemo-range{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .7rem;font-family:var(--f-display);font-size:.95rem}
+.vdemo-range output{font-family:var(--f-mono);min-width:3ch}
+.vdemo-range input{flex:1 1 12rem;accent-color:var(--accent)}
+.bez-svg{touch-action:none;user-select:none;-webkit-user-select:none;max-width:30rem;margin:0 auto}
+.fig .bez-hit{fill:transparent}
+.bez-pt{cursor:grab;outline:none}
+.bez-pt.drag{cursor:grabbing}
+.fig .bez-pt:focus-visible .node,.fig .bez-pt:focus-visible .hndp{stroke:var(--accent);stroke-width:4}
+.bez-code{margin:0;font-family:var(--f-mono);font-size:.85rem;background:var(--code-bg);color:var(--ink);padding:.5rem .6rem;border-radius:5px;white-space:pre-wrap;word-break:break-word}
+.vdemo-box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem;margin:1rem 0;display:grid;gap:.6rem}
+.dpi-row{display:grid;grid-template-columns:1fr 1fr 2fr;gap:.6rem}
+.dpi-row label{display:grid;gap:.2rem;font-family:var(--f-display);font-size:.88rem;color:var(--muted)}
+.dpi-row input,.dpi-row select{font:inherit;font-family:var(--f-mono);font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:.45rem .5rem;width:100%;min-width:0}
+.dpi-out{display:grid;gap:.15rem;font-family:var(--f-mono);font-size:.9rem;background:var(--code-bg);padding:.5rem .6rem;border-radius:5px}
+@media (max-width:560px){.dpi-row{grid-template-columns:1fr 1fr}.dpi-row .dpi-sel{grid-column:1 / -1}}
 figcaption{font-size:.9rem;color:var(--muted);margin-top:.45rem;line-height:1.45}
 .ex{display:block;color:var(--muted);font-size:.93rem;margin-top:.15rem}
 th small{font-weight:400;color:var(--muted)}
