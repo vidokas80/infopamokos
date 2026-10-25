@@ -16,6 +16,7 @@ Svetainė talpinama GitHub Pages, domenas infopamokos.lt. Publikuojama automati�
 ## Sandara
 
 - `content/vbe/iii/`, `content/vbe/iv/` – temos, po vieną HTML fragmentą. Failo pirma eilutė – antraštė `<!-- id: X | toc: Pavadinimas meniu | sritis: A..F -->`. Failų pavadinimų numeriai nustato eilės tvarką.
+- Antraštės laukas `paveikslelis: tema-X.webp` (iš `src/assets/img/iliustracijos/`) – `build.py` įdeda iliustraciją po `<h2>` ir prideda `data-img`, iš kurio `vbe.js` daro temos kortelės paveikslėlį (16:9). Alt imamas iš `kilme.json`. Kopijos paveldi originalo paveikslėlį.
 - Tema, kuri kartojama kitoje klasėje, aprašoma antrašte su `kopija: iv/03-licencijos.html` – turinys imamas iš originalo, pakeičiamas tik id.
 - `content/vbe/testai.json`, `atvirieji.json` – klausimai pagal temos id. `teisingas` skaičiuojamas nuo 0.
 - `content/vbe/egzaminai.html` – egzaminų skiltis (`<article class="exam" data-part="i|ii|pvz">`).

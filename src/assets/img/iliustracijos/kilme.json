@@ -7,5 +7,133 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-10-25"
+ },
+ "tema-vizualizavimas.webp": {
+  "aprasymas": "A teenage girl at a large monitor comparing three charts side by side: a bar chart, a line chart and a pie chart, with no numbers or labels. On the desk, a tablet shows a small table made of coloured cells that the charts are built from. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinė prie monitoriaus lygina stulpelinę, linijinę ir skritulinę diagramas; ant stalo planšetė su spalvotų langelių lentele.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-vektorine.webp": {
+  "aprasymas": "A teenage boy drawing a smooth curved shape with control points and handles on a graphics tablet with a stylus. Next to it, a large magnifying glass shows that one half of the shape edge is perfectly smooth while the other half is made of square pixel steps. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys planšete piešia lenktą figūrą su valdymo taškais; didinamasis stiklas rodo lygų kraštą ir pikselių laiptelius.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-licencijos.webp": {
+  "aprasymas": "Two teenage girls choosing photos for a school poster. On the laptop screen there is a grid of photo thumbnails (landscapes, animals); some thumbnails have a green check mark badge, others a red cross badge. A printed draft of the poster lies on the desk. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Dvi mokinės renka nuotraukas plakatui: ekrane nuotraukų tinklelis su žaliomis varnelėmis ir raudonais kryželiais.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-di3.webp": {
+  "aprasymas": "A teenage boy teaching a computer to recognise fruit: he holds an apple in front of a webcam. The screen shows two groups of small pictures, apples and bananas, and a horizontal confidence bar that is mostly filled. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys prieš kamerą laiko obuolį; ekrane obuolių ir bananų grupės bei pasitikėjimo juosta.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-kriptografija.webp": {
+  "aprasymas": "A teenage student browsing the web on a laptop. The browser window on the laptop screen has a clearly visible, enlarged padlock icon at the left of the address bar (the address bar itself is an empty rounded field). Next to the laptop, a large digital certificate card floats in the air, with a round seal on it. Above the certificate there are three round seals stacked vertically and connected by arrows pointing downwards, showing a chain of trust from a top authority to the certificate. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys naršo; adreso juostoje spynelė, šalia sertifikato kortelė su antspaudu ir trijų antspaudų pasitikėjimo grandinė.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-tinklai.webp": {
+  "aprasymas": "A school computer lab: several desktop computers are connected with cables to a network switch, the switch is connected to a router, and a line leads from the router to a stylised globe. Wi-Fi waves go from the router to a student's phone. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Kompiuterių klasė: kompiuteriai sujungti su komutatoriumi, šis su maršrutizatoriumi, linija į Žemės rutulį, Wi-Fi į telefoną.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-bendravimas.webp": {
+  "aprasymas": "A hybrid lesson: some teenage students sit together at a classroom table, and a large wall screen shows a video call grid with other students joining from home. A tablet on the table shows a shared document with coloured cursors. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Hibridinė pamoka: dalis mokinių klasėje, sieniniame ekrane vaizdo skambutis su namie esančiais, planšetėje bendras dokumentas.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-ergonomika.webp": {
+  "aprasymas": "A teenage student taking a break: standing next to a window, looking far into the distance and stretching the arms up. Behind the student is a tidy computer desk; the monitor stands sideways to the window, so daylight falls on it from the side. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys per pertrauką prie lango žiūri į tolį ir tempiasi; už jo darbo vieta, monitorius šonu į langą.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-aplinka.webp": {
+  "aprasymas": "Two teenage students at a screen watching an environmental simulation: a simple map with a river and a forest and many small dots representing animals. On the windowsill there is a small air quality sensor, and trees are visible outside the window. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Du mokiniai stebi aplinkos modelį (upė, miškas, taškeliai-gyvūnai); ant palangės oro jutiklis.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-animacija.webp": {
+  "aprasymas": "A teenage girl creating an animation of a bouncing ball on a computer: the screen shows several semi-transparent positions of the ball along an arc (onion skin) and a timeline made of small square frames below. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinė kuria šokinėjančio kamuolio animaciją: permatomos kamuolio padėtys ir kadrų laiko juosta.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-leidiniai.webp": {
+  "aprasymas": "A teenage boy laying out a digital magazine: the monitor shows a page with photo blocks and grey lines instead of text, arranged on a grid. Next to it a tablet and a phone show the same magazine reflowed to fit their smaller screens. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys maketuoja e. žurnalą; planšetė ir telefonas rodo tą patį leidinį, prisitaikiusį prie ekrano.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-duomenys.webp": {
+  "aprasymas": "A teenage boy holding a phone and deciding whether to give consent: the phone screen shows a dialog with two buttons, one green and one grey, without any text. Around him float simple personal data symbols: a portrait photo, a location pin and an ID card without any writing. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys telefone sprendžia dėl sutikimo (žalias ir pilkas mygtukai); aplink nuotraukos, vietos žymeklio, tapatybės kortelės simboliai.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-kibernetinis.webp": {
+  "aprasymas": "A school IT administrator, a young woman, at a desk with several monitors. A large translucent shield surrounds a server rack next to her. One monitor shows a warning triangle. A backup hard drive sits on the desk. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "IT administratorė prie monitorių; skydas gaubia serverių spintą, ekrane įspėjimo trikampis, ant stalo atsarginių kopijų diskas.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-parasas.webp": {
+  "aprasymas": "A teenage boy signing a document electronically: an ID card is inserted into a small card reader next to his laptop. The laptop screen shows a document icon with a round seal with a check mark on it, and a small clock icon beside it. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys pasirašo: ID kortelė skaitytuve, ekrane dokumentas su antspaudu-varnele ir laikrodžio piktograma.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-sifravimas.webp": {
+  "aprasymas": "Two teenage girls in two separate rooms, each with a laptop. An envelope with a padlock flies from one laptop to the other; in the middle of its path the envelope turns into a jumble of coloured squares, and at the receiving laptop it is unlocked with a key. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Dvi mokinės skirtinguose kambariuose; vokas su spyna skrenda, pakeliui virsta spalvotais kvadratėliais, atrakinamas raktu.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
+ },
+ "tema-di.webp": {
+  "aprasymas": "A teenage girl exploring a machine learning model on a computer: the screen shows a decision tree diagram and a neural network made of circles connected by lines, in layers. On the desk, a vase with three kinds of iris flowers. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinė tyrinėja modelį: ekrane sprendimų medis ir neuroninis tinklas; ant stalo vazoje trijų rūšių vilkdalgiai.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-10-25"
  }
 }

@@ -163,6 +163,14 @@ th small{font-weight:400;color:var(--muted)}
 .card-title{font-family:var(--f-display);font-weight:600;font-size:1.08rem;line-height:1.25;text-wrap:balance}
 .card-area{font-size:.85rem;color:var(--muted)}
 .card-meta{font-family:var(--f-mono);font-size:.75rem;color:var(--accent);margin-top:auto;padding-top:.3rem}
+/* Kortelės iliustracija: 16:9, apkerpama iš 3:2 */
+.card-img{display:block;width:calc(100% + 2.1rem);max-width:none;margin:-1rem -1.05rem .35rem;aspect-ratio:16/9;height:auto;object-fit:cover;border-radius:8px 8px 0 0;background:var(--paper)}
+/* Telefone kortelė gulsčia: maža miniatiūra kairėje, kad kortelės nebūtų per aukštos */
+@media (max-width:520px){
+  .card.has-img{display:grid;grid-template-columns:6.5rem minmax(0,1fr);column-gap:.8rem;row-gap:.25rem;align-items:start}
+  .card.has-img .card-img{grid-row:1 / span 4;width:100%;margin:0;border-radius:5px;align-self:center}
+  .card.has-img > :not(.card-img){grid-column:2}
+}
 .crumb{display:inline-block;font-family:var(--f-display);font-size:.9rem;text-decoration:none;margin-bottom:.8rem}
 .crumb:hover{text-decoration:underline}
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:2.2rem}
@@ -314,6 +322,8 @@ a.grade-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .ill{margin:1.1rem 0;max-width:36rem}
 .ill img{display:block;width:100%;height:auto;border-radius:8px;background:var(--surface)}
 .ill figcaption{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+/* Temos pradžios iliustracija (po antrašte, prieš „Svarbiausia“) */
+.ill-tema{margin:.4rem 0 1.1rem}
 /* Iliustracija su užrašais: SVG sluoksnis ant paveikslėlio, viewBox = paveikslėlio matmenys pikseliais.
    Užrašai ir matmenys dedami tik čia – niekada neprašomi iš DI generatoriaus. */
 .ill-annot{max-width:40rem}

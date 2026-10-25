@@ -85,6 +85,10 @@
     var grid=mk("div","cards");
     list(g).forEach(function(sec,i){
       var a=mk("a","card"); a.href="#"+sec.id;
+      if(sec.dataset.img){ // iliustracija iš temos antraštės (build.py); kortelėje dekoratyvinė, todėl alt=""
+        var im=mk("img","card-img"); im.src=sec.dataset.img; im.alt=""; im.loading="lazy"; im.width=320; im.height=180;
+        a.appendChild(im); a.classList.add("has-img");
+      }
       var top=mk("span","card-top"); top.appendChild(mk("span","code",sec.querySelector(".topic-head .code").textContent));
       top.appendChild(mk("span","card-n",String(i+1).padStart(2,"0")));
       a.appendChild(top);

@@ -7,12 +7,15 @@ Ką daro:
   1. Nukopijuoja src/ (pagrindinį puslapį, CSS, JS, paveikslus) į dist/.
   2. Iš content/vbe/ temų failų, testai.json ir atvirieji.json
      sudeda VBE skilties puslapį dist/vbe/index.html ir dist/vbe/data.js.
+     Temos antraštės laukas „paveikslelis: tema-x.webp“ įdeda iliustraciją
+     temos pradžioje ir temos kortelėje (alt imamas iš kilme.json).
   3. Prie CSS ir JS nuorodų prideda versiją (?v=…), kad lankytojai po
      atnaujinimo negautų senos kopijos iš naršyklės talpyklos.
 
 Reikia tik Python 3.8+, papildomų bibliotekų nereikia.
 """
 import hashlib
+import html
 import json
 import re
 import shutil
@@ -23,6 +26,7 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 CONTENT = ROOT / "content"
 DIST = ROOT / "dist"
+ILL = SRC / "assets" / "img" / "iliustracijos"
 
 HEADER_RE = re.compile(r"^<!--(.*?)-->\s*", re.S)
 
@@ -43,6 +47,27 @@ def parse_header(text, path):
     return meta, text[m.end():]
 
 
+def topic_image(meta, body, path):
+    """Jei antraštėje yra „paveikslelis: failas.webp“, įdeda iliustraciją po <h2>
+    ir pažymi temą data-img (iš jo vbe.js daro kortelės paveikslėlį).
+    Alt tekstas imamas iš kilme.json, kad būtų vienoje vietoje."""
+    name = meta.get("paveikslelis")
+    if not name:
+        return body
+    f = ILL / name
+    if not f.is_file():
+        sys.exit(f"KLAIDA: {path}: nerastas paveikslėlis {f.relative_to(ROOT)}")
+    kilme = json.loads((ILL / "kilme.json").read_text(encoding="utf-8"))
+    alt = kilme.get(name, {}).get("alt")
+    if not alt:
+        sys.exit(f"KLAIDA: {path}: kilme.json neturi {name} alt teksto")
+    src = f"../assets/img/iliustracijos/{name}"
+    fig = (f'<figure class="ill ill-tema"><img src="{src}" alt="{html.escape(alt)}" width="1200" height="800">'
+           f'<figcaption>Iliustracija sukurta su DI</figcaption></figure>')
+    body = body.replace('<section class="topic"', f'<section class="topic" data-img="{src}"', 1)
+    return re.sub(r"(</h2>)", r"\1\n  " + fig.replace("\\", "\\\\"), body, count=1)
+
+
 def load_topics(grade):
     """Grąžina klasės temų sąrašą: [(meta, html)], surikiuotą pagal failo pavadinimą."""
     topics = []
@@ -54,7 +79,8 @@ def load_topics(grade):
             orig_meta, orig_body = parse_header(orig_path.read_text(encoding="utf-8"), orig_path)
             body = orig_body.replace(f'id="{orig_meta["id"]}"', f'id="{meta["id"]}"', 1)
             meta["kopija_id"] = orig_meta["id"]
-        topics.append((meta, body.strip()))
+            meta.setdefault("paveikslelis", orig_meta.get("paveikslelis"))
+        topics.append((meta, topic_image(meta, body, path).strip()))
     return topics
 
 

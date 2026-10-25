@@ -129,6 +129,15 @@ def check_images():
         for f in ill.glob("*.webp"):
             if f.name not in known:
                 warn(f"{f.relative_to(ROOT)}: nėra įrašo kilme.json (kaip ir kuo sugeneruota)")
+        # Temos antraštės laukas „paveikslelis:“ – failas turi būti, o kilme.json – turėti alt tekstą
+        for path in sorted(CONTENT.rglob("*.html")):
+            m = re.search(r"paveikslelis:\s*([^\s|]+)", path.read_text(encoding="utf-8").split("-->")[0])
+            if not m:
+                continue
+            if not (ill / m.group(1)).is_file():
+                err(f"{path.relative_to(ROOT)}: nerastas antraštėje nurodytas paveikslėlis {m.group(1)}")
+            elif not known.get(m.group(1), {}).get("alt"):
+                err(f"{path.relative_to(ROOT)}: kilme.json neturi {m.group(1)} alt teksto")
 
 
 def check_built():

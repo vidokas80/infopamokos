@@ -59,7 +59,7 @@ Paskutinį kartą atnaujinta: 2026-10-25.
 3. **Programavimo praktika naršyklėje** (didžiausias galimas patobulinimas): Pyodide, uždaviniai egzamino stiliumi (`Duomenys.txt` → `Rezultatai.txt`), automatiniai testai.
 4. **Skaičiuoklės praktika**: atsisiunčiami užduočių failai su pasitikrinimo lapu.
 5. **Kitos klasės**: 9–10, 7–8, 5–6 – ta pati sandara (sritys A–F, temos, „Svarbiausia“, testai). Reikės išplėsti `build.py` (dabar jis žino tik `vbe`).
-6. **DI iliustracijos**: OpenAI raktas jau yra (Windows naudotojo aplinkos kintamasis), modelis `gpt-image-2`. Pirmoji – `ergonomika-darbo-vieta.webp` ergonomikos temoje su SVG užrašų sluoksniu (`ill-annot`). Generatorius du kartus piešė ekraną aukščiau akių (~25 px virš akių linijos) – tai pažymėta `alt` ir `kilme.json`. Kitoms temoms – dar nepadaryta.
+6. **DI iliustracijos**: OpenAI raktas jau yra (Windows naudotojo aplinkos kintamasis), modelis `gpt-image-2`. Pirmoji – `ergonomika-darbo-vieta.webp` ergonomikos temoje su SVG užrašų sluoksniu (`ill-annot`). Generatorius du kartus piešė ekraną aukščiau akių (~25 px virš akių linijos) – tai pažymėta `alt` ir `kilme.json`. 2026-10-25 visoms 17 temų (licencijoms viena) sugeneruotos `tema-<id>.webp` (medium) – rodomos temų kortelėse ir temų pradžioje, laukas `paveikslelis:` temos antraštėje. Generavimo aprašymai – `kilme.json`. Telefone kortelės gulsčios (miniatiūra kairėje).
 7. Galimi: spausdinamos užduočių lapų versijos (PDF), mokinio pažangos suvestinė naršyklėje (localStorage). Mokinių rezultatų saugojimas serveryje – tik apsvarsčius BDAR.
 
 ## Žinomi niuansai
