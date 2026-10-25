@@ -47,6 +47,19 @@ Testai ir atvirieji klausimai prijungiami automatiškai iš JSON.
 - Puslapis turi veikti 390 px pločio telefone be horizontalaus slinkimo.
 - Be išorinių JS bibliotekų. Gerbti `prefers-reduced-motion`.
 
+## Iliustracijos
+
+- **Mokomosios schemos** (tinklai, šifravimas, neuroniniai tinklai, eigos, palyginimai) – **tik inline SVG**, rankiniu būdu, su temos klasėmis. DI generatoriams jų nepatikėti: jie daro faktinių klaidų ir blogai rašo tekstą, ypač lietuviškas raides.
+- **DI iliustracijos** – tik dekoratyvinės ar situacijų (temų kortelės, pagrindinis puslapis, „mokinys prie kompiuterio“). Generuoti skriptu:
+  ```
+  python scripts/iliustracija.py "ką pavaizduoti" --pavadinimas trumpas-vardas --alt "ką mato neregintis mokinys"
+  ```
+  Skriptas prideda bendrą stilių iš `scripts/stilius.txt`, išsaugo WebP iki ~150 KB į `src/assets/img/iliustracijos/`, įrašo kilmę į `kilme.json` ir atspausdina HTML fragmentą.
+- Iliustracija dedama kaip `<figure class="ill">` su prasmingu `alt` ir parašu „Iliustracija sukurta su DI“.
+- Iliustracijoje neturi būti teksto, logotipų, prekių ženklų ar žinomų personažų. Bitukas – tik SVG (`src/assets/img/bitukas.svg`, `bot.js`), DI jo negeneruoja.
+- Prieš naudojant peržiūrėti rezultatą: ar nėra klaidingų detalių (pvz., neteisinga sėdėsena ergonomikos temoje). Netinkamą generuoti iš naujo.
+- **API raktai** (`OPENAI_API_KEY`, `GEMINI_API_KEY`) – tik aplinkos kintamuosiuose. Niekada nerašyti į failus, commit pranešimus ar kodą. Saugykla vieša.
+
 ## Prieš kiekvieną commit
 
 ```

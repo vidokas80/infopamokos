@@ -68,6 +68,29 @@ python -m http.server 8000 --directory dist
 
 Tada naršyklėje atidarykite http://localhost:8000.
 
+## Iliustracijos su DI
+
+Mokomosios schemos svetainėje piešiamos SVG formatu ranka (tiksliai, su lietuvišku tekstu, prisitaiko prie tamsios temos). DI generatorius naudojamas tik dekoratyvinėms iliustracijoms.
+
+**Vienkartinis paruošimas savo kompiuteryje:**
+
+1. Gaukite API raktą: [OpenAI](https://platform.openai.com/api-keys) arba [Google AI Studio](https://aistudio.google.com/apikey). Generavimas mokamas pagal kiekį.
+2. Įdiekite Pillow: `pip install Pillow`
+3. Nustatykite raktą aplinkos kintamuoju (ne faile!):
+   - Windows (PowerShell): `setx OPENAI_API_KEY "jūsų-raktas"` ir atidarykite terminalą iš naujo
+   - macOS / Linux: į `~/.zshrc` arba `~/.bashrc` įrašykite `export OPENAI_API_KEY="jūsų-raktas"`
+   - Google atveju – `GEMINI_API_KEY`, ir papildomai `ILIUSTRACIJU_PASLAUGA=google`
+
+**Generavimas:**
+
+```
+python scripts/iliustracija.py "mokinys taisyklingai sėdi prie kompiuterio" --pavadinimas ergonomika --alt "Mokinys taisyklingai sėdi prie kompiuterio"
+```
+
+Paveikslėlis atsiras `src/assets/img/iliustracijos/`, o skriptas atspausdins HTML fragmentą, kurį reikia įklijuoti į temą. Bendras stilius aprašytas `scripts/stilius.txt` – pakeitus jį, keičiasi visų naujų iliustracijų stilius. Claude Code šį skriptą gali paleisti pats.
+
+> **Svarbu:** API rakto niekada nerašykite į projekto failus – saugykla vieša, ir raktą galėtų panaudoti kiti jūsų sąskaita.
+
 ## Kaip publikuojama
 
 Įkėlus pakeitimus į `main` šaką, GitHub Actions automatiškai paleidžia `check.py` ir `build.py` ir paskelbia svetainę. Jei rasta klaidų, publikavimas sustabdomas, o sena versija toliau veikia. Eigą matysite skiltyje **Actions**.

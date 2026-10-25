@@ -309,3 +309,8 @@ a.grade-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .grade-card.soon{opacity:.75}
 .grade-card.main{border-color:var(--accent);border-width:1.5px}
 @media (prefers-reduced-motion:reduce){a.grade-card{transition:none}a.grade-card:hover{transform:none}}
+
+/* ---------- DI iliustracijos (dekoratyvinės) ---------- */
+.ill{margin:1.1rem 0;max-width:36rem}
+.ill img{display:block;width:100%;height:auto;border-radius:8px;background:var(--surface)}
+.ill figcaption{font-size:.8rem;color:var(--muted);margin-top:.3rem}

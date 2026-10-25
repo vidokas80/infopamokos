@@ -112,6 +112,25 @@ class LinkCollector(HTMLParser):
             self.hrefs.append(a["href"])
 
 
+def check_images():
+    """Paveikslėliai: alternatyvusis tekstas, dydis, DI iliustracijų kilmė."""
+    for path in sorted((CONTENT).rglob("*.html")):
+        for tag in re.findall(r"<img\b[^>]*>", path.read_text(encoding="utf-8")):
+            if not re.search(r'\balt="[^"]+"', tag):
+                err(f"{path.relative_to(ROOT)}: paveikslėlis be alternatyviojo teksto: {tag[:80]}")
+    img_dir = ROOT / "src" / "assets" / "img"
+    for f in img_dir.rglob("*"):
+        if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".gif") and f.stat().st_size > 300 * 1024:
+            warn(f"{f.relative_to(ROOT)}: paveikslėlis didelis ({f.stat().st_size // 1024} KB) – sumažinkite iki ~150 KB")
+    ill = img_dir / "iliustracijos"
+    if ill.exists():
+        log = ill / "kilme.json"
+        known = json.loads(log.read_text(encoding="utf-8")) if log.exists() else {}
+        for f in ill.glob("*.webp"):
+            if f.name not in known:
+                warn(f"{f.relative_to(ROOT)}: nėra įrašo kilme.json (kaip ir kuo sugeneruota)")
+
+
 def check_built():
     page = DIST / "vbe" / "index.html"
     if not page.exists():
@@ -153,6 +172,7 @@ def check_external(urls):
 def main():
     ids = topic_ids()
     check_json(ids)
+    check_images()
     urls = []
     if "--built" in sys.argv or "--external" in sys.argv:
         urls = check_built()
