@@ -99,7 +99,10 @@ Paveikslėlis atsiras `src/assets/img/iliustracijos/`, o skriptas atspausdins HT
 
 Kartą per mėnesį automatiškai tikrinama, ar veikia visos išorinės nuorodos (NŠA užduotys, teisės aktai). Jei kuri nors neveikia, GitHub praneš el. paštu.
 
-## Vienkartinis nustatymas (jau padarytas ar dar reikia padaryti)
+## Vienkartinis nustatymas (atlikta 2026-10-26)
+
+Šie žingsniai jau padaryti – svetainė veikia adresu https://infopamokos.lt. Aprašymas paliktas, jei kada reikėtų pakartoti (pvz., keičiant domeną ar DNS teikėją).
+
 
 1. **GitHub Pages:** saugykloje **Settings → Pages → Build and deployment → Source** pasirinkite **GitHub Actions**.
 2. **DNS (Hostinger):** hPanel → Domenai → infopamokos.lt → **DNS / Nameservers**:

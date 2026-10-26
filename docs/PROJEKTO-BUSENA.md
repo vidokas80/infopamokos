@@ -2,7 +2,7 @@
 
 Šis dokumentas – perdavimas iš pradinio darbo su Claude (claude.ai pokalbis, 2026 m. spalio 20–25 d.) į Claude Code. Jame surašyta, kas nuspręsta, kas padaryta ir kas liko. **Atnaujink jį, kai baigiamas didesnis darbas ar priimamas svarbus sprendimas.**
 
-Paskutinį kartą atnaujinta: 2026-10-25.
+Paskutinį kartą atnaujinta: 2026-10-26.
 
 ## Savininkas ir tikslas
 
@@ -54,7 +54,7 @@ Paskutinį kartą atnaujinta: 2026-10-25.
 
 ## Liko padaryti
 
-1. **Domenas**: kai baigsis infopamokos.lt registracija – DNS įrašai Hostinger, Custom domain GitHub'e, Enforce HTTPS, domeno patvirtinimas (žr. README „Vienkartinis nustatymas“). GitHub Pages (Source: GitHub Actions) jau įjungtas; svetainė veikia adresu vidokas80.github.io/infopamokos.
+1. ~~**Domenas**~~ – **atlikta 2026-10-26**: infopamokos.lt veikia. DNS Hostinger'yje: 4 × A (185.199.108–111.153), 4 × AAAA (2606:50c0:8000–8003::153), CNAME www → vidokas80.github.io, TXT _github-pages-challenge-vidokas80 (domeno patvirtinimas GitHub paskyroje). Hostinger prieglobos plano nenaudojame – tik domeno registraciją ir DNS.
 2. **Medžiagos licencija**: Vidas dar nepasirinko (siūlyta CC BY-NC-SA). Įrašyti į README ir svetainės poraštę.
 3. **Programavimo praktika naršyklėje** (didžiausias galimas patobulinimas): Pyodide, uždaviniai egzamino stiliumi (`Duomenys.txt` → `Rezultatai.txt`), automatiniai testai.
 4. **Skaičiuoklės praktika**: atsisiunčiami užduočių failai su pasitikrinimo lapu.
