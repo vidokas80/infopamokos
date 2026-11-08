@@ -9,7 +9,7 @@ img{max-width:100%}
   --accent:#0b6b6b; --accent-soft:#e1f0ef; --marker:#f6e27a; --marker-ink:#1b2430;
   --code-bg:#eef1f3; --warm:#b4561c; --warm-soft:#f8e8dc; --ok:#1d7a3e; --bad:#b3261e;
   /* Nekintančios abiejose temose: šešėlis ir baltas paveikslėlio fonas (JPG pavyzdys) */
-  --shade:#0b0f14; --white:#ffffff;
+  --shade:#0b0f14; --white:#ffffff; --photo:#fcf7f2;
   --f-display:"Commissioner", "Segoe UI", system-ui, sans-serif;
   --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
   --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -94,8 +94,27 @@ footer{color:var(--muted);font-size:.88rem;padding-block:1.5rem 7rem;border-top:
 /* ---------- Pamokų puslapiai (7–8 klasės ir kt.) ---------- */
 .lessons{padding-block:2rem 3rem}
 .grade-title{font-size:1rem;font-family:var(--f-mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem}
-section.lesson{border-bottom:0;margin-bottom:0;padding-bottom:.5rem}
+section.lesson{border-bottom:0;margin-bottom:0;padding-bottom:.5rem;max-width:none}
+section.lesson > :not(.parts){max-width:72ch} /* tekstas siauras, dalių kortelės – per visą plotį */
 .lesson-sub{font-family:var(--f-display);color:var(--muted);margin:0 0 .4rem}
+/* Kompiuterio dalių kortelės. Nuotraukų fonas šviesus, todėl jų rėmelis visada šviesus (--photo). */
+/* Kortelė gulsčia (paveikslėlis kairėje), kad 8 dalys tilptų į maždaug vieną ekraną */
+.parts{display:grid;grid-template-columns:repeat(auto-fill,minmax(19rem,1fr));gap:.7rem;margin:1rem 0 1.4rem}
+.part{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex}
+.part-img{background:var(--photo);width:8.5rem;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:.5rem}
+.part-img img,.part-img svg{display:block;width:100%;height:auto;max-height:7rem;object-fit:contain}
+.part-img2 img{max-height:3.6rem}
+.part-body{padding:.6rem .8rem .7rem;min-width:0}
+.part h4{font-family:var(--f-display);font-weight:600;font-size:1.02rem;margin:0 0 .3rem;line-height:1.25}
+.part h4 .en{font-family:var(--f-mono);font-size:.72rem;font-weight:600;color:var(--muted);margin-left:.2rem}
+.part .an{display:inline-block;font-family:var(--f-display);font-size:.78rem;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:.05rem .55rem}
+.part p{margin:.4rem 0 0;font-size:.95rem;line-height:1.5}
+.fan-frame{fill:none;stroke:var(--shade);stroke-width:3}
+.fan-blade{fill:var(--accent)} .fan-hub{fill:var(--shade)}
+@media (max-width:520px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .part-img{width:6rem;padding:.4rem}
+}
 /* Įterptas žaidimas: per visą turinio plotį, telefone – per visą ekrano plotį */
 .game{margin:.8rem 0 2rem}
 .game iframe{display:block;width:100%;height:860px;border:0;border-radius:18px;background:transparent}
