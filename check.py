@@ -157,7 +157,8 @@ def check_built():
         if h.startswith("#") and h[1:] not in allowed:
             err(f"dist/vbe/index.html: nuoroda {h} veda į neegzistuojančią vietą")
     for f in ("index.html", "assets/css/site.css", "assets/js/vbe.js", "assets/js/bot.js", "vbe/data.js",
-              "7-8/index.html", "assets/js/pamokos.js", "7-8/kompiuterio-vidus/index.html", "7-8/kompiuterio-vidus/img/kompiuteris.webp"):
+              "7-8/index.html", "assets/js/pamokos.js", "7-8/kompiuterio-vidus/index.html", "7-8/kompiuterio-vidus/img/kompiuteris.webp",
+              "7-8/kompiuteriu-daktaras/index.html", "7-8/kompiuteriu-daktaras/img/fan.webp"):
         if not (DIST / f).exists():
             err(f"dist/{f} nerastas")
     return [h for h in p.hrefs if h.startswith("http")]
