@@ -115,6 +115,25 @@ section.lesson > :not(.parts){max-width:72ch} /* tekstas siauras, dalių kortel�
   .parts{grid-template-columns:minmax(0,1fr)}
   .part-img{width:6rem;padding:.4rem}
 }
+/* Pamokos testas (stilius kaip VBE testų) */
+.lesson-quiz{border-top:1px solid var(--line);padding-top:.5rem}
+.lesson-q{margin-top:.6rem}
+.q .match,.q .q-img{clear:both} /* legend VBE testuose plaukia (float) */
+.q-img{background:var(--photo);border-radius:6px;padding:.5rem;margin:.2rem 0 .6rem;max-width:16rem}
+.q-img img{display:block;width:100%;height:auto;max-height:10rem;object-fit:contain}
+.q .opts.tf{grid-template-columns:repeat(2,minmax(0,1fr))}
+.match{display:grid;gap:.4rem;margin-bottom:.6rem}
+.q .mrow{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.3rem .7rem;align-items:center;padding:.35rem .5rem;border:1px solid transparent;border-radius:5px;cursor:default}
+.q .mrow:hover{background:none}
+.mname{font-family:var(--f-display);font-weight:600;font-size:.95rem}
+.q .mrow select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:.35rem .4rem;width:100%;min-width:0}
+.q .mrow.right{border-color:var(--ok);color:inherit;font-weight:400} .q .mrow.wrong{border-color:var(--bad);color:inherit;text-decoration:none}
+.mfix{grid-column:2;font-size:.88rem;color:var(--ok);font-weight:600}
+.quiz-reset:disabled{opacity:.5;cursor:default}
+.quiz-result{background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem;margin:1rem 0 .6rem}
+.quiz-result p{margin:.2rem 0 .7rem}
+.quiz-big{font-family:var(--f-display);font-weight:700;font-size:2rem;line-height:1.1;color:var(--accent);font-variant-numeric:tabular-nums}
+@media (max-width:520px){.q .mrow{grid-template-columns:minmax(0,1fr)}.mfix{grid-column:1}}
 /* Įterptas žaidimas: per visą turinio plotį, telefone – per visą ekrano plotį */
 .game{margin:.8rem 0 2rem}
 .game iframe{display:block;width:100%;height:860px;border:0;border-radius:18px;background:transparent}
