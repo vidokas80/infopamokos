@@ -203,12 +203,13 @@ var PICS={
  cpu:'img/cpu.webp',
  ram:'img/ram.webp',
  ssd:'img/ssd.webp',
+ fan:'img/fan.webp',
  gpu_card:'img/gpu_card.webp',
  gpu_chip:'img/gpu_chip.webp',
  psu:'img/psu.webp',
  hdd:'img/hdd.webp'
 };
-var PIC_LIST={motherboard:[['motherboard','']],cpu:[['cpu','']],ram:[['ram','']],ssd:[['ssd','']],gpu_card:[['gpu_card','Vaizdo plokštė'],['gpu_chip','GPU – po aušintuvu paslėptas lustas']],psu:[['psu','']],hdd:[['hdd','Atidarytas standusis diskas']],fan:[]};
+var PIC_LIST={motherboard:[['motherboard','']],cpu:[['cpu','']],ram:[['ram','']],ssd:[['ssd','']],gpu_card:[['gpu_card','Vaizdo plokštė'],['gpu_chip','GPU – po aušintuvu paslėptas lustas']],psu:[['psu','']],hdd:[['hdd','Atidarytas standusis diskas']],fan:[['fan','']]};
 var IDS=['motherboard','cpu','ram','ssd','gpu_card','psu','hdd','fan'];
 var BADGE={motherboard:[560,575],cpu:[502,400],ram:[703,405],ssd:[895,950],gpu_card:[470,740],psu:[370,958],hdd:[928,700],fan:[218,380]};
 
@@ -259,6 +260,7 @@ function beep(fr,dur,type,gap){
 }
 
 /* ---------- PAGALBINĖS ---------- */
+function lc(s){return /^[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]/.test(s)?s.charAt(0).toLowerCase()+s.slice(1):s;}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function idsOf(el){return el.getAttribute('data-ids').split(' ');}
 function hits(){return $$('.hit');}
@@ -336,14 +338,14 @@ function correct(el){
  var id=S.target,pts=S.helped?1:([10,6,3][S.tries]||3);
  S.busy=true;S.score+=pts;S.found[id]=1;S.nFound++;
  addBadge(id);clearHelp();flash(el,'ok');beep([660,880]);showInfo(id);
- toast('✅ Teisingai – '+C[id].name.toLowerCase()+'! +'+pts,'ok');
+ toast('✅ Teisingai – '+lc(C[id].name)+'! +'+pts,'ok');
  S.target=null;renderList();renderStats();
  if(S.nFound===IDS.length)setTimeout(finish,1200);else setTimeout(nextTarget,800);
 }
 function wrong(el,ids){
  S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
  var known=ids.filter(function(i){return S.found[i];})[0];
- var msg='❌ Ne, čia ne tai.'+(known?' Tai – '+C[known].name.toLowerCase()+'.':' Pabandyk dar!');
+ var msg='❌ Ne, čia ne tai.'+(known?' Tai – '+lc(C[known].name)+'.':' Pabandyk dar!');
  var ms=2200;
  if(S.tries===2){msg+='<br>💡 '+C[S.target].hint;ms=4500;}
  if(S.tries>=3){S.helped=true;help(S.target);msg='👀 Žiūrėk – ieškomas komponentas mirksi!';ms=3000;}
