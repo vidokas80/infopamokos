@@ -33,7 +33,8 @@ Paskutinį kartą atnaujinta: 2026-10-26.
   - 11 SVG schemų, 2 interaktyvūs demonstravimai (kamuolio animacija, SHA-256 santrauka).
   - 76 testo klausimai (su lygiais), 38 atvirieji klausimai.
   - Egzaminų skiltis: 2025 ir 2026 m. I ir II dalys (abi sesijos), 2026 bandomoji, 2024 pavyzdžiai; II dalies teorijos temų dažnumo suvestinė; 2025 m. I dalies NŠA analizės skaičiai.
-- **Pagrindinis puslapis** su klasių kortelėmis (tik VBE „Paruošta“).
+- **Pagrindinis puslapis** su klasių kortelėmis (VBE „Paruošta“, 7–8 klasės „Nauja pamoka“).
+- **7–8 klasių skiltis** (`src/7-8/index.html`, adresas `/7-8/`, 2026-11-08): rankiniu būdu parašytas statinis puslapis (build.py jo negeneruoja, tik nukopijuoja). 8 klasė, pamoka 2.1 „Kompiuterio aparatinės įrangos sandara“ su tikslais ir įterptu žaidimu „Kompiuterio vidus“ (`src/7-8/kompiuterio-vidus/` – Vido pateiktas savarankiškas žaidimas, failų nekeisti; adresas `/7-8/kompiuterio-vidus/`). Iframe aukštį pagal turinį nustato `assets/js/pamokos.js`.
 - **build.py**, **check.py**, GitHub Actions publikavimas ir mėnesinis nuorodų tikrinimas.
 - **scripts/iliustracija.py** – DI iliustracijų generavimas (OpenAI arba Google Gemini), dar nenaudotas: Vidas dar neturi API rakto.
 
@@ -58,7 +59,7 @@ Paskutinį kartą atnaujinta: 2026-10-26.
 2. **Medžiagos licencija**: Vidas dar nepasirinko (siūlyta CC BY-NC-SA). Įrašyti į README ir svetainės poraštę.
 3. **Programavimo praktika naršyklėje** (didžiausias galimas patobulinimas): Pyodide, uždaviniai egzamino stiliumi (`Duomenys.txt` → `Rezultatai.txt`), automatiniai testai.
 4. **Skaičiuoklės praktika**: atsisiunčiami užduočių failai su pasitikrinimo lapu.
-5. **Kitos klasės**: 9–10, 7–8, 5–6 – ta pati sandara (sritys A–F, temos, „Svarbiausia“, testai). Reikės išplėsti `build.py` (dabar jis žino tik `vbe`).
+5. **Kitos klasės**: 9–10, 7–8 (pradėta), 5–6 – ta pati sandara (sritys A–F, temos, „Svarbiausia“, testai). Reikės išplėsti `build.py` (dabar jis žino tik `vbe`).
 6. **DI iliustracijos**: OpenAI raktas jau yra (Windows naudotojo aplinkos kintamasis), modelis `gpt-image-2`. Pirmoji – `ergonomika-darbo-vieta.webp` ergonomikos temoje su SVG užrašų sluoksniu (`ill-annot`). Generatorius du kartus piešė ekraną aukščiau akių (~25 px virš akių linijos) – tai pažymėta `alt` ir `kilme.json`. 2026-10-25 visoms 17 temų (licencijoms viena) sugeneruotos `tema-<id>.webp` (medium) – rodomos temų kortelėse ir temų pradžioje, laukas `paveikslelis:` temos antraštėje. Generavimo aprašymai – `kilme.json`. Telefone kortelės gulsčios (miniatiūra kairėje).
 7. Galimi: spausdinamos užduočių lapų versijos (PDF), mokinio pažangos suvestinė naršyklėje (localStorage). Mokinių rezultatų saugojimas serveryje – tik apsvarsčius BDAR.
 

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kompiuterio vidus – žaidimas | infopamokos.lt</title>
+</head>
+<body style="margin:0;padding:16px;background:#e9eef5">
+
+<!-- ===== ŽAIDIMO PRADŽIA ===== -->
+<div id="kv">
+<style>
+#kv{--bg:#0f1522;--panel:#161e2e;--panel2:#1e2840;--line:#2a3652;--txt:#e9eef8;--mut:#98a5c0;--acc:#4fd1c5;--ok:#46d37b;--bad:#ff5d6c;--gold:#ffcc4d;
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;color:var(--txt);background:var(--bg);border-radius:18px;padding:14px;max-width:1280px;margin:0 auto;position:relative;line-height:1.45;text-align:left}
+#kv *{box-sizing:border-box}
+#kv button{all:unset;box-sizing:border-box;cursor:pointer;font-family:inherit}
+#kv .kv-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+#kv .kv-title{font-size:20px;font-weight:800;margin-right:auto}
+#kv .kv-tabs{display:flex;gap:6px;flex-wrap:wrap}
+#kv .kv-tab{background:var(--panel2);color:var(--mut);padding:8px 13px;border-radius:10px;font-size:14px;font-weight:600;transition:.15s}
+#kv .kv-tab:hover{color:var(--txt)}
+#kv .kv-tab.on{background:var(--acc);color:#052522}
+#kv .kv-tools{display:flex;gap:6px}
+#kv .kv-ib{background:var(--panel2);padding:7px 11px;border-radius:10px;font-size:16px}
+#kv .kv-main{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(270px,1fr);gap:12px;align-items:start}
+@media (max-width:880px){#kv .kv-main{grid-template-columns:1fr}}
+#kv .kv-stage{position:relative;background:#0a0e17;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+#kv .kv-task{display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:64px;background:linear-gradient(90deg,#1c2a48,#141d33);border-bottom:1px solid var(--line)}
+#kv .kv-lbl{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+#kv .kv-tgt{font-size:19px;font-weight:800;color:var(--gold)}
+#kv .kv-tgt.clue{font-size:16px;font-weight:600;color:#ffe08a}
+#kv .kv-hint{margin-left:auto;background:#2b3756;padding:7px 11px;border-radius:10px;font-size:14px;white-space:nowrap}
+#kv .kv-hint.hide{display:none}
+#kv svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+#kv .kv-toast{position:absolute;left:50%;bottom:14px;transform:translate(-50%,20px);background:#222c44;border:1px solid var(--line);padding:9px 14px;border-radius:12px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;max-width:92%;text-align:center;box-shadow:0 8px 24px #0008}
+#kv .kv-toast.show{opacity:1;transform:translate(-50%,0)}
+#kv .kv-toast.ok{border-color:var(--ok);background:#143826}
+#kv .kv-toast.bad{border-color:var(--bad);background:#3d1820}
+#kv .kv-ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,18,.84);backdrop-filter:blur(3px);padding:16px;z-index:5}
+#kv .kv-ov.show{display:flex}
+#kv .kv-ov.light{background:rgba(6,10,18,.25);backdrop-filter:none;align-items:flex-end}
+#kv .kv-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 50px #000a}
+#kv .kv-card h2{margin:4px 0 8px;font-size:23px;color:var(--txt);line-height:1.2}
+#kv .kv-card p{color:var(--mut);margin:6px 0 14px}
+#kv .kv-big{font-size:42px;line-height:1.1}
+#kv .kv-btns{display:flex;flex-direction:column;gap:8px}
+#kv .kv-btn{display:block;background:var(--panel2);border:1px solid var(--line);padding:11px 14px;border-radius:12px;font-weight:700;text-align:center;transition:.15s}
+#kv .kv-btn:hover{background:#2a3655}
+#kv .kv-btn.pri{background:var(--acc);color:#052522;border-color:transparent}
+#kv .kv-btn.power{background:linear-gradient(90deg,#ffb020,#ff6a3d);color:#2a0d00;font-size:18px;border:0}
+#kv .kv-btn small{display:block;font-weight:500;opacity:.75;font-size:13px}
+#kv .kv-stars{font-size:34px;color:var(--gold);letter-spacing:4px}
+#kv .kv-stars .dim{color:#3a4560}
+#kv .kv-res{display:flex;justify-content:center;gap:10px;margin:10px 0}
+#kv .kv-res div{background:var(--panel2);border-radius:12px;padding:8px 14px;color:var(--mut);font-size:13px}
+#kv .kv-res b{display:block;font-size:20px;color:var(--txt)}
+#kv .kv-side{display:flex;flex-direction:column;gap:10px}
+#kv .kv-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+#kv .kv-stats div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 4px;text-align:center;font-size:11px;color:var(--mut);text-transform:uppercase}
+#kv .kv-stats b{display:block;font-size:18px;color:var(--txt);text-transform:none}
+#kv .kv-stats.ex div.g{opacity:.3}
+#kv .kv-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+#kv .kv-h{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:8px}
+#kv .kv-list{display:flex;flex-direction:column;gap:5px}
+#kv .kv-item{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:9px;background:#1b2337;border:1px solid transparent;font-size:14px;transition:.15s}
+#kv .kv-item:hover{background:#222c45}
+#kv .kv-ck{width:20px;height:20px;border-radius:6px;border:2px solid #44507a;flex:none;display:grid;place-items:center;font-size:13px;font-weight:900}
+#kv .kv-item.cur{border-color:var(--gold);background:#2b2a1d}
+#kv .kv-item.done{color:var(--mut)}
+#kv .kv-item.done .kv-ck{background:var(--ok);border-color:var(--ok);color:#06210f}
+#kv .kv-info h3{margin:0;font-size:19px;color:var(--acc);line-height:1.25}
+#kv .kv-en{font-size:13px;color:var(--mut);font-style:italic;margin:2px 0 8px}
+#kv .kv-info p{margin:0 0 9px}
+#kv .kv-an{background:#1d2a45;border-left:4px solid var(--acc);padding:8px 10px;border-radius:8px;margin-bottom:8px;font-size:14px}
+#kv .kv-fact{background:#2a2617;border-left:4px solid var(--gold);padding:8px 10px;border-radius:8px;font-size:14px}
+#kv .kv-mut{color:var(--mut)}
+#kv .kv-pics{display:grid;gap:8px;margin-bottom:10px}
+#kv .kv-pic{margin:0;background:#fbf8f3;border-radius:10px;padding:8px;text-align:center}
+#kv .kv-pic img{display:block;width:100%;max-height:200px;object-fit:contain;margin:0 auto;border:0;box-shadow:none}
+#kv .kv-pic figcaption{color:#4a4f58;font-size:12.5px;margin-top:4px;line-height:1.3}
+#kv .kv-info.pop{animation:kvpop .35s}
+@keyframes kvpop{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+#kv .kv-tip{position:absolute;pointer-events:none;background:#0b1020f0;border:1px solid var(--acc);color:var(--txt);padding:7px 10px;border-radius:10px;font-size:13px;max-width:240px;opacity:0;transition:opacity .12s;z-index:10}
+#kv .kv-tip.show{opacity:1}
+#kv .kv-tip b{color:var(--acc)}
+/* SVG elementai */
+#kv .hit{cursor:pointer;fill:rgba(127,255,255,0);stroke:rgba(127,255,255,0);stroke-width:4;stroke-linejoin:round;transition:fill .15s,stroke .15s}
+#kv .hit:hover{fill:rgba(127,255,255,.14);stroke:#7ff}
+#kv .hit.fl-bad{animation:kvbad .6s}
+#kv .hit.fl-ok{animation:kvok .9s}
+#kv .hit.help{animation:kvhelp 1s ease-in-out infinite}
+@keyframes kvbad{0%,100%{fill:rgba(255,59,79,0);stroke:rgba(255,59,79,0)}25%,75%{fill:rgba(255,59,79,.3);stroke:#ff3b4f}}
+@keyframes kvok{0%{fill:rgba(70,255,138,0)}30%{fill:rgba(70,255,138,.35);stroke:#46ff8a}100%{fill:rgba(70,255,138,0);stroke:rgba(70,255,138,0)}}
+@keyframes kvhelp{0%,100%{fill:rgba(255,204,77,.05);stroke:rgba(255,204,77,.4)}50%{fill:rgba(255,204,77,.35);stroke:#ffcc4d}}
+#kv .spinfx,#kv .glowfx{opacity:0;transition:opacity .8s}
+#kv svg.on .spinfx{opacity:1}
+#kv svg.on .glowfx{opacity:1;animation:kvglow 1.6s ease-in-out infinite}
+@keyframes kvglow{0%,100%{opacity:.55}50%{opacity:1}}
+#kv .spin{transform-box:fill-box;transform-origin:center}
+#kv svg.on .spin{animation:kvspin .35s linear infinite}
+@keyframes kvspin{to{transform:rotate(360deg)}}
+#kv .flow{opacity:0}
+#kv svg.on .flow{opacity:1;stroke-dasharray:8 12;animation:kvflow .5s linear infinite}
+@keyframes kvflow{to{stroke-dashoffset:-20}}
+#kv .led{fill:#3a2020}
+#kv svg.on .led{fill:#38ff7a}
+#kv .rgb{fill:#3b4256}
+#kv svg.on .rgb{animation:kvrgb 2.4s linear infinite}
+@keyframes kvrgb{0%{fill:#ff4d6d}25%{fill:#ffd166}50%{fill:#4dffb5}75%{fill:#4d8bff}100%{fill:#ff4d6d}}
+#kv .badge{pointer-events:none;transform-box:fill-box;transform-origin:center;animation:kvbadge .45s cubic-bezier(.3,1.6,.6,1)}
+@keyframes kvbadge{from{transform:scale(0)}to{transform:scale(1)}}
+#kv:fullscreen{max-width:none;border-radius:0;overflow:auto}
+</style>
+
+<div class="kv-top">
+  <div class="kv-title">🖥️ Kompiuterio vidus</div>
+  <div class="kv-tabs">
+    <button class="kv-tab" data-mode="explore">🔍 Tyrinėk</button>
+    <button class="kv-tab" data-mode="l1">🎯 1 lygis: Rask</button>
+    <button class="kv-tab" data-mode="l2">🕵️ 2 lygis: Detektyvas</button>
+  </div>
+  <div class="kv-tools">
+    <button class="kv-ib" data-act="sound" title="Garsas">🔊</button>
+    <button class="kv-ib" data-act="fs" title="Visas ekranas">⛶</button>
+  </div>
+</div>
+<div class="kv-main">
+  <div class="kv-stage">
+    <div class="kv-task"><div><div class="kv-lbl"></div><div class="kv-tgt"></div></div><button class="kv-hint" data-act="hint">💡 Užuomina</button></div>
+    <div class="kv-svgwrap"></div>
+    <div class="kv-toast"></div>
+    <div class="kv-ov"></div>
+  </div>
+  <aside class="kv-side">
+    <div class="kv-stats"></div>
+    <div class="kv-box"><div class="kv-h">Komponentai</div><div class="kv-list"></div></div>
+    <div class="kv-box kv-info"></div>
+  </aside>
+</div>
+<div class="kv-tip"></div>
+
+<script>
+(function(){
+'use strict';
+var app=document.getElementById('kv');
+function $(s){return app.querySelector(s);}
+function $$(s){return Array.prototype.slice.call(app.querySelectorAll(s));}
+
+/* ---------- KOMPONENTŲ DUOMENYS ---------- */
+var C={
+ motherboard:{name:'Pagrindinė plokštė',en:'motherboard',short:'Jungia visus komponentus tarpusavyje.',
+  desc:'Didžiausia plokštė kompiuterio viduje. Prie jos jungiami procesorius, operatyvioji atmintis, diskai, vaizdo plokštė ir maitinimas. Plonais vario takeliais ji perduoda signalus tarp visų dalių.',
+  an:'🧠↔️🦶 Kaip žmogaus nervų sistema – sujungia visas kūno dalis, kad jos galėtų „susikalbėti“.',
+  fact:'Plokštė sudaryta iš kelių sluoksnių – elektros takeliai eina ne tik jos paviršiumi, bet ir viduje.',
+  hint:'Ji pati didžiausia – mėlyna plokštė, prie kurios pritvirtinta beveik viskas. Spausk ant jos tuščios vietos.',
+  clue:'Rask dalį, prie kurios prijungtos visos kitos svarbiausios dalys – tarsi kompiuterio nervų sistema.'},
+ cpu:{name:'Centrinis procesorius',en:'CPU – central processing unit',short:'Atlieka skaičiavimus ir vykdo programas.',
+  desc:'Atlieka visus skaičiavimus, vykdo programų instrukcijas ir valdo kitus komponentus. Kuo galingesnis procesorius, tuo greičiau kompiuteris atlieka užduotis.',
+  an:'🧠 Kompiuterio smegenys.',
+  fact:'Procesorius per sekundę atlieka milijardus operacijų. Jis labai kaista, todėl veikiančiame kompiuteryje ant jo visada uždedamas aušintuvas – čia jį nuėmėme, kad galėtum pamatyti.',
+  hint:'Ieškok kvadratinio metalinio lusto, įstatyto į lizdą su metaliniu rėmeliu – plokštės viršuje, šalia raudonų plokštelių.',
+  clue:'Rask kompiuterio „smegenis“ – dalį, kuri atlieka skaičiavimus ir vykdo programas.'},
+ ram:{name:'Operatyvioji atmintis (OA)',en:'RAM – random access memory',short:'Laikinoji atmintis, kurią kompiuteris naudoja darbo metu.',
+  desc:'Laikinoji atmintis, kurioje laikomi duomenys, su kuriais kompiuteris dirba būtent dabar: atidarytos programos, naršyklės skirtukai, žaidimas. Išjungus kompiuterį, OA išsivalo.',
+  an:'📝 Kaip trumpalaikė atmintis: atsimeni, ką ką tik perskaitei, bet rytoj visko neprisiminsi.',
+  fact:'Kuo daugiau OA, tuo daugiau programų gali veikti vienu metu nestringant. Dažniausiai kompiuteriuose būna 8–32 GB.',
+  hint:'Ieškok keturių ilgų raudonų plokštelių šalia procesoriaus aušintuvo.',
+  clue:'Rask trumpalaikę atmintį – ji visiškai išsivalo, kai kompiuteris išjungiamas.'},
+ ssd:{name:'SSD diskas',en:'SSD – solid-state drive',short:'Greita ilgalaikė atmintis be judančių dalių.',
+  desc:'Puslaidininkinis diskas – ilgalaikė atmintis, kurioje nėra jokių judančių dalių. Duomenys saugomi atminties lustuose, todėl SSD veikia daug kartų greičiau nei HDD. Šis SSD yra 2,5 colio dydžio ir jungiamas laidais, bet būna ir visai mažų M.2 SSD, prisukamų tiesiai prie pagrindinės plokštės.',
+  an:'⚡ Kaip užrašai, kuriuos atsiverti akimirksniu, o ne ieškai archyve.',
+  fact:'Su SSD kompiuteris įsijungia per kelias sekundes, o su HDD kartais tenka laukti minutę ar ilgiau.',
+  hint:'Ieškok mažesnės dėžutės su žaliu lipduku apačioje dešinėje. HDD yra didesnis, SSD – mažesnis.',
+  clue:'Rask greitą ilgalaikę duomenų laikmeną, kurioje nėra jokių judančių dalių.'},
+ gpu_card:{name:'Vaizdo plokštė',en:'graphics card; jos procesorius – GPU (graphics processing unit)',short:'Kuria vaizdą ir siunčia jį į monitorių.',
+  desc:'Įrenginys, kuris apdoroja vaizdą ir perduoda jį į monitorių – monitoriaus laidas jungiamas prie jos galinės dalies. Svarbiausia jos dalis – <b>vaizdo plokštės procesorius (GPU)</b>: specialus lustas, kuris apskaičiuoja ir „nupiešia“ kiekvieną ekrane matomą vaizdą. GPU smarkiai kaista, todėl jo nesimato – jis paslėptas po radiatoriumi ir ventiliatoriais. Kuo galingesnė vaizdo plokštė, tuo gražiau ir sklandžiau atrodo žaidimai, filmai ir grafikos programos.',
+  an:'👀 Kaip akys – tik ši dalis ne tik „mato“, bet ir pati kuria vaizdus.',
+  fact:'GPU turi tūkstančius mažų branduolių, dirbančių vienu metu, todėl jie naudojami ir dirbtiniam intelektui mokyti. Galinga vaizdo plokštė kartais sunaudoja daugiau elektros nei visas likęs kompiuteris.',
+  hint:'Ieškok ilgos plokštės su pilku dangčiu, įstatytos skersai pagrindinės plokštės per vidurį.',
+  clue:'Rask kompiuterio „akis“ – įrenginį, prie kurio jungiamas monitorius.'},
+ psu:{name:'Maitinimo blokas',en:'PSU – power supply unit',short:'Tiekia elektros energiją visoms dalims.',
+  desc:'Tiekia elektros energiją visiems kompiuterio komponentams. Iš elektros lizdo gaunamą kintamąją srovę paverčia tokia įtampa, kokios reikia kompiuterio dalims. Nuo jo eina laidai į pagrindinę plokštę, vaizdo plokštę ir diskus.',
+  an:'🍎 Kaip virškinimo sistema: maistą paverčia energija, kurią gali panaudoti visas organizmas.',
+  fact:'Maitinimo bloko galia matuojama vatais (W). Įprastam kompiuteriui dažniausiai pakanka 450–650 W.',
+  hint:'Ieškok didelės juodos dėžės apačioje kairėje, iš kurios eina daug spalvotų laidų.',
+  clue:'Rask dalį, kuri elektros srovę iš lizdo paverčia kompiuteriui tinkama įtampa.'},
+ hdd:{name:'Standusis diskas (HDD)',en:'HDD – hard disk drive',short:'Ilgalaikė atmintis su besisukančia plokštele.',
+  desc:'Nuolatinė atmintis: čia saugoma operacinė sistema, programos, failai, nuotraukos ir vaizdo įrašai. Duomenys išlieka ir išjungus kompiuterį. Viduje sukasi magnetinė plokštelė, o virš jos juda skaitymo galvutė.',
+  an:'📚 Kaip ilgalaikė atmintis – prisiminimai, kurie išlieka metų metus.',
+  fact:'HDD plokštelė sukasi 5400–7200 kartų per minutę!',
+  hint:'Ieškok didesnės metalinės dėžutės su žaliu lipduku dešinėje. HDD yra didesnis, SSD – mažesnis.',
+  clue:'Rask talpų duomenų sandėlį, kurio viduje sukasi magnetinė plokštelė.'},
+ fan:{name:'Aušintuvas (ventiliatorius)',en:'fan / cooler',short:'Neleidžia kompiuteriui perkaisti.',
+  desc:'Dirbdami komponentai įkaista, todėl ventiliatoriai įtraukia vėsų orą į korpusą ir išpučia šiltą. Aušintuvus turi korpusas, vaizdo plokštė ir maitinimo blokas, o ant procesoriaus paprastai uždedamas atskiras aušintuvas.',
+  an:'💨 Kaip prakaitavimas ir kvėpavimas – padeda kūnui atvėsti.',
+  fact:'Be aušinimo procesorius per kelias sekundes įkaistų tiek, kad išsijungtų, saugodamas save nuo sugedimo.',
+  hint:'Ieškok apvalių dalių su mentelėmis – kai kurios jų šviečia mėlynai. Jų yra keliose vietose.',
+  clue:'Rask dalį, kuri neleidžia kompiuteriui perkaisti.'}
+};
+/* ---------- KOMPONENTŲ PAVEIKSLĖLIAI (aplankas img/) ---------- */
+var PICS={
+ motherboard:'img/motherboard.webp',
+ cpu:'img/cpu.webp',
+ ram:'img/ram.webp',
+ ssd:'img/ssd.webp',
+ gpu_card:'img/gpu_card.webp',
+ gpu_chip:'img/gpu_chip.webp',
+ psu:'img/psu.webp',
+ hdd:'img/hdd.webp'
+};
+var PIC_LIST={motherboard:[['motherboard','']],cpu:[['cpu','']],ram:[['ram','']],ssd:[['ssd','']],gpu_card:[['gpu_card','Vaizdo plokštė'],['gpu_chip','GPU – po aušintuvu paslėptas lustas']],psu:[['psu','']],hdd:[['hdd','Atidarytas standusis diskas']],fan:[]};
+var IDS=['motherboard','cpu','ram','ssd','gpu_card','psu','hdd','fan'];
+var BADGE={motherboard:[560,575],cpu:[502,400],ram:[703,405],ssd:[895,950],gpu_card:[470,740],psu:[370,958],hdd:[928,700],fan:[218,380]};
+
+/* ---------- PAVEIKSLĖLIS IR PASPAUDŽIAMOS ZONOS ---------- */
+/* Paveikslėlių keliai – santykiniai šio failo atžvilgiu (aplankas img/) */
+var IMG='img/kompiuteris.webp';
+var W=1315,H=1197;
+var ZONES=[
+ ['motherboard','262,192 792,192 792,835 262,835'],
+ ['cpu','412,295 592,295 592,508 412,508'],
+ ['ram','655,234 752,234 752,578 655,578'],
+ ['gpu_card','198,624 792,624 792,700 752,770 220,770 198,740'],
+ ['psu','158,838 588,838 588,1078 158,1078'],
+ ['hdd','838,562 1020,562 1020,832 838,832'],
+ ['ssd','784,858 1008,858 1008,1042 784,1042'],
+ ['fan','156,238 284,238 284,522 156,522'],
+ ['fan','1090,270 1152,270 1152,602 1090,602'],
+ ['fan','1090,604 1152,604 1152,1012 1090,1012']
+];
+/* ventiliatorių centrai įjungimo animacijai: x, y, spindulys, suspaudimas horizontaliai */
+var FANS=[[218,380,128,.42],[1121,436,160,.17],[1121,806,196,.15]];
+function f(n){return (+n).toFixed(1);}
+function blades(r,n){var s='';for(var i=0;i<n;i++)s+='<path d="M0,0 C'+f(r*.12)+','+f(-r*.55)+' '+f(r*.68)+','+f(-r*.66)+' '+f(r*.88)+','+f(-r*.22)+' C'+f(r*.58)+','+f(-r*.14)+' '+f(r*.28)+','+f(-r*.03)+' 0,0Z" transform="rotate('+f(i*360/n)+')"/>';return s;}
+var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kompiuterio vidus">'+
+ '<defs><radialGradient id="kvGlow"><stop offset="0" stop-color="#7fd4ff" stop-opacity=".75"/><stop offset=".6" stop-color="#3a8cff" stop-opacity=".3"/><stop offset="1" stop-color="#3a8cff" stop-opacity="0"/></radialGradient></defs>'+
+ '<image href="'+IMG+'" x="0" y="0" width="'+W+'" height="'+H+'"/>'+
+ '<g pointer-events="none">'+FANS.map(function(p){
+   return '<g transform="translate('+p[0]+','+p[1]+') scale('+p[3]+',1)"><circle class="glowfx" r="'+(p[2]*1.15)+'" fill="url(#kvGlow)"/>'+
+   '<g class="spinfx spin"><circle r="'+p[2]+'" fill="none"/><g fill="#e8f4ff" opacity=".28">'+blades(p[2]*.95,7)+'</g></g></g>';}).join('')+'</g>'+
+ ZONES.map(function(z){return '<polygon class="hit" data-ids="'+z[0]+'" points="'+z[1]+'"/>';}).join('')+
+ '<g id="kvBadges"></g></svg>';
+$('.kv-svgwrap').innerHTML=svg;
+var SV=$('.kv-svgwrap svg');
+var badgesG=SV.querySelector('#kvBadges');
+
+/* ---------- BŪSENA ---------- */
+var S={mode:null,found:{},nFound:0,target:null,queue:[],tries:0,helped:false,score:0,mistakes:0,t0:0,timer:null,sound:true,busy:false};
+
+/* ---------- GARSAS ---------- */
+var actx=null;
+function beep(fr,dur,type,gap){
+ if(!S.sound)return;
+ try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+  fr.forEach(function(q,i){var o=actx.createOscillator(),g=actx.createGain();o.type=type||'sine';o.frequency.value=q;
+   var t=actx.currentTime+i*(gap||.09);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.15,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+(dur||.12));
+   o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+(dur||.12)+.03);});
+ }catch(e){}
+}
+
+/* ---------- PAGALBINĖS ---------- */
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function idsOf(el){return el.getAttribute('data-ids').split(' ');}
+function hits(){return $$('.hit');}
+var toastT=null;
+function toast(msg,type,ms){var t=$('.kv-toast');t.className='kv-toast show '+(type||'');t.innerHTML=msg;clearTimeout(toastT);toastT=setTimeout(function(){t.className='kv-toast';},ms||2200);}
+function flash(el,type){el.classList.remove('fl-ok','fl-bad');void el.getBoundingClientRect();el.classList.add('fl-'+type);setTimeout(function(){el.classList.remove('fl-'+type);},950);}
+function clearHelp(){hits().forEach(function(h){h.classList.remove('help');});}
+function help(id){hits().forEach(function(h){if(idsOf(h).indexOf(id)>-1)h.classList.add('help');});}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return m+':'+(x<10?'0':'')+x;}
+function elapsed(){return S.t0?Math.floor((Date.now()-S.t0)/1000):0;}
+function addBadge(id){var p=BADGE[id];badgesG.insertAdjacentHTML('beforeend','<g transform="translate('+p[0]+','+p[1]+')"><g class="badge"><circle r="22" fill="#46d37b" stroke="#fff" stroke-width="4"/><path d="M-10,0 l7,7.5 l13,-15" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>');}
+
+/* ---------- ATVAIZDAVIMAS ---------- */
+function renderStats(){
+ var st=$('.kv-stats');
+ st.className='kv-stats'+(S.mode==='explore'?' ex':'');
+ st.innerHTML='<div>'+(S.mode==='explore'?'Peržiūrėta':'Rasta')+'<b>'+S.nFound+'/'+IDS.length+'</b></div><div class="g">Taškai<b>'+S.score+'</b></div><div class="g">Klaidos<b>'+S.mistakes+'</b></div><div class="g">Laikas<b>'+fmt(elapsed())+'</b></div>';
+}
+function renderList(){
+ $('.kv-list').innerHTML=IDS.map(function(id){
+  var cls='kv-item'+(S.found[id]?' done':'')+(S.target===id?' cur':'');
+  return '<button class="'+cls+'" data-id="'+id+'"><span class="kv-ck">'+(S.found[id]?'✓':'')+'</span>'+C[id].name+'</button>';
+ }).join('');
+}
+function renderTask(){
+ var l=$('.kv-lbl'),t=$('.kv-tgt'),h=$('.kv-hint');
+ t.className='kv-tgt';
+ if(S.mode==='explore'){l.textContent='Tyrinėjimo režimas';t.textContent='Spausk ant bet kurios dalies ir sužinok, kas tai';h.classList.add('hide');t.className='kv-tgt clue';return;}
+ h.classList.remove('hide');
+ if(!S.target){l.textContent='';t.textContent='';return;}
+ if(S.mode==='l1'){l.textContent='Rask:';t.textContent=C[S.target].name;}
+ else{l.textContent='🕵️ Detektyvo užduotis:';t.textContent=C[S.target].clue;t.className='kv-tgt clue';}
+}
+function defaultInfo(){
+ var i=$('.kv-info');i.classList.remove('pop');
+ if(S.mode==='explore')i.innerHTML='<div class="kv-h">Aprašymas</div><p class="kv-mut">👆 Paspausk ant bet kurios kompiuterio dalies arba ant pavadinimo sąraše – sužinosi, kas tai ir kam ji reikalinga.</p>';
+ else i.innerHTML='<div class="kv-h">Kaip žaisti</div><p class="kv-mut">Paspausk ant komponento, kurio prašoma viršuje. Gali ir pats pasirinkti, ko ieškoti, – spausk ant pavadinimo sąraše.</p><p class="kv-mut">Taškai: iš pirmo karto <b style="color:#e9eef8">10</b>, iš antro – 6, iš trečio – 3. Radus komponentą, čia atsiras jo aprašymas.</p>';
+}
+function showInfo(id){
+ var c=C[id],i=$('.kv-info');
+ var pics=(PIC_LIST[id]||[]).map(function(p){return '<figure class="kv-pic"><img src="'+PICS[p[0]]+'" alt="'+(p[1]||c.name)+'">'+(p[1]?'<figcaption>'+p[1]+'</figcaption>':'')+'</figure>';}).join('');
+ if(pics)pics='<div class="kv-pics" style="grid-template-columns:repeat('+PIC_LIST[id].length+',1fr)">'+pics+'</div>';
+ i.innerHTML='<div class="kv-h">Aprašymas</div>'+pics+'<h3>'+c.name+'</h3><div class="kv-en">angl. '+c.en+'</div><p>'+c.desc+'</p><div class="kv-an">'+c.an+'</div><div class="kv-fact">💡 <b>Ar žinai?</b> '+c.fact+'</div>';
+ i.classList.remove('pop');void i.offsetWidth;i.classList.add('pop');
+}
+function ov(html,light){var o=$('.kv-ov');o.innerHTML=html;o.className='kv-ov show'+(light?' light':'');}
+function hideOv(){$('.kv-ov').className='kv-ov';}
+
+/* ---------- REŽIMAI ---------- */
+function setMode(m){
+ S.mode=m;S.found={};S.nFound=0;S.target=null;S.tries=0;S.helped=false;S.score=0;S.mistakes=0;S.busy=false;
+ clearInterval(S.timer);S.t0=0;
+ SV.classList.remove('on');badgesG.innerHTML='';clearHelp();hideOv();
+ $$('.kv-tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m);});
+ if(m!=='explore'){S.queue=shuffle(IDS.slice());S.t0=Date.now();S.timer=setInterval(renderStats,1000);nextTarget();}
+ renderTask();renderList();renderStats();defaultInfo();
+}
+function nextTarget(){for(var i=0;i<S.queue.length;i++){if(!S.found[S.queue[i]]){setTarget(S.queue[i]);return;}}}
+function setTarget(id){S.target=id;S.tries=0;S.helped=false;S.busy=false;clearHelp();renderTask();renderList();}
+
+/* ---------- PASPAUDIMAI ---------- */
+SV.addEventListener('click',function(e){
+ var el=e.target.closest('.hit');
+ if(S.mode==='explore'){
+  if(!el)return;var id=idsOf(el)[0];
+  if(!S.found[id]){S.found[id]=1;S.nFound++;}
+  flash(el,'ok');showInfo(id);renderList();renderStats();return;
+ }
+ if(!S.target||S.busy)return;
+ if(!el){toast('Čia tik tuščia korpuso vieta 🙂');return;}
+ var ids=idsOf(el);
+ if(ids.indexOf(S.target)>-1)correct(el);else wrong(el,ids);
+});
+function correct(el){
+ var id=S.target,pts=S.helped?1:([10,6,3][S.tries]||3);
+ S.busy=true;S.score+=pts;S.found[id]=1;S.nFound++;
+ addBadge(id);clearHelp();flash(el,'ok');beep([660,880]);showInfo(id);
+ toast('✅ Teisingai – '+C[id].name.toLowerCase()+'! +'+pts,'ok');
+ S.target=null;renderList();renderStats();
+ if(S.nFound===IDS.length)setTimeout(finish,1200);else setTimeout(nextTarget,800);
+}
+function wrong(el,ids){
+ S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
+ var known=ids.filter(function(i){return S.found[i];})[0];
+ var msg='❌ Ne, čia ne tai.'+(known?' Tai – '+C[known].name.toLowerCase()+'.':' Pabandyk dar!');
+ var ms=2200;
+ if(S.tries===2){msg+='<br>💡 '+C[S.target].hint;ms=4500;}
+ if(S.tries>=3){S.helped=true;help(S.target);msg='👀 Žiūrėk – ieškomas komponentas mirksi!';ms=3000;}
+ toast(msg,'bad',ms);renderStats();
+}
+app.addEventListener('click',function(e){
+ var b=e.target.closest('button');if(!b||!app.contains(b))return;
+ var md=b.getAttribute('data-mode'),act=b.getAttribute('data-act'),id=b.getAttribute('data-id');
+ if(md){setMode(md);return;}
+ if(id){
+  if(S.mode==='explore'){showInfo(id);clearHelp();help(id);if(!S.found[id]){S.found[id]=1;S.nFound++;}renderList();renderStats();setTimeout(clearHelp,2600);}
+  else if(S.found[id])showInfo(id);
+  else if(!S.busy)setTarget(id);
+  return;
+ }
+ if(act==='hint'){if(S.target&&!S.busy){if(S.tries<1)S.tries=1;toast('💡 '+C[S.target].hint,'',4500);}return;}
+ if(act==='sound'){S.sound=!S.sound;b.textContent=S.sound?'🔊':'🔇';return;}
+ if(act==='fs'){if(document.fullscreenElement)document.exitFullscreen();else if(app.requestFullscreen)app.requestFullscreen();return;}
+ if(act==='power'){powerOn();return;}
+ if(act==='again'){setMode(S.mode);return;}
+ if(act==='l1'||act==='l2'||act==='explore'){setMode(act);return;}
+});
+
+/* ---------- PABAIGA ---------- */
+function finish(){
+ clearInterval(S.timer);var t=elapsed();
+ $('.kv-lbl').textContent='Užduotis atlikta';$('.kv-tgt').className='kv-tgt';$('.kv-tgt').textContent='🎉 Visi komponentai rasti!';$('.kv-hint').classList.add('hide');
+ var stars=S.mistakes<=1?3:(S.mistakes<=4?2:1);
+ var st='';for(var i=0;i<3;i++)st+=i<stars?'★':'<span class="dim">★</span>';
+ beep([523,659,784,1047],.2);
+ ov('<div class="kv-card"><div class="kv-big">🎉</div><h2>Visi komponentai rasti!</h2><div class="kv-stars">'+st+'</div>'+
+  '<div class="kv-res"><div><b>'+S.score+'</b>taškų</div><div><b>'+S.mistakes+'</b>klaidų</div><div><b>'+fmt(t)+'</b>laikas</div></div>'+
+  '<p>Visos dalys savo vietose. Dabar įjunk kompiuterį!</p><div class="kv-btns"><button class="kv-btn power" data-act="power">⚡ Įjungti kompiuterį</button></div></div>');
+}
+function powerOn(){
+ hideOv();SV.classList.add('on');beep([110,220,330,440,660],.3,'triangle',.14);
+ toast('⚡ Maitinimo blokas tiekia srovę… ventiliatoriai sukasi!','ok',2600);
+ setTimeout(function(){
+  var next=S.mode==='l1'?'<button class="kv-btn pri" data-act="l2">🕵️ 2 lygis: Detektyvas<small>Rask komponentus pagal jų funkciją</small></button>':'';
+  ov('<div class="kv-card"><h2>💻 Kompiuteris veikia!</h2><p>Maitinimo blokas tiekia energiją, procesorius skaičiuoja, OA laiko darbo duomenis, diskai saugo failus, o vaizdo plokštė siunčia vaizdą į ekraną.</p><div class="kv-btns">'+next+
+   '<button class="kv-btn" data-act="again">🔁 Žaisti dar kartą</button><button class="kv-btn" data-act="explore">🔍 Tyrinėti laisvai</button></div></div>',true);
+ },3000);
+}
+
+/* ---------- PATARIMAS (užvedus pelę) ---------- */
+var tip=$('.kv-tip');
+SV.addEventListener('pointermove',function(e){
+ if(e.pointerType==='touch'){tip.classList.remove('show');return;}
+ var el=e.target.closest('.hit');if(!el){tip.classList.remove('show');return;}
+ var ids=idsOf(el),id=S.mode==='explore'?ids[0]:ids.filter(function(i){return S.found[i];})[0];
+ if(!id){tip.classList.remove('show');return;}
+ tip.innerHTML='<b>'+C[id].name+'</b><br>'+C[id].short;
+ var r=app.getBoundingClientRect(),x=e.clientX-r.left+16,y=e.clientY-r.top+16;
+ if(x+250>r.width)x=e.clientX-r.left-250;
+ tip.style.left=x+'px';tip.style.top=y+'px';tip.classList.add('show');
+});
+SV.addEventListener('pointerleave',function(){tip.classList.remove('show');});
+
+/* ---------- PRADŽIA ---------- */
+setMode('explore');
+ov('<div class="kv-card"><div class="kv-big">🖥️🔧</div><h2>Pažvelk į kompiuterio vidų!</h2><p>Kompiuterio korpusas atidarytas. Ar atpažinsi, kur yra procesorius, atmintis, diskai ir kitos dalys?</p><div class="kv-btns">'+
+ '<button class="kv-btn pri" data-act="l1">🎯 1 lygis: Rask komponentus<small>Rask dalį pagal jos pavadinimą</small></button>'+
+ '<button class="kv-btn" data-act="l2">🕵️ 2 lygis: Detektyvas<small>Rask dalį pagal tai, ką ji daro</small></button>'+
+ '<button class="kv-btn" data-act="explore">🔍 Tyrinėk laisvai<small>Spausk ant dalių ir skaityk aprašymus</small></button></div></div>');
+})();
+</script>
+</div>
+<!-- ===== ŽAIDIMO PABAIGA ===== -->
+
+</body>
+</html>
