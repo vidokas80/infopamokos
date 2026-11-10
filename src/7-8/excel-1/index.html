@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Excel pradžiamokslis · 1 pamoka. Funkcijos SUM, AVERAGE, MIN, MAX, COUNT – infopamokos.lt</title>
+<meta name="description" content="7 klasės Excel pradžiamokslis, 1 pamoka: funkcijos SUM, AVERAGE, MIN, MAX ir COUNT, langelių blokas, praktika naršyklėje ir testas.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/excel.css">
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#7">7 klasė</a> <span aria-hidden="true">/</span> Excel pradžiamokslis</p>
+<header class="top">
+  <div class="eyebrow">Excel pradžiamokslis · 1 pamoka</div>
+  <h1>Funkcijos: tegul skaičiuoja Excel</h1>
+  <p class="lead">Išmoksi penkias funkcijas, be kurių neapsieina nė viena lentelė: SUM, AVERAGE, MIN, MAX ir COUNT.</p>
+  <div class="xl-meta">
+      <span class="chip">7 klasė</span>
+      <span class="chip">Apie 30–40 min.</span>
+      <span class="chip">Tinka ir „Google“ skaičiuoklėms</span>
+  </div>
+</header>
+
+<main class="xl">
+  <section>
+    <div class="num">01</div>
+    <h2>Ką mokėsi po šios pamokos</h2>
+    <ul class="goals">
+      <li>Paaiškinsi, kas yra funkcija ir iš kokių dalių ji sudaryta.</li>
+      <li>Užrašysi langelių bloką, pavyzdžiui, <code>B2:B6</code>.</li>
+      <li>Apskaičiuosi sumą, vidurkį, mažiausią ir didžiausią reikšmę, suskaičiuosi, kiek langelių turi skaičius.</li>
+      <li>Atpažinsi dažniausias klaidas ir mokėsi jas ištaisyti.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <h2>Kas yra funkcija?</h2>
+    <p>Sudėti penkis skaičius galima ir taip: <code>=B2+B3+B4+B5+B6</code>. O jeigu skaičių būtų 300? <strong>Funkcija</strong> – tai paruoštas veiksmas, turintis vardą. Parašai vardą, nurodai langelius, ir Excel viską apskaičiuoja pats.</p>
+
+    <div class="anatomy" role="img" aria-label="Formulės =SUM(B2:B6) sandara: lygybės ženklas, funkcijos vardas, skliaustai ir langelių blokas">
+      <div class="parts">
+        <div class="part p1"><b>=</b><i></i><span>Lygybės ženklas – juo prasideda kiekviena formulė</span></div>
+        <div class="part p2"><b>SUM</b><i></i><span>Funkcijos vardas – ką daryti</span></div>
+        <div class="part p3"><b>(</b><i></i><span>Skliaustai</span></div>
+        <div class="part p4"><b>B2:B6</b><i></i><span>Argumentas – su kuriais langeliais</span></div>
+        <div class="part p3"><b>)</b><i></i><span>&nbsp;</span></div>
+      </div>
+    </div>
+
+    <figure class="fig">
+      <img src="img/01-formules-juosta.png" width="577" height="352" alt="Excel lentelė: pažymėtas langelis B7 rodo rezultatą 55, o formulės juostoje matyti =SUM(B2:B6)">
+      <figcaption>Langelyje matai <strong>rezultatą</strong> (55), o formulės juostoje viršuje – pačią <strong>formulę</strong>.</figcaption>
+    </figure>
+
+    <div class="side">
+      <div>
+        <p><strong>Langelių blokas</strong> – tai keli greta esantys langeliai. Jis užrašomas per dvitaškį: <code>B2:B6</code> reiškia „visi langeliai nuo B2 iki B6“. Dvitaškį skaityk kaip žodį <em>iki</em>.</p>
+        <p style="margin:0">Bloką gali pažymėti ir pele: nuspausk kairįjį klavišą langelyje B2 ir tempk žemyn iki B6.</p>
+      </div>
+      <figure class="fig narrow">
+        <img src="img/02-blokas.png" width="502" height="646" alt="Excel lape pele pažymėtas langelių blokas nuo B2 iki B6">
+        <figcaption>Pažymėtas blokas <code>B2:B6</code></figcaption>
+      </figure>
+    </div>
+
+    <div class="note"><b>Kabliataškis ar kablelis?</b> Jei funkcijai nurodai kelis atskirus argumentus, lietuviškame Excel juos skiria kabliataškis: <code>=SUM(B2;B4;B6)</code>. Jei tavo kompiuteryje Excel nustatytas angliškai, vietoj kabliataškio rašomas kablelis.</div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <h2>Penkios funkcijos</h2>
+    <p>Lentelėje surašyta, kiek puslapių Tomas perskaitė per darbo savaitę. Ketvirtadienį jis neskaitė, todėl ten įrašytas žodis, o ne skaičius.</p>
+
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Diena</span></td><td class="h"><span class="v">Puslapiai</span></td></tr>
+          <tr><th>2</th><td><span class="v">Pirmadienis</span></td><td class="n"><span class="v">12</span></td></tr>
+          <tr><th>3</th><td><span class="v">Antradienis</span></td><td class="n"><span class="v">20</span></td></tr>
+          <tr><th>4</th><td><span class="v">Trečiadienis</span></td><td class="n"><span class="v">8</span></td></tr>
+          <tr><th>5</th><td><span class="v">Ketvirtadienis</span></td><td><span class="v">neskaitė</span></td></tr>
+          <tr><th>6</th><td><span class="v">Penktadienis</span></td><td class="n"><span class="v">15</span></td></tr>
+        </table>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="top"><span class="name">SUM</span><span class="lt">suma</span></div>
+          <p>Sudeda visus bloko skaičius.</p>
+          <div class="ex"><span>=SUM(B2:B6)</span><span class="arrow">→</span><span class="res">55</span></div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">AVERAGE</span><span class="lt">vidurkis</span></div>
+          <p>Sudeda skaičius ir padalija iš to, kiek jų yra: 55 : 4.</p>
+          <div class="ex"><span>=AVERAGE(B2:B6)</span><span class="arrow">→</span><span class="res">13,75</span></div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">MIN</span><span class="lt">mažiausia reikšmė</span></div>
+          <p>Suranda mažiausią skaičių.</p>
+          <div class="ex"><span>=MIN(B2:B6)</span><span class="arrow">→</span><span class="res">8</span></div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">MAX</span><span class="lt">didžiausia reikšmė</span></div>
+          <p>Suranda didžiausią skaičių.</p>
+          <div class="ex"><span>=MAX(B2:B6)</span><span class="arrow">→</span><span class="res">20</span></div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">COUNT</span><span class="lt">kiek skaičių</span></div>
+          <p>Suskaičiuoja, keliuose langeliuose įrašyti skaičiai. Žodžių neskaičiuoja.</p>
+          <div class="ex"><span>=COUNT(B2:B6)</span><span class="arrow">→</span><span class="res">4</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>Atkreipk dėmesį:</b> langelio B5 su žodžiu „neskaitė“ visos penkios funkcijos tiesiog nepastebi. Todėl vidurkis dalijamas iš 4, o ne iš 5.</div>
+
+    <h3 class="sub">Kaip įvesti funkciją</h3>
+    <ol class="steps">
+      <li>
+        <p><strong>Spustelėk langelį, kuriame nori matyti rezultatą, ir pradėk rašyti.</strong> Įvedus <code>=av</code>, Excel pats pasiūlo funkcijas, kurių vardas taip prasideda. Reikiamą pasirink rodyklėmis ir spausk <kbd>Tab</kbd> arba spustelėk ją du kartus. Vardą gali rašyti ir mažosiomis raidėmis – Excel jas pavers didžiosiomis.</p>
+        <figure class="fig">
+          <img src="img/04-sarasas.png" width="646" height="533" alt="Langelyje B8 įvesta =av, po juo atsidaręs funkcijų sąrašas, kuriame pažymėta AVERAGE su užuomina „Grąžina vidurkį“">
+          <figcaption>Funkcijų sąrašas su užuomina, ką pasirinkta funkcija daro.</figcaption>
+        </figure>
+      </li>
+      <li>
+        <p><strong>Nurodyk bloką.</strong> Po atidarančio skliausto pažymėk langelius pele arba įrašyk bloką klaviatūra. Excel apveda bloką spalvotu rėmeliu, o po langeliu parodo, kokių argumentų funkcija laukia.</p>
+        <figure class="fig">
+          <img src="img/03-rasymas.png" width="605" height="387" alt="Langelyje B7 rašoma formulė =SUM(B2:B6, blokas B2:B6 apvestas mėlynu rėmeliu, po langeliu užuomina SUM(skaičius1; [skaičius2]; ...)">
+          <figcaption>Rašoma formulė: mėlynas rėmelis rodo, kuriuos langelius funkcija sudės.</figcaption>
+        </figure>
+      </li>
+      <li>
+        <p><strong>Uždaryk skliaustą ir spausk <kbd>Enter</kbd>.</strong> Taip pat įvesk ir kitas funkcijas. Štai užbaigta lentelė: langelyje B7 – suma, B8 – vidurkis, B9 – mažiausia, B10 – didžiausia reikšmė, B11 – dienų, kai Tomas skaitė, skaičius.</p>
+        <figure class="fig">
+          <img src="img/05-rezultatai.png" width="607" height="507" alt="Užbaigta lentelė: Suma 55, Vidurkis 13,75, Mažiausiai 8, Daugiausiai 20, Kiek dienų skaitė 4; pažymėtame langelyje B11 formulė =COUNT(B2:B6)">
+          <figcaption>Pažymėtas langelis B11: formulės juostoje matyti <code>=COUNT(B2:B6)</code>.</figcaption>
+        </figure>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <h2>Išbandyk pats</h2>
+    <p>Čia – 7a klasės matematikos kontrolinio taškai. Spustelėk žalsvą langelį, įrašyk formulę ir spausk <kbd>Enter</kbd>, kaip tikrame Excel. Rašant mėlynai pažymimi langeliai, kuriuos formulė naudoja.</p>
+
+    <div class="two">
+      <div class="sheetbox">
+        <div class="fbar" aria-hidden="true">
+          <div class="cellname" id="xlName">B10</div><div class="fx">fx</div><div class="raw" id="xlRaw"></div>
+        </div>
+        <div class="scroll"><table class="sheet" id="xlGrid"></table></div>
+      </div>
+
+      <div>
+        <ol class="tasks" id="xlTasks"></ol>
+        <div class="progress">
+          <span id="xlCount">Atlikta 0 iš 5</span>
+          <div class="bar"><i id="xlBar"></i></div>
+          <button class="btn" type="button" id="xlReset">Iš naujo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <h2>Dažniausios klaidos</h2>
+    <div class="errs">
+      <div class="errrow">
+        <div class="bad"><span class="lab">Klaida</span><code>SUM(B2:B8)</code><small>Excel langelyje parodys tiesiog šį tekstą.</small></div>
+        <div class="good"><span class="lab">Teisingai</span><code>=SUM(B2:B8)</code><small>Formulė visada prasideda lygybės ženklu.</small></div>
+      </div>
+      <div class="errrow">
+        <div class="bad"><span class="lab">Klaida</span><code>=SUMA(B2:B8)</code><small>Excel rodo <strong>#NAME?</strong> – tokio vardo jis nežino.</small></div>
+        <div class="good"><span class="lab">Teisingai</span><code>=SUM(B2:B8)</code><small>Funkcijų vardai rašomi angliškai, raidė į raidę.</small></div>
+      </div>
+      <div class="errrow">
+        <div class="bad"><span class="lab">Klaida</span><code>=SUM(B2;B8)</code><small>Sudės tik du langelius: B2 ir B8.</small></div>
+        <div class="good"><span class="lab">Teisingai</span><code>=SUM(B2:B8)</code><small>Dvitaškis reiškia „nuo–iki“, kabliataškis – „ir“.</small></div>
+      </div>
+      <div class="errrow">
+        <div class="bad"><span class="lab">Klaida</span><code>=SUM(B2:B10)</code> <small>įrašyta į langelį B10. Formulė naudoja pati save, ir Excel įspėja apie ciklinę nuorodą.</small></div>
+        <div class="good"><span class="lab">Teisingai</span><code>=SUM(B2:B8)</code><small>Į bloką neįtrauk langelio, kuriame rašai formulę.</small></div>
+      </div>
+    </div>
+    <figure class="fig">
+      <img src="img/06-name-klaida.png" width="589" height="516" alt="Langelyje B7 įrašyta =SUMA(B2:B6), langelis rodo klaidą #NAME?, šalia – geltonas įspėjimo ženklas">
+      <figcaption>Taip klaida <strong>#NAME?</strong> atrodo Excel: formulės juostoje matyti neteisingas vardas <code>SUMA</code>. Spustelėjęs geltoną ženkliuką pamatysi paaiškinimą.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <h2>Greitesnis kelias: mygtukas Σ</h2>
+    <div class="side">
+      <div>
+        <p>Visas penkias funkcijas galima įterpti ir neįrašant jų vardo. Skirtuko <strong>Pagrindinis</strong> dešinėje yra mygtukas <strong>Σ</strong>. Spustelėjęs šalia jo esančią rodyklę, pamatysi sąrašą:</p>
+        <p>Suma → <code>SUM</code><br>Vidurkis → <code>AVERAGE</code><br>Skaičiuoti skaičius → <code>COUNT</code><br>Maks. → <code>MAX</code><br>Min. → <code>MIN</code></p>
+        <p style="margin:0">Pažymėk langelį po skaičių stulpeliu, pasirink veiksmą, ir Excel pats įrašys formulę bei pasiūlys bloką. <strong>Prieš spausdamas Enter visada patikrink bloką</strong> – Excel gali parinkti ne visus langelius, pavyzdžiui, sustoti ties langeliu su žodžiu.</p>
+      </div>
+      <figure class="fig">
+        <img src="img/07-autosum.png" width="273" height="272" alt="Išskleistas mygtuko Σ meniu: Suma, Vidurkis, Skaičiuoti skaičius, Maks., Min., Daugiau funkcijų">
+        <figcaption>Mygtuko Σ meniu</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">07</div>
+    <h2>Pasitikrink</h2>
+    <div id="xlQuiz"></div>
+    <div class="score" id="xlScore"></div>
+  </section>
+
+  <section>
+    <div class="hw">
+      <div class="num" style="color:#bfe3cc">08</div>
+      <h2>Užduotys tikrame Excel</h2>
+      <h3>1 užduotis. Savaitės orai</h3>
+      <ol>
+        <li>Atsidaryk Excel ir langelyje A1 parašyk „Diena“, o B1 – „Temperatūra“.</li>
+        <li>Langeliuose A2:A8 surašyk savaitės dienas, o B2:B8 – kiekvienos dienos oro temperatūrą (sugalvok arba pasižiūrėk orų prognozę).</li>
+        <li>Langeliuose A10:A13 parašyk: „Vidurkis“, „Šalčiausia“, „Šilčiausia“, „Dienų skaičius“.</li>
+        <li>Šalia, langeliuose B10:B13, įrašyk tinkamas funkcijas: <code>AVERAGE</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>.</li>
+        <li>Pakeisk vienos dienos temperatūrą ir stebėk, kaip rezultatai persiskaičiuoja patys.</li>
+      </ol>
+      <h3>2 užduotis. Kišenpinigių išlaidos</h3>
+      <ol>
+        <li>Naujame lape langelyje A1 parašyk „Pirkinys“, o B1 – „Kaina (€)“.</li>
+        <li>Langeliuose A2:A7 surašyk šešis daiktus, kuriuos per mėnesį nusipirkai ar norėtum nusipirkti, o B2:B7 – jų kainas eurais. Vieną daiktą gavai dovanų: vietoj jo kainos parašyk žodį „dovana“.</li>
+        <li>Langeliuose A9:A12 parašyk: „Iš viso išleista“, „Vidutinė kaina“, „Brangiausias pirkinys“, „Kiek pirkinių pirkta“.</li>
+        <li>Šalia, langeliuose B9:B12, įrašyk tinkamas funkcijas: <code>SUM</code>, <code>AVERAGE</code>, <code>MAX</code>, <code>COUNT</code>.</li>
+        <li>Pažiūrėk, ką rodo langelis B12. Kodėl pirkinių suskaičiuota 5, o ne 6?</li>
+      </ol>
+      <h3>3 užduotis. Šuolis į tolį</h3>
+      <ol>
+        <li>Naujame lape langelyje A1 parašyk „Mokinys“, o B1 – „Rezultatas (m)“.</li>
+        <li>Langeliuose A2:A9 surašyk aštuonis vardus, o B2:B9 – jų šuolio į tolį rezultatus metrais, pavyzdžiui, 3,45. Vienas mokinys nedalyvavo: jo langelyje parašyk „nedalyvavo“.</li>
+        <li>Langeliuose A11:A15 parašyk: „Geriausias rezultatas“, „Silpniausias rezultatas“, „Vidutinis rezultatas“, „Kiek mokinių šoko“, „Visų šuolių suma“.</li>
+        <li>Šalia, langeliuose B11:B15, įrašyk tinkamas funkcijas: <code>MAX</code>, <code>MIN</code>, <code>AVERAGE</code>, <code>COUNT</code>, <code>SUM</code>.</li>
+        <li>Mokinys, kuris nedalyvavo, šuolį atliko vėliau. Vietoj žodžio įrašyk jo rezultatą ir stebėk, kurie skaičiai pasikeitė.</li>
+      </ol>
+    </div>
+    <p class="foot">Excel pradžiamokslis · 1 pamoka</p>
+  </section>
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Excel pradžiamokslis 7 klasei. Medžiaga parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/*ENGINE-START*/
+// Maža formulių skaičiuoklė: + - * /, skliaustai, langelių nuorodos, blokai
+// ir funkcijos SUM, AVERAGE, MIN, MAX, COUNT, COUNTA. Argumentus skiria ; arba ,
+function XlError(code){ this.code = code; }
+var FUNCS = {
+  SUM:function(a){ return a.nums.reduce(function(s,x){return s+x;},0); },
+  AVERAGE:function(a){ if(!a.nums.length) throw new XlError("#DIV/0!"); return FUNCS.SUM(a)/a.nums.length; },
+  MIN:function(a){ return a.nums.length ? Math.min.apply(null,a.nums) : 0; },
+  MAX:function(a){ return a.nums.length ? Math.max.apply(null,a.nums) : 0; },
+  COUNT:function(a){ return a.nums.length; },
+  COUNTA:function(a){ return a.filled; }
+};
+function tokenize(src){
+  var s = src.toUpperCase(), i = 0, out = [], m;
+  while(i < s.length){
+    var rest = s.slice(i);
+    if((m = /^\s+/.exec(rest))){ i += m[0].length; continue; }
+    if((m = /^\d+(\.\d+)?/.exec(rest))){ out.push({t:"num", v:parseFloat(m[0])}); i += m[0].length; continue; }
+    if((m = /^[A-ZĄČĘĖĮŠŲŪŽ_]+\d*/.exec(rest))){
+      out.push(/^[A-Z]{1,2}\d+$/.test(m[0]) ? {t:"cell", v:m[0]} : {t:"name", v:m[0]});
+      i += m[0].length; continue;
+    }
+    var c = s[i];
+    if("+-*/():".indexOf(c) >= 0){ out.push({t:c}); i++; continue; }
+    if(c === ";" || c === ","){ out.push({t:";"}); i++; continue; }
+    throw new XlError("#ERROR!");
+  }
+  return out;
+}
+// getCell(ref) grąžina skaičių, tekstą arba null (tuščias langelis)
+function evaluate(formula, getCell){
+  var tk = tokenize(formula.slice(1)), p = 0;
+  function peek(){ return tk[p] || {t:"end"}; }
+  function eat(t){ if(peek().t !== t) throw new XlError("#ERROR!"); return tk[p++]; }
+  function cellNum(ref){
+    var v = getCell(ref);
+    if(v === null) return 0;
+    if(typeof v === "string") throw new XlError("#VALUE!");
+    return v;
+  }
+  function addCell(acc, ref){
+    var v = getCell(ref);
+    if(v === null) return;
+    acc.filled++;
+    if(typeof v === "number") acc.nums.push(v);
+  }
+  function addRange(acc, a, b){
+    var ma = /^([A-Z]+)(\d+)$/.exec(a), mb = /^([A-Z]+)(\d+)$/.exec(b);
+    if(ma[1].length > 1 || mb[1].length > 1) return;
+    var c1 = Math.min(ma[1].charCodeAt(0), mb[1].charCodeAt(0)), c2 = Math.max(ma[1].charCodeAt(0), mb[1].charCodeAt(0));
+    var r1 = Math.min(+ma[2], +mb[2]), r2 = Math.min(Math.max(+ma[2], +mb[2]), 200);
+    for(var c = c1; c <= c2; c++) for(var r = r1; r <= r2; r++) addCell(acc, String.fromCharCode(c) + r);
+  }
+  function arg(acc){
+    if(peek().t === "cell"){
+      var nx = tk[p+1] || {t:"end"};
+      if(nx.t === ":"){ var a = eat("cell").v; eat(":"); addRange(acc, a, eat("cell").v); return; }
+      if(nx.t === ";" || nx.t === ")"){ addCell(acc, eat("cell").v); return; }
+    }
+    acc.nums.push(expr()); acc.filled++;
+  }
+  function factor(){
+    var t = peek();
+    if(t.t === "-"){ p++; return -factor(); }
+    if(t.t === "+"){ p++; return factor(); }
+    if(t.t === "num"){ p++; return t.v; }
+    if(t.t === "("){ p++; var v = expr(); eat(")"); return v; }
+    if(t.t === "cell"){ p++; if(peek().t === ":") throw new XlError("#VALUE!"); return cellNum(t.v); }
+    if(t.t === "name"){
+      p++;
+      if(peek().t !== "(") throw new XlError("#NAME?");
+      if(!FUNCS[t.v]) throw new XlError("#NAME?");
+      eat("(");
+      var acc = {nums:[], filled:0};
+      if(peek().t === ")") throw new XlError("#ERROR!");
+      arg(acc);
+      while(peek().t === ";"){ p++; arg(acc); }
+      eat(")");
+      return FUNCS[t.v](acc);
+    }
+    throw new XlError("#ERROR!");
+  }
+  function term(){
+    var v = factor();
+    while(peek().t === "*" || peek().t === "/"){
+      var op = tk[p++].t, r = factor();
+      if(op === "/"){ if(r === 0) throw new XlError("#DIV/0!"); v /= r; } else v *= r;
+    }
+    return v;
+  }
+  function expr(){
+    var v = term();
+    while(peek().t === "+" || peek().t === "-"){ var op = tk[p++].t, r = term(); v = op === "+" ? v + r : v - r; }
+    return v;
+  }
+  var res = expr();
+  if(peek().t !== "end") throw new XlError("#ERROR!");
+  return res;
+}
+/*ENGINE-END*/
+
+// ---------- Praktikos lentelė ----------
+var DATA = {
+  A1:"Mokinys", B1:"Taškai",
+  A2:"Austėja", B2:24, A3:"Dominykas", B3:18, A4:"Emilija", B4:27,
+  A5:"Lukas", B5:"nerašė", A6:"Gabija", B6:21, A7:"Matas", B7:15, A8:"Ugnė", B8:30,
+  A10:"Taškų suma", A11:"Vidurkis", A12:"Mažiausiai taškų", A13:"Daugiausiai taškų", A14:"Kiek mokinių rašė"
+};
+var TASKS = [
+  {cell:"B10", fn:"SUM",     want:135,  text:"Langelyje <b>B10</b> apskaičiuok, kiek taškų surinko visa klasė.", hint:"Reikia sudėti visus taškus. Kuri funkcija sudeda?"},
+  {cell:"B11", fn:"AVERAGE", want:22.5, text:"Langelyje <b>B11</b> rask taškų vidurkį.", hint:"Vidurkį skaičiuoja funkcija, kurios vardas angliškai reiškia „vidurkis“."},
+  {cell:"B12", fn:"MIN",     want:15,   text:"Langelyje <b>B12</b> rask mažiausią taškų skaičių.", hint:"Mažiausią reikšmę suranda MIN."},
+  {cell:"B13", fn:"MAX",     want:30,   text:"Langelyje <b>B13</b> rask didžiausią taškų skaičių.", hint:"Didžiausią reikšmę suranda MAX."},
+  {cell:"B14", fn:"COUNT",   want:6,    text:"Langelyje <b>B14</b> suskaičiuok, kiek mokinių rašė kontrolinį.", hint:"Reikia suskaičiuoti langelius, kuriuose yra skaičiai."}
+];
+var ROWS = 14, COLS = ["A","B"];
+var raw = {};            // mokinio įvestis redaguojamuose langeliuose
+var inputs = {}, tds = {}, taskEls = {};
+var grid = document.getElementById("xlGrid");
+var elName = document.getElementById("xlName"), elRaw = document.getElementById("xlRaw");
+
+function fmt(n){
+  var r = Math.round(n * 100) / 100;
+  return String(r).replace(".", ",");
+}
+function cellValue(ref, stack){
+  if(ref in raw){
+    var s = raw[ref].trim();
+    if(s === "") return null;
+    if(s[0] === "="){
+      if(stack.indexOf(ref) >= 0) throw new XlError("#CIKLAS!");
+      return evaluate(s, function(r){ return cellValue(r, stack.concat(ref)); });
+    }
+    var n = Number(s.replace(",", "."));
+    return isNaN(n) ? s : n;
+  }
+  return ref in DATA ? DATA[ref] : null;
+}
+function compute(ref){
+  try { return {v: cellValue(ref, [])}; }
+  catch(e){ if(e instanceof XlError) return {err: e.code}; throw e; }
+}
+function show(ref){
+  var r = compute(ref), inp = inputs[ref];
+  tds[ref].classList.toggle("err", !!r.err);
+  if(document.activeElement === inp) return;
+  inp.value = r.err ? r.err : (r.v === null ? "" : (typeof r.v === "number" ? fmt(r.v) : r.v));
+}
+function highlight(text){
+  Object.keys(tds).forEach(function(k){ tds[k].classList.remove("hl"); });
+  if(!text || text.trim()[0] !== "=") return;
+  var re = /([A-B])(\d{1,2})(?:\s*:\s*([A-B])(\d{1,2}))?/gi, m;
+  while((m = re.exec(text))){
+    var c1 = m[1].toUpperCase(), r1 = +m[2], c2 = (m[3] || m[1]).toUpperCase(), r2 = +(m[4] || m[2]);
+    for(var c = Math.min(c1.charCodeAt(0), c2.charCodeAt(0)); c <= Math.max(c1.charCodeAt(0), c2.charCodeAt(0)); c++)
+      for(var r = Math.min(r1, r2); r <= Math.max(r1, r2); r++){
+        var td = tds[String.fromCharCode(c) + r];
+        if(td) td.classList.add("hl");
+      }
+  }
+}
+function check(task){
+  var s = (raw[task.cell] || "").trim(), el = taskEls[task.cell], msg = el.querySelector(".msg");
+  var done = false, text = "";
+  if(s !== ""){
+    var r = compute(task.cell);
+    var usesFn = new RegExp("(^|[^A-Z])" + task.fn + "\\s*\\(", "i").test(s);
+    if(s[0] !== "="){
+      text = "Formulė visada prasideda lygybės ženklu =.";
+    } else if(r.err === "#NAME?"){
+      text = "#NAME? – tokio funkcijos vardo Excel nežino. Patikrink rašybą.";
+    } else if(r.err === "#CIKLAS!"){
+      text = "Formulė naudoja pati save. Į bloką neįtrauk langelio, kuriame rašai.";
+    } else if(r.err){
+      text = "Formulėje kažko trūksta. Patikrink skliaustus ir dvitaškį tarp langelių.";
+    } else if(typeof r.v === "number" && Math.abs(r.v - task.want) < 1e-9){
+      if(usesFn){ done = true; text = "Teisingai: " + fmt(task.want) + "."; }
+      else text = "Atsakymas teisingas, bet čia panaudok funkciją " + task.fn + ".";
+    } else if(usesFn){
+      text = "Funkcija tinkama, bet patikrink bloką: taškai surašyti langeliuose nuo B2 iki B8.";
+    } else if(task.fn === "COUNT" && /COUNTA\s*\(/i.test(s)){
+      text = "COUNTA skaičiuoja ir žodžius, todėl įskaičiavo Luką. Reikia funkcijos, kuri skaičiuoja tik skaičius.";
+    } else {
+      text = "Dar ne. " + task.hint;
+    }
+  }
+  el.classList.toggle("done", done);
+  tds[task.cell].classList.toggle("ok", done);
+  msg.textContent = text;
+  return done;
+}
+function refresh(){
+  var n = 0;
+  TASKS.forEach(function(t){ show(t.cell); if(check(t)) n++; });
+  document.getElementById("xlCount").textContent = n === TASKS.length ? "Puiku, atlikai visas 5!" : "Atlikta " + n + " iš " + TASKS.length;
+  document.getElementById("xlBar").style.width = (n / TASKS.length * 100) + "%";
+}
+
+// Lentelės piešimas
+(function build(){
+  var h = "<tr><th></th>" + COLS.map(function(c){ return "<th>" + c + "</th>"; }).join("") + "</tr>";
+  for(var r = 1; r <= ROWS; r++){
+    h += "<tr><th>" + r + "</th>";
+    COLS.forEach(function(c){
+      var ref = c + r, v = DATA[ref], editable = TASKS.some(function(t){ return t.cell === ref; });
+      if(editable) h += '<td class="edit" data-ref="' + ref + '"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="rašyk čia" aria-label="Langelis ' + ref + '"></td>';
+      else h += '<td data-ref="' + ref + '" class="' + (typeof v === "number" ? "n" : "") + (r === 1 ? " h" : "") + '"><span class="v">' + (v === undefined ? "" : v) + "</span></td>";
+    });
+    h += "</tr>";
+  }
+  grid.innerHTML = h;
+  grid.querySelectorAll("td").forEach(function(td){ tds[td.dataset.ref] = td; });
+
+  var list = document.getElementById("xlTasks");
+  TASKS.forEach(function(t, i){
+    var li = document.createElement("li");
+    li.className = "task"; li.dataset.n = i + 1;
+    li.innerHTML = t.text + '<span class="msg" aria-live="polite"></span>';
+    list.appendChild(li); taskEls[t.cell] = li;
+
+    raw[t.cell] = "";
+    var inp = tds[t.cell].querySelector("input"); inputs[t.cell] = inp;
+    inp.addEventListener("focus", function(){
+      inp.value = raw[t.cell]; elName.textContent = t.cell; elRaw.textContent = raw[t.cell]; highlight(raw[t.cell]);
+    });
+    inp.addEventListener("input", function(){ elRaw.textContent = inp.value; highlight(inp.value); });
+    inp.addEventListener("blur", function(){ raw[t.cell] = inp.value; highlight(""); refresh(); });
+    inp.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){
+        e.preventDefault();
+        var next = TASKS[i + 1];
+        if(next) inputs[next.cell].focus(); else inp.blur();
+      } else if(e.key === "Escape"){ inp.value = raw[t.cell]; inp.blur(); }
+    });
+  });
+  document.getElementById("xlReset").addEventListener("click", function(){
+    TASKS.forEach(function(t){ raw[t.cell] = ""; inputs[t.cell].value = ""; });
+    elRaw.textContent = ""; refresh();
+  });
+  refresh();
+})();
+
+// ---------- Testas ----------
+var QUIZ = [
+  {q:"Kuo turi prasidėti kiekviena formulė?", o:["Funkcijos vardu","Lygybės ženklu =","Skliaustu (","Langelio adresu"], a:1, why:"Be lygybės ženklo Excel įrašą laiko paprastu tekstu."},
+  {q:"Ką reiškia užrašas C3:C9?", o:["Tik langelius C3 ir C9","C3 padalyta iš C9","Visus langelius nuo C3 iki C9","Langelį C39"], a:2, why:"Dvitaškis reiškia „nuo–iki“. Bloke yra 7 langeliai."},
+  {q:"Kuri funkcija suranda didžiausią reikšmę?", o:["SUM","COUNT","MIN","MAX"], a:3, why:"MAX – iš žodžio „maksimumas“."},
+  {q:"Langeliuose A1:A4 įrašyta: 5, 10, „nėra“, 15. Ką parodys =COUNT(A1:A4)?", o:["4","3","30","10"], a:1, why:"COUNT skaičiuoja tik langelius su skaičiais, o jų yra trys."},
+  {q:"Ką parodys =AVERAGE(4;6;8)?", o:["18","8","6","3"], a:2, why:"(4 + 6 + 8) : 3 = 6."},
+  {q:"Rasa parašė =SUMA(B2:B8) ir pamatė #NAME?. Kas negerai?", o:["Trūksta lygybės ženklo","Neteisingas funkcijos vardas","Per didelis blokas","Langeliuose nėra skaičių"], a:1, why:"Funkcija vadinasi SUM. Vardą reikia rašyti tiksliai."}
+];
+(function(){
+  var box = document.getElementById("xlQuiz"), score = document.getElementById("xlScore");
+  var solved = 0, firstTry = 0;
+  QUIZ.forEach(function(item, qi){
+    var d = document.createElement("div"); d.className = "q";
+    var h = document.createElement("h3"); h.textContent = (qi + 1) + ". " + item.q; d.appendChild(h);
+    var opts = document.createElement("div"); opts.className = "opts"; d.appendChild(opts);
+    var why = document.createElement("p"); why.className = "why"; why.setAttribute("aria-live","polite"); d.appendChild(why);
+    var tries = 0;
+    item.o.forEach(function(text, oi){
+      var b = document.createElement("button"); b.type = "button"; b.className = "opt"; b.textContent = text;
+      b.addEventListener("click", function(){
+        tries++;
+        if(oi === item.a){
+          b.classList.add("right");
+          opts.querySelectorAll("button").forEach(function(x){ x.disabled = true; });
+          why.className = "why"; why.textContent = "Teisingai. " + item.why;
+          solved++; if(tries === 1) firstTry++;
+          if(solved === QUIZ.length) score.textContent = "Iš pirmo karto atsakei į " + firstTry + " iš " + QUIZ.length + " klausimų.";
+        } else {
+          b.classList.add("wrong"); b.disabled = true;
+          why.className = "why no"; why.textContent = "Ne visai. Pabandyk dar kartą.";
+        }
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(d);
+  });
+})();
+
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>

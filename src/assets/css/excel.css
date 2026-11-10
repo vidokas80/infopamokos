@@ -1,0 +1,155 @@
+/* Excel pradžiamokslio pamokos (7 klasė). Bendras visoms kurso pamokoms: <main class="xl">.
+   Šriftai, pagrindinės spalvos, antraštės ir mygtukai – iš site.css. Čia tik tai, ko site.css nėra.
+   Lentelės „kaip Excel“ (table.sheet, .fbar) tyčia šviesios abiejose temose – kaip tikra programa. */
+:root{
+  --bad-soft:#fbe9e7;
+  --xl-purple:#7a4bb3;
+  /* Excel lentelės – nekintančios spalvos */
+  --xl-cell:#ffffff; --xl-ink:#1c2420; --xl-mut:#5b6660; --xl-grid:#d5dbd7; --xl-head:#eef0ed; --xl-fbar:#fafbf9;
+  --xl-hl:#dcebfb; --xl-blue:#1a5fb4; --xl-edit:#f3f9f5; --xl-okcell:#d9f0e0; --xl-green:#1d6f42; --xl-red:#b3261e; --xl-ph:#9aa69f;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bad-soft:#3a1d1c; --xl-purple:#c39be6}}
+:root[data-theme="dark"]{--bad-soft:#3a1d1c; --xl-purple:#c39be6}
+
+.xl{
+  /* pamokos kintamieji susieti su svetainės spalvomis */
+  --green:var(--ok); --green-d:var(--ok); --green-l:var(--ok-soft); --green-ll:var(--ok-soft);
+  --mut:var(--muted); --red:var(--bad); --red-l:var(--bad-soft); --amber:var(--warm); --amber-l:var(--warm-soft);
+  --c1:var(--ok); --c2:var(--accent); --c3:var(--xl-purple); --c4:var(--warm);
+  --mono:var(--f-mono);
+  max-width:48rem; padding-block:.5rem 3rem;
+}
+.xl code,.xl .f{font-family:var(--mono);font-size:.88em;background:var(--green-l);color:var(--green-d);padding:1px 6px;border-radius:4px;white-space:nowrap;border:0}
+
+/* Pamokos antraštė – svetainės header.top; žymės po antrašte */
+.xl-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.xl-meta .chip{font-family:var(--f-mono);font-size:.75rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;color:var(--muted)}
+
+/* Skyriai: šrifto dydžiai ir šeimos – iš site.css (h2, h3) */
+.xl section{padding:2.2rem 0 0}
+.xl .num{font-family:var(--mono);font-size:.85rem;color:var(--accent);font-weight:600;letter-spacing:.05em}
+.xl h2{margin-top:.1rem}
+.xl ul.goals{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.xl ul.goals li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px 10px 42px;position:relative}
+.xl ul.goals li::before{content:"";position:absolute;left:16px;top:18px;width:12px;height:12px;border-radius:3px;background:var(--accent)}
+
+/* Formulės sandara */
+.xl .anatomy{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:26px 18px 20px;overflow-x:auto;margin-top:1rem}
+.xl .parts{display:flex;justify-content:center;align-items:flex-start;gap:4px;min-width:max-content;margin:0 auto}
+.xl .part{display:flex;flex-direction:column;align-items:center;gap:8px}
+.xl .part b{font-family:var(--mono);font-size:clamp(26px,6vw,40px);font-weight:600;padding:4px 8px;border-radius:8px;line-height:1.1;background:color-mix(in srgb, currentColor 13%, transparent)}
+.xl .part span{font-family:var(--f-display);font-size:13px;line-height:1.3;text-align:center;max-width:120px;font-weight:600}
+.xl .part i{display:block;width:2px;height:14px;background:currentColor;opacity:.5}
+.xl .p1{color:var(--c1)} .xl .p2{color:var(--c2)} .xl .p3{color:var(--c3)} .xl .p4{color:var(--c4)}
+.xl .note{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:0 6px 6px 0;padding:12px 16px;margin:16px 0 0;font-size:.97rem}
+.xl .note b{color:var(--amber);font-family:var(--f-display)}
+
+.xl kbd{font-family:var(--mono);font-size:.82em;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--muted);border-bottom-width:2px;border-radius:5px;padding:0 6px}
+/* Ekrano nuotraukos (svetainės .fig skirtas SVG schemoms – čia perrašoma) */
+.xl figure.fig{margin:18px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px}
+.xl figure.fig img{display:block;max-width:100%;height:auto;margin:0 auto;border:1px solid var(--line);border-radius:4px}
+.xl figure.fig figcaption{font-size:.88rem;color:var(--muted);margin-top:10px;text-align:center;line-height:1.45}
+.xl figure.fig.narrow img{max-width:min(100%,280px)}
+.xl .side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:20px;align-items:center;margin-top:16px}
+.xl .side figure.fig{margin:0}
+.xl h3.sub{margin:1.9rem 0 .4rem}
+.xl ol.steps{list-style:none;margin:0;padding:0;counter-reset:st}
+.xl ol.steps>li{counter-increment:st;position:relative;padding:14px 0 0 44px}
+.xl ol.steps>li::before{content:counter(st);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--paper);font-family:var(--f-display);font-weight:700;display:grid;place-items:center;font-size:15px}
+.xl ol.steps>li p{margin:2px 0 0}
+.xl ol.steps figure.fig{margin-top:10px}
+
+/* Lentelė „kaip Excel“ – išvaizda nekeičiama, spalvos pastovios abiejose temose */
+.xl .sheetbox{background:var(--xl-cell);color:var(--xl-ink);border:1px solid var(--xl-grid);border-radius:8px;overflow:hidden}
+.xl .scroll{overflow-x:auto}
+.xl table.sheet{border-collapse:collapse;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:15px;width:100%;min-width:320px}
+.xl table.sheet th{background:var(--xl-head);color:var(--xl-mut);font-family:inherit;font-weight:600;font-size:12px;border:1px solid var(--xl-grid);padding:3px 6px;text-align:center;min-width:30px}
+.xl table.sheet td{border:1px solid var(--xl-grid);padding:0;height:32px;min-width:92px;position:relative;vertical-align:middle}
+.xl table.sheet tr:last-child td{border-bottom:1px solid var(--xl-grid)}
+.xl table.sheet td .v{display:block;padding:4px 9px;white-space:nowrap}
+.xl table.sheet td.n .v{text-align:right;font-variant-numeric:tabular-nums}
+.xl table.sheet td.h .v{font-weight:700}
+.xl table.sheet td.hl{background:var(--xl-hl);box-shadow:inset 0 0 0 1.5px var(--xl-blue)}
+.xl table.sheet td.edit{background:var(--xl-edit)}
+.xl table.sheet td.edit input{width:100%;height:32px;border:0;background:transparent;font:inherit;font-family:var(--mono);font-size:14px;padding:4px 9px;color:var(--xl-ink);text-align:right;outline:none}
+.xl table.sheet td.edit input::placeholder{color:var(--xl-ph);font-family:"Segoe UI",system-ui,sans-serif}
+.xl table.sheet td.edit input:focus{text-align:left;box-shadow:inset 0 0 0 2px var(--xl-green);background:var(--xl-cell)}
+.xl table.sheet td.ok{background:var(--xl-okcell)}
+.xl table.sheet td.err input{color:var(--xl-red)}
+
+/* Funkcijų kortelės (svetainės .card/.cards skirti temų kortelėms – čia perrašoma) */
+.xl .two{display:grid;grid-template-columns:minmax(0,350px) minmax(0,1fr);gap:20px;align-items:start;margin-top:1rem}
+.xl .cards{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.xl .card{display:block;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:8px;padding:12px 16px;transform:none;transition:none}
+.xl .card:hover{transform:none;border-color:var(--line);border-left-color:var(--accent)}
+.xl .card .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.xl .card .name{font-family:var(--mono);font-weight:600;font-size:1.15rem;color:var(--accent)}
+.xl .card .lt{color:var(--mut);font-size:.88rem}
+.xl .card p{margin:4px 0 8px;font-size:.97rem}
+.xl .card .ex{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:.9rem}
+.xl .card .ex .arrow{color:var(--mut)}
+.xl .card .ex .res{font-weight:600;background:var(--ink);color:var(--paper);border-radius:5px;padding:1px 9px}
+
+/* Praktika */
+.xl .fbar{display:flex;border-bottom:1px solid var(--xl-grid);font-family:var(--mono);font-size:14px;background:var(--xl-fbar);color:var(--xl-ink)}
+.xl .fbar .cellname{width:64px;padding:7px 8px;border-right:1px solid var(--xl-grid);text-align:center;font-weight:700}
+.xl .fbar .fx{padding:7px 10px;color:var(--xl-mut);font-style:italic;border-right:1px solid var(--xl-grid)}
+.xl .fbar .raw{padding:7px 10px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:36px}
+.xl .tasks{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.xl .task{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px 10px 46px;position:relative;font-size:.97rem}
+.xl .task::before{content:attr(data-n);position:absolute;left:12px;top:11px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);font-family:var(--f-display);font-size:13px;font-weight:700;display:grid;place-items:center;color:var(--mut)}
+.xl .task.done{border-color:var(--green);background:var(--green-l)}
+.xl .task.done::before{content:"✓";background:var(--green);border-color:var(--green);color:var(--paper)}
+.xl .task .msg{display:block;font-size:.9rem;margin-top:4px;color:var(--red)}
+.xl .task.done .msg{color:var(--green-d)}
+.xl .task .msg:empty{display:none}
+.xl .progress{display:flex;align-items:center;gap:12px;margin:14px 0 0;font-family:var(--f-display);font-weight:600;font-size:.95rem}
+.xl .bar{flex:1;height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.xl .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+/* Mygtukas – kaip svetainės .quiz-reset */
+.xl .btn{font:inherit;font-family:var(--f-display);font-size:.9rem;font-weight:400;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:5px;padding:.4rem .8rem;cursor:pointer}
+.xl .btn:hover{background:var(--accent-soft)}
+
+/* Klaidos */
+.xl .errs{display:grid;gap:8px}
+.xl .errrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.xl .errrow>div{padding:10px 14px;font-size:.95rem}
+.xl .errrow .bad{background:var(--red-l)}
+.xl .errrow .lab{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.xl .errrow .bad .lab{color:var(--red)} .xl .errrow .good .lab{color:var(--green)}
+.xl .errrow .bad code{background:transparent;border:1px solid var(--red);color:var(--red)}
+.xl .errrow small{display:block;color:var(--mut);font-size:.85rem;margin-top:3px}
+
+/* Testas (svetainės .q, .opts, .why skirti VBE testams – čia perrašoma) */
+.xl .q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:0 0 12px}
+.xl .q h3{font-size:1.02rem;font-weight:600;margin:0 0 10px}
+.xl .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.xl .opt{font:inherit;font-size:.95rem;text-align:left;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:8px 12px;cursor:pointer}
+.xl .opt:hover:not(:disabled){border-color:var(--accent)}
+.xl .opt.right{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600}
+.xl .opt.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.xl .opt:disabled{cursor:default}
+.xl .q .why{font-style:normal;font-size:.92rem;margin:10px 0 0;color:var(--green-d)}
+.xl .q .why.no{color:var(--red)}
+.xl .q .why:empty{display:none}
+.xl .score{font-family:var(--f-display);font-weight:700;font-size:1.1rem;margin-top:6px;color:var(--accent)}
+
+/* Savarankiškas darbas */
+.xl .hw{background:var(--accent);color:var(--paper);border-radius:8px;padding:22px 24px}
+.xl .hw h2{color:var(--paper)}
+.xl .hw .num{color:var(--paper)!important;opacity:.75}
+.xl .hw h3{color:var(--paper);margin:1.4rem 0 .4rem}
+.xl .hw h2 + h3{margin-top:.6rem}
+.xl .hw ol{margin:0;padding-left:22px}
+.xl .hw li{margin-bottom:6px}
+.xl .hw code{background:color-mix(in srgb, var(--paper) 22%, transparent);color:var(--paper)}
+.xl .foot{color:var(--mut);font-size:.85rem;margin-top:28px;text-align:center}
+
+@media (max-width:700px){
+  .xl .side{grid-template-columns:1fr}
+  .xl .two{grid-template-columns:1fr}
+  .xl .errrow{grid-template-columns:1fr}
+  .xl table.sheet td{min-width:96px}
+}
+@media (prefers-reduced-motion:reduce){.xl .bar i{transition:none}}
+@media print{.xl .btn{display:none}}

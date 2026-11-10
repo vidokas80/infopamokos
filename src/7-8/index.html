@@ -41,10 +41,27 @@
 <header class="top">
   <div class="eyebrow">Informatika · 7–8 klasės</div>
   <h1>7–8 klasių informatika</h1>
-  <p class="lead">Pamokų medžiaga: tikslai, trumpi paaiškinimai ir interaktyvios užduotys. Medžiaga pildoma – pradedame nuo 8 klasės.</p>
+  <p class="lead">Pamokų medžiaga: tikslai, trumpi paaiškinimai ir interaktyvios užduotys. Medžiaga pildoma. Pasirinkite klasę.</p>
+  <div class="switch" role="tablist" aria-label="Klasė" data-tabs>
+    <button type="button" role="tab" id="tab-7" data-go="7" aria-controls="klase-7" aria-selected="true">7 klasė <small>Excel pradžiamokslis</small></button>
+    <button type="button" role="tab" id="tab-8" data-go="8" aria-controls="klase-8" aria-selected="false">8 klasė <small>Aparatinė įranga</small></button>
+  </div>
 </header>
 
 <main class="lessons">
+<div class="tab-panel" id="klase-7" role="tabpanel" aria-labelledby="tab-7" data-tab="7">
+<h2 class="grade-title">7 klasė · Excel pradžiamokslis</h2>
+<div class="cards">
+  <a class="card" href="excel-1/">
+    <span class="card-top"><span class="code">Excel</span><span class="card-n">01</span></span>
+    <span class="card-title">1 pamoka. Funkcijos: tegul skaičiuoja Excel</span>
+    <span class="card-area">SUM, AVERAGE, MIN, MAX, COUNT, langelių blokas, dažniausios klaidos</span>
+    <span class="card-meta">30–40 min · praktika ir testas</span>
+  </a>
+</div>
+</div>
+
+<div class="tab-panel" id="klase-8" role="tabpanel" aria-labelledby="tab-8" data-tab="8" hidden>
 <h2 class="grade-title">8 klasė</h2>
 
 <section class="topic lesson" id="aparatine-iranga">
@@ -208,6 +225,7 @@
   ]
   </script>
 </section>
+</div>
 </main>
 
 <footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 7–8 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>

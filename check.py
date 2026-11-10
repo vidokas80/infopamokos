@@ -159,7 +159,8 @@ def check_built():
     for f in ("index.html", "assets/css/site.css", "assets/js/vbe.js", "assets/js/bot.js", "vbe/data.js",
               "7-8/index.html", "assets/js/pamokos.js", "7-8/kompiuterio-vidus/index.html", "7-8/kompiuterio-vidus/img/kompiuteris.webp",
               "7-8/kompiuteriu-daktaras/index.html", "7-8/kompiuteriu-daktaras/img/fan.webp",
-              "9-10/index.html", "9-10/python-1/index.html") + tuple(
+              "9-10/index.html", "9-10/python-1/index.html", "7-8/excel-1/index.html", "assets/css/excel.css") + tuple(
+              f"7-8/excel-1/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "7-8" / "excel-1" / "index.html").read_text(encoding="utf-8"))) + tuple(
               f"9-10/python-1/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "9-10" / "python-1" / "index.html").read_text(encoding="utf-8"))):
         if not (DIST / f).exists():
             err(f"dist/{f} nerastas")

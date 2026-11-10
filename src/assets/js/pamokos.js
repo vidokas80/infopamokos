@@ -1,3 +1,32 @@
+/* Klasių skirtukai (pvz., 7 ir 8 klasė viename puslapyje). Mygtukai [data-tabs] [data-go], skydeliai [data-tab].
+   Adresas #7 / #8 atidaro skirtuką; nuoroda į vietą skydelio viduje (pvz., #kompiuteriu-daktaras) atidaro tą skydelį. */
+(function(){
+  var bar=document.querySelector("[data-tabs]"); if(!bar) return;
+  var btns=[].slice.call(bar.querySelectorAll("[data-go]")), panels=[].slice.call(document.querySelectorAll("[data-tab]"));
+  function open(id,scroll){
+    var ok=panels.some(function(p){return p.dataset.tab===id;}); if(!ok) return false;
+    panels.forEach(function(p){p.hidden=p.dataset.tab!==id;});
+    btns.forEach(function(b){b.setAttribute("aria-selected",String(b.dataset.go===id));});
+    if(scroll) window.dispatchEvent(new Event("resize")); // įterpti žaidimai persiskaičiuoja aukštį
+    return true;
+  }
+  function route(){
+    var h=decodeURIComponent((location.hash||"").slice(1)); if(!h) return;
+    if(open(h,true)) return;
+    var el=document.getElementById(h), p=el&&el.closest("[data-tab]");
+    if(p){ open(p.dataset.tab,true); el.scrollIntoView(); }
+  }
+  btns.forEach(function(b){
+    b.addEventListener("click",function(){ history.replaceState(null,"","#"+b.dataset.go); open(b.dataset.go,true); });
+    b.addEventListener("keydown",function(e){
+      var i=btns.indexOf(b), n=e.key==="ArrowRight"?i+1:e.key==="ArrowLeft"?i-1:-2; if(n===-2) return;
+      var t=btns[(n+btns.length)%btns.length]; t.focus(); t.click(); e.preventDefault();
+    });
+  });
+  window.addEventListener("hashchange",route);
+  route();
+})();
+
 /* Pamokų puslapiai: įterptų žaidimų (iframe) aukštis prisitaiko prie turinio.
    Žaidimai yra toje pačioje svetainėje, todėl jų dokumentą galima matuoti.
    Pačių žaidimų failai nekeičiami – tik nuimamas jų puslapio paraštės fonas, kad įterptas žaidimas atrodytų kaip kortelė. */
