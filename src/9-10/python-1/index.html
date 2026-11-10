@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1 pamoka. Pirmoji programa su Python – infopamokos.lt</title>
+<meta name="description" content="9 klasės informatikos pamoka: pirmoji programa su Python Thonny aplinkoje – print(), aritmetiniai veiksmai, kintamieji, klaidų pranešimai ir praktinės užduotys.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Pamokos papildomi stiliai. Šriftai, spalvos, antraštės, lentelės ir nuorodos – iš site.css. */
+.py-pamoka{max-width:48rem;padding-block:1rem 3rem}
+.py-pamoka h2{margin-top:2.8rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.py-pamoka h3{margin-top:1.8rem}
+.py-pamoka .lead{margin-bottom:1.2rem}
+.py-pamoka li{margin-bottom:.3rem}
+
+/* Kodas */
+.py-pamoka code{font-family:var(--f-mono);font-size:.88em;background:var(--code-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.py-pamoka pre{font-family:var(--f-mono);font-size:.9rem;line-height:1.5;background:var(--code-bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:.75rem 1rem;margin:0 0 1rem;overflow-x:auto}
+/* Kodo kopijuoti negalima: mokinys jį surenka pats */
+.py-pamoka pre, .py-pamoka code {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  -webkit-touch-callout: none; cursor: default;
+}
+.py-pamoka pre code{background:none;border:0;padding:0;white-space:pre;font-size:inherit}
+.py-pamoka pre.out{border-left-color:var(--ok);background:var(--surface)}
+.py-pamoka .label{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.py-pamoka .menu{font-family:var(--f-display);font-weight:600;white-space:nowrap}
+.py-pamoka kbd{font-family:var(--f-mono);font-size:.82em;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--muted);border-bottom-width:2px;border-radius:5px;padding:1px 6px;white-space:nowrap}
+.py-pamoka td.num,.py-pamoka th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Paveikslėliai */
+.py-pamoka figure{margin:1.2rem 0 1.5rem}
+.py-pamoka figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+.py-pamoka figcaption{font-size:.88rem;color:var(--muted);margin-top:.45rem}
+.py-pamoka .n{display:inline-block;min-width:1.5em;height:1.5em;line-height:1.5em;text-align:center;border-radius:50%;background:var(--warm);color:var(--paper);font-family:var(--f-display);font-weight:700;font-size:.85em}
+
+/* Spalvoti langeliai */
+.py-pamoka .box{border-radius:6px;padding:.85rem 1.1rem;margin:1.2rem 0}
+.py-pamoka .box > :last-child{margin-bottom:0}
+.py-pamoka .box.rule{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.py-pamoka .box.try{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.py-pamoka .box.warn{background:var(--warm-soft);border-left:4px solid var(--warm)}
+.py-pamoka .box strong.t{display:block;font-family:var(--f-display);margin-bottom:4px}
+
+/* Pamokos turinys (svetainės nav.toc skirtas šoniniam meniu – čia jį perrašome) */
+.py-pamoka nav.toc{position:static;font-family:var(--f-body);font-size:1rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.2rem;margin:1.4rem 0}
+.py-pamoka nav.toc strong{display:block;font-family:var(--f-display);margin-bottom:.4rem}
+.py-pamoka nav.toc ol{display:block;margin:0;columns:2;column-gap:2rem;list-style:none;padding:0}
+.py-pamoka nav.toc li{break-inside:avoid}
+.py-pamoka nav.toc a{display:inline;padding:0;color:var(--accent);text-decoration:underline;background:none;border:0;border-radius:0;white-space:normal}
+.py-pamoka nav.toc a:hover{background:none}
+
+/* Užduotys */
+.py-pamoka .task{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:0 0 1rem}
+.py-pamoka .task > :last-child{margin-bottom:0}
+.py-pamoka .task h4{font-family:var(--f-display);font-weight:600;margin:0 0 .4rem;font-size:1.02rem}
+.py-pamoka .level{display:inline-block;font-family:var(--f-mono);font-size:.78rem;font-weight:700;border-radius:4px;padding:1px 8px;margin-right:6px;color:var(--paper)}
+.py-pamoka .level.a{background:var(--ok)}
+.py-pamoka .level.b{background:var(--accent)}
+.py-pamoka .level.c{background:var(--warm)}
+
+/* Išskleidžiami atsakymai: rėmelis ir antraštė – iš svetainės, čia tik turinio tarpai */
+.py-pamoka details{margin:0 0 .7rem}
+.py-pamoka summary{color:var(--accent)}
+.py-pamoka details > :not(summary){margin:.6rem .9rem}
+.py-pamoka details > :last-child{margin-bottom:.8rem}
+.py-pamoka .task details{background:var(--paper)}
+
+@media (max-width:600px){
+  .py-pamoka nav.toc ol{columns:1}
+}
+@media print{
+  .py-pamoka{max-width:none;font-size:11pt}
+  .py-pamoka figure,.py-pamoka pre,.py-pamoka .task,.py-pamoka .box{break-inside:avoid}
+  .py-pamoka details{border:0;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../">9–10 klasės</a> <span aria-hidden="true">/</span> 1 pamoka</p>
+
+<article class="py-pamoka">
+
+<div class="eyebrow">9 klasė · Programavimo pradmenys · Darbo aplinka: Thonny · Trukmė: 45 min</div>
+<h1>1 pamoka. Pirmoji programa su Python</h1>
+<p class="lead">Šioje pamokoje parašysi ir paleisi savo pirmąsias Python programas. Viską gali atlikti savarankiškai: skaityk iš eilės, kiekvieną pavyzdį surink pats ir paleisk.</p>
+
+<h3>Ko išmoksi</h3>
+<ul>
+  <li>atidaryti Thonny, sukurti, įrašyti ir paleisti programą;</li>
+  <li>išvesti tekstą ir skaičius komanda <code>print()</code>;</li>
+  <li>atlikti aritmetinius veiksmus Python kalba;</li>
+  <li>sukurti kintamąjį, priskirti jam reikšmę ir ją panaudoti;</li>
+  <li>perskaityti klaidos pranešimą ir pataisyti dažniausias klaidas.</li>
+</ul>
+
+<nav class="toc" aria-label="Pamokos turinys">
+  <strong>Pamokos eiga</strong>
+  <ol>
+    <li><a href="#schema">1. Nuo schemos prie programos</a> · 3 min</li>
+    <li><a href="#thonny">2. Thonny paruošimas</a> · 5 min</li>
+    <li><a href="#pirmoji">3. Pirmoji programa</a> · 7 min</li>
+    <li><a href="#skaiciuotuvas">4. Python kaip skaičiuotuvas</a> · 6 min</li>
+    <li><a href="#kintamieji">5. Kintamieji</a> · 9 min</li>
+    <li><a href="#klaidos">6. Komentarai ir klaidos</a> · 5 min</li>
+    <li><a href="#uzduotys">7. Praktinės užduotys</a> · 10 min</li>
+    <li><a href="#pasitikrink">8. Pasitikrink</a></li>
+    <li><a href="#atsiskaitymas">9. Atsiskaitymas</a></li>
+  </ol>
+</nav>
+
+<div class="box rule">
+  <strong class="t">Svarbiausia taisyklė</strong>
+  <p>Kodo nekopijuok – surink jį klaviatūra pats. Rinkdamas įsimeni rašybą ir greičiau pastebi klaidas.</p>
+</div>
+
+<!-- ===================== 1 ===================== -->
+<h2 id="schema">1. Nuo blokinės schemos prie programos</h2>
+<p>Programa yra tas pats algoritmas, tik užrašytas kompiuteriui suprantama kalba. Iki šiol algoritmus vaizdavai blokinėmis schemomis. Dabar tuos pačius žingsnius rašysi tekstu – Python kalbos komandomis.</p>
+<p><strong>Python</strong> yra programavimo kalba. Ji turi aiškias rašybos taisykles, tačiau jos komandos primena paprastus angliškus žodžius, todėl ją patogu mokytis pirmąją.</p>
+<p><strong>Thonny</strong> yra programa, kurioje rašysi ir paleisi Python kodą. Tai pradedantiesiems sukurta programavimo aplinka: joje yra vieta kodui rašyti ir vieta rezultatui matyti.</p>
+<p>Blokinės schemos ženklai turi atitikmenis Python kalboje:</p>
+<div class="tbl">
+<table>
+  <thead><tr><th>Blokinėje schemoje</th><th>Python kalboje</th><th>Kada mokysimės</th></tr></thead>
+  <tbody>
+    <tr><td>Pradžia ir pabaiga (ovalas)</td><td>Atskiros komandos nėra: programa prasideda pirmąja eilute ir baigiasi paskutine</td><td>Šią pamoką</td></tr>
+    <tr><td>Duomenų išvedimas (lygiagretainis)</td><td><code>print()</code></td><td>Šią pamoką</td></tr>
+    <tr><td>Veiksmas, priskyrimas (stačiakampis)</td><td><code>=</code> ir aritmetiniai veiksmai</td><td>Šią pamoką</td></tr>
+    <tr><td>Duomenų įvedimas (lygiagretainis)</td><td><code>input()</code></td><td>Kitą pamoką</td></tr>
+    <tr><td>Sąlyga (rombas)</td><td><code>if</code></td><td>Vėliau</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Kompiuteris komandas vykdo taip pat, kaip tu skaitai schemą: <strong>po vieną, iš viršaus į apačią</strong>.</p>
+
+<!-- ===================== 2 ===================== -->
+<h2 id="thonny">2. Thonny paruošimas</h2>
+<p>Mokyklos kompiuteryje Thonny jau įdiegta – susirask ją tarp programų ir atidaryk. Namuose ją nemokamai atsisiųsi iš svetainės <a href="https://thonny.org" target="_blank" rel="noopener">thonny.org</a>: puslapio viršuje pasirink savo operacinę sistemą (Windows, Mac arba Linux) ir įdiek kaip įprastą programą. Python įdiegiamas kartu, atskirai jo siųstis nereikia.</p>
+<figure>
+  <img src="img/01-thonny-org.png" width="627" height="90" alt="Svetainės thonny.org viršus su atsisiuntimo nuorodomis Windows, Mac ir Linux sistemoms">
+  <figcaption>Atsisiuntimo nuorodos svetainėje thonny.org.</figcaption>
+</figure>
+<p>Pirmą kartą paleidus Thonny, ji paklausia kalbos – pasirink lietuvių. Jei tavo Thonny meniu angliškas, kalbą pakeisi taip: <span class="menu">Tools → Options → General → Language</span>, pasirink lietuvių kalbą ir paleisk Thonny iš naujo. Toliau šioje pamokoje visi meniu pavadinimai lietuviški.</p>
+
+<h3>Thonny langas</h3>
+<figure>
+  <img src="img/02-langas.png" width="1109" height="787" alt="Tuščias Thonny langas su penkiomis sunumeruotomis dalimis: meniu, įrankių juosta, redaktorius, komandų eilutė ir kintamųjų langelis">
+  <figcaption>Thonny langas. Skaičiai paaiškinti lentelėje.</figcaption>
+</figure>
+<div class="tbl">
+<table>
+  <thead><tr><th>Nr.</th><th>Lango dalis</th><th>Kam skirta</th></tr></thead>
+  <tbody>
+    <tr><td><span class="n">1</span></td><td>Meniu</td><td><span class="menu">Failas</span>, <span class="menu">Keisti</span>, <span class="menu">Vaizdas</span>, <span class="menu">Paleisti</span>, <span class="menu">Įrankiai</span>, <span class="menu">Pagalba</span></td></tr>
+    <tr><td><span class="n">2</span></td><td>Įrankių juosta</td><td>Dažniausiai naudojami mygtukai</td></tr>
+    <tr><td><span class="n">3</span></td><td>Redaktorius</td><td>Čia rašai programą. Ji įrašoma į failą ir gali būti paleista daug kartų</td></tr>
+    <tr><td><span class="n">4</span></td><td>Komandų eilutė (kortelė <span class="menu">Komand. eilutė</span>)</td><td>Čia matai programos rezultatą ir klaidų pranešimus. Prie ženklo <code>&gt;&gt;&gt;</code> gali išbandyti vieną komandą iš karto</td></tr>
+    <tr><td><span class="n">5</span></td><td>Langelis <span class="menu">Kintamieji</span></td><td>Čia matysi savo programos kintamuosius ir jų reikšmes</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Svarbiausi mygtukai</h3>
+<figure>
+  <img src="img/03-mygtukai.png" width="852" height="170" alt="Thonny įrankių juosta su penkiais sunumeruotais mygtukais">
+  <figcaption>Thonny įrankių juosta.</figcaption>
+</figure>
+<div class="tbl">
+<table>
+  <thead><tr><th>Nr.</th><th>Mygtukas</th><th>Ką daro</th><th>Klavišai</th></tr></thead>
+  <tbody>
+    <tr><td><span class="n">1</span></td><td>Baltas lapas</td><td>Sukuria naują failą</td><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td></tr>
+    <tr><td><span class="n">2</span></td><td>Aplankas</td><td>Atveria anksčiau įrašytą failą</td><td><kbd>Ctrl</kbd>+<kbd>O</kbd></td></tr>
+    <tr><td><span class="n">3</span></td><td>Diskelis</td><td>Įrašo failą</td><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td></tr>
+    <tr><td><span class="n">4</span></td><td>Žalias apskritimas su trikampiu</td><td>Paleidžia programą</td><td><kbd>F5</kbd></td></tr>
+    <tr><td><span class="n">5</span></td><td>Raudonas ženklas STOP</td><td>Sustabdo programą</td><td><kbd>Ctrl</kbd>+<kbd>F2</kbd></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Pasiruošk darbo vietą</h3>
+<ol>
+  <li>Kompiuteryje sukurk aplanką <code>python</code>. Jame laikysi visas savo programas. Šios pamokos nuotraukose aplankas yra diske C: (<code>C:\python</code>); mokyklos kompiuteryje jį kurk ten, kur nurodė mokytojas.</li>
+  <li>Jei dešinėje nematai langelio <span class="menu">Kintamieji</span>, meniu pasirink <span class="menu">Vaizdas → Kintamieji</span>.</li>
+</ol>
+<figure>
+  <img src="img/04-vaizdas-kintamieji.png" width="462" height="545" alt="Išskleistas Thonny meniu Vaizdas, pažymėtas punktas Kintamieji">
+  <figcaption>Meniu <span class="menu">Vaizdas</span>: varnelė prie <span class="menu">Kintamieji</span> reiškia, kad langelis rodomas. Tame pačiame meniu gali padidinti šriftą.</figcaption>
+</figure>
+
+<p>Failų pavadinimų taisyklės:</p>
+<ul>
+  <li>pavadinimas baigiasi <code>.py</code>, pavyzdžiui, <code>labas.py</code>;</li>
+  <li>rašyk mažosiomis raidėmis, be tarpų ir be lietuviškų raidžių: <code>pirma_programa.py</code>, o ne <code>Pirma programa.py</code>;</li>
+  <li>failo nevadink <code>python.py</code>, <code>print.py</code> ar <code>turtle.py</code> – tokie vardai trukdo Python darbui.</li>
+</ul>
+
+<!-- ===================== 3 ===================== -->
+<h2 id="pirmoji">3. Pirmoji programa</h2>
+<p>Komanda <code>print()</code> išveda į ekraną tai, ką parašai skliaustuose. Tai blokinės schemos išvedimo blokas.</p>
+
+<h3>Parašyk ir paleisk</h3>
+<ol>
+  <li>Thonny redaktoriuje (viršutinėje dalyje) surink:
+<pre><code>print("Labas, pasauli!")</code></pre>
+  </li>
+  <li>Paspausk <kbd>Ctrl</kbd>+<kbd>S</kbd> (arba <span class="menu">Failas → Įrašyti</span>). Atsidarys langas <span class="menu">Įrašyti kaip</span>. Atverk savo aplanką <code>python</code>, laukelyje <span class="menu">Failo vardas</span> įrašyk <code>labas.py</code> ir spausk <span class="menu">Įrašyti</span>.</li>
+</ol>
+<figure>
+  <img src="img/05-issaugojimas.png" width="738" height="518" alt="Langas Įrašyti kaip: atvertas aplankas python, failo vardas labas.py" loading="lazy">
+  <figcaption>Langas <span class="menu">Įrašyti kaip</span>: aplankas <code>python</code>, failo vardas <code>labas.py</code>.</figcaption>
+</figure>
+<ol start="3">
+  <li>Paspausk <kbd>F5</kbd> arba žalią mygtuką (meniu – <span class="menu">Paleisti</span>).</li>
+  <li>Pažiūrėk į komandų eilutę apačioje. Turi matyti <code>Labas, pasauli!</code></li>
+</ol>
+<figure>
+  <img src="img/06-pirma-programa.png" width="1108" height="786" alt="Thonny langas: redaktoriuje programa labas.py, komandų eilutėje rezultatas Labas, pasauli!" loading="lazy">
+  <figcaption>Viršuje – programa, apačioje – jos rezultatas.</figcaption>
+</figure>
+<p>Sveikinu – tai tavo pirmoji programa.</p>
+
+<h3>Kaip sudaryta komanda</h3>
+<pre><code>print("Labas, pasauli!")</code></pre>
+<div class="tbl">
+<table>
+  <thead><tr><th>Dalis</th><th>Ką reiškia</th></tr></thead>
+  <tbody>
+    <tr><td><code>print</code></td><td>Komandos vardas. Rašomas tik mažosiomis raidėmis</td></tr>
+    <tr><td><code>( )</code></td><td>Skliaustuose nurodai, ką išvesti. Atidaręs skliaustą, būtinai jį uždaryk</td></tr>
+    <tr><td><code>" "</code></td><td>Kabutės žymi tekstą. Tarp jų gali rašyti bet ką, ir lietuviškas raides</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="box warn">
+  <p>Kabutės turi būti tiesios, surinktos klaviatūra: <code>"</code>. Lietuviškos kabutės „ “, nukopijuotos iš teksto redaktoriaus, netinka.</p>
+</div>
+
+<h3>Kelios eilutės</h3>
+<p>Kiekviena <code>print()</code> komanda išveda naują eilutę. Papildyk programą ir vėl paleisk:</p>
+<pre><code>print("Labas, pasauli!")
+print("Mokausi programuoti.")
+print("Tai mano pirmoji programa.")</code></pre>
+<figure>
+  <img src="img/07-kelios-eilutes.png" width="1106" height="783" alt="Thonny langas: trijų print eilučių programa ir trys rezultato eilutės komandų eilutėje" loading="lazy">
+  <figcaption>Trys komandos – trys rezultato eilutės. Eilutė <code>%Run labas.py</code> reiškia, kad Thonny paleido tavo failą.</figcaption>
+</figure>
+<p>Kiekvieną komandą rašyk naujoje eilutėje ir pradėk nuo pat eilutės pradžios. Tarpai eilutės pradžioje Python kalboje turi reikšmę, todėl kol kas jų nedėk.</p>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Pakeisk programą taip, kad ji išvestų tavo vardą, klasę ir mėgstamą dalyką – kiekvieną atskiroje eilutėje.</p>
+</div>
+
+<!-- ===================== 4 ===================== -->
+<h2 id="skaiciuotuvas">4. Python kaip skaičiuotuvas</h2>
+<p>Python moka skaičiuoti: skaičius rašai be kabučių, o veiksmus žymi ženklais. Išbandyk komandų eilutėje – spustelėk prie <code>&gt;&gt;&gt;</code>, surink veiksmą ir paspausk <kbd>Enter</kbd>.</p>
+<figure>
+  <img src="img/08-komandu-eilute.png" width="858" height="478" alt="Komandų eilutė su veiksmais 7 + 2, 7 / 2, 7 // 2, 7 % 2 ir jų rezultatais 9, 3.5, 3, 1" loading="lazy">
+  <figcaption>Komandų eilutėje atsakymą matai iš karto po <kbd>Enter</kbd>.</figcaption>
+</figure>
+<div class="tbl">
+<table>
+  <thead><tr><th>Veiksmas</th><th>Ženklas</th><th>Pavyzdys</th><th class="num">Rezultatas</th></tr></thead>
+  <tbody>
+    <tr><td>Sudėtis</td><td><code>+</code></td><td><code>7 + 2</code></td><td class="num">9</td></tr>
+    <tr><td>Atimtis</td><td><code>-</code></td><td><code>7 - 2</code></td><td class="num">5</td></tr>
+    <tr><td>Daugyba</td><td><code>*</code></td><td><code>7 * 2</code></td><td class="num">14</td></tr>
+    <tr><td>Dalyba</td><td><code>/</code></td><td><code>7 / 2</code></td><td class="num">3.5</td></tr>
+    <tr><td>Dalyba be liekanos (sveikoji dalis)</td><td><code>//</code></td><td><code>7 // 2</code></td><td class="num">3</td></tr>
+    <tr><td>Dalybos liekana</td><td><code>%</code></td><td><code>7 % 2</code></td><td class="num">1</td></tr>
+    <tr><td>Kėlimas laipsniu</td><td><code>**</code></td><td><code>7 ** 2</code></td><td class="num">49</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Keturi dalykai, kurie skiriasi nuo matematikos pamokos:</p>
+<ul>
+  <li><strong>Dešimtainė trupmena rašoma su tašku:</strong> <code>3.5</code>, o ne <code>3,5</code>.</li>
+  <li><strong>Daugybos ženklas būtinas:</strong> rašyk <code>2 * 5</code>, o ne <code>2 x 5</code> ar <code>2 · 5</code>.</li>
+  <li><strong>Dalybos <code>/</code> rezultatas visada su tašku:</strong> <code>8 / 2</code> duoda <code>4.0</code>, o ne <code>4</code>.</li>
+  <li><strong>Veiksmų tvarka tokia pati kaip matematikoje:</strong> pirma laipsnis, tada daugyba ir dalyba, tada sudėtis ir atimtis. Tvarką keičia skliaustai: <code>2 + 3 * 4</code> yra 14, o <code>(2 + 3) * 4</code> yra 20.</li>
+</ul>
+
+<h3>Skaičiai programoje</h3>
+<p>Komandų eilutė atsakymą parodo iš karto, bet programoje (redaktoriuje) rezultatą reikia išvesti komanda <code>print()</code>. Sukurk naują failą (<kbd>Ctrl</kbd>+<kbd>N</kbd>), įrašyk jį vardu <code>skaiciuotuvas.py</code> ir surink:</p>
+<pre><code>print(7 + 2)
+print("7 + 2")
+print("7 + 2 =", 7 + 2)</code></pre>
+<figure>
+  <img src="img/09-skaiciuotuvas.png" width="1109" height="734" alt="Programa skaiciuotuvas.py ir jos rezultatas: 9, 7 + 2, 7 + 2 = 9" loading="lazy">
+  <figcaption>Programa <code>skaiciuotuvas.py</code> ir jos rezultatas.</figcaption>
+</figure>
+<p>Palygink pirmąsias dvi eilutes. Be kabučių Python <strong>apskaičiuoja</strong> reiškinį. Kabutėse esantį tekstą išveda <strong>tiksliai tokį, koks parašytas</strong>.</p>
+<p>Trečioje eilutėje <code>print()</code> išveda du dalykus, atskirtus kableliu: tekstą ir apskaičiuotą skaičių. Tarp jų Python pats įterpia tarpą.</p>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Apskaičiuok ir išvesk, kiek sekundžių yra vienoje paroje. Teisingas atsakymas – 86400.</p>
+</div>
+
+<!-- ===================== 5 ===================== -->
+<h2 id="kintamieji">5. Kintamieji</h2>
+<p>Kintamasis yra vardas, kuriuo programa įsimena reikšmę. Įsivaizduok dėžutę su užrašu: užrašas yra kintamojo vardas, o dėžutės turinys – jo reikšmė. Blokinėse schemose kintamuosius jau naudojai, pavyzdžiui, <code>a</code>, <code>b</code>, <code>suma</code>.</p>
+<p>Reikšmė kintamajam priskiriama ženklu <code>=</code>. Sukurk failą <code>kintamieji.py</code>:</p>
+<pre><code>vardas = "Rasa"
+amzius = 15
+print("Mano vardas", vardas)
+print("Man", amzius, "metų")</code></pre>
+<figure>
+  <img src="img/10-kintamieji.png" width="1109" height="738" alt="Programa kintamieji.py: komandų eilutėje rezultatas, o langelyje Kintamieji matyti amzius 15 ir vardas Rasa" loading="lazy">
+  <figcaption>Paleidus programą, langelyje <span class="menu">Kintamieji</span> matai kiekvieno kintamojo vardą ir vertę.</figcaption>
+</figure>
+<p>Atkreipk dėmesį į kabutes. <code>"vardas"</code> kabutėse yra tiesiog tekstas, o <code>vardas</code> be kabučių – kintamasis, vietoj kurio Python įstato jo reikšmę.</p>
+
+<h3>Ženklas = reiškia „priskirti“</h3>
+<p>Python kalboje <code>=</code> nėra lygybė kaip matematikoje. Tai nurodymas: <strong>apskaičiuok tai, kas dešinėje, ir įsimink kintamajame, kuris kairėje.</strong> Tai tas pats priskyrimo veiksmas, kurį blokinėje schemoje rašei stačiakampyje.</p>
+<pre><code>ilgis = 8
+plotis = 5
+plotas = ilgis * plotis
+print("Stačiakampio plotas:", plotas)</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Stačiakampio plotas: 40</code></pre>
+<p>Kintamojo reikšmę galima pakeisti. Nauja reikšmė pakeičia senąją:</p>
+<pre><code>taskai = 10
+print(taskai)
+taskai = taskai + 5
+print(taskai)</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>10
+15</code></pre>
+<p>Eilutė <code>taskai = taskai + 5</code> matematikoje neturi prasmės, bet programoje ji reiškia: paimk dabartinę <code>taskai</code> reikšmę (10), pridėk 5 ir rezultatą (15) vėl įsimink kintamajame <code>taskai</code>.</p>
+
+<h3>Kintamųjų vardų taisyklės</h3>
+<div class="tbl">
+<table>
+  <thead><tr><th>Taisyklė</th><th>Tinka</th><th>Netinka</th></tr></thead>
+  <tbody>
+    <tr><td>Vardas be tarpų; žodžius jungia pabraukimo brūkšnys</td><td><code>mano_vardas</code></td><td><code>mano vardas</code></td></tr>
+    <tr><td>Vardas neprasideda skaitmeniu</td><td><code>skaicius1</code></td><td><code>1skaicius</code></td></tr>
+    <tr><td>Vardas nusako, kas jame saugoma</td><td><code>plotas</code>, <code>kaina</code></td><td><code>x1</code>, <code>aaa</code></td></tr>
+    <tr><td>Vardas nėra Python komanda</td><td><code>rezultatas</code></td><td><code>print</code></td></tr>
+  </tbody>
+</table>
+</div>
+<p>Didžiosios ir mažosios raidės skiriasi: <code>plotas</code> ir <code>Plotas</code> yra du skirtingi kintamieji. Kintamųjų varduose geriau nenaudoti lietuviškų raidžių: rašyk <code>amzius</code>, o ne <code>amžius</code>. Tekste kabutėse lietuviškos raidės visada tinka.</p>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Sukurk kintamuosius <code>kaina</code> (vieno bilieto kaina) ir <code>kiekis</code> (bilietų skaičius). Apskaičiuok ir išvesk, kiek kainuos visi bilietai.</p>
+</div>
+
+<!-- ===================== 6 ===================== -->
+<h2 id="klaidos">6. Komentarai ir klaidos</h2>
+<h3>Komentarai</h3>
+<p>Komentaras yra pastaba žmogui, kurios Python nevykdo. Jis prasideda ženklu <code>#</code> ir tęsiasi iki eilutės galo.</p>
+<pre><code># Programa skaičiuoja stačiakampio plotą
+ilgis = 8        # ilgis centimetrais
+plotis = 5       # plotis centimetrais
+print(ilgis * plotis)</code></pre>
+<p>Kiekvienos programos pirmoje eilutėje komentaru užrašyk, ką ji daro, ir savo vardą.</p>
+
+<h3>Klaidos yra normalu</h3>
+<p>Klaidų daro visi programuotojai, ir pradedantieji, ir profesionalai. Python klaidos nenutyli: komandų eilutėje raudonai parašo, <strong>kurioje eilutėje</strong> ir <strong>kas negerai</strong>. Klaidos pranešimas yra pagalba, o ne bausmė.</p>
+<p>Pavyzdys: komanda <code>print</code> parašyta didžiąja raide.</p>
+<figure>
+  <img src="img/11-nameerror.png" width="1109" height="736" alt="Programa su klaida Print didžiąja raide. Komandų eilutėje raudonas pranešimas: line 1, NameError: name Print is not defined" loading="lazy">
+  <figcaption>Pranešime ieškok dviejų dalykų: eilutės numerio (<code>line 1</code>) ir paskutinės eilutės (<code>NameError: name 'Print' is not defined</code>).</figcaption>
+</figure>
+<p>Kaip skaityti klaidos pranešimą:</p>
+<ol>
+  <li>Rask eilutės numerį, pavyzdžiui, <code>line 1</code>.</li>
+  <li>Perskaityk paskutinę pranešimo eilutę – joje klaidos pavadinimas ir paaiškinimas.</li>
+  <li>Atidžiai peržiūrėk nurodytą eilutę. Jei joje klaidos nerandi, patikrink eilutę virš jos.</li>
+  <li>Pataisyk ir paleisk programą iš naujo.</li>
+</ol>
+<p>Kitas pavyzdys: pamiršta uždaryti kabutes.</p>
+<figure>
+  <img src="img/12-syntaxerror.png" width="1109" height="729" alt="Programa su neuždarytomis kabutėmis. Komandų eilutėje raudonas pranešimas: SyntaxError: unterminated string literal" loading="lazy">
+  <figcaption>Ženklas <code>^</code> rodo vietą, kurioje Python pastebėjo klaidą. Dešinėje atsidaręs langelis <span class="menu">Asistentas</span> klaidą paaiškina plačiau, bet angliškai.</figcaption>
+</figure>
+<p>Dažniausios pirmųjų pamokų klaidos:</p>
+<div class="tbl">
+<table>
+  <thead><tr><th>Klaidingas kodas</th><th>Python pranešimas</th><th>Kas negerai</th><th>Kaip taisyti</th></tr></thead>
+  <tbody>
+    <tr><td><code>Print("Labas")</code></td><td>NameError: name 'Print' is not defined</td><td>Komanda parašyta didžiąja raide</td><td><code>print("Labas")</code></td></tr>
+    <tr><td><code>print("Labas)</code></td><td>SyntaxError: unterminated string literal</td><td>Neuždarytos kabutės</td><td><code>print("Labas")</code></td></tr>
+    <tr><td><code>print("Labas"</code></td><td>SyntaxError: '(' was never closed</td><td>Neuždarytas skliaustas</td><td><code>print("Labas")</code></td></tr>
+    <tr><td><code>print("Plotas:" plotas)</code></td><td>SyntaxError: invalid syntax</td><td>Trūksta kablelio tarp teksto ir kintamojo</td><td><code>print("Plotas:", plotas)</code></td></tr>
+    <tr><td><code>print(plotas)</code>, kai kintamasis <code>plotas</code> dar nesukurtas</td><td>NameError: name 'plotas' is not defined</td><td>Kintamasis naudojamas anksčiau, nei jam priskirta reikšmė, arba jo vardas parašytas su klaida</td><td>Pirma priskirk reikšmę, patikrink vardo rašybą</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Du klaidų pavadinimai, kuriuos verta įsiminti:</p>
+<ul>
+  <li><code>SyntaxError</code> – rašybos klaida: trūksta skliausto, kabučių, kablelio.</li>
+  <li><code>NameError</code> – Python nežino tokio vardo: suklydai rašydamas komandą ar kintamąjį.</li>
+</ul>
+<div class="box warn">
+  <p>Būna ir klaidų, apie kurias Python nepraneša: programa veikia, bet atsakymas neteisingas. Pavyzdžiui, perimetrui skaičiuoti parašei <code>ilgis * plotis</code>. Todėl rezultatą visada patikrink pats – su skaičiais, kurių atsakymą žinai.</p>
+</div>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Savo programoje <code>labas.py</code> tyčia padaryk klaidą: ištrink vieną kabutę ir paleisk. Perskaityk pranešimą, rask jame eilutės numerį, tada klaidą pataisyk.</p>
+</div>
+
+<!-- ===================== 7 ===================== -->
+<h2 id="uzduotys">7. Praktinės užduotys</h2>
+<p>Kiekvieną užduotį atlik atskirame faile ir įrašyk aplanke <code>python</code>. A lygio užduotys privalomos visiems. B ir C lygio užduotis rinkis, jei A lygis pavyko.</p>
+<p>Kiekvienos programos pirmoje eilutėje komentaru parašyk savo vardą ir ką programa daro.</p>
+
+<h3>A lygis: pagrindai</h3>
+<div class="task">
+  <h4><span class="level a">A</span>1 užduotis. Vizitinė · <code>vizitine.py</code></h4>
+  <p>Parašyk programą, kuri išveda tris eilutes: tavo vardą, klasę ir pomėgį. Pavyzdys:</p>
+<pre class="out"><code>Vardas: Rasa
+Klasė: 9a
+Pomėgis: krepšinis</code></pre>
+</div>
+<div class="task">
+  <h4><span class="level a">A</span>2 užduotis. Minutės · <code>minutes.py</code></h4>
+  <p>Apskaičiuok, kiek minučių yra vienoje savaitėje. Skaičiuoti turi Python, o ne tu. Rezultatą išvesk su paaiškinimu:</p>
+<pre class="out"><code>Savaitėje yra 10080 minučių</code></pre>
+</div>
+<div class="task">
+  <h4><span class="level a">A</span>3 užduotis. Stačiakampis · <code>staciakampis.py</code></h4>
+  <p>Sukurk kintamuosius <code>ilgis</code> ir <code>plotis</code>, priskirk jiems reikšmes 8 ir 5. Apskaičiuok perimetrą ir plotą, rezultatus įsimink kintamuosiuose <code>perimetras</code> ir <code>plotas</code> ir išvesk:</p>
+<pre class="out"><code>Perimetras: 26
+Plotas: 40</code></pre>
+  <p>Pakeisk ilgį į 12, plotį į 7 ir paleisk dar kartą. Turi gauti 38 ir 84, nekeisdamas jokių kitų eilučių.</p>
+</div>
+
+<h3>B lygis: įtvirtinimas</h3>
+<div class="task">
+  <h4><span class="level b">B</span>4 užduotis. Klaidų medžioklė · <code>klaidos.py</code></h4>
+  <p>Šioje programoje yra 4 klaidos. Surink ją tiksliai tokią, paleisk ir taisyk po vieną klaidą, kol programa išves <code>Plotas: 40</code>.</p>
+<pre><code>Print("Stačiakampio skaičiavimai)
+ilgis = 8
+plotis = 5
+plotas = ilgis x plotis
+print("Plotas:" plotas)</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>Klaidos: <code>Print</code> didžiąja raide; pirmoje eilutėje neuždarytos kabutės; daugyba pažymėta <code>x</code> vietoj <code>*</code>; paskutinėje eilutėje trūksta kablelio.</p>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level b">B</span>5 užduotis. Spėk rezultatą · <code>spejimas.py</code></h4>
+  <p>Nepaleidęs programos, ant popieriaus užsirašyk, ką ji išves. Tada surink, paleisk ir palygink.</p>
+<pre><code>a = 4
+b = a + 6
+a = b * 2
+print(a, b)</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>Programa išveda <code>20 10</code>. Pirma <code>a</code> yra 4, <code>b</code> tampa 10, tada <code>a</code> pakeičiamas į 20.</p>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level b">B</span>6 užduotis. Saldainiai · <code>saldainiai.py</code></h4>
+  <p>47 saldainius po lygiai dalijasi 6 draugai. Sukurk kintamuosius <code>saldainiai</code> ir <code>draugai</code>. Apskaičiuok, po kiek saldainių gaus kiekvienas ir kiek liks. Naudok veiksmus <code>//</code> ir <code>%</code>.</p>
+<pre class="out"><code>Kiekvienas gaus: 7
+Liks: 5</code></pre>
+</div>
+
+<h3>C lygis: iššūkis</h3>
+<div class="task">
+  <h4><span class="level c">C</span>7 užduotis. Sukeitimas · <code>sukeitimas.py</code></h4>
+  <p>Programos pradžioje <code>a = 3</code>, <code>b = 9</code>. Sukeisk kintamųjų reikšmes vietomis taip, kad programa išvestų <code>9 3</code>. Eilutės <code>a = 9</code> rašyti negalima: programa turi veikti su bet kokiomis pradinėmis reikšmėmis.</p>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Prireiks trečio kintamojo, kuriame laikinai įsiminsi vieną reikšmę.</p>
+  </details>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+<pre><code>a = 3
+b = 9
+laikinas = a
+a = b
+b = laikinas
+print(a, b)</code></pre>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level c">C</span>8 užduotis. Temperatūra · <code>temperatura.py</code></h4>
+  <p>Temperatūra Celsijaus laipsniais verčiama į Farenheito laipsnius pagal formulę F = C · 9 / 5 + 32. Kintamajam <code>c</code> priskirk 25, apskaičiuok ir išvesk temperatūrą Farenheito laipsniais. Turi gauti 77.0.</p>
+</div>
+<div class="task">
+  <h4><span class="level c">C</span>9 užduotis. Laikas · <code>laikas.py</code></h4>
+  <p>Filmas trunka 200 minučių. Parašyk programą, kuri išveda trukmę valandomis ir minutėmis:</p>
+<pre class="out"><code>Filmas trunka 3 val. 20 min.</code></pre>
+  <p>Pakeitus minučių skaičių į 135, programa turi išvesti <code>2 val. 15 min.</code></p>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Valandos yra <code>minutes // 60</code>, o likusios minutės – <code>minutes % 60</code>.</p>
+  </details>
+</div>
+
+<!-- ===================== 8 ===================== -->
+<h2 id="pasitikrink">8. Pasitikrink</h2>
+<p>Atsakyk į klausimus nepaleisdamas Thonny. Atsakymą užsirašyk ir tik tada atverk teisingą.</p>
+
+<details>
+  <summary>1. Ką išves <code>print("3 + 4")</code>?</summary>
+  <p><code>3 + 4</code> – kabutėse esantis tekstas išvedamas toks, koks parašytas.</p>
+</details>
+<details>
+  <summary>2. Ką išves <code>print(3 + 4 * 2)</code>?</summary>
+  <p><code>11</code> – pirma atliekama daugyba, tada sudėtis.</p>
+</details>
+<details>
+  <summary>3. Kam lygu <code>17 // 5</code> ir <code>17 % 5</code>?</summary>
+  <p><code>3</code> ir <code>2</code> – penketas į 17 telpa 3 kartus, lieka 2.</p>
+</details>
+<details>
+  <summary>4. Ką išves <code>print(10 / 2)</code>?</summary>
+  <p><code>5.0</code> – dalybos <code>/</code> rezultatas visada su tašku.</p>
+</details>
+<details>
+  <summary>5. Kurie vardai tinkami: <code>2klase</code>, <code>klase_2</code>, <code>mano klase</code>, <code>Klase</code>?</summary>
+  <p><code>klase_2</code> ir <code>Klase</code>. Vardas <code>2klase</code> prasideda skaitmeniu, o <code>mano klase</code> turi tarpą.</p>
+</details>
+<details>
+  <summary>6. Kokia klaida eilutėje <code>print("Suma:" 5 + 3)</code>?</summary>
+  <p>Trūksta kablelio po teksto. Teisingai: <code>print("Suma:", 5 + 3)</code>.</p>
+</details>
+<details>
+  <summary>7. Ką išves programa: <code>x = 3</code>, <code>x = x * x</code>, <code>x = x + 1</code>, <code>print(x)</code>?</summary>
+  <p><code>10</code> – iš pradžių 3, tada 3 · 3 = 9, tada 9 + 1 = 10.</p>
+</details>
+<details>
+  <summary>8. Kuo skiriasi Thonny redaktorius nuo komandų eilutės?</summary>
+  <p>Redaktoriuje rašoma visa programa, kuri įrašoma į failą ir paleidžiama klavišu F5. Komandų eilutėje matomas rezultatas ir galima išbandyti vieną komandą iš karto.</p>
+</details>
+
+<p>Jei teisingai atsakei į 6 ar daugiau klausimų, pamokos medžiagą supratai. Jei mažiau – grįžk prie skyriaus, kuriame suklydai, ir pakartok jo pavyzdžius.</p>
+
+<!-- ===================== 9 ===================== -->
+<h2 id="atsiskaitymas">9. Atsiskaitymas</h2>
+<p>Atsiskaitymui atsiųsk tris A lygio programas: <code>vizitine.py</code>, <code>minutes.py</code> ir <code>staciakampis.py</code>. Jei atlikai B ar C lygio užduočių, pridėk ir jas.</p>
+<ol>
+  <li>Kiekvieną programą paleisk dar kartą ir įsitikink, kad ji veikia be klaidų.</li>
+  <li>Patikrink, ar kiekvienos programos pirmoje eilutėje yra komentaras su tavo vardu.</li>
+  <li>Failus prisek prie laiško ir išsiųsk adresu <a href="mailto:vidas.darbai@gmail.com">vidas.darbai@gmail.com</a>.</li>
+  <li>Laiško temoje parašyk klasę, vardą, pavardę ir „Python 1 pamoka“.</li>
+</ol>
+
+<h3>Įsivertink</h3>
+<p>Pamoką įveikei, jei gali pasakyti:</p>
+<ul>
+  <li>moku sukurti, įrašyti ir paleisti programą Thonny aplinkoje;</li>
+  <li>žinau, kada <code>print()</code> skliaustuose reikia kabučių, o kada ne;</li>
+  <li>moku užrašyti aritmetinius veiksmus, žinau, ką daro <code>//</code> ir <code>%</code>;</li>
+  <li>moku sukurti kintamąjį ir panaudoti jį skaičiavimuose;</li>
+  <li>gavęs klaidos pranešimą, randu eilutės numerį ir klaidos pavadinimą.</li>
+</ul>
+
+<h3>Svarbiausia iš šios pamokos</h3>
+<div class="tbl">
+<table>
+  <thead><tr><th>Kas</th><th>Kaip rašoma</th><th>Pavyzdys</th></tr></thead>
+  <tbody>
+    <tr><td>Teksto išvedimas</td><td><code>print("tekstas")</code></td><td><code>print("Labas")</code></td></tr>
+    <tr><td>Skaičiavimo išvedimas</td><td><code>print(reiškinys)</code></td><td><code>print(7 * 2)</code></td></tr>
+    <tr><td>Keli dalykai vienoje eilutėje</td><td><code>print(a, b)</code></td><td><code>print("Plotas:", plotas)</code></td></tr>
+    <tr><td>Priskyrimas</td><td><code>vardas = reikšmė</code></td><td><code>ilgis = 8</code></td></tr>
+    <tr><td>Komentaras</td><td><code># tekstas</code></td><td><code># skaičiuoju plotą</code></td></tr>
+    <tr><td>Paleidimas</td><td><kbd>F5</kbd> arba meniu <span class="menu">Paleisti</span></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Kitoje pamokoje</h3>
+<p>Šios pamokos programos visada skaičiuoja su tais pačiais skaičiais, kuriuos įrašei į kodą. Kitoje pamokoje išmoksi komandą <code>input()</code>: programa paklaus duomenų vartotojo, kaip blokinės schemos įvedimo blokas.</p>
+
+</article>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 9–10 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+<script>
+/* Atsarginė apsauga: kopijuojant pažymėtą tekstą, kodo blokai į iškarpinę nepatenka */
+(function () {
+  var root = document.querySelector('.py-pamoka');
+  if (!root) return;
+  root.addEventListener('copy', function (e) {
+    var sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    var box = document.createElement('div');
+    for (var i = 0; i < sel.rangeCount; i++) box.appendChild(sel.getRangeAt(i).cloneContents());
+    var anchor = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+    var inCode = anchor && anchor.closest && anchor.closest('pre, code');
+    var codes = box.querySelectorAll('pre, code');
+    if (!inCode && codes.length === 0) return;
+    for (var j = 0; j < codes.length; j++) codes[j].parentNode.removeChild(codes[j]);
+    e.preventDefault();
+    if (e.clipboardData) e.clipboardData.setData('text/plain', inCode ? '' : box.textContent);
+  });
+  root.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.closest && e.target.closest('pre, code')) e.preventDefault();
+  });
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>

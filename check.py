@@ -158,7 +158,9 @@ def check_built():
             err(f"dist/vbe/index.html: nuoroda {h} veda į neegzistuojančią vietą")
     for f in ("index.html", "assets/css/site.css", "assets/js/vbe.js", "assets/js/bot.js", "vbe/data.js",
               "7-8/index.html", "assets/js/pamokos.js", "7-8/kompiuterio-vidus/index.html", "7-8/kompiuterio-vidus/img/kompiuteris.webp",
-              "7-8/kompiuteriu-daktaras/index.html", "7-8/kompiuteriu-daktaras/img/fan.webp"):
+              "7-8/kompiuteriu-daktaras/index.html", "7-8/kompiuteriu-daktaras/img/fan.webp",
+              "9-10/index.html", "9-10/python-1/index.html") + tuple(
+              f"9-10/python-1/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "9-10" / "python-1" / "index.html").read_text(encoding="utf-8"))):
         if not (DIST / f).exists():
             err(f"dist/{f} nerastas")
     return [h for h in p.hrefs if h.startswith("http")]

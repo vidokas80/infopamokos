@@ -7,7 +7,7 @@ img{max-width:100%}
 :root{
   --paper:#f6f7f5; --surface:#ffffff; --ink:#1b2430; --muted:#5a6573; --line:#d9dee3;
   --accent:#0b6b6b; --accent-soft:#e1f0ef; --marker:#f6e27a; --marker-ink:#1b2430;
-  --code-bg:#eef1f3; --warm:#b4561c; --warm-soft:#f8e8dc; --ok:#1d7a3e; --bad:#b3261e;
+  --code-bg:#eef1f3; --warm:#b4561c; --warm-soft:#f8e8dc; --ok:#1d7a3e; --ok-soft:#e4f3ea; --bad:#b3261e;
   /* Nekintančios abiejose temose: šešėlis ir baltas paveikslėlio fonas (JPG pavyzdys) */
   --shade:#0b0f14; --white:#ffffff; --photo:#fcf7f2;
   --f-display:"Commissioner", "Segoe UI", system-ui, sans-serif;
@@ -17,10 +17,10 @@ img{max-width:100%}
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#11161b; --surface:#182028; --ink:#e3e8ec; --muted:#9aa6b2; --line:#2b3540;
-  --accent:#55c2b8; --accent-soft:#1b3233; --marker:#5b5122; --marker-ink:#fff5c4; --code-bg:#1e2730; --warm:#e9a26a; --warm-soft:#3a2a1f; --ok:#6fcf8f; --bad:#ff8a80; color-scheme:dark}}
+  --accent:#55c2b8; --accent-soft:#1b3233; --marker:#5b5122; --marker-ink:#fff5c4; --code-bg:#1e2730; --warm:#e9a26a; --warm-soft:#3a2a1f; --ok:#6fcf8f; --ok-soft:#173022; --bad:#ff8a80; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#11161b; --surface:#182028; --ink:#e3e8ec; --muted:#9aa6b2; --line:#2b3540;
-  --accent:#55c2b8; --accent-soft:#1b3233; --marker:#5b5122; --marker-ink:#fff5c4; --code-bg:#1e2730; --warm:#e9a26a; --warm-soft:#3a2a1f; --ok:#6fcf8f; --bad:#ff8a80; color-scheme:dark}
+  --accent:#55c2b8; --accent-soft:#1b3233; --marker:#5b5122; --marker-ink:#fff5c4; --code-bg:#1e2730; --warm:#e9a26a; --warm-soft:#3a2a1f; --ok:#6fcf8f; --ok-soft:#173022; --bad:#ff8a80; color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
