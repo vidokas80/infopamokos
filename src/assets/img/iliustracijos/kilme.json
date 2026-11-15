@@ -135,5 +135,37 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-10-25"
+ },
+ "pamoka-excel-1.webp": {
+  "aprasymas": "Over-the-shoulder view from behind: a teenage student sits at a desk with his back turned to the viewer, we see the back of his head, his shoulder and hoodie in the left foreground. Past his shoulder we look at a desktop monitor showing a spreadsheet: an abstract grid of cells with column header strip, one column of cells highlighted in teal and a single result cell glowing orange at the bottom of that column. A keyboard and mouse on the desk, a small calculator and a notebook beside them. The student's face is not visible. Keep the monitor and the student's shoulder centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. The screen shows only abstract shapes (grid lines, colored blocks), never text, letters, numbers or logos.",
+  "alt": "Vaizdas per mokinio petį: kompiuterio ekrane skaičiuoklė su paryškintu langelių stulpeliu ir oranžiniu rezultato langeliu apačioje.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-15"
+ },
+ "pamoka-aparatine-iranga.webp": {
+  "aprasymas": "Two teenage students looking inside an open desktop computer case on a school desk. Inside are clearly visible simplified parts: a motherboard, a processor with a fan cooler, memory sticks, a graphics card and a power supply. One student points at the processor. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Du mokiniai žiūri į atidarytą kompiuterio korpusą: matyti pagrindinė plokštė, procesorius su aušintuvu, atminties moduliai, vaizdo plokštė ir maitinimo blokas.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-15"
+ },
+ "pamoka-prievadai.webp": {
+  "aprasymas": "A teenage student plugging a cable into the back panel of a desktop computer. The back panel shows several different port shapes (rectangular, small oval, wide trapezoid, square network port, round audio jacks). Around the computer: a monitor, keyboard, mouse, headphones and a printer connected with cables. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys jungia laidą į kompiuterio galinę sienelę su įvairių formų prievadais; aplink prijungti monitorius, klaviatūra, pelė, ausinės ir spausdintuvas.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-15"
+ },
+ "pamoka-python-1.webp": {
+  "aprasymas": "A teenage girl writing her first program on a laptop: the screen shows an abstract code editor with short colored horizontal lines and indentation, and a small terminal window with a friendly speech-bubble shape. A friendly stylized snake toy sits on the desk next to the laptop. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinė nešiojamajame kompiuteryje rašo pirmąją programą; ant stalo šalia sėdi žaislinė gyvatėlė.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-15"
  }
 }
