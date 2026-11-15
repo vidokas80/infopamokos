@@ -26,6 +26,10 @@
 #ipl .send-msg.bad{color:#c2410c}
 #ipl .send-msg:empty{display:none}
 #ipl button.btn:disabled{opacity:.6;cursor:default}
+/* Žaidimo paleidimo vietos po teorijos dalių */
+#ipl .g-launch{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:16px 22px}
+#ipl .g-launch .lead{margin:0;flex:1 1 280px}
+#ipl .g-launch .btn{font-size:17px}
 </style>
 </head>
 <body>
@@ -294,8 +298,7 @@ font-size:15px;color:var(--txt);background:var(--bg);border-radius:18px;padding:
   <ul class="ck">
     <li>išvardyti ir atpažinti pagrindinius kompiuterio išorinius įrenginius ir prievadus;</li>
     <li>paaiškinti, kam skirtas kiekvienas įrenginys ir prievadas;</li>
-    <li>ištirti savo kompiuterio prievadus ir prie jų jungiamus įrenginius;</li>
-    <li>pagal planą pradėti skyriaus projektinį darbą.</li>
+    <li>ištirti savo kompiuterio prievadus ir prie jų jungiamus įrenginius.</li>
   </ul>
 </div>
 
@@ -940,6 +943,37 @@ ov('<div class="g-card"><div class="g-big">🔌🖥️</div><h2>Prijunk kompiute
     }).catch(function(){
       say("Nepavyko išsiųsti – patikrinkite interneto ryšį arba nukopijuokite atsakymus ir nusiųskite mokytojui.",true);
     }).then(function(){ setTimeout(function(){btn.disabled=false;},4000); });
+  });
+})();
+
+/* Žaidimas „Prijunk kompiuterį“ išskaidytas po teorijos dalis. Žaidimas lieka vienas (jo kodas nekeičiamas),
+   tik perkeliamas po tos dalies, kurios mygtukas paspaustas, ir įjungiamas atitinkamas režimas:
+   po įrenginių – „Rūšiuok“, po prievadų – „Prijunk“ (ir „Tyrinėk“), pabaigoje – „IT specialistas“. */
+(function(){
+  var root=document.getElementById("ipl"), game=root&&root.querySelector("#ipl-g"); if(!game) return;
+  function secWith(sel){var el=root.querySelector(sel); return el&&el.closest(".s");}
+  var SPOTS=[
+    {after:secWith(".cols"),  mode:"l1", modes:["l1"],            title:"Išbandyk: rūšiuok", text:"Įvedimo, išvedimo ar abu? Surūšiuok įrenginius pagal tai, ką jie daro."},
+    {after:secWith(".ports"), mode:"l2", modes:["l2","explore"],  title:"Išbandyk: prijunk", text:"Rask kiekvienam įrenginiui tinkamą prievadą. Jei nori, pirma laisvai patyrinėk prievadus."},
+    {after:secWith(".sum"),   mode:"l3", modes:["l3"],            title:"IT specialistas",   text:"Pritaikyk, ką išmokai: padėk žmonėms išspręsti jų bėdas su kompiuteriu."}
+  ];
+  game.hidden=true; // kol mokinys nepaspaudžia mygtuko
+  SPOTS.forEach(function(s){
+    if(!s.after) return;
+    var box=document.createElement("div"); box.className="s g-launch";
+    box.innerHTML='<p class="lead"></p><button type="button" class="btn">🎮 </button>';
+    box.querySelector(".lead").textContent=s.text;
+    box.querySelector(".btn").appendChild(document.createTextNode(s.title));
+    s.after.insertAdjacentElement("afterend",box); s.box=box;
+    box.querySelector(".btn").addEventListener("click",function(){ place(s); game.querySelector('.g-tab[data-mode="'+s.mode+'"]').click(); game.scrollIntoView({block:"start"}); });
+  });
+  function place(s){ if(game.previousElementSibling!==s.box) s.box.insertAdjacentElement("afterend",game); game.hidden=false; }
+  // Pasirinkus kitą režimą pačiame žaidime (skirtukas ar mygtukas „2 lygis“ pabaigos lange), žaidimas persikelia po savo dalies
+  game.addEventListener("click",function(e){
+    var b=e.target.closest("[data-mode],[data-act]"); if(!b) return;
+    var m=b.getAttribute("data-mode")||b.getAttribute("data-act");
+    var s=SPOTS.filter(function(x){return x.box&&x.modes.indexOf(m)>-1;})[0];
+    if(s&&game.previousElementSibling!==s.box) setTimeout(function(){ place(s); game.scrollIntoView({block:"start"}); },0);
   });
 })();
 </script>
