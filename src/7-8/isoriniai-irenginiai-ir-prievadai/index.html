@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kompiuterio išoriniai įrenginiai ir prievadai – infopamokos.lt</title>
+<meta name="description" content="8 klasės informatikos pamoka: kompiuterio išoriniai įrenginiai ir prievadai – įvedimo ir išvedimo įrenginiai, USB, HDMI, eternetas, žaidimas „Prijunk kompiuterį“.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Svetainės bendrų taisyklių (site.css) poveikio pamokai atstatymas. Pačios pamokos stiliai – #ipl bloke, nekeisti. */
+#ipl h1,#ipl h2,#ipl h3{font-family:inherit;letter-spacing:normal;text-wrap:wrap}
+#ipl .lead{max-width:none}
+#ipl .note{margin-bottom:0;font-size:inherit}
+#ipl .note b{font-family:inherit}
+#ipl .g-stats.ex{color:inherit;font-size:inherit;margin-top:0} /* site.css .ex skirtas VBE sąvokų pavyzdžiams */
+.lesson-ipl{padding-block:.6rem 3rem}
+/* Pirmosios pelės nuotraukos šaltinis (nuotrauka – Computer History Museum) */
+#ipl .rid-fig{margin:0}
+#ipl .rid-fig figcaption{margin-top:6px;font-size:12px;line-height:1.35;color:var(--mut);text-align:center}
+#ipl .rid-fig a{color:var(--blue)}
+/* Siuntimo mokytojui mygtuko pranešimas (mygtukas – pamokos .btn) */
+#ipl .send-msg{color:var(--acc);font-weight:700;flex-basis:100%}
+#ipl .send-msg.bad{color:#c2410c}
+#ipl .send-msg:empty{display:none}
+#ipl button.btn:disabled{opacity:.6;cursor:default}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#8">8 klasė</a> <span aria-hidden="true">/</span> Išoriniai įrenginiai ir prievadai</p>
+<main class="lesson-ipl">
+<!-- ===== PAMOKOS TURINYS: PRADŽIA ===== -->
+<div id="ipl">
+<style>
+#ipl{--ink:#1c2536;--mut:#5b667c;--line:#d9e0ec;--blue:#2563c9;--blue2:#e8f0fe;--acc:#0e9f8f;--gold:#f5a524;
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;color:var(--ink);max-width:1180px;margin:0 auto;line-height:1.55;text-align:left}
+#ipl *{box-sizing:border-box}
+#ipl button{all:unset;box-sizing:border-box;cursor:pointer;font-family:inherit}
+#ipl h1,#ipl h2,#ipl h3,#ipl p,#ipl ul,#ipl ol{margin:0;padding:0}
+#ipl img{max-width:100%}
+#ipl .hero{position:relative;background:#fbebdb;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:16px}
+#ipl .hero img{display:block;width:100%;height:auto}
+#ipl .hero-t{position:absolute;left:4%;top:7%;width:29%;z-index:1}
+#ipl .hero h1{font-size:clamp(19px,2.5vw,30px);line-height:1.15;color:#16305f;font-weight:800}
+#ipl .hero p{margin-top:8px;font-size:clamp(13px,1.35vw,16px);line-height:1.4;color:#34435c}
+#ipl .hero .tag{display:inline-block;background:var(--blue);color:#fff;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin-bottom:10px;letter-spacing:.04em}
+@media (max-width:860px){#ipl .hero-t{position:static;width:auto;padding:20px 20px 4px}#ipl .hero h1{font-size:26px}#ipl .hero p{font-size:16px}}
+#ipl .cimg{display:block;width:100%;height:auto;border-radius:10px;margin-bottom:10px}
+#ipl .wide{display:block;width:100%;max-width:780px;height:auto;border-radius:14px;margin:0 auto 16px}
+#ipl .sum{display:grid;grid-template-columns:1fr minmax(260px,430px);gap:20px;align-items:center}
+#ipl .sum img{display:block;width:100%;height:auto;border-radius:14px}
+@media (max-width:860px){#ipl .sum{grid-template-columns:1fr}}
+#ipl .g-img{display:block;width:150px;max-width:60%;height:auto;border-radius:14px;margin:0 auto 10px}
+#ipl .s{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}
+#ipl .s>h2{font-size:23px;line-height:1.25;margin-bottom:6px;color:var(--ink);font-weight:800}
+#ipl .s>h2 span{color:var(--blue)}
+#ipl .lead{color:var(--mut);margin-bottom:14px}
+#ipl h3{font-size:18px;font-weight:800;color:var(--ink);margin:18px 0 8px}
+#ipl ul.ck{list-style:none}
+#ipl ul.ck li{padding:5px 0 5px 30px;position:relative}
+#ipl ul.ck li:before{content:"✓";position:absolute;left:0;top:5px;width:21px;height:21px;border-radius:50%;background:var(--acc);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center}
+/* mįslė */
+#ipl .rid{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:center}
+@media (max-width:700px){#ipl .rid{grid-template-columns:1fr}}
+#ipl .rid img{display:block;width:100%;max-width:320px;height:auto;border-radius:14px;margin:0 auto}
+#ipl .opts{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+#ipl .opt{display:block;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;background:#fff;transition:.15s}
+#ipl .opt:hover{border-color:var(--blue);background:var(--blue2)}
+#ipl .opt.ok{border-color:#1faa59;background:#e5f8ec}
+#ipl .opt.bad{border-color:#e5484d;background:#fdeaea}
+#ipl .opt.off{pointer-events:none}
+#ipl .note{background:#fff7e0;border-left:5px solid var(--gold);border-radius:10px;padding:12px 14px;margin-top:12px}
+#ipl .note.hide{display:none}
+/* sąvokos */
+#ipl .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+#ipl .term{display:block;border:2px solid var(--line);border-radius:14px;padding:13px 15px;background:#fff;min-height:92px;transition:.15s}
+#ipl .term:hover{border-color:var(--blue)}
+#ipl .term b{display:block;font-size:17px;color:var(--blue)}
+#ipl .term i{display:block;color:var(--mut);font-size:13px}
+#ipl .term span{display:none;margin-top:6px;font-size:15px}
+#ipl .term em{display:block;margin-top:6px;font-style:normal;font-size:13px;color:var(--mut)}
+#ipl .term.open{background:var(--blue2);border-color:var(--blue)}
+#ipl .term.open span{display:block}
+#ipl .term.open em{display:none}
+/* įrenginiai */
+#ipl .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:860px){#ipl .cols{grid-template-columns:1fr}}
+#ipl .col{border-radius:14px;padding:14px;border:1px solid var(--line)}
+#ipl .col.in{background:#eaf3ff}
+#ipl .col.both{background:#f1ecff}
+#ipl .col.out{background:#e7f8f3}
+#ipl .col h3{margin:0 0 2px}
+#ipl .col>p{font-size:14px;color:var(--mut);margin-bottom:10px}
+#ipl .dev{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:10px;padding:8px 10px;margin-top:6px;font-size:15px}
+#ipl .dev u{text-decoration:none;font-size:24px;line-height:1.1;flex:none;width:30px;text-align:center}
+#ipl .dev b{display:block}
+#ipl .dev span{color:var(--mut);font-size:14px}
+/* prievadai */
+#ipl .ports{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+#ipl .port{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbfcfe}
+#ipl .port h3{margin:8px 0 4px}
+#ipl .port p{font-size:15px}
+#ipl .pics{display:flex;gap:8px;flex-wrap:wrap;background:#27303f;border-radius:10px;padding:8px;justify-content:center}
+#ipl .pic{text-align:center;color:#cfd8e8;font-size:12px;font-weight:600}
+#ipl .pic svg{display:block;width:84px;height:54px}
+/* forma */
+#ipl .form{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:10px 0}
+#ipl label{display:block;font-size:14px;font-weight:700;color:var(--ink)}
+#ipl input,#ipl textarea,#ipl select{display:block;width:100%;margin-top:4px;padding:9px 11px;border:2px solid var(--line);border-radius:10px;font:inherit;font-weight:400;color:var(--ink);background:#fff}
+#ipl input:focus,#ipl textarea:focus,#ipl select:focus{outline:none;border-color:var(--blue)}
+#ipl textarea{min-height:74px;resize:vertical}
+#ipl .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:10px 18px;border-radius:12px;transition:.15s}
+#ipl .btn:hover{background:#1b4fa6}
+#ipl .btn.gh{background:#eef2f8;color:var(--ink)}
+#ipl ol.steps{padding-left:22px}
+#ipl ol.steps li{margin:6px 0}
+/* testas */
+#ipl .sq{max-width:560px;margin:0 auto;text-align:center}
+#ipl .sq .scr{background:#27303f;border-radius:14px;padding:14px;display:flex;justify-content:center}
+#ipl .sq .scr svg{width:190px;height:120px}
+#ipl .sq .prog{color:var(--mut);font-size:14px;font-weight:700;margin-bottom:8px}
+#ipl .sq .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+#ipl .sq .big{font-size:44px}
+
+/* ====== ŽAIDIMAS ====== */
+#ipl .g{--bg:#0f1522;--panel:#161e2e;--panel2:#1e2840;--gl:#2a3652;--txt:#e9eef8;--gm:#98a5c0;--ga:#4fd1c5;--ok:#46d37b;--bad:#ff5d6c;--gg:#ffcc4d;
+font-size:15px;color:var(--txt);background:var(--bg);border-radius:18px;padding:14px;position:relative;line-height:1.45;margin-bottom:16px}
+#ipl .g-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+#ipl .g-title{font-size:20px;font-weight:800;margin-right:auto}
+#ipl .g-tabs{display:flex;gap:6px;flex-wrap:wrap}
+#ipl .g-tab{background:var(--panel2);color:var(--gm);padding:8px 13px;border-radius:10px;font-size:14px;font-weight:600;transition:.15s}
+#ipl .g-tab:hover{color:var(--txt)}
+#ipl .g-tab.on{background:var(--ga);color:#052522}
+#ipl .g-ib{background:var(--panel2);padding:7px 11px;border-radius:10px;font-size:16px}
+#ipl .g-main{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(270px,1fr);gap:12px;align-items:start}
+@media (max-width:880px){#ipl .g-main{grid-template-columns:1fr}}
+#ipl .g-stage{position:relative;background:#0a0e17;border:1px solid var(--gl);border-radius:14px;overflow:hidden;min-height:420px}
+#ipl .g-task{display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:72px;background:linear-gradient(90deg,#1c2a48,#141d33);border-bottom:1px solid var(--gl)}
+#ipl .g-plug{flex:none;background:#0a0e17;border:1px solid var(--gl);border-radius:10px;padding:2px 4px;display:grid;place-items:center;min-width:64px;min-height:50px;font-size:30px}
+#ipl .g-plug svg{display:block;width:78px;height:48px}
+#ipl .g-plug.hide{display:none}
+#ipl .g-lbl{font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+#ipl .g-tgt{font-size:18px;font-weight:800;color:var(--gg)}
+#ipl .g-tgt.sm{font-size:15px;font-weight:600;color:#ffe08a}
+#ipl .g-hint{margin-left:auto;background:#2b3756;padding:7px 11px;border-radius:10px;font-size:14px;white-space:nowrap}
+#ipl .g-hint.hide{display:none}
+#ipl .g-wrap svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+#ipl .g-wrap.venn{padding:10px 10px 4px;max-width:720px;margin:0 auto}
+#ipl .g-wrap.pan{max-width:640px;margin:0 auto}
+#ipl .g-toast{position:absolute;left:50%;bottom:14px;transform:translate(-50%,20px);background:#222c44;border:1px solid var(--gl);padding:9px 14px;border-radius:12px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;max-width:92%;width:max-content;text-align:center;box-shadow:0 8px 24px #0008;z-index:4}
+#ipl .g-toast.show{opacity:1;transform:translate(-50%,0)}
+#ipl .g-toast.ok{border-color:var(--ok);background:#143826}
+#ipl .g-toast.bad{border-color:var(--bad);background:#3d1820}
+#ipl .g-ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,18,.86);padding:16px;z-index:5}
+#ipl .g-ov.show{display:flex}
+#ipl .g-ov.light{background:rgba(6,10,18,.3);align-items:flex-end}
+#ipl .g-card{background:var(--panel);border:1px solid var(--gl);border-radius:16px;padding:20px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 50px #000a}
+#ipl .g-card h2{margin:4px 0 8px;font-size:22px;color:var(--txt);line-height:1.2;font-weight:800}
+#ipl .g-card p{color:var(--gm);margin:6px 0 14px}
+#ipl .g-big{font-size:42px;line-height:1.1}
+#ipl .g-btns{display:flex;flex-direction:column;gap:8px}
+#ipl .g-btn{display:block;background:var(--panel2);border:1px solid var(--gl);padding:11px 14px;border-radius:12px;font-weight:700;text-align:center;transition:.15s;color:var(--txt)}
+#ipl .g-btn:hover{background:#2a3655}
+#ipl .g-btn.pri{background:var(--ga);color:#052522;border-color:transparent}
+#ipl .g-btn.power{background:linear-gradient(90deg,#ffb020,#ff6a3d);color:#2a0d00;font-size:18px;border:0}
+#ipl .g-btn small{display:block;font-weight:500;opacity:.75;font-size:13px}
+#ipl .g-stars{font-size:34px;color:var(--gg);letter-spacing:4px}
+#ipl .g-stars .dim{color:#3a4560}
+#ipl .g-res{display:flex;justify-content:center;gap:10px;margin:10px 0}
+#ipl .g-res div{background:var(--panel2);border-radius:12px;padding:8px 14px;color:var(--gm);font-size:13px}
+#ipl .g-res b{display:block;font-size:20px;color:var(--txt)}
+#ipl .g-side{display:flex;flex-direction:column;gap:10px}
+#ipl .g-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+#ipl .g-stats div{background:var(--panel);border:1px solid var(--gl);border-radius:10px;padding:6px 4px;text-align:center;font-size:11px;color:var(--gm);text-transform:uppercase}
+#ipl .g-stats b{display:block;font-size:18px;color:var(--txt);text-transform:none}
+#ipl .g-stats.ex div.x{opacity:.3}
+#ipl .g-box{background:var(--panel);border:1px solid var(--gl);border-radius:14px;padding:12px}
+#ipl .g-box.hide{display:none}
+#ipl .g-h{font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:8px}
+#ipl .g-list{display:flex;flex-direction:column;gap:5px}
+#ipl .g-item{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:9px;background:#1b2337;border:1px solid transparent;font-size:14px;transition:.15s;color:var(--txt)}
+#ipl .g-item:hover{background:#222c45}
+#ipl .g-item u{text-decoration:none;font-size:18px;width:24px;text-align:center;flex:none}
+#ipl .g-ck{width:20px;height:20px;border-radius:6px;border:2px solid #44507a;flex:none;display:grid;place-items:center;font-size:13px;font-weight:900;margin-left:auto}
+#ipl .g-item.cur{border-color:var(--gg);background:#2b2a1d}
+#ipl .g-item.done{color:var(--gm)}
+#ipl .g-item.done .g-ck{background:var(--ok);border-color:var(--ok);color:#06210f}
+#ipl .g-item.done u{animation:gpop .5s}
+@keyframes gpop{0%{transform:scale(1)}50%{transform:scale(1.6)}100%{transform:scale(1)}}
+#ipl .g-info h3{margin:0;font-size:19px;color:var(--ga);line-height:1.25}
+#ipl .g-en{font-size:13px;color:var(--gm);font-style:italic;margin:2px 0 8px}
+#ipl .g-info p{margin:0 0 9px}
+#ipl .g-an{background:#1d2a45;border-left:4px solid var(--ga);padding:8px 10px;border-radius:8px;margin-bottom:8px;font-size:14px}
+#ipl .g-fact{background:#2a2617;border-left:4px solid var(--gg);padding:8px 10px;border-radius:8px;font-size:14px}
+#ipl .g-mut{color:var(--gm)}
+#ipl .g-info.pop{animation:ginfo .35s}
+@keyframes ginfo{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+#ipl .hit{cursor:pointer;transition:filter .15s}
+#ipl .hit:hover{filter:drop-shadow(0 0 5px #8ff) drop-shadow(0 0 2px #8ff) brightness(1.12)}
+#ipl .hit.fl-bad{animation:gbad .6s}
+#ipl .hit.fl-ok{animation:gok .9s}
+#ipl .hit.help{animation:ghelp 1s ease-in-out infinite}
+@keyframes gbad{0%,100%{filter:none}25%,75%{filter:drop-shadow(0 0 8px #ff3b4f) drop-shadow(0 0 3px #ff3b4f)}}
+@keyframes gok{0%{filter:none}30%{filter:drop-shadow(0 0 12px #46ff8a) drop-shadow(0 0 4px #46ff8a) brightness(1.3)}100%{filter:none}}
+@keyframes ghelp{0%,100%{filter:drop-shadow(0 0 2px #ffcc4d)}50%{filter:drop-shadow(0 0 14px #ffcc4d) drop-shadow(0 0 5px #ffcc4d) brightness(1.35)}}
+#ipl .spin{transform-box:fill-box;transform-origin:center}
+#ipl svg.on .spin{animation:gspin .45s linear infinite}
+@keyframes gspin{to{transform:rotate(360deg)}}
+#ipl .led{fill:#3a2020}
+#ipl svg.on .led{fill:#38ff7a}
+#ipl .badge{pointer-events:none;transform-box:fill-box;transform-origin:center;animation:gbadge .45s cubic-bezier(.3,1.6,.6,1)}
+@keyframes gbadge{from{transform:scale(0)}to{transform:scale(1)}}
+#ipl .vz{fill:#18233b;stroke:#4b5c86;stroke-width:2.5;cursor:pointer;transition:fill .15s}
+#ipl .vz:hover{fill:#24345a}
+#ipl .vz.fl-ok{fill:#17603a}
+#ipl .vz.fl-bad{fill:#6d2330}
+#ipl .vt{fill:#c9d4ea;font-weight:800;font-size:15px;text-anchor:middle;pointer-events:none}
+#ipl .ve{font-size:25px;text-anchor:middle;pointer-events:none}
+#ipl .vn{font-size:9.5px;fill:#c9d4ea;text-anchor:middle;pointer-events:none;font-weight:600}
+#ipl .qz{padding:22px 18px 70px;max-width:640px;margin:0 auto}
+#ipl .qz .qn{color:var(--gm);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+#ipl .qz .qt{font-size:18px;font-weight:700;margin:6px 0 14px}
+#ipl .qz .qo{display:block;width:100%;background:var(--panel2);border:2px solid var(--gl);border-radius:12px;padding:11px 14px;margin-top:8px;font-weight:600;color:var(--txt);transition:.15s}
+#ipl .qz .qo:hover{border-color:var(--ga)}
+#ipl .qz .qo.ok{border-color:var(--ok);background:#143826}
+#ipl .qz .qo.bad{border-color:var(--bad);background:#3d1820}
+#ipl .qz .qo.off{pointer-events:none}
+#ipl .qz .qe{background:#1d2a45;border-left:4px solid var(--ga);padding:10px 12px;border-radius:8px;margin-top:12px}
+#ipl .qz .g-btn{margin-top:12px}
+#ipl .g:fullscreen{border-radius:0;overflow:auto}
+</style>
+
+<!-- ============ ANTRAŠTĖ ============ -->
+<div class="hero">
+  <div class="hero-t">
+    <div class="tag">8 KLASĖ · INFORMATIKA</div>
+    <h1>Kompiuterio išoriniai įrenginiai ir prievadai</h1>
+    <p>Kaip „pasikalbame“ su kompiuteriu ir kur ką reikia jungti – nuo klaviatūros iki HDMI kabelio.</p>
+  </div>
+  <img data-img="prievadai-01-antraste.webp" width="1400" height="788" alt="Mokinio darbo stalas su kompiuteriu, monitoriumi, klaviatūra, pele, garsiakalbiais, spausdintuvu ir ausinėmis">
+</div>
+
+<!-- ============ MĮSLĖ ============ -->
+<div class="s">
+  <h2>🤔 Pradžiai – <span>mįslė</span></h2>
+  <div class="rid">
+    <figure class="rid-fig">
+      <img data-img="prievadai-02-pirmoji-pele.webp" width="600" height="482" loading="lazy" alt="Medinė dėžutė su raudonu mygtuku ir laidu">
+      <figcaption>Nuotrauka: <a href="https://www.computerhistory.org/collections/catalog/102633685" target="_blank" rel="noopener">Computer History Museum</a>, kat. Nr. 102633685 (SRI International dovana).</figcaption>
+    </figure>
+    <div>
+      <p><b>Šis daiktas pagamintas iš medžio, turi vieną mygtuką ir laidą.</b> Jis sukurtas daugiau nei prieš 60 metų. Kaip manai, kas tai?</p>
+      <div class="opts" id="ipl-rid">
+        <button class="opt" data-r="0">📻 Senovinis radijo imtuvas</button>
+        <button class="opt" data-r="1">🖱️ Pirmoji kompiuterio pelė</button>
+        <button class="opt" data-r="0">💍 Dėžutė papuošalams su užraktu</button>
+      </div>
+      <div class="note hide" id="ipl-ridn"><b>Tai – pirmoji kompiuterio pelė!</b> Ją XX a. 7-ajame dešimtmetyje sukūrė JAV inžinierius Daglasas Engelbartas. Ji buvo medinė, turėjo vos vieną mygtuką, o laidas priminė uodegą – iš čia ir pavadinimas. Šiandien pelė – vienas iš daugybės <b>išorinių įrenginių</b>, apie kuriuos ir kalbėsime.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIKSLAI ============ -->
+<div class="s">
+  <h2>🎯 Šiandien <span>išmoksi</span></h2>
+  <ul class="ck">
+    <li>išvardyti ir atpažinti pagrindinius kompiuterio išorinius įrenginius ir prievadus;</li>
+    <li>paaiškinti, kam skirtas kiekvienas įrenginys ir prievadas;</li>
+    <li>ištirti savo kompiuterio prievadus ir prie jų jungiamus įrenginius;</li>
+    <li>pagal planą pradėti skyriaus projektinį darbą.</li>
+  </ul>
+</div>
+
+<!-- ============ SĄVOKOS ============ -->
+<div class="s">
+  <h2>📖 Svarbiausios <span>sąvokos</span></h2>
+  <p class="lead">Pirmiausia pabandyk paaiškinti sąvoką pats, o tada paspausk kortelę ir pasitikrink.</p>
+  <div class="terms">
+    <button class="term"><b>Išorinis įrenginys</b><em>👆 spausk ir pasitikrink</em><span>Kompiuterio išorėje esanti aparatinės įrangos dalis, su kuria naudotojas dirba tiesiogiai.</span></button>
+    <button class="term"><b>Įvedimo įrenginys</b><em>👆 spausk ir pasitikrink</em><span>Išorinis įrenginys, kuriuo duomenys ir komandos perduodami <u>į</u> kompiuterį.</span></button>
+    <button class="term"><b>Išvedimo įrenginys</b><em>👆 spausk ir pasitikrink</em><span>Išorinis įrenginys, kuris informaciją <u>iš</u> kompiuterio pateikia naudotojui.</span></button>
+    <button class="term"><b>Prievadas</b><i>angl. port</i><em>👆 spausk ir pasitikrink</em><span>Jungtis kompiuterio korpuse, prie kurios jungiami išoriniai įrenginiai.</span></button>
+    <button class="term"><b>USB jungtis</b><i>angl. universal serial bus</i><em>👆 spausk ir pasitikrink</em><span>Universalioji jungtis – prievado tipas, tinkantis daugybei skirtingų išorinių įrenginių.</span></button>
+    <button class="term"><b>HDMI jungtis</b><i>angl. high-definition multimedia interface</i><em>👆 spausk ir pasitikrink</em><span>Skaitmeninis vaizdo ir garso prievadas monitoriams, televizoriams ir projektoriams prijungti.</span></button>
+    <button class="term"><b>Eternetas</b><i>angl. Ethernet</i><em>👆 spausk ir pasitikrink</em><span>Laidinio tinklo technologija ir standartas. Taip vadinamas ir prievadas, per kurį kompiuteris jungiamas prie laidinio tinklo.</span></button>
+  </div>
+</div>
+
+<!-- ============ ĮRENGINIAI ============ -->
+<div class="s">
+  <h2>⌨️ Įvedimo ir išvedimo <span>įrenginiai</span></h2>
+  <p class="lead">Su kompiuteriu bendraujame per išorinius įrenginius. Pagal paskirtį jie skirstomi į įvedimo ir išvedimo, o kai kurie atlieka abi funkcijas.</p>
+  <div class="cols">
+    <div class="col in">
+      <img class="cimg" data-img="prievadai-03-ivedimo-irenginiai.webp" width="900" height="675" loading="lazy" alt="Skeneris, mikrofonas, kamera, klaviatūra ir pelė">
+      <h3>➡️ Įvedimo įrenginiai</h3>
+      <p>Be jų negalėtume kompiuteriui perduoti nei komandų, nei duomenų.</p>
+      <div class="dev"><u>⌨️</u><div><b>Klaviatūra</b><span>Pagrindinis teksto ir komandų įvedimo įrenginys.</span></div></div>
+      <div class="dev"><u>🖱️</u><div><b>Pelė</b><span>Valdo žymeklį ekrane, ja pasirenkami ir atidaromi objektai.</span></div></div>
+      <div class="dev"><u>🎤</u><div><b>Mikrofonas</b><span>Įveda garsą: kalbą, muziką.</span></div></div>
+      <div class="dev"><u>📑</u><div><b>Skeneris</b><span>Popierinį dokumentą ar nuotrauką paverčia skaitmeniniu failu.</span></div></div>
+      <div class="dev"><u>📷</u><div><b>Kamera</b><span>Įveda vaizdą: fotografuoja, filmuoja.</span></div></div>
+    </div>
+    <div class="col both">
+      <img class="cimg" data-img="prievadai-04-abi-funkcijos.webp" width="900" height="675" loading="lazy" alt="Planšetė su jutikliniu ekranu, daugiafunkcis spausdintuvas, ausinės su mikrofonu ir virtualiosios realybės akiniai">
+      <h3>🔁 Ir įvedimo, ir išvedimo</h3>
+      <p>Šie įrenginiai ir priima informaciją, ir ją pateikia.</p>
+      <div class="dev"><u>📱</u><div><b>Jutiklinis ekranas</b><span>Pirštu įvedi komandas, o ekranas tuo pat metu rodo vaizdą.</span></div></div>
+      <div class="dev"><u>🖨️</u><div><b>Daugiafunkcis spausdintuvas</b><span>Spausdina (išvestis), skenuoja (įvestis) ir kopijuoja.</span></div></div>
+      <div class="dev"><u>🎧</u><div><b>Ausinės su mikrofonu</b><span>Klausaisi garso (išvestis) ir kalbi (įvestis).</span></div></div>
+      <div class="dev"><u>🥽</u><div><b>Virtualiosios realybės akiniai</b><span>Rodo virtualų pasaulį, o kai kurie modeliai reaguoja į galvos judesius ar balsą.</span></div></div>
+    </div>
+    <div class="col out">
+      <img class="cimg" data-img="prievadai-05-isvedimo-irenginiai.webp" width="900" height="675" loading="lazy" alt="Monitorius, spausdintuvas, garsiakalbiai, ausinės ir projektorius">
+      <h3>⬅️ Išvedimo įrenginiai</h3>
+      <p>Be jų nematytume ir negirdėtume, ką kompiuteris mums „atsako“.</p>
+      <div class="dev"><u>🖥️</u><div><b>Monitorius (ekranas)</b><span>Pagrindinis vaizdo rodymo įrenginys.</span></div></div>
+      <div class="dev"><u>🖨️</u><div><b>Spausdintuvas</b><span>Skaitmeninį dokumentą atspausdina ant popieriaus.</span></div></div>
+      <div class="dev"><u>🔊</u><div><b>Garsiakalbiai, ausinės</b><span>Išveda garsą.</span></div></div>
+      <div class="dev"><u>📽️</u><div><b>Projektorius</b><span>Vaizdą rodo ant didelio paviršiaus – sienos ar ekrano.</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRIEVADAI ============ -->
+<div class="s">
+  <h2>🔌 Prievadai ir <span>jungtys</span></h2>
+  <p class="lead">Kad išoriniai įrenginiai galėtų bendrauti su kompiuterio vidumi, korpuse yra specialios jungtys – prievadai. Prie jų jungiami laidai arba belaidžių įrenginių adapteriai. Įsidėmėk jų formas – jų prireiks žaidime!</p>
+  <img class="wide" data-img="prievadai-06-kur-jungti.webp" width="1200" height="675" loading="lazy" alt="Mokinys sutrikęs žiūri į kompiuterio galinę sienelę ir laiko rankoje laidą">
+  <div class="ports">
+    <div class="port">
+      <img class="cimg" data-img="prievadai-07-usb.webp" width="900" height="675" loading="lazy" alt="Į kompiuterio priekines USB jungtis įjungtas atmintukas ir pelė">
+      <div class="pics"><div class="pic" data-ico="usb2">USB 2.0</div><div class="pic" data-ico="usb3">USB 3.0</div><div class="pic" data-ico="usbc">USB-C</div></div>
+      <h3>USB jungtis</h3>
+      <p>Populiariausias ir universaliausias prievadas: pelė, klaviatūra, atmintukas, išorinis diskas, telefonas ir daug kitų įrenginių. USB jungtys būna skirtingo greičio ir formos: stačiakampės USB 2.0 ir greitesnės USB 3.0 (dažnai mėlynos), mažos ovalios USB-C.</p>
+    </div>
+    <div class="port">
+      <img class="cimg" data-img="prievadai-08-hdmi.webp" width="900" height="675" loading="lazy" alt="Kompiuteris vienu kabeliu sujungtas su monitoriumi">
+      <div class="pics"><div class="pic" data-ico="hdmi">HDMI</div></div>
+      <h3>HDMI jungtis</h3>
+      <p>Skaitmeninis prievadas, vienu kabeliu perduodantis ir vaizdą, ir garsą. Juo jungiami monitoriai, televizoriai, projektoriai.</p>
+    </div>
+    <div class="port">
+      <div class="pics"><div class="pic" data-ico="dp">„DisplayPort“</div><div class="pic" data-ico="dvi">DVI</div><div class="pic" data-ico="vga">VGA</div></div>
+      <h3>Kiti vaizdo prievadai</h3>
+      <p>„DisplayPort“ – šiuolaikinis skaitmeninis vaizdo prievadas (vienas kampas nupjautas). DVI ir VGA – senesni: DVI dažniausiai balta, VGA – mėlyna, su 15 kontaktų.</p>
+    </div>
+    <div class="port">
+      <img class="cimg" data-img="prievadai-09-eternetas.webp" width="900" height="675" loading="lazy" alt="Tinklo kabelis jungia maršrutizatorių su kompiuteriu">
+      <div class="pics"><div class="pic" data-ico="eth">Eternetas</div></div>
+      <h3>Eternetas</h3>
+      <p>Prievadas, į kurį jungiamas tinklo (interneto) kabelis. Juo kompiuteris prijungiamas prie laidinio kompiuterių tinklo.</p>
+    </div>
+    <div class="port">
+      <img class="cimg" data-img="prievadai-10-garsas.webp" width="900" height="675" loading="lazy" alt="Ausinės prijungtos žaliu, o mikrofonas rožiniu laidu">
+      <div class="pics"><div class="pic" data-ico="amic">mikrofonas</div><div class="pic" data-ico="aout">ausinės</div><div class="pic" data-ico="ain">linijinė įvestis</div></div>
+      <h3>Garso prievadai</h3>
+      <p>Dažniausiai apvalios 3,5 mm jungtys ausinėms, garsiakalbiams ir mikrofonui. Paprastai žalia skirta garsui išvesti, rožinė – mikrofonui.</p>
+    </div>
+    <div class="port">
+      <div class="pics"><div class="pic" data-ico="power">maitinimas</div></div>
+      <h3>Maitinimo prievadas</h3>
+      <p>Į jį jungiamas maitinimo laidas – taip kompiuteris prijungiamas prie elektros tinklo.</p>
+    </div>
+  </div>
+  <div class="note"><b>💡 Ar žinai?</b> Senesniuose kompiuteriuose pelė ir klaviatūra buvo jungiamos į apvalius žalią ir violetinį PS/2 prievadus, o spausdintuvas – į platų lygiagretųjį prievadą. Šiandien juos beveik visur pakeitė USB.</div>
+</div>
+
+<!-- ============ ŽAIDIMAS ============ -->
+<div class="g" id="ipl-g">
+  <div class="g-top">
+    <div class="g-title">🔌 Prijunk kompiuterį</div>
+    <div class="g-tabs">
+      <button class="g-tab" data-mode="explore">🔍 Tyrinėk</button>
+      <button class="g-tab" data-mode="l1">🔀 1 lygis: Rūšiuok</button>
+      <button class="g-tab" data-mode="l2">🔌 2 lygis: Prijunk</button>
+      <button class="g-tab" data-mode="l3">🧑‍💻 3 lygis: IT specialistas</button>
+    </div>
+    <div class="g-tools">
+      <button class="g-ib" data-act="sound" title="Garsas">🔊</button>
+      <button class="g-ib" data-act="fs" title="Visas ekranas">⛶</button>
+    </div>
+  </div>
+  <div class="g-main">
+    <div class="g-stage">
+      <div class="g-task"><div class="g-plug hide"></div><div><div class="g-lbl"></div><div class="g-tgt"></div></div><button class="g-hint" data-act="hint">💡 Užuomina</button></div>
+      <div class="g-wrap"></div>
+      <div class="g-toast"></div>
+      <div class="g-ov"></div>
+    </div>
+    <aside class="g-side">
+      <div class="g-stats"></div>
+      <div class="g-box g-listbox"><div class="g-h g-lh"></div><div class="g-list"></div></div>
+      <div class="g-box g-info"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ GRUPINĖ UŽDUOTIS ============ -->
+<div class="s">
+  <h2>🕵️ Grupinė užduotis: <span>prievadų medžioklė</span></h2>
+  <p class="lead">Dirbkite grupėmis. Ištirkite kompiuterį, kuriuo dirbate, ir užpildykite lentelę. Kuri grupė ras daugiausia skirtingų prievadų tipų?</p>
+  <img class="wide" data-img="prievadai-11-prievadu-medziokle.webp" width="1200" height="675" loading="lazy" alt="Keturi mokiniai apžiūri kompiuterį iš priekio ir iš galo">
+  <ol class="steps">
+    <li>Atidžiai apžiūrėkite kompiuterį iš visų pusių: priekį, šonus, galą. Suskaičiuokite visus prievadus.</li>
+    <li>Pasirinkite vieną turimą išorinį įrenginį (atmintuką, pelę, ausines). Nuspręskite, prie kurio prievado jį jungsite, prijunkite ir patikrinkite, ar veikia.</li>
+    <li>Atsakykite į paskutinį klausimą apie draugo monitorių.</li>
+  </ol>
+  <div class="form" id="ipl-form">
+    <label>Grupės mokinių vardai<input data-k="Grupė" type="text"></label>
+    <label>USB jungčių (stačiakampių, A tipo)<input data-k="USB-A jungčių" type="number" min="0"></label>
+    <label>USB-C jungčių<input data-k="USB-C jungčių" type="number" min="0"></label>
+    <label>HDMI jungčių<input data-k="HDMI jungčių" type="number" min="0"></label>
+    <label>Ar yra eterneto prievadas?<select data-k="Eterneto prievadas"><option value="">– pasirinkite –</option><option>Taip</option><option>Ne</option></select></label>
+    <label>Garso prievadų<input data-k="Garso prievadų" type="number" min="0"></label>
+  </div>
+  <label>Kokių dar prievadų radote, kurių pamokoje neminėjome?<textarea data-k="Kiti rasti prievadai"></textarea></label>
+  <p style="height:10px"></p>
+  <label>Kurį įrenginį jungėte, prie kurio prievado ir kodėl? Ar veikė?<textarea data-k="Prijungtas įrenginys"></textarea></label>
+  <p style="height:10px"></p>
+  <label>Draugas nori prijungti naują modernų monitorių, palaikantį aukščiausią vaizdo kokybę. Kurį prievadą jam rekomenduotumėte ir kodėl?<textarea data-k="Rekomendacija draugui"></textarea></label>
+  <p style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn" id="ipl-copy">📋 Kopijuoti atsakymus</button><button class="btn gh" id="ipl-clear">Išvalyti</button><span id="ipl-copied" style="color:var(--acc);font-weight:700"></span></p>
+  <p class="lead" style="margin:8px 0 0;font-size:14px">Nukopijuotus atsakymus įklijuokite į tekstų rengyklę („Word“, „Google Docs“) arba nusiųskite mokytojui.</p>
+</div>
+
+<!-- ============ PASITIKRINK ============ -->
+<div class="s">
+  <h2>✅ Pasitikrink: <span>atpažink jungtį</span></h2>
+  <p class="lead">Ar atpažinsi prievadą vien iš jo formos?</p>
+  <div class="sq" id="ipl-sq"></div>
+</div>
+
+<!-- ============ APIBENDRINIMAS ============ -->
+<div class="s">
+  <h2>📝 Ką <span>sužinojome</span></h2>
+  <div class="sum">
+  <ul class="ck">
+    <li><b>Išoriniai įrenginiai</b> – kompiuterio išorėje esančios dalys, su kuriomis dirbame tiesiogiai. Jie būna įvedimo, išvedimo arba atlieka abi funkcijas.</li>
+    <li><b>Prievadai</b> – jungtys korpuse, prie kurių šie įrenginiai jungiami.</li>
+    <li>Dažniausi prievadai: <b>USB</b> (universalus), <b>HDMI</b> (vaizdas ir garsas), <b>eternetas</b> (laidinis tinklas), garso ir maitinimo prievadai.</li>
+  </ul>
+  <img data-img="prievadai-13-apibendrinimas.webp" width="1200" height="675" loading="lazy" alt="Mokinys prie tvarkingai prijungto veikiančio kompiuterio">
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var root=document.getElementById('ipl');
+function q(s,c){return (c||root).querySelector(s);}
+function qa(s,c){return Array.prototype.slice.call((c||root).querySelectorAll(s));}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function rep(n,fn){var s='';for(var i=0;i<n;i++)s+=fn(i);return s;}
+function f(n){return (+n).toFixed(1);}
+
+/* ===== PAVEIKSLĖLIŲ ADRESAS: jei failai laikomi kitur, pakeiskite tik šią eilutę ===== */
+var IMG='img/';
+qa('img[data-img]').forEach(function(el){el.src=IMG+el.getAttribute('data-img');});
+
+/* ================= JUNGČIŲ PIEŠINIAI ================= */
+var MET='fill="#cfd5dc" stroke="#7b8490" stroke-width="2" stroke-linejoin="round"';
+function usbA(c){return '<rect x="-24" y="-11" width="48" height="22" rx="3" '+MET+'/><rect x="-20" y="-7" width="40" height="14" fill="#11141a"/><rect x="-18" y="-6" width="36" height="6" fill="'+c+'"/>';}
+function jack(c){return '<circle r="11" fill="'+c+'" stroke="#0008" stroke-width="1"/><circle r="6.5" fill="#cfd5dc"/><circle r="4" fill="#0b0e14"/>';}
+function D(t){
+ switch(t){
+  case 'usb2':return usbA('#e4e4e4');
+  case 'usb3':return usbA('#2f7df6');
+  case 'usbc':return '<rect x="-16" y="-7.5" width="32" height="15" rx="7.5" '+MET+'/><rect x="-10" y="-2" width="20" height="4" rx="2" fill="#11141a"/>';
+  case 'hdmi':return '<path d="M-25,-10 H25 V2 L18,10 H-18 L-25,2 Z" '+MET+'/><path d="M-21,-6 H21 V0 L16,6 H-16 L-21,0 Z" fill="#11141a"/><rect x="-14" y="-3" width="28" height="3" fill="#c8a24a"/>';
+  case 'dp':return '<path d="M-25,-10 H25 V10 H-18 L-25,3 Z" '+MET+'/><path d="M-21,-6 H21 V6 H-16 L-21,1 Z" fill="#11141a"/><rect x="-14" y="-2" width="28" height="3" fill="#c8a24a"/>';
+  case 'vga':return '<circle cx="-40" cy="0" r="5" fill="#aab2bc" stroke="#6f7884" stroke-width="1.5"/><circle cx="40" cy="0" r="5" fill="#aab2bc" stroke="#6f7884" stroke-width="1.5"/><path d="M-30,-13 H30 L25,13 H-25 Z" fill="#2f66d0" stroke="#1c3f85" stroke-width="2" stroke-linejoin="round"/>'+
+   rep(3,function(r){return rep(5,function(i){return '<circle cx="'+(-16+i*8+(r===1?-3:0))+'" cy="'+(-7+r*7)+'" r="1.8" fill="#0b1020"/>';});});
+  case 'dvi':return '<circle cx="-40" cy="0" r="5" fill="#aab2bc" stroke="#6f7884" stroke-width="1.5"/><circle cx="40" cy="0" r="5" fill="#aab2bc" stroke="#6f7884" stroke-width="1.5"/><rect x="-30" y="-13" width="60" height="26" rx="4" fill="#f1f1ec" stroke="#8a8f96" stroke-width="2"/>'+
+   rep(3,function(r){return rep(8,function(i){return '<rect x="'+(-25+i*5)+'" y="'+(-8+r*6)+'" width="3" height="3" fill="#3b4150"/>';});})+'<rect x="18" y="-1.5" width="9" height="3" fill="#3b4150"/>';
+  case 'eth':return '<rect x="-19" y="-17" width="38" height="34" rx="2" '+MET+'/><path d="M-14,-12 H14 V6 H7 V12 H-7 V6 H-14 Z" fill="#11141a"/>'+rep(8,function(i){return '<rect x="'+f(-11.5+i*3)+'" y="-12" width="1.6" height="6" fill="#d4a84a"/>';})+'<rect x="-17" y="11" width="6" height="4" fill="#38d86b"/><rect x="11" y="11" width="6" height="4" fill="#f5a524"/>';
+  case 'amic':return jack('#f47ab0');
+  case 'aout':return jack('#6fd35a');
+  case 'ain':return jack('#58b4f0');
+  case 'power':return '<rect x="-32" y="-24" width="64" height="48" rx="6" fill="#15181e" stroke="#59616e" stroke-width="2"/><path d="M-24,-16 H24 V8 L16,16 H-16 L-24,8 Z" fill="#07090c" stroke="#3b4452" stroke-width="1.5"/><rect x="-15" y="-4" width="5" height="12" rx="1" fill="#b9c0c9"/><rect x="-2.5" y="-10" width="5" height="12" rx="1" fill="#b9c0c9"/><rect x="10" y="-4" width="5" height="12" rx="1" fill="#b9c0c9"/>';
+ }
+ return '';
+}
+function ico(t){return '<svg viewBox="-48 -30 96 60" xmlns="http://www.w3.org/2000/svg">'+D(t)+'</svg>';}
+qa('[data-ico]').forEach(function(el){el.insertAdjacentHTML('afterbegin',ico(el.getAttribute('data-ico')));});
+
+/* ================= MĮSLĖ, SĄVOKOS ================= */
+q('#ipl-rid').addEventListener('click',function(e){
+ var b=e.target.closest('.opt');if(!b)return;
+ b.classList.add(b.getAttribute('data-r')==='1'?'ok':'bad');
+ if(b.getAttribute('data-r')==='1'){qa('#ipl-rid .opt').forEach(function(o){o.classList.add('off');});q('#ipl-ridn').classList.remove('hide');}
+});
+qa('.term').forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('open');});});
+
+/* ================= FORMA ================= */
+(function(){
+ var KEY='ipl-prievadai-forma',fields=qa('[data-k]');
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||'{}');fields.forEach(function(el){if(sv[el.getAttribute('data-k')])el.value=sv[el.getAttribute('data-k')];});}catch(e){}
+ function save(){var o={};fields.forEach(function(el){o[el.getAttribute('data-k')]=el.value;});try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+ fields.forEach(function(el){el.addEventListener('input',save);el.addEventListener('change',save);});
+ function msg(t){var m=q('#ipl-copied');m.textContent=t;setTimeout(function(){m.textContent='';},3000);}
+ q('#ipl-copy').addEventListener('click',function(){
+  var txt='TIRIAME KOMPIUTERIO PRIEVADUS\n\n'+fields.map(function(el){return el.getAttribute('data-k')+': '+(el.value||'–');}).join('\n');
+  function fb(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');msg('✓ Nukopijuota!');}catch(e){msg('Nepavyko nukopijuoti');}document.body.removeChild(ta);}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){msg('✓ Nukopijuota!');},fb);else fb();
+ });
+ q('#ipl-clear').addEventListener('click',function(){fields.forEach(function(el){el.value='';});save();});
+})();
+
+/* ================= PASITIKRINK: ATPAŽINK JUNGTĮ ================= */
+(function(){
+ var box=q('#ipl-sq');
+ var ALL=[['usb2','USB'],['usbc','USB-C'],['hdmi','HDMI'],['dp','„DisplayPort“'],['vga','VGA'],['eth','Eternetas'],['power','Maitinimo prievadas'],['aout','Garso prievadas']];
+ var qs,i,score;
+ function start(){qs=shuffle(ALL.slice()).slice(0,6);i=0;score=0;show();}
+ function show(){
+  if(i>=qs.length){
+   box.innerHTML='<div class="big">'+(score===qs.length?'🏆':score>=4?'👍':'💪')+'</div><h3 style="margin:6px 0">Atpažinai '+score+' iš '+qs.length+'</h3><p class="lead">'+(score===qs.length?'Puiku – visas jungtis pažįsti iš formos!':'Peržiūrėk prievadų korteles aukščiau ir pabandyk dar kartą.')+'</p><button class="btn" data-a="re">🔁 Bandyti dar kartą</button>';
+   return;}
+  var cur=qs[i],o=shuffle(ALL.filter(function(a){return a[0]!==cur[0];})).slice(0,3);o.push(cur);shuffle(o);
+  box.innerHTML='<div class="prog">'+(i+1)+' / '+qs.length+' · Kas tai per jungtis?</div><div class="scr">'+ico(cur[0])+'</div><div class="opts">'+o.map(function(a){return '<button class="opt" data-v="'+a[0]+'">'+a[1]+'</button>';}).join('')+'</div>';
+ }
+ box.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.getAttribute('data-a')==='re'){start();return;}
+  var v=b.getAttribute('data-v');if(!v)return;
+  var ok=v===qs[i][0];if(ok)score++;
+  qa('.opt',box).forEach(function(o){o.classList.add('off');if(o.getAttribute('data-v')===qs[i][0])o.classList.add('ok');});
+  if(!ok)b.classList.add('bad');
+  i++;setTimeout(show,ok?700:1500);
+ });
+ start();
+})();
+
+/* ================================================================
+   ŽAIDIMAS „PRIJUNK KOMPIUTERĮ“
+   ================================================================ */
+var app=q('#ipl-g');
+function $(s){return app.querySelector(s);}
+function $$(s){return Array.prototype.slice.call(app.querySelectorAll(s));}
+
+/* ---------- PRIEVADŲ TIPAI ---------- */
+var PT={
+ usb:{ic:'usb2',name:'USB jungtis',en:'USB – universal serial bus',
+  desc:'Universaliausias prievadas. Prie jo jungiami beveik visi išoriniai įrenginiai: pelė, klaviatūra, atmintukas, išorinis diskas, spausdintuvas, kamera.',
+  an:'🔌 Jungiama: pelė, klaviatūra, atmintukas, išorinis diskas ir kt.',
+  fact:'Mėlynas liežuvėlis reiškia greitesnę USB 3.0 jungtį – duomenis ji perduoda maždaug 10 kartų greičiau nei USB 2.0.',
+  hint:'Ieškok plokščio stačiakampio prievado – tokių čia net keturi.'},
+ usbc:{ic:'usbc',name:'USB-C jungtis',en:'USB Type-C',
+  desc:'Naujausios formos USB jungtis – maža, ovali ir simetriška, todėl kištuką galima įkišti bet kuria puse. Ji gali perduoti duomenis, vaizdą ir įkrauti įrenginius.',
+  an:'🔌 Jungiama: telefonai, planšetės, nauji nešiojamieji kompiuteriai, išoriniai diskai.',
+  fact:'Europos Sąjungoje nuo 2024 m. pabaigos nauji telefonai turi būti įkraunami būtent per USB-C.',
+  hint:'Ieškok mažo ovalaus prievado užapvalintais galais.'},
+ hdmi:{ic:'hdmi',name:'HDMI jungtis',en:'HDMI – high-definition multimedia interface',
+  desc:'Skaitmeninis prievadas, vienu kabeliu perduodantis ir vaizdą, ir garsą. Naudojamas monitoriams, televizoriams, projektoriams prijungti.',
+  an:'🔌 Jungiama: monitorius, televizorius, projektorius.',
+  fact:'Kadangi HDMI perduoda ir garsą, televizoriui prijungti nereikia atskiro garso laido.',
+  hint:'Ieškok plokščio prievado, kurio abu apatiniai kampai nupjauti.'},
+ dp:{ic:'dp',name:'„DisplayPort“ jungtis',en:'DisplayPort',
+  desc:'Šiuolaikinis skaitmeninis vaizdo prievadas, dažnas kompiuterių monitoriuose ir vaizdo plokštėse. Kaip ir HDMI, gali perduoti ir vaizdą, ir garsą.',
+  an:'🔌 Jungiama: kompiuterių monitoriai, ypač žaidimų.',
+  fact:'Nuo HDMI jį atskirsi iš formos: „DisplayPort“ nupjautas tik vienas kampas.',
+  hint:'Panašus į HDMI, bet nupjautas tik vienas kampas.'},
+ vga:{ic:'vga',name:'VGA jungtis',en:'VGA – video graphics array',
+  desc:'Senas analoginis vaizdo prievadas su 15 kontaktų, dažniausiai mėlynas. Perduoda tik vaizdą, o jo kokybė prastesnė nei skaitmeninių jungčių. Vis dar pasitaiko senuose monitoriuose ir projektoriuose.',
+  an:'🔌 Jungiama: seni monitoriai ir projektoriai.',
+  fact:'VGA sukurta dar 1987 metais. Kištukas prie prievado prisukamas dviem varžtais, kad neiškristų.',
+  hint:'Ieškok mėlynos trapecijos formos jungties su daug skylučių.'},
+ eth:{ic:'eth',name:'Eterneto prievadas',en:'Ethernet',
+  desc:'Į šį prievadą jungiamas tinklo (interneto) kabelis. Taip kompiuteris prijungiamas prie laidinio kompiuterių tinklo.',
+  an:'🔌 Jungiama: tinklo kabelis iš maršrutizatoriaus.',
+  fact:'Laidinis ryšys paprastai būna stabilesnis už belaidį, todėl jį mėgsta žaidėjai. Veikiant ryšiui, šalia prievado mirksi lemputės.',
+  hint:'Ieškok beveik kvadratinio prievado su mažomis lemputėmis.'},
+ aout:{ic:'aout',name:'Garso išvestis (žalia)',en:'line out',
+  desc:'Apvalus 3,5 mm garso prievadas, į kurį jungiamos ausinės arba garsiakalbiai. Per jį garsas išeina iš kompiuterio.',
+  an:'🔌 Jungiama: ausinės, garsiakalbiai.',
+  fact:'Spalvos padeda nesuklysti: žalia – garsui išvesti, rožinė – mikrofonui.',
+  hint:'Ieškok apvalios žalios jungties.'},
+ amic:{ic:'amic',name:'Mikrofono įvestis (rožinė)',en:'microphone in',
+  desc:'Apvalus 3,5 mm garso prievadas mikrofonui. Per jį garsas patenka į kompiuterį.',
+  an:'🔌 Jungiama: mikrofonas.',
+  fact:'Įjungęs mikrofoną į žalią prievadą, savo balso neįrašysi – ten garsas tik išeina.',
+  hint:'Ieškok apvalios rožinės jungties.'},
+ ain:{ic:'ain',name:'Linijinė garso įvestis (mėlyna)',en:'line in',
+  desc:'Apvalus 3,5 mm prievadas garsui iš kito įrenginio (pavyzdžiui, grotuvo ar muzikos instrumento) įrašyti.',
+  an:'🔌 Jungiama: grotuvai, muzikos aparatūra.',
+  fact:'Šis prievadas naudojamas rečiausiai iš trijų garso jungčių.',
+  hint:'Ieškok apvalios mėlynos jungties.'},
+ power:{ic:'power',name:'Maitinimo prievadas',en:'power connector',
+  desc:'Į jį jungiamas maitinimo laidas, kuriuo kompiuteris prijungiamas prie elektros tinklo. Prievadas yra maitinimo bloko dalis.',
+  an:'🔌 Jungiama: maitinimo laidas iš elektros lizdo.',
+  fact:'Nešiojamieji kompiuteriai turi akumuliatorių, todėl kurį laiką veikia ir neprijungti prie elektros tinklo.',
+  hint:'Ieškok didelio juodo prievado su trimis kontaktais kompiuterio viršuje.'}
+};
+var PT_IDS=['usb','usbc','hdmi','dp','vga','eth','amic','aout','ain','power'];
+var PORTS=[
+ {id:'pw',t:'power',x:450,y:105,ic:'power'},
+ {id:'u1',t:'usb',x:90,y:240,ic:'usb2'},{id:'u2',t:'usb',x:90,y:280,ic:'usb2'},
+ {id:'u3',t:'usb',x:165,y:240,ic:'usb3'},{id:'u4',t:'usb',x:165,y:280,ic:'usb3'},
+ {id:'c1',t:'usbc',x:235,y:260,ic:'usbc'},
+ {id:'e1',t:'eth',x:305,y:260,ic:'eth'},
+ {id:'a1',t:'amic',x:385,y:260,ic:'amic'},{id:'a2',t:'aout',x:425,y:260,ic:'aout'},{id:'a3',t:'ain',x:465,y:260,ic:'ain'},
+ {id:'h1',t:'hdmi',x:130,y:359,ic:'hdmi'},{id:'d1',t:'dp',x:250,y:359,ic:'dp'},
+ {id:'v1',t:'vga',x:170,y:407,ic:'vga'}
+];
+var HW={usb2:[28,15],usb3:[28,15],usbc:[22,15],hdmi:[30,15],dp:[30,15],vga:[46,16],eth:[22,19],amic:[14,14],aout:[14,14],ain:[14,14],power:[34,26]};
+
+/* ---------- 2 LYGIO ĮRENGINIAI ---------- */
+var DEV=[
+ {id:'pwr',e:'⚡',n:'Maitinimo laidas',t:'power',ic:'power',ok:'Kompiuteris gauna elektros energiją!'},
+ {id:'mon',e:'🖥️',n:'Monitorius (HDMI kabelis)',t:'hdmi',ic:'hdmi',ok:'Monitorius prijungtas – vaizdas ir garsas keliaus vienu kabeliu.'},
+ {id:'kb',e:'⌨️',n:'Klaviatūra',t:'usb',ic:'usb2',ok:'Klaviatūra prijungta – galima rašyti!'},
+ {id:'ms',e:'🖱️',n:'Pelė',t:'usb',ic:'usb2',ok:'Pelė prijungta – žymeklis juda!'},
+ {id:'spk',e:'🔊',n:'Garsiakalbiai',t:'aout',ic:'aout',ok:'Garsiakalbiai prijungti – girdėsime garsą!'},
+ {id:'mic',e:'🎤',n:'Mikrofonas',t:'amic',ic:'amic',ok:'Mikrofonas prijungtas – galima įrašyti balsą!'},
+ {id:'net',e:'🌐',n:'Tinklo (interneto) kabelis',t:'eth',ic:'eth',ok:'Kompiuteris prijungtas prie laidinio tinklo!'},
+ {id:'fl',e:'💾',n:'USB atmintukas',t:'usb',ic:'usb3',ok:'Atmintukas prijungtas!'},
+ {id:'ph',e:'📱',n:'Telefonas (USB-C kabelis)',t:'usbc',ic:'usbc',ok:'Telefonas prijungtas – galima perkelti nuotraukas!'},
+ {id:'prj',e:'📽️',n:'Senas projektorius (VGA kabelis)',t:'vga',ic:'vga',ok:'Senasis projektorius prijungtas!'},
+ {id:'mon2',e:'🖥️',n:'Antras monitorius („DisplayPort“)',t:'dp',ic:'dp',ok:'Antras monitorius prijungtas – dirbsime dviem ekranais!'}
+];
+function devBy(id){for(var i=0;i<DEV.length;i++)if(DEV[i].id===id)return DEV[i];}
+
+/* ---------- 1 LYGIO ĮRENGINIAI ---------- */
+var SORT=[
+ {e:'⌨️',n:'Klaviatūra',s:'Klaviatūra',z:'in',w:'Klaviatūra įveda tekstą ir komandas į kompiuterį.'},
+ {e:'🖱️',n:'Pelė',s:'Pelė',z:'in',w:'Pele perduodame komandas kompiuteriui: valdome žymeklį, pasirenkame objektus.'},
+ {e:'🎤',n:'Mikrofonas',s:'Mikrofonas',z:'in',w:'Mikrofonas įveda garsą į kompiuterį.'},
+ {e:'📑',n:'Skeneris',s:'Skeneris',z:'in',w:'Skeneris popierinį dokumentą paverčia skaitmeniniu failu – įveda jį į kompiuterį.'},
+ {e:'📷',n:'Kamera',s:'Kamera',z:'in',w:'Kamera įveda vaizdą: fotografuoja ir filmuoja.'},
+ {e:'🖥️',n:'Monitorius',s:'Monitorius',z:'out',w:'Monitorius rodo vaizdą – pateikia informaciją naudotojui.'},
+ {e:'🖨️',n:'Spausdintuvas',s:'Spausdintuvas',z:'out',w:'Spausdintuvas informaciją iš kompiuterio išveda ant popieriaus.'},
+ {e:'🔊',n:'Garsiakalbiai',s:'Garsiakalbiai',z:'out',w:'Garsiakalbiai išveda garsą.'},
+ {e:'📽️',n:'Projektorius',s:'Projektorius',z:'out',w:'Projektorius vaizdą iš kompiuterio rodo ant didelio paviršiaus.'},
+ {e:'🎧',n:'Ausinės (be mikrofono)',s:'Ausinės',z:'out',w:'Paprastos ausinės tik išveda garsą.'},
+ {e:'📱',n:'Jutiklinis ekranas',s:'Jutiklinis ekr.',z:'both',w:'Jutiklinis ekranas rodo vaizdą (išvestis) ir reaguoja į prisilietimus (įvestis).'},
+ {e:'🖨️',n:'Daugiafunkcis spausdintuvas',s:'Daugiaf. spausd.',z:'both',w:'Jis spausdina (išvestis) ir skenuoja (įvestis).'},
+ {e:'🎧',n:'Ausinės su mikrofonu',s:'Ausinės su mikr.',z:'both',w:'Per ausines girdi garsą (išvestis), o mikrofonu kalbi (įvestis).'},
+ {e:'🥽',n:'Virtualiosios realybės akiniai',s:'VR akiniai',z:'both',w:'Akiniai rodo virtualų pasaulį (išvestis) ir reaguoja į galvos judesius (įvestis).'}
+];
+var ZN={'in':'įvedimo įrenginys','out':'išvedimo įrenginys','both':'ir įvedimo, ir išvedimo įrenginys'};
+var SLOT={'in':[[120,115],[85,185],[120,255],[160,150],[160,220]],'both':[[270,130],[270,172],[270,214],[270,256]],'out':[[420,115],[455,185],[420,255],[380,150],[380,220]]};
+
+/* ---------- 3 LYGIO SITUACIJOS ---------- */
+var QS=[
+ {t:'Draugas nusipirko naują modernų monitorių, palaikantį aukščiausią vaizdo kokybę. Kurį prievadą jam rekomenduotum?',o:['HDMI arba „DisplayPort“','VGA','Eterneto prievadą','Garso prievadą'],e:'HDMI ir „DisplayPort“ – šiuolaikinės skaitmeninės jungtys, perduodančios aukštos kokybės vaizdą. VGA – sena analoginė jungtis.'},
+ {t:'Klasėje dingo belaidis internetas, bet šalia stovi maršrutizatorius ir guli tinklo kabelis. Į kurį prievadą jį jungsi?',o:['Eterneto prievadą','HDMI','USB','Maitinimo prievadą'],e:'Tinklo kabelis jungiamas į eterneto prievadą – taip kompiuteris prisijungia prie laidinio tinklo.'},
+ {t:'Močiutė atnešė atmintuką su nuotraukomis. Kur jį jungsi?',o:['Į USB jungtį','Į HDMI jungtį','Į eterneto prievadą','Į garso prievadą'],e:'Atmintukai jungiami į USB – universaliausią prievadą.'},
+ {t:'Nori įrašyti savo balsą. Mikrofonas turi apvalų 3,5 mm kištuką. Į kurį prievadą jį jungsi?',o:['Į rožinį garso prievadą','Į žalią garso prievadą','Į HDMI jungtį','Į USB-C jungtį'],e:'Rožinis garso prievadas skirtas mikrofonui. Žalias skirtas garsui išvesti į ausines ar garsiakalbius.'},
+ {t:'Stalinis kompiuteris visai neįsijungia, nedega nė viena lemputė. Ką patikrinsi pirmiausia?',o:['Ar prijungtas maitinimo laidas','Ar prijungta pelė','Ar prijungtas tinklo kabelis','Ar prijungti garsiakalbiai'],e:'Be elektros energijos kompiuteris neveiks, todėl pirmiausia tikriname maitinimo laidą.'},
+ {t:'Kuris iš šių įrenginių yra ir įvedimo, ir išvedimo įrenginys?',o:['Jutiklinis ekranas','Klaviatūra','Projektorius','Skeneris'],e:'Jutiklinis ekranas rodo vaizdą (išvestis) ir priima prisilietimus (įvestis).'},
+ {t:'Mokytoja nori parodyti skaidres visai klasei ant sienos. Kokio įrenginio jai reikia?',o:['Projektoriaus – tai išvedimo įrenginys','Skenerio – tai įvedimo įrenginys','Mikrofono – tai įvedimo įrenginys','Kameros – tai įvedimo įrenginys'],e:'Projektorius vaizdą iš kompiuterio rodo ant didelio paviršiaus, todėl tai išvedimo įrenginys.'},
+ {t:'Mokyklos sandėlyje radai seną projektorių su mėlyna 15 kontaktų jungtimi. Kokia tai jungtis?',o:['VGA','HDMI','USB-C','Eternetas'],e:'Mėlyna 15 kontaktų jungtis – tai VGA, senas analoginis vaizdo prievadas.'},
+ {t:'Nupiešei piešinį ant popieriaus ir nori jį turėti kompiuteryje kaip failą. Kokio įrenginio reikia?',o:['Skenerio','Spausdintuvo','Garsiakalbių','Monitoriaus'],e:'Skeneris popierinius dokumentus ir piešinius paverčia skaitmeniniais failais. Tai įvedimo įrenginys.'},
+ {t:'Kompiuterį prie televizoriaus prijungei HDMI kabeliu. Ar garsui reikia dar vieno, atskiro laido?',o:['Ne – HDMI perduoda ir vaizdą, ir garsą','Taip – HDMI perduoda tik vaizdą','Taip – reikia eterneto kabelio','Taip – reikia VGA kabelio'],e:'HDMI vienu kabeliu perduoda ir vaizdo, ir garso signalus.'}
+];
+
+/* ---------- KOMPIUTERIO GALINĖS SIENELĖS PIEŠINYS ---------- */
+function blades(r,n){var s='';for(var i=0;i<n;i++)s+='<path d="M0,0 C'+f(r*.12)+','+f(-r*.55)+' '+f(r*.68)+','+f(-r*.66)+' '+f(r*.88)+','+f(-r*.22)+' C'+f(r*.58)+','+f(-r*.14)+' '+f(r*.28)+','+f(-r*.03)+' 0,0Z" transform="rotate('+f(i*360/n)+')"/>';return s;}
+function panelSvg(){
+ var s='<svg viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kompiuterio galinė sienelė su prievadais">'+
+ '<defs><linearGradient id="iplCase" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2331"/><stop offset="1" stop-color="#131924"/></linearGradient>'+
+ '<pattern id="iplHoles" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="2.2" fill="#0c1018"/></pattern></defs>'+
+ '<rect x="10" y="10" width="620" height="580" rx="16" fill="url(#iplCase)" stroke="#2e3849" stroke-width="3"/>'+
+ /* maitinimo blokas */
+ '<rect x="34" y="30" width="572" height="150" rx="8" fill="#1b1f28" stroke="#3a4252" stroke-width="2"/>'+
+ '<g transform="translate(150,105)"><circle r="60" fill="#0b0f17" stroke="#3a4252" stroke-width="2"/><g class="spin"><circle r="56" fill="none"/><g fill="#4b566d">'+blades(54,7)+'</g></g><g fill="none" stroke="#77819a" stroke-width="1.6"><circle r="56"/><circle r="42"/><circle r="28"/><circle r="14"/><path d="M-56,0H56M0,-56V56"/></g></g>'+
+ '<rect x="250" y="62" width="110" height="86" rx="4" fill="#c9cfd7"/><rect x="260" y="74" width="62" height="7" fill="#7d8794"/><rect x="260" y="90" width="88" height="5" fill="#9aa3ae"/><rect x="260" y="102" width="56" height="5" fill="#9aa3ae"/><rect x="260" y="114" width="80" height="5" fill="#9aa3ae"/><rect x="260" y="126" width="48" height="5" fill="#9aa3ae"/>'+
+ '<rect x="528" y="84" width="42" height="42" rx="5" fill="#0e1015" stroke="#3a4252" stroke-width="2"/><rect x="536" y="92" width="26" height="26" rx="3" fill="#b3261e"/><text x="549" y="110" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">I/O</text>'+
+ '<circle cx="585" cy="50" r="7" fill="#11161f" stroke="#445067" stroke-width="2"/><circle class="led" cx="585" cy="50" r="3.5"/>'+
+ /* jungčių plokštelė */
+ '<rect x="34" y="200" width="470" height="120" rx="4" fill="#aeb6c0" stroke="#6f7884" stroke-width="2"/>'+
+ '<rect x="516" y="200" width="90" height="120" rx="6" fill="url(#iplHoles)"/>'+
+ /* išplėtimo lizdai */
+ rep(5,function(i){var y=338+i*48;return '<rect x="34" y="'+y+'" width="572" height="42" rx="4" fill="#232b3b" stroke="#364057"/>'+(i<2?'<rect x="40" y="'+(y+3)+'" width="560" height="36" rx="3" fill="#b9c0c9" stroke="#7d8590"/>'+rep(i===0?12:14,function(k){return '<rect x="'+((i===0?330:290)+k*20)+'" y="'+(y+11)+'" width="10" height="20" rx="3" fill="#232b3b"/>';}):rep(26,function(k){return '<rect x="'+(52+k*21)+'" y="'+(y+13)+'" width="11" height="16" rx="3" fill="#161c28"/>';}));})+
+ '<text x="269" y="314" font-size="10" fill="#4c5564" font-weight="700" text-anchor="middle">PAGRINDINĖS PLOKŠTĖS JUNGTYS</text>';
+ PORTS.forEach(function(p){var h=HW[p.ic];
+  s+='<g class="hit" data-port="'+p.id+'" transform="translate('+p.x+','+p.y+') scale(1.25)"><rect x="'+(-h[0])+'" y="'+(-h[1])+'" width="'+(2*h[0])+'" height="'+(2*h[1])+'" fill="transparent"/>'+D(p.ic)+'</g>';});
+ s+='<g class="bdg"></g></svg>';
+ return s;
+}
+function vennSvg(){
+ return '<svg viewBox="0 0 540 345" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Venno diagrama: įvedimo ir išvedimo įrenginiai">'+
+ '<path class="vz" data-z="in" d="M270,58.1 A150,150 0 1,0 270,311.9 A150,150 0 0,1 270,58.1 Z"/>'+
+ '<path class="vz" data-z="out" d="M270,58.1 A150,150 0 1,1 270,311.9 A150,150 0 0,0 270,58.1 Z"/>'+
+ '<path class="vz" data-z="both" d="M270,58.1 A150,150 0 0,1 270,311.9 A150,150 0 0,1 270,58.1 Z"/>'+
+ '<text class="vt" x="130" y="24">➡️ ĮVEDIMAS</text><text class="vt" x="410" y="24">IŠVEDIMAS ⬅️</text><text class="vt" x="270" y="96" style="font-size:13px">ABU</text>'+
+ '<g class="vput"></g></svg>';
+}
+
+/* ---------- BŪSENA ---------- */
+var S={mode:null,score:0,mistakes:0,t0:0,timer:null,sound:true,busy:false,done:0,total:0,tries:0,helped:false,target:null,found:{},used:{},queue:[],qi:0};
+var SV=null;
+
+/* ---------- GARSAS ---------- */
+var actx=null;
+function beep(fr,dur,type,gap){
+ if(!S.sound)return;
+ try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+  fr.forEach(function(v,i){var o=actx.createOscillator(),g=actx.createGain();o.type=type||'sine';o.frequency.value=v;
+   var t=actx.currentTime+i*(gap||.09);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.15,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+(dur||.12));
+   o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+(dur||.12)+.03);});
+ }catch(e){}
+}
+
+/* ---------- PAGALBINĖS ---------- */
+var toastT=null;
+function toast(msg,type,ms){var t=$('.g-toast');t.className='g-toast show '+(type||'');t.innerHTML=msg;clearTimeout(toastT);toastT=setTimeout(function(){t.className='g-toast';},ms||2400);}
+function flash(el,type){el.classList.remove('fl-ok','fl-bad');void el.getBoundingClientRect();el.classList.add('fl-'+type);setTimeout(function(){el.classList.remove('fl-'+type);},950);}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return m+':'+(x<10?'0':'')+x;}
+function elapsed(){return S.t0?Math.floor((Date.now()-S.t0)/1000):0;}
+function portBy(id){for(var i=0;i<PORTS.length;i++)if(PORTS[i].id===id)return PORTS[i];}
+function clearHelp(){$$('.hit').forEach(function(h){h.classList.remove('help');});}
+function helpType(t,freeOnly){$$('.hit').forEach(function(h){var p=portBy(h.getAttribute('data-port'));if(p.t===t&&(!freeOnly||!S.used[p.id]))h.classList.add('help');});}
+function ov(html,light){var o=$('.g-ov');o.innerHTML=html;o.className='g-ov show'+(light?' light':'');}
+function hideOv(){$('.g-ov').className='g-ov';}
+function stars(){var n=S.mistakes<=1?3:(S.mistakes<=4?2:1),st='';for(var i=0;i<3;i++)st+=i<n?'★':'<span class="dim">★</span>';return st;}
+function resHtml(){return '<div class="g-stars">'+stars()+'</div><div class="g-res"><div><b>'+S.score+'</b>taškų</div><div><b>'+S.mistakes+'</b>klaidų</div><div><b>'+fmt(elapsed())+'</b>laikas</div></div>';}
+
+/* ---------- ATVAIZDAVIMAS ---------- */
+function renderStats(){
+ var st=$('.g-stats'),lab=S.mode==='explore'?'Peržiūrėta':(S.mode==='l2'?'Prijungta':'Atlikta');
+ st.className='g-stats'+(S.mode==='explore'?' ex':'');
+ st.innerHTML='<div>'+lab+'<b>'+S.done+'/'+S.total+'</b></div><div class="x">Taškai<b>'+S.score+'</b></div><div class="x">Klaidos<b>'+S.mistakes+'</b></div><div class="x">Laikas<b>'+fmt(elapsed())+'</b></div>';
+}
+function setTask(lbl,txt,small,plug,hint){
+ $('.g-lbl').textContent=lbl;var t=$('.g-tgt');t.textContent=txt;t.className='g-tgt'+(small?' sm':'');
+ var p=$('.g-plug');if(plug){p.innerHTML=plug;p.classList.remove('hide');}else{p.innerHTML='';p.classList.add('hide');}
+ $('.g-hint').classList.toggle('hide',!hint);
+}
+function info(html,pop){var i=$('.g-info');i.innerHTML=html;i.classList.remove('pop');if(pop){void i.offsetWidth;i.classList.add('pop');}}
+function portInfo(t,extra){var c=PT[t];info('<div class="g-h">Aprašymas</div><h3>'+c.name+'</h3><div class="g-en">angl. '+c.en+'</div>'+(extra?'<p><b>'+extra+'</b></p>':'')+'<p>'+c.desc+'</p><div class="g-an">'+c.an+'</div><div class="g-fact">💡 <b>Ar žinai?</b> '+c.fact+'</div>',true);}
+function renderList(){
+ var lb=$('.g-listbox');
+ if(S.mode==='explore'){lb.classList.remove('hide');$('.g-lh').textContent='Prievadai';
+  $('.g-list').innerHTML=PT_IDS.map(function(t){return '<button class="g-item'+(S.found[t]?' done':'')+'" data-pt="'+t+'">'+PT[t].name+'<span class="g-ck">'+(S.found[t]?'✓':'')+'</span></button>';}).join('');}
+ else if(S.mode==='l2'){lb.classList.remove('hide');$('.g-lh').textContent='Įrenginiai';
+  $('.g-list').innerHTML=DEV.map(function(d){return '<button class="g-item'+(S.found[d.id]?' done':'')+(S.target===d.id?' cur':'')+'" data-dev="'+d.id+'"><u>'+d.e+'</u>'+d.n+'<span class="g-ck">'+(S.found[d.id]?'✓':'')+'</span></button>';}).join('');}
+ else lb.classList.add('hide');
+}
+
+/* ---------- REŽIMAI ---------- */
+function setMode(m){
+ S.mode=m;S.score=0;S.mistakes=0;S.done=0;S.tries=0;S.helped=false;S.target=null;S.found={};S.used={};S.busy=false;S.qi=0;
+ clearInterval(S.timer);S.t0=0;hideOv();
+ $$('.g-tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m);});
+ var w=$('.g-wrap');
+ if(m==='explore'||m==='l2'){w.className='g-wrap pan';w.innerHTML=panelSvg();SV=w.querySelector('svg');}
+ if(m==='explore'){S.total=PT_IDS.length;setTask('Tyrinėjimo režimas','Spausk ant bet kurio prievado ir sužinok, kam jis skirtas',true,null,false);
+  info('<div class="g-h">Aprašymas</div><p class="g-mut">👆 Prieš tave – kompiuterio galinė sienelė. Paspausk ant bet kurio prievado arba ant pavadinimo sąraše.</p>');}
+ if(m==='l1'){S.total=SORT.length;S.queue=shuffle(SORT.slice());w.className='g-wrap venn';w.innerHTML=vennSvg();SV=w.querySelector('svg');S.slots={'in':0,'out':0,'both':0};
+  info('<div class="g-h">Kaip žaisti</div><p class="g-mut">Viršuje rodomas įrenginys. Paspausk tą diagramos sritį, kuriai jis priklauso: <b style="color:#e9eef8">įvedimas</b>, <b style="color:#e9eef8">išvedimas</b> arba <b style="color:#e9eef8">abu</b> (vidurys).</p><p class="g-mut">Iš pirmo karto – 10 taškų, iš antro – 5.</p>');
+  nextSort();}
+ if(m==='l2'){S.total=DEV.length;S.queue=DEV.map(function(d){return d.id;});
+  info('<div class="g-h">Kaip žaisti</div><p class="g-mut">Viršuje matai įrenginį ir jo kištuko formą. Paspausk prievadą, į kurį jį reikia jungti. Gali pats pasirinkti įrenginį iš sąrašo.</p><p class="g-mut">Iš pirmo karto – 10 taškų, iš antro – 6, iš trečio – 3.</p>');
+  nextDev();}
+ if(m==='l3'){S.total=QS.length;S.queue=shuffle(QS.slice());w.className='g-wrap';setTask('🧑‍💻 IT specialistas','Padėk žmonėms išspręsti jų bėdas',true,null,false);
+  info('<img class="g-img" src="'+IMG+'prievadai-12-it-specialistas.webp" width="600" height="600" alt="IT specialistas"><div class="g-h">Kaip žaisti</div><p class="g-mut">Tu – mokyklos IT specialistas. Perskaityk situaciją ir pasirink geriausią sprendimą. Už teisingą atsakymą – 10 taškų.</p>');
+  showQ();}
+ if(m!=='explore'){S.t0=Date.now();S.timer=setInterval(renderStats,1000);}
+ renderList();renderStats();
+}
+
+/* ---------- 1 LYGIS ---------- */
+function nextSort(){
+ if(S.done>=S.total){finish();return;}
+ S.target=S.queue[S.done];S.tries=0;S.busy=false;
+ setTask('Kur priskirtum šį įrenginį?',S.target.n,false,S.target.e,false);
+}
+function clickZone(el){
+ if(S.busy||!S.target)return;
+ var z=el.getAttribute('data-z'),it=S.target;
+ if(z===it.z){
+  var pts=[10,5,2][S.tries]||2;S.busy=true;S.score+=pts;S.done++;
+  var p=SLOT[z][S.slots[z]++]||[270,180];
+  SV.querySelector('.vput').insertAdjacentHTML('beforeend','<g class="badge"><text class="ve" x="'+p[0]+'" y="'+p[1]+'">'+it.e+'</text><text class="vn" x="'+p[0]+'" y="'+(p[1]+13)+'">'+it.s+'</text></g>');
+  flash(el,'ok');beep([660,880]);toast('✅ Teisingai! +'+pts,'ok',1500);
+  info('<div class="g-h">Paaiškinimas</div><h3>'+it.e+' '+it.n+'</h3><div class="g-en">'+ZN[it.z]+'</div><p>'+it.w+'</p>',true);
+  renderStats();setTimeout(nextSort,900);
+ }else{
+  S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
+  toast('❌ Ne visai. Pagalvok: ar šis įrenginys informaciją <b>priima</b>, <b>pateikia</b>, o gal daro abu dalykus?','bad',3200);renderStats();
+ }
+}
+
+/* ---------- 2 LYGIS ---------- */
+function nextDev(){for(var i=0;i<S.queue.length;i++){if(!S.found[S.queue[i]]){setDev(S.queue[i]);return;}}}
+function setDev(id){var d=devBy(id);S.target=id;S.tries=0;S.helped=false;S.busy=false;clearHelp();
+ setTask('Prijunk:',d.e+' '+d.n,false,ico(d.ic),true);renderList();}
+function clickPort(el){
+ var p=portBy(el.getAttribute('data-port'));
+ if(S.mode==='explore'){if(!S.found[p.t]){S.found[p.t]=1;S.done++;}flash(el,'ok');portInfo(p.t);renderList();renderStats();return;}
+ if(S.mode!=='l2'||!S.target||S.busy)return;
+ var d=devBy(S.target);
+ if(S.used[p.id]){toast('Šis prievadas jau užimtas – rinkis laisvą.','',2000);return;}
+ if(p.t===d.t){
+  var pts=S.helped?1:([10,6,3][S.tries]||3);S.busy=true;S.score+=pts;S.found[d.id]=1;S.used[p.id]=1;S.done++;
+  SV.querySelector('.bdg').insertAdjacentHTML('beforeend','<g transform="translate('+(p.x+(p.ic==='power'?44:30))+','+(p.y-(p.ic==='power'?30:18))+')"><g class="badge"><circle r="13" fill="#143826" stroke="#46d37b" stroke-width="2.5"/><text y="5" font-size="14" text-anchor="middle">'+d.e+'</text></g></g>');
+  clearHelp();flash(el,'ok');beep([660,880]);
+  var extra=d.ok;
+  if(d.id==='fl')extra=p.ic==='usb3'?'Puikus pasirinkimas – mėlyna USB 3.0 jungtis failus kopijuos greičiau!':'Atmintukas veikia! Beje, mėlynoje USB 3.0 jungtyje failai kopijuotųsi greičiau.';
+  toast('✅ '+extra+' +'+pts,'ok',2600);portInfo(p.t,extra);
+  S.target=null;renderList();renderStats();
+  if(S.done===S.total)setTimeout(finish,1400);else setTimeout(nextDev,1000);
+ }else{
+  S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
+  var msg='❌ Kištukas čia netelpa – tai '+PT[p.t].name.toLowerCase()+'.',ms=2600;
+  if(S.tries===2){msg+='<br>💡 '+PT[d.t].hint;ms=4500;}
+  if(S.tries>=3){S.helped=true;helpType(d.t,true);msg='👀 Žiūrėk – tinkamas prievadas mirksi!';ms=3000;}
+  toast(msg,'bad',ms);renderStats();
+ }
+}
+
+/* ---------- 3 LYGIS ---------- */
+function showQ(){
+ if(S.done>=S.total){finish();return;}
+ var c=S.queue[S.done],o=shuffle(c.o.map(function(t,i){return {t:t,ok:i===0};}));S.busy=false;
+ $('.g-wrap').innerHTML='<div class="qz"><div class="qn">Situacija '+(S.done+1)+' iš '+S.total+'</div><div class="qt">'+c.t+'</div>'+o.map(function(x){return '<button class="qo" data-ok="'+(x.ok?1:0)+'">'+x.t+'</button>';}).join('')+'<div class="qx"></div></div>';
+}
+function clickOpt(b){
+ if(S.busy)return;S.busy=true;
+ var ok=b.getAttribute('data-ok')==='1',c=S.queue[S.done];
+ $$('.qo').forEach(function(o){o.classList.add('off');if(o.getAttribute('data-ok')==='1')o.classList.add('ok');});
+ if(ok){S.score+=10;beep([660,880]);}else{b.classList.add('bad');S.mistakes++;beep([220,170],.15,'square');}
+ S.done++;renderStats();
+ $('.qx').innerHTML='<div class="qe">'+(ok?'✅ <b>Teisingai!</b> ':'❌ <b>Ne visai.</b> ')+c.e+'</div><button class="g-btn pri" data-act="nextq">'+(S.done>=S.total?'Baigti':'Toliau →')+'</button>';
+}
+
+/* ---------- PABAIGA ---------- */
+function finish(){
+ clearInterval(S.timer);beep([523,659,784,1047],.2);S.target=null;
+ if(S.mode==='l1'){setTask('Užduotis atlikta','🎉 Visi įrenginiai surūšiuoti!',false,null,false);
+  ov('<div class="g-card"><div class="g-big">🎉</div><h2>Visi įrenginiai surūšiuoti!</h2>'+resHtml()+'<p>Dabar žinai, kurie įrenginiai informaciją įveda, kurie išveda, o kurie daro abu dalykus.</p><div class="g-btns"><button class="g-btn pri" data-act="l2">🔌 2 lygis: Prijunk<small>Prijunk įrenginius prie tinkamų prievadų</small></button><button class="g-btn" data-act="again">🔁 Žaisti dar kartą</button></div></div>');}
+ if(S.mode==='l2'){setTask('Užduotis atlikta','🎉 Visi įrenginiai prijungti!',false,null,false);renderList();
+  ov('<div class="g-card"><div class="g-big">🎉</div><h2>Visi įrenginiai prijungti!</h2>'+resHtml()+'<p>Kiekvienas laidas savo vietoje. Dabar įjunk kompiuterį!</p><div class="g-btns"><button class="g-btn power" data-act="power">⚡ Įjungti kompiuterį</button></div></div>');}
+ if(S.mode==='l3'){setTask('Užduotis atlikta','🎉 Visos situacijos išspręstos!',false,null,false);
+  var good=S.total-S.mistakes;
+  ov('<div class="g-card"><div class="g-big">'+(S.mistakes<=1?'🏆':'🧑‍💻')+'</div><h2>'+(S.mistakes<=1?'Tu – tikras IT specialistas!':'Situacijos išspręstos!')+'</h2>'+resHtml()+'<p>Teisingai išsprendei '+good+' iš '+S.total+' situacijų.</p><div class="g-btns"><button class="g-btn pri" data-act="again">🔁 Žaisti dar kartą</button><button class="g-btn" data-act="explore">🔍 Tyrinėti prievadus</button></div></div>');}
+}
+function powerOn(){
+ hideOv();SV.classList.add('on');beep([110,220,330,440,660],.3,'triangle',.14);
+ toast('⚡ Kompiuteris įsijungia… monitorius užsidega… pelė ir klaviatūra veikia!','ok',2800);
+ setTimeout(function(){
+  ov('<div class="g-card"><h2>💻 Kompiuteris veikia!</h2><p>Visi išoriniai įrenginiai prijungti prie tinkamų prievadų ir gali bendrauti su kompiuteriu.</p><div class="g-btns"><button class="g-btn pri" data-act="l3">🧑‍💻 3 lygis: IT specialistas<small>Išspręsk 10 situacijų iš gyvenimo</small></button><button class="g-btn" data-act="again">🔁 Žaisti dar kartą</button></div></div>',true);
+ },3000);
+}
+
+/* ---------- PASPAUDIMAI ---------- */
+app.addEventListener('click',function(e){
+ var z=e.target.closest('.vz');if(z&&S.mode==='l1'){clickZone(z);return;}
+ var h=e.target.closest('.hit');if(h){clickPort(h);return;}
+ var b=e.target.closest('button');if(!b||!app.contains(b))return;
+ if(b.classList.contains('qo')){clickOpt(b);return;}
+ var md=b.getAttribute('data-mode'),act=b.getAttribute('data-act'),pt=b.getAttribute('data-pt'),dv=b.getAttribute('data-dev');
+ if(md){setMode(md);return;}
+ if(pt){portInfo(pt);clearHelp();helpType(pt);if(!S.found[pt]){S.found[pt]=1;S.done++;}renderList();renderStats();setTimeout(clearHelp,2600);return;}
+ if(dv){if(S.found[dv])portInfo(devBy(dv).t);else if(!S.busy)setDev(dv);return;}
+ if(act==='hint'){if(S.mode==='l2'&&S.target&&!S.busy){if(S.tries<1)S.tries=1;toast('💡 '+PT[devBy(S.target).t].hint,'',4500);}return;}
+ if(act==='sound'){S.sound=!S.sound;b.textContent=S.sound?'🔊':'🔇';return;}
+ if(act==='fs'){if(document.fullscreenElement)document.exitFullscreen();else if(app.requestFullscreen)app.requestFullscreen();return;}
+ if(act==='power'){powerOn();return;}
+ if(act==='nextq'){showQ();return;}
+ if(act==='again'){setMode(S.mode);return;}
+ if(act==='l1'||act==='l2'||act==='l3'||act==='explore'){setMode(act);return;}
+});
+
+/* ---------- PRADŽIA ---------- */
+setMode('explore');
+ov('<div class="g-card"><div class="g-big">🔌🖥️</div><h2>Prijunk kompiuterį!</h2><p>Naujas kompiuteris ką tik išpakuotas, bet prie jo dar niekas neprijungta. Ar žinai, kurį laidą kur jungti?</p><div class="g-btns">'+
+ '<button class="g-btn pri" data-act="l1">🔀 1 lygis: Rūšiuok<small>Įvedimo, išvedimo ar abu?</small></button>'+
+ '<button class="g-btn" data-act="l2">🔌 2 lygis: Prijunk<small>Rask kiekvienam įrenginiui tinkamą prievadą</small></button>'+
+ '<button class="g-btn" data-act="l3">🧑‍💻 3 lygis: IT specialistas<small>Išspręsk situacijas iš gyvenimo</small></button>'+
+ '<button class="g-btn" data-act="explore">🔍 Tyrinėk laisvai<small>Spausk ant prievadų ir skaityk aprašymus</small></button></div></div>');
+})();
+</script>
+</div>
+<!-- ===== PAMOKOS TURINYS: PABAIGA ===== -->
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 7–8 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+<script>
+/* Grupinės užduoties atsakymų siuntimas mokytojui į „Google“ formą „Prievadų medžioklė“.
+   Pamokos kodas nekeičiamas: mygtukas pridedamas šalia „Kopijuoti atsakymus“ ir ima tuos pačius laukus [data-k].
+   Atsakymai keliauja tik į mokytojo formą (docs.google.com), niekur kitur. */
+(function(){
+  var FORM="https://docs.google.com/forms/d/e/1FAIpQLSdGirVyQCBc39Rxuh-R4UNofxz153W7ck-b6uSnpGB9CmN22A/formResponse";
+  var MAP={ // pamokos lauko data-k → formos klausimo ID
+    "Grupė":"entry.1029839641",
+    "USB-A jungčių":"entry.1371945184",
+    "USB-C jungčių":"entry.291231675",
+    "HDMI jungčių":"entry.469594181",
+    "Eterneto prievadas":"entry.19768831",
+    "Garso prievadų":"entry.1462401837",
+    "Kiti rasti prievadai":"entry.226827134",
+    "Prijungtas įrenginys":"entry.28511369",
+    "Rekomendacija draugui":"entry.2020679517"
+  };
+  var root=document.getElementById("ipl"), copy=root&&root.querySelector("#ipl-copy"); if(!copy) return;
+  var btn=document.createElement("button"); btn.className="btn"; btn.type="button"; btn.textContent="📤 Siųsti mokytojui";
+  var msg=document.createElement("span"); msg.className="send-msg"; msg.setAttribute("aria-live","polite");
+  copy.parentNode.insertBefore(btn,copy);
+  copy.parentNode.appendChild(msg);
+  function say(t,bad){msg.textContent=t; msg.classList.toggle("bad",!!bad);}
+  btn.addEventListener("click",function(){
+    var fields=[].slice.call(root.querySelectorAll("[data-k]")), data=new URLSearchParams(), group="";
+    fields.forEach(function(el){ var k=el.getAttribute("data-k"), v=(el.value||"").trim(); if(k==="Grupė") group=v; if(MAP[k]&&v) data.append(MAP[k],v); });
+    if(!group){ say("Pirmiausia įrašykite grupės mokinių vardus.",true); root.querySelector('[data-k="Grupė"]').focus(); return; }
+    btn.disabled=true; say("Siunčiama…");
+    // „Google“ formos atsakymo neparodo (no-cors), todėl sėkme laikome išsiųstą užklausą be tinklo klaidos
+    fetch(FORM,{method:"POST",mode:"no-cors",body:data}).then(function(){
+      var t=new Date(); say("✓ Išsiųsta mokytojui "+t.getHours()+":"+String(t.getMinutes()).padStart(2,"0")+". Jei ką pataisysite, galite siųsti dar kartą.");
+    }).catch(function(){
+      say("Nepavyko išsiųsti – patikrinkite interneto ryšį arba nukopijuokite atsakymus ir nusiųskite mokytojui.",true);
+    }).then(function(){ setTimeout(function(){btn.disabled=false;},4000); });
+  });
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>

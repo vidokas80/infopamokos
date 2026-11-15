@@ -14,7 +14,10 @@
     var h=decodeURIComponent((location.hash||"").slice(1)); if(!h) return;
     if(open(h,true)) return;
     var el=document.getElementById(h), p=el&&el.closest("[data-tab]");
-    if(p){ open(p.dataset.tab,true); el.scrollIntoView(); }
+    if(p){ open(p.dataset.tab,true); el.scrollIntoView(); return; }
+    // pamoka perkelta į atskirą puslapį: data-moved="adresas/ id1 id2 …" – senos nuorodos veda į naują vietą
+    var mv=(bar.dataset.moved||"").split(/\s+/);
+    if(!el&&mv.indexOf(h)>0) location.replace(mv[0]+"#"+encodeURIComponent(h));
   }
   btns.forEach(function(b){
     b.addEventListener("click",function(){ history.replaceState(null,"","#"+b.dataset.go); open(b.dataset.go,true); });
