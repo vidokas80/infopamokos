@@ -10,6 +10,8 @@ img{max-width:100%}
   --code-bg:#eef1f3; --warm:#b4561c; --warm-soft:#f8e8dc; --ok:#1d7a3e; --ok-soft:#e4f3ea; --bad:#b3261e;
   /* Nekintančios abiejose temose: šešėlis ir baltas paveikslėlio fonas (JPG pavyzdys) */
   --shade:#0b0f14; --white:#ffffff; --photo:#fcf7f2;
+  /* Pamokos antraštė su pieštine iliustracija: šviesus popieriaus fonas abiejose temose */
+  --hero-bg:#fbecc8; --hero-ink:#16305f; --hero-sub:#3d4a5f;
   --f-display:"Commissioner", "Segoe UI", system-ui, sans-serif;
   --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
   --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -31,6 +33,19 @@ a{color:var(--accent)}
 .wrap{max-width:1180px;margin:0 auto}
 
 header.top{padding-block:2.5rem 1.75rem;border-bottom:1px solid var(--line)}
+/* Pamokos antraštė su iliustracija (kaip prievadų pamokoje): tekstas kairėje, ant tuščios paveikslėlio dalies.
+   Paveikslėlis 16:9, jo kairysis trečdalis tuščias. Telefone tekstas virš paveikslėlio. */
+.lesson-hero{position:relative;background:var(--hero-bg);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.lesson-hero > img{display:block;width:100%;height:auto}
+.lesson-hero.py-hero{margin-top:.8rem} /* 9–10 kl. Python pamokos: antraštė prieš <article> */
+.lesson-hero-t{position:absolute;left:4%;top:8%;width:33%;color:var(--hero-ink)}
+.lesson-hero .eyebrow{color:var(--hero-sub)}
+.lesson-hero h1{font-size:clamp(1.5rem,2.8vw,2.35rem);color:var(--hero-ink);margin:.45rem 0 .6rem}
+.lesson-hero .lead{color:var(--hero-sub);font-size:clamp(.95rem,1.25vw,1.06rem);line-height:1.5}
+@media (max-width:860px){
+  .lesson-hero-t{position:static;width:auto;padding:1.2rem 1.2rem .3rem}
+  .lesson-hero > img{aspect-ratio:4/3;object-fit:cover;object-position:88% 50%}
+}
 .eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin:.4rem 0 .8rem;text-wrap:balance;letter-spacing:-.01em}
 .lead{max-width:62ch;color:var(--muted);margin:0}

@@ -183,5 +183,45 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-16"
+ },
+ "antraste-excel-1.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, grid lines and colored blocks. Scene: a wooden school desk with a laptop showing an abstract spreadsheet grid where one column is highlighted in blue and a single cell below it is orange; next to it a calculator, a printed sheet with a ruled table, a pencil cup and a stack of notebooks. Behind the desk on the right: a bookshelf with a globe and plants, a window with green leaves.",
+  "alt": "Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane skaičiuoklės lentelė su paryškintu stulpeliu, šalia skaičiuotuvas, atspausdinta lentelė ir sąsiuviniai.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
+ },
+ "antraste-excel-2.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, grid lines and colored blocks. Scene: a wooden school desk with a monitor showing a large colorful column chart and a pie chart (abstract shapes only); on the desk lie printed sheets with a line chart and a pie chart, colored pencils and a ruler. On the wall behind on the right hangs a small poster with a simple bar chart; a bookshelf with plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su monitoriumi, kuriame stulpelinė ir skritulinė diagramos, ant stalo atspausdintos diagramos ir spalvoti pieštukai, ant sienos plakatas su stulpeline diagrama.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
+ },
+ "antraste-aparatine-iranga.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, grid lines and colored blocks. Scene: a wooden school workbench with an open desktop computer case lying on its side showing the inside (motherboard, processor with fan cooler, memory sticks, graphics card, power supply with cables); next to it laid out neatly: a hard disk drive, a solid state drive, two memory sticks, a processor chip and a small screwdriver set. Behind on the right: a bookshelf with a globe, plants and a window with green leaves.",
+  "alt": "Ant stalo atidarytas kompiuterio korpusas: matyti pagrindinė plokštė, procesorius su aušintuvu, atminties moduliai, vaizdo plokštė ir maitinimo blokas; šalia išdėlioti diskai, atminties moduliai ir atsuktuvai.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
+ },
+ "antraste-python-1.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, short colored lines and simple diagram shapes. Scene: a wooden school desk with a laptop showing a code editor: rows of short colored horizontal lines with indentation and a small output panel below. Next to the laptop sits a friendly stylized green-and-blue toy snake. On the desk lies an open notebook with a hand-drawn flowchart made of simple shapes (oval, rectangle, parallelogram) connected by arrows, a pencil cup and a cup of tea. Behind on the right: a bookshelf with plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane programos kodas; šalia žaislinė gyvatėlė ir sąsiuvinis su nupiešta blokine schema.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
+ },
+ "antraste-python-2.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, short colored lines and simple diagram shapes. Scene: a wooden school desk with a laptop showing a program window: a speech-bubble shape (the program asks a question) and below it an empty input line with a blinking cursor block; a separate keyboard in front of the laptop. A friendly stylized green-and-blue toy snake sits beside it. On the desk: a sheet of paper with a hand-drawn flowchart of simple shapes where a parallelogram block is highlighted in blue, a pencil cup and sticky notes. Behind on the right: a bookshelf with plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane programa klausia ir laukia atsakymo; šalia klaviatūra, žaislinė gyvatėlė ir lapas su blokine schema.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
  }
 }
