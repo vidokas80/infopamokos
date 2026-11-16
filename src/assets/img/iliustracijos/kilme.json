@@ -167,5 +167,13 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-15"
+ },
+ "pamoka-python-2.webp": {
+  "aprasymas": "A teenage boy at a laptop answering a question from his own program: on the screen an abstract terminal window shows a speech-bubble shape (the program's question) and below it an empty input line with a blinking cursor block. His fingers are on the keyboard, typing the answer. A friendly stylized snake toy sits on the desk next to the laptop, the same as in the first lesson. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes (bars, lines, grey blocks), never text, letters, numbers or logos.",
+  "alt": "Mokinys nešiojamajame kompiuteryje atsako į programos klausimą: ekrane klausimo burbulas ir įvedimo eilutė su žymekliu; ant stalo žaislinė gyvatėlė.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
  }
 }

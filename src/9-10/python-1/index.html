@@ -70,13 +70,24 @@
 .py-pamoka details > :last-child{margin-bottom:.8rem}
 .py-pamoka .task details{background:var(--paper)}
 
+/* Pamokos dalys: kiekvienas skyrius – atskiras rėmelis su fonu ir spalvota antrašte */
+.py-pamoka .dalis{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 1.4rem 1.3rem;margin:2.2rem 0}
+.py-pamoka .dalis > h2{margin:0 -1.4rem 1.1rem;padding:.85rem 1.4rem;border:0;border-bottom:1px solid var(--line);border-radius:11px 11px 0 0;background:var(--accent-soft);scroll-margin-top:1rem}
+.py-pamoka .dalis > :last-child{margin-bottom:0}
+.py-pamoka .dalis .task,.py-pamoka .dalis details,.py-pamoka .dalis pre.out{background:var(--paper)}
+.py-pamoka .dalis .task details{background:var(--surface)}
+
 @media (max-width:600px){
   .py-pamoka nav.toc ol{columns:1}
+  .py-pamoka .dalis{padding:0 .9rem 1rem;border-radius:10px}
+  .py-pamoka .dalis > h2{margin:0 -.9rem 1rem;padding:.75rem .9rem;border-radius:9px 9px 0 0}
 }
 @media print{
   .py-pamoka{max-width:none;font-size:11pt}
   .py-pamoka figure,.py-pamoka pre,.py-pamoka .task,.py-pamoka .box{break-inside:avoid}
   .py-pamoka details{border:0;padding:0}
+  .py-pamoka .dalis{border:0;padding:0;background:none}
+  .py-pamoka .dalis > h2{margin:1.5rem 0 .8rem;padding:0;background:none}
 }
 </style>
 </head>
@@ -144,6 +155,7 @@
   <p>Kodo nekopijuok – surink jį klaviatūra pats. Rinkdamas įsimeni rašybą ir greičiau pastebi klaidas.</p>
 </div>
 
+<section class="dalis">
 <!-- ===================== 1 ===================== -->
 <h2 id="schema">1. Nuo blokinės schemos prie programos</h2>
 <p>Programa yra tas pats algoritmas, tik užrašytas kompiuteriui suprantama kalba. Iki šiol algoritmus vaizdavai blokinėmis schemomis. Dabar tuos pačius žingsnius rašysi tekstu – Python kalbos komandomis.</p>
@@ -163,7 +175,9 @@
 </table>
 </div>
 <p>Kompiuteris komandas vykdo taip pat, kaip tu skaitai schemą: <strong>po vieną, iš viršaus į apačią</strong>.</p>
+</section>
 
+<section class="dalis">
 <!-- ===================== 2 ===================== -->
 <h2 id="thonny">2. Thonny paruošimas</h2>
 <p>Mokyklos kompiuteryje Thonny jau įdiegta – susirask ją tarp programų ir atidaryk. Namuose ją nemokamai atsisiųsi iš svetainės <a href="https://thonny.org" target="_blank" rel="noopener">thonny.org</a>: puslapio viršuje pasirink savo operacinę sistemą (Windows, Mac arba Linux) ir įdiek kaip įprastą programą. Python įdiegiamas kartu, atskirai jo siųstis nereikia.</p>
@@ -225,7 +239,9 @@
   <li>rašyk mažosiomis raidėmis, be tarpų ir be lietuviškų raidžių: <code>pirma_programa.py</code>, o ne <code>Pirma programa.py</code>;</li>
   <li>failo nevadink <code>python.py</code>, <code>print.py</code> ar <code>turtle.py</code> – tokie vardai trukdo Python darbui.</li>
 </ul>
+</section>
 
+<section class="dalis">
 <!-- ===================== 3 ===================== -->
 <h2 id="pirmoji">3. Pirmoji programa</h2>
 <p>Komanda <code>print()</code> išveda į ekraną tai, ką parašai skliaustuose. Tai blokinės schemos išvedimo blokas.</p>
@@ -281,7 +297,9 @@ print("Tai mano pirmoji programa.")</code></pre>
   <strong class="t">Pabandyk pats</strong>
   <p>Pakeisk programą taip, kad ji išvestų tavo vardą, klasę ir mėgstamą dalyką – kiekvieną atskiroje eilutėje.</p>
 </div>
+</section>
 
+<section class="dalis">
 <!-- ===================== 4 ===================== -->
 <h2 id="skaiciuotuvas">4. Python kaip skaičiuotuvas</h2>
 <p>Python moka skaičiuoti: skaičius rašai be kabučių, o veiksmus žymi ženklais. Išbandyk komandų eilutėje – spustelėk prie <code>&gt;&gt;&gt;</code>, surink veiksmą ir paspausk <kbd>Enter</kbd>.</p>
@@ -326,7 +344,9 @@ print("7 + 2 =", 7 + 2)</code></pre>
   <strong class="t">Pabandyk pats</strong>
   <p>Apskaičiuok ir išvesk, kiek sekundžių yra vienoje paroje. Teisingas atsakymas – 86400.</p>
 </div>
+</section>
 
+<section class="dalis">
 <!-- ===================== 5 ===================== -->
 <h2 id="kintamieji">5. Kintamieji</h2>
 <p>Kintamasis yra vardas, kuriuo programa įsimena reikšmę. Įsivaizduok dėžutę su užrašu: užrašas yra kintamojo vardas, o dėžutės turinys – jo reikšmė. Blokinėse schemose kintamuosius jau naudojai, pavyzdžiui, <code>a</code>, <code>b</code>, <code>suma</code>.</p>
@@ -376,7 +396,9 @@ print(taskai)</code></pre>
   <strong class="t">Pabandyk pats</strong>
   <p>Sukurk kintamuosius <code>kaina</code> (vieno bilieto kaina) ir <code>kiekis</code> (bilietų skaičius). Apskaičiuok ir išvesk, kiek kainuos visi bilietai.</p>
 </div>
+</section>
 
+<section class="dalis">
 <!-- ===================== 6 ===================== -->
 <h2 id="klaidos">6. Komentarai ir klaidos</h2>
 <h3>Komentarai</h3>
@@ -431,7 +453,9 @@ print(ilgis * plotis)</code></pre>
   <strong class="t">Pabandyk pats</strong>
   <p>Savo programoje <code>labas.py</code> tyčia padaryk klaidą: ištrink vieną kabutę ir paleisk. Perskaityk pranešimą, rask jame eilutės numerį, tada klaidą pataisyk.</p>
 </div>
+</section>
 
+<section class="dalis">
 <!-- ===================== 7 ===================== -->
 <h2 id="uzduotys">7. Praktinės užduotys</h2>
 <p>Kiekvieną užduotį atlik atskirame faile ir įrašyk aplanke <code>python</code>. A lygio užduotys privalomos visiems. B ir C lygio užduotis rinkis, jei A lygis pavyko.</p>
@@ -523,7 +547,9 @@ print(a, b)</code></pre>
     <p>Valandos yra <code>minutes // 60</code>, o likusios minutės – <code>minutes % 60</code>.</p>
   </details>
 </div>
+</section>
 
+<section class="dalis">
 <!-- ===================== 8 ===================== -->
 <h2 id="pasitikrink">8. Pasitikrink</h2>
 <p>Atsakyk į klausimus nepaleisdamas Thonny. Atsakymą užsirašyk ir tik tada atverk teisingą.</p>
@@ -562,7 +588,9 @@ print(a, b)</code></pre>
 </details>
 
 <p>Jei teisingai atsakei į 6 ar daugiau klausimų, pamokos medžiagą supratai. Jei mažiau – grįžk prie skyriaus, kuriame suklydai, ir pakartok jo pavyzdžius.</p>
+</section>
 
+<section class="dalis">
 <!-- ===================== 9 ===================== -->
 <h2 id="atsiskaitymas">9. Atsiskaitymas</h2>
 <p>Atsiskaitymui atsiųsk tris A lygio programas: <code>vizitine.py</code>, <code>minutes.py</code> ir <code>staciakampis.py</code>. Jei atlikai B ar C lygio užduočių, pridėk ir jas.</p>
@@ -600,6 +628,9 @@ print(a, b)</code></pre>
 
 <h3>Kitoje pamokoje</h3>
 <p>Šios pamokos programos visada skaičiuoja su tais pačiais skaičiais, kuriuos įrašei į kodą. Kitoje pamokoje išmoksi komandą <code>input()</code>: programa paklaus duomenų vartotojo, kaip blokinės schemos įvedimo blokas.</p>
+
+<p><a href="../python-2/">2 pamoka. Duomenų įvedimas: input() →</a></p>
+</section>
 
 </article>
 

@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2 pamoka. Duomenų įvedimas: input() – infopamokos.lt</title>
+<meta name="description" content="9 klasės informatikos pamoka: duomenų įvedimas Python kalba – input(), tekstas ir skaičiai, int(), float(), round(), klaidos ValueError ir TypeError, praktinės užduotys.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Pamokos papildomi stiliai. Šriftai, spalvos, antraštės, lentelės ir nuorodos – iš site.css. */
+.py-pamoka{max-width:48rem;padding-block:1rem 3rem}
+.py-pamoka h2{margin-top:2.8rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.py-pamoka h3{margin-top:1.8rem}
+.py-pamoka .lead{margin-bottom:1.2rem}
+.py-pamoka li{margin-bottom:.3rem}
+
+/* Kodas */
+.py-pamoka code{font-family:var(--f-mono);font-size:.88em;background:var(--code-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.py-pamoka pre{font-family:var(--f-mono);font-size:.9rem;line-height:1.5;background:var(--code-bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:.75rem 1rem;margin:0 0 1rem;overflow-x:auto}
+/* Kodo kopijuoti negalima: mokinys jį surenka pats */
+.py-pamoka pre, .py-pamoka code {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  -webkit-touch-callout: none; cursor: default;
+}
+.py-pamoka pre code{background:none;border:0;padding:0;white-space:pre;font-size:inherit}
+.py-pamoka pre.out{border-left-color:var(--ok);background:var(--surface)}
+.py-pamoka .label{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.py-pamoka .menu{font-family:var(--f-display);font-weight:600;white-space:nowrap}
+.py-pamoka kbd{font-family:var(--f-mono);font-size:.82em;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--muted);border-bottom-width:2px;border-radius:5px;padding:1px 6px;white-space:nowrap}
+.py-pamoka td.num,.py-pamoka th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Paveikslėliai */
+.py-pamoka figure{margin:1.2rem 0 1.5rem}
+.py-pamoka figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+.py-pamoka figcaption{font-size:.88rem;color:var(--muted);margin-top:.45rem}
+.py-pamoka .n{display:inline-block;min-width:1.5em;height:1.5em;line-height:1.5em;text-align:center;border-radius:50%;background:var(--warm);color:var(--paper);font-family:var(--f-display);font-weight:700;font-size:.85em}
+
+/* Spalvoti langeliai */
+.py-pamoka .box{border-radius:6px;padding:.85rem 1.1rem;margin:1.2rem 0}
+.py-pamoka .box > :last-child{margin-bottom:0}
+.py-pamoka .box.rule{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.py-pamoka .box.try{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.py-pamoka .box.warn{background:var(--warm-soft);border-left:4px solid var(--warm)}
+.py-pamoka .box strong.t{display:block;font-family:var(--f-display);margin-bottom:4px}
+
+/* Pamokos turinys (svetainės nav.toc skirtas šoniniam meniu – čia jį perrašome) */
+.py-pamoka nav.toc{position:static;font-family:var(--f-body);font-size:1rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.2rem;margin:1.4rem 0}
+.py-pamoka nav.toc strong{display:block;font-family:var(--f-display);margin-bottom:.4rem}
+.py-pamoka nav.toc ol{display:block;margin:0;columns:2;column-gap:2rem;list-style:none;padding:0}
+.py-pamoka nav.toc li{break-inside:avoid}
+.py-pamoka nav.toc a{display:inline;padding:0;color:var(--accent);text-decoration:underline;background:none;border:0;border-radius:0;white-space:normal}
+.py-pamoka nav.toc a:hover{background:none}
+
+/* Užduotys */
+.py-pamoka .task{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:0 0 1rem}
+.py-pamoka .task > :last-child{margin-bottom:0}
+.py-pamoka .task h4{font-family:var(--f-display);font-weight:600;margin:0 0 .4rem;font-size:1.02rem}
+.py-pamoka .level{display:inline-block;font-family:var(--f-mono);font-size:.78rem;font-weight:700;border-radius:4px;padding:1px 8px;margin-right:6px;color:var(--paper)}
+.py-pamoka .level.a{background:var(--ok)}
+.py-pamoka .level.b{background:var(--accent)}
+.py-pamoka .level.c{background:var(--warm)}
+
+/* Išskleidžiami atsakymai: rėmelis ir antraštė – iš svetainės, čia tik turinio tarpai */
+.py-pamoka details{margin:0 0 .7rem}
+.py-pamoka summary{color:var(--accent)}
+.py-pamoka details > :not(summary){margin:.6rem .9rem}
+.py-pamoka details > :last-child{margin-bottom:.8rem}
+.py-pamoka .task details{background:var(--paper)}
+
+/* NAUJA 2 pamokoje: vartotojo surinktas tekstas rezultate ir blokinė schema */
+.py-pamoka pre.out .in{color:var(--accent);font-weight:700;font-style:normal}
+.py-pamoka .schema{display:block;width:100%;max-width:21rem;height:auto;margin:0 auto}
+.py-pamoka .schema .sh{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.py-pamoka .schema .ar{stroke:var(--ink);stroke-width:1.6;fill:none}
+.py-pamoka .schema text{font-family:var(--f-display);font-size:14px;fill:var(--ink);text-anchor:middle}
+
+/* Pamokos dalys: kiekvienas skyrius – atskiras rėmelis su fonu ir spalvota antrašte */
+.py-pamoka .dalis{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 1.4rem 1.3rem;margin:2.2rem 0}
+.py-pamoka .dalis > h2{margin:0 -1.4rem 1.1rem;padding:.85rem 1.4rem;border:0;border-bottom:1px solid var(--line);border-radius:11px 11px 0 0;background:var(--accent-soft);scroll-margin-top:1rem}
+.py-pamoka .dalis > :last-child{margin-bottom:0}
+.py-pamoka .dalis .task,.py-pamoka .dalis details,.py-pamoka .dalis pre.out{background:var(--paper)}
+.py-pamoka .dalis .task details{background:var(--surface)}
+
+@media (max-width:600px){
+  .py-pamoka nav.toc ol{columns:1}
+  .py-pamoka .dalis{padding:0 .9rem 1rem;border-radius:10px}
+  .py-pamoka .dalis > h2{margin:0 -.9rem 1rem;padding:.75rem .9rem;border-radius:9px 9px 0 0}
+}
+@media print{
+  .py-pamoka{max-width:none;font-size:11pt}
+  .py-pamoka figure,.py-pamoka pre,.py-pamoka .task,.py-pamoka .box{break-inside:avoid}
+  .py-pamoka details{border:0;padding:0}
+  .py-pamoka .dalis{border:0;padding:0;background:none}
+  .py-pamoka .dalis > h2{margin:1.5rem 0 .8rem;padding:0;background:none}
+}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../">9–10 klasės</a> <span aria-hidden="true">/</span> 2 pamoka</p>
+
+<article class="py-pamoka">
+
+<div class="eyebrow">9 klasė · Programavimo pradmenys · Darbo aplinka: Thonny · Trukmė: 45 min</div>
+<h1>2 pamoka. Duomenų įvedimas: input()</h1>
+<p class="lead">Šioje pamokoje tavo programos pradės klausti: vartotojas įves duomenis, o programa su jais skaičiuos. Viską gali atlikti savarankiškai: skaityk iš eilės, kiekvieną pavyzdį surink pats ir paleisk.</p>
+
+<h3>Ko išmoksi</h3>
+<ul>
+  <li>paklausti vartotojo duomenų komanda <code>input()</code>;</li>
+  <li>atskirti tekstą nuo skaičiaus ir suprasti, kodėl <code>"5" + "3"</code> yra <code>53</code>;</li>
+  <li>paversti įvestą tekstą skaičiumi komandomis <code>int()</code> ir <code>float()</code>;</li>
+  <li>blokinę schemą su įvedimo bloku užrašyti Python programa;</li>
+  <li>suapvalinti rezultatą komanda <code>round()</code>;</li>
+  <li>atpažinti klaidas <code>ValueError</code> ir <code>TypeError</code>.</li>
+</ul>
+
+<nav class="toc">
+  <strong>Pamokos eiga</strong>
+  <ol>
+    <li><a href="#kartojimas">1. Kodėl reikia įvedimo</a> · 3 min</li>
+    <li><a href="#input">2. Komanda input()</a> · 6 min</li>
+    <li><a href="#tekstas">3. Įvesta reikšmė yra tekstas</a> · 6 min</li>
+    <li><a href="#int">4. Tekstą verčiame skaičiumi</a> · 8 min</li>
+    <li><a href="#schema">5. Nuo schemos prie programos</a> · 5 min</li>
+    <li><a href="#round">6. Apvalinimas</a> · 3 min</li>
+    <li><a href="#klaidos">7. Naujos klaidos</a> · 4 min</li>
+    <li><a href="#uzduotys">8. Praktinės užduotys</a> · 10 min</li>
+    <li><a href="#pasitikrink">9. Pasitikrink</a></li>
+    <li><a href="#atsiskaitymas">10. Atsiskaitymas</a></li>
+  </ol>
+</nav>
+
+<div class="box rule">
+  <strong class="t">Svarbiausia taisyklė</strong>
+  <p>Kodo nekopijuok – surink jį klaviatūra pats. Kiekvieną programą paleisk bent du kartus su skirtingais duomenimis.</p>
+</div>
+
+<section class="dalis">
+<!-- ============================================================ 1 -->
+<h2 id="kartojimas">1. Kodėl reikia įvedimo</h2>
+
+<p>Praėjusią pamoką parašei programą, kuri skaičiuoja stačiakampio plotą:</p>
+<pre><code>ilgis = 8
+plotis = 5
+plotas = ilgis * plotis
+print("Plotas:", plotas)</code></pre>
+
+<p>Ji veikia, bet moka skaičiuoti tik vieno stačiakampio plotą. Norėdamas kito, turi atverti programą ir pakeisti skaičius kode. Žmogus, kuris nemoka programuoti, tokia programa naudotis negalėtų.</p>
+
+<p>Blokinėse schemose šią problemą sprendei <strong>duomenų įvedimo bloku</strong> (lygiagretainiu): algoritmas pirmiausia paprašo duomenų, o tada su jais dirba. Python kalboje įvedimo bloką atitinka komanda <code>input()</code>.</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>Blokinėje schemoje</th><th>Python kalboje</th><th>Kada mokėmės</th></tr></thead>
+  <tbody>
+    <tr><td>Duomenų išvedimas (lygiagretainis)</td><td><code>print()</code></td><td>1 pamoką</td></tr>
+    <tr><td>Veiksmas, priskyrimas (stačiakampis)</td><td><code>=</code> ir aritmetiniai veiksmai</td><td>1 pamoką</td></tr>
+    <tr><td>Duomenų įvedimas (lygiagretainis)</td><td><code>input()</code></td><td><strong>Šią pamoką</strong></td></tr>
+    <tr><td>Sąlyga (rombas)</td><td><code>if</code></td><td>Kitą pamoką</td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 2 -->
+<h2 id="input">2. Komanda input()</h2>
+
+<p>Komanda <code>input()</code> sustabdo programą, palaukia, kol vartotojas ką nors surinks klaviatūra ir paspaus <kbd>Enter</kbd>, o tada surinktą tekstą perduoda programai.</p>
+
+<h3>Parašyk ir paleisk</h3>
+<ol>
+  <li>Atidaryk Thonny, sukurk naują failą (<kbd>Ctrl+N</kbd>) ir įrašyk jį savo aplanke <code>python</code> vardu <code>ivedimas.py</code>.</li>
+  <li>Redaktoriuje surink:
+<pre><code>vardas = input("Koks tavo vardas? ")
+print("Labas,", vardas)</code></pre>
+  </li>
+  <li>Paspausk <kbd>F5</kbd> (meniu – <span class="menu">Paleisti</span>). Komandų eilutėje atsiras klausimas, o programa sustos ir lauks.</li>
+  <li>Spustelėk pele komandų eilutėje, surink savo vardą ir paspausk <kbd>Enter</kbd>.</li>
+</ol>
+
+<figure>
+  <img src="img/01-input-laukia.png" width="1115" height="740" alt="Thonny: komandų eilutėje matomas klausimas „Koks tavo vardas?“, programa laukia įvedimo">
+  <figcaption>Programa laukia: klausimas išvestas, žymeklis mirksi komandų eilutėje (kortelė <span class="menu">Komand. eilutė</span>).</figcaption>
+</figure>
+
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Koks tavo vardas? <em class="in">Rasa</em>
+Labas, Rasa</code></pre>
+<p>Šios pamokos rezultatuose <strong>paryškintas</strong> tekstas yra tai, ką klaviatūra surinko vartotojas. Thonny jį rodo kita spalva.</p>
+
+<figure>
+  <img src="img/02-input-rezultatas.png" width="1114" height="742" loading="lazy" alt="Thonny: įvestas vardas ir programos atsakymas „Labas, Rasa“">
+  <figcaption>Įvedus vardą ir paspaudus Enter, programa tęsia darbą.</figcaption>
+</figure>
+
+<p>Paleisk programą dar kartą ir įvesk kitą vardą. Kodo nekeitei, o rezultatas kitas – programa tapo universali.</p>
+
+<h3>Kaip sudaryta komanda</h3>
+<pre><code>vardas = input("Koks tavo vardas? ")</code></pre>
+<div class="tbl"><table>
+  <thead><tr><th>Dalis</th><th>Ką reiškia</th></tr></thead>
+  <tbody>
+    <tr><td><code>input</code></td><td>Komandos vardas. Rašomas tik mažosiomis raidėmis</td></tr>
+    <tr><td><code>"Koks tavo vardas? "</code></td><td>Klausimas, kurį pamatys vartotojas. Rašomas kabutėse, nes tai tekstas</td></tr>
+    <tr><td><code>vardas =</code></td><td>Kintamasis, kuriame programa įsimena tai, ką vartotojas įvedė</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box warn">
+  <p>Klausimo gale, prieš uždarančias kabutes, palik <strong>tarpą</strong>: <code>"Koks tavo vardas? "</code>. Be jo atsakymas prilips prie klausimo: <code>Koks tavo vardas?Rasa</code>.</p>
+</div>
+
+<div class="box warn">
+  <p>Jei įvestos reikšmės nepriskirsi kintamajam, ji dings. Eilutė <code>input("Koks tavo vardas? ")</code> be <code>vardas =</code> paklaus, bet atsakymo neįsimins.</p>
+</div>
+
+<p>Kol programa laukia įvedimo, ji dar nebaigta. Jei nori ją nutraukti nieko neįvedęs, spausk raudoną mygtuką STOP (<kbd>Ctrl+F2</kbd>).</p>
+
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Papildyk programą: tegul ji dar paklausia, kokiame mieste gyveni, ir išveda, pavyzdžiui, <code>Rasa gyvena mieste Kaunas</code>.</p>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 3 -->
+<h2 id="tekstas">3. Įvesta reikšmė yra tekstas</h2>
+
+<p>Pabandykime sudėti du skaičius. Sukurk failą <code>suma.py</code>:</p>
+<pre><code>a = input("Pirmas skaičius: ")
+b = input("Antras skaičius: ")
+print("Suma:", a + b)</code></pre>
+
+<p>Paleisk ir įvesk 5 ir 3.</p>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Pirmas skaičius: <em class="in">5</em>
+Antras skaičius: <em class="in">3</em>
+Suma: 53</code></pre>
+
+<p>Gavome 53, o ne 8. Programa nesuklydo – ji padarė tiksliai tai, kas parašyta. Priežastis:</p>
+
+<div class="box rule">
+  <strong class="t">Įsimink</strong>
+  <p>Komanda <code>input()</code> programai <strong>visada perduoda tekstą</strong>, net jei vartotojas surinko skaitmenis.</p>
+</div>
+
+<p>Pažiūrėk į langelį <span class="menu">Kintamieji</span> dešinėje: reikšmės parašytos kabutėse – <code>'5'</code> ir <code>'3'</code>. Kabutės rodo, kad tai tekstas, o ne skaičius.</p>
+
+<figure>
+  <img src="img/03-kintamieji-tekstas.png" width="1113" height="739" loading="lazy" alt="Thonny langelis Kintamieji: a reikšmė '5', b reikšmė '3' – kabutėse">
+  <figcaption>Langelyje <span class="menu">Kintamieji</span> tekstas rodomas kabutėse.</figcaption>
+</figure>
+
+<p>Kiekviena reikšmė Python kalboje turi <strong>tipą</strong>. Kol kas užtenka trijų:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Tipas</th><th>Python vadina</th><th>Pavyzdžiai</th><th>Langelyje Kintamieji</th></tr></thead>
+  <tbody>
+    <tr><td>Tekstas</td><td><code>str</code></td><td><code>"Rasa"</code>, <code>"9a"</code>, <code>"5"</code></td><td>kabutėse: <code>'5'</code></td></tr>
+    <tr><td>Sveikasis skaičius</td><td><code>int</code></td><td><code>5</code>, <code>-12</code>, <code>2026</code></td><td>be kabučių: <code>5</code></td></tr>
+    <tr><td>Trupmeninis skaičius</td><td><code>float</code></td><td><code>3.5</code>, <code>0.25</code>, <code>4.0</code></td><td>su tašku: <code>3.5</code></td></tr>
+  </tbody>
+</table></div>
+
+<p>Tas pats ženklas su tekstu ir su skaičiais elgiasi skirtingai:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Veiksmas</th><th>Rezultatas</th><th>Kodėl</th></tr></thead>
+  <tbody>
+    <tr><td><code>5 + 3</code></td><td><code>8</code></td><td>Skaičius sudeda</td></tr>
+    <tr><td><code>"5" + "3"</code></td><td><code>"53"</code></td><td>Tekstus sujungia vieną po kito</td></tr>
+    <tr><td><code>"La" + "bas"</code></td><td><code>"Labas"</code></td><td>Tekstus sujungia vieną po kito</td></tr>
+    <tr><td><code>"5" * 3</code></td><td><code>"555"</code></td><td>Tekstą pakartoja 3 kartus</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Komandų eilutėje prie <code>&gt;&gt;&gt;</code> išbandyk: <code>"12" + "34"</code>, tada <code>12 + 34</code>. Palygink rezultatus.</p>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 4 -->
+<h2 id="int">4. Tekstą verčiame skaičiumi: int() ir float()</h2>
+
+<p>Kad programa galėtų skaičiuoti, įvestą tekstą reikia paversti skaičiumi. Tam yra dvi komandos:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Komanda</th><th>Ką daro</th><th>Pavyzdys</th><th>Rezultatas</th></tr></thead>
+  <tbody>
+    <tr><td><code>int()</code></td><td>Tekstą paverčia sveikuoju skaičiumi</td><td><code>int("15")</code></td><td><code>15</code></td></tr>
+    <tr><td><code>float()</code></td><td>Tekstą paverčia trupmeniniu skaičiumi</td><td><code>float("3.5")</code></td><td><code>3.5</code></td></tr>
+  </tbody>
+</table></div>
+
+<p>Galima tai padaryti dviem žingsniais:</p>
+<pre><code>tekstas = input("Kiek tau metų? ")
+amzius = int(tekstas)</code></pre>
+
+<p>Dažniausiai abu žingsniai rašomi vienoje eilutėje – komanda <code>input()</code> įdedama į komandos <code>int()</code> skliaustus:</p>
+<pre><code>amzius = int(input("Kiek tau metų? "))</code></pre>
+
+<p>Tokią eilutę skaityk <strong>iš vidaus į išorę</strong>: pirma <code>input()</code> paklausia ir gauna tekstą, tada <code>int()</code> jį paverčia skaičiumi, galiausiai skaičius priskiriamas kintamajam <code>amzius</code>.</p>
+
+<div class="box warn">
+  <p>Eilutės gale yra <strong>du</strong> uždarantys skliaustai: vienas užbaigia <code>input(</code>, kitas – <code>int(</code>. Kiek skliaustų atidarei, tiek turi ir uždaryti.</p>
+</div>
+
+<h3>Pataisyta sumos programa</h3>
+<p>Pataisyk failą <code>suma.py</code>:</p>
+<pre><code>a = int(input("Pirmas skaičius: "))
+b = int(input("Antras skaičius: "))
+print("Suma:", a + b)</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Pirmas skaičius: <em class="in">5</em>
+Antras skaičius: <em class="in">3</em>
+Suma: 8</code></pre>
+
+<figure>
+  <img src="img/04-kintamieji-skaiciai.png" width="1115" height="739" loading="lazy" alt="Thonny langelis Kintamieji: a reikšmė 5, b reikšmė 3 – be kabučių">
+  <figcaption>Dabar langelyje <span class="menu">Kintamieji</span> reikšmės be kabučių – tai skaičiai.</figcaption>
+</figure>
+
+<h3>Kurią komandą rinktis</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Ko klausi</th><th>Rašyk</th><th>Kodėl</th></tr></thead>
+  <tbody>
+    <tr><td>Vardo, miesto, klasės</td><td><code>input("...")</code></td><td>Tai tekstas, versti nereikia</td></tr>
+    <tr><td>Amžiaus, mokinių skaičiaus, metų</td><td><code>int(input("..."))</code></td><td>Skaičiuojama vienetais, trupmenų nebūna</td></tr>
+    <tr><td>Kainos, ūgio, atstumo, temperatūros</td><td><code>float(input("..."))</code></td><td>Reikšmė gali būti su trupmenine dalimi</td></tr>
+  </tbody>
+</table></div>
+
+<p>Trupmeninį skaičių vartotojas turi įvesti <strong>su tašku</strong>: <code>3.5</code>, o ne <code>3,5</code>. Komandai <code>float()</code> tinka ir sveikasis skaičius: įvedus <code>8</code>, programa gaus <code>8.0</code>.</p>
+
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Parašyk programą, kuri paklausia, kiek tau metų, ir išveda, kiek metų tau bus po 10 metų.</p>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 5 -->
+<h2 id="schema">5. Nuo blokinės schemos prie programos</h2>
+
+<p>Dabar moki užrašyti visus tiesinio algoritmo blokus. Paimkime schemą, kuri skaičiuoja stačiakampio plotą su vartotojo įvestais duomenimis:</p>
+
+<figure>
+  <svg class="schema" viewBox="0 0 300 468" role="img" aria-label="Blokinė schema: Pradžia, įvesti ilgis ir plotis, plotas = ilgis * plotis, išvesti plotas, Pabaiga">
+    <defs>
+      <marker id="rod" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+    <g style="color:var(--ink)">
+      <rect class="sh" x="85" y="8" width="130" height="44" rx="22"/>
+      <text x="150" y="35">Pradžia</text>
+      <line class="ar" x1="150" y1="52" x2="150" y2="96" marker-end="url(#rod)"/>
+
+      <polygon class="sh" points="58,98 262,98 242,148 38,148"/>
+      <text x="150" y="128">Įvesti ilgis, plotis</text>
+      <line class="ar" x1="150" y1="148" x2="150" y2="192" marker-end="url(#rod)"/>
+
+      <rect class="sh" x="40" y="194" width="220" height="50"/>
+      <text x="150" y="224">plotas = ilgis * plotis</text>
+      <line class="ar" x1="150" y1="244" x2="150" y2="288" marker-end="url(#rod)"/>
+
+      <polygon class="sh" points="58,290 262,290 242,340 38,340"/>
+      <text x="150" y="320">Išvesti plotas</text>
+      <line class="ar" x1="150" y1="340" x2="150" y2="384" marker-end="url(#rod)"/>
+
+      <rect class="sh" x="85" y="386" width="130" height="44" rx="22"/>
+      <text x="150" y="413">Pabaiga</text>
+    </g>
+  </svg>
+  <figcaption>Tiesinis algoritmas: įvedimas, skaičiavimas, išvedimas.</figcaption>
+</figure>
+
+<p>Kiekvienas schemos blokas virsta programos eilute. Sukurk failą <code>plotas.py</code>:</p>
+<pre><code># Programa skaičiuoja stačiakampio plotą
+ilgis = float(input("Įvesk ilgį: "))
+plotis = float(input("Įvesk plotį: "))
+plotas = ilgis * plotis
+print("Plotas:", plotas)</code></pre>
+
+<div class="tbl"><table>
+  <thead><tr><th>Schemos blokas</th><th>Programos eilutė</th></tr></thead>
+  <tbody>
+    <tr><td>Pradžia</td><td>Atskiros komandos nėra</td></tr>
+    <tr><td>Įvesti ilgis, plotis</td><td>Dvi eilutės su <code>input()</code> – kiekvienam kintamajam atskira</td></tr>
+    <tr><td>plotas = ilgis * plotis</td><td><code>plotas = ilgis * plotis</code></td></tr>
+    <tr><td>Išvesti plotas</td><td><code>print("Plotas:", plotas)</code></td></tr>
+    <tr><td>Pabaiga</td><td>Atskiros komandos nėra</td></tr>
+  </tbody>
+</table></div>
+
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Įvesk ilgį: <em class="in">2.5</em>
+Įvesk plotį: <em class="in">4</em>
+Plotas: 10.0</code></pre>
+
+<p>Rezultatas <code>10.0</code> su tašku, nes skaičiuota su trupmeniniais skaičiais (<code>float</code>).</p>
+
+<div class="box rule">
+  <strong class="t">Programos planas</strong>
+  <p>Dauguma šios pamokos programų turi tris dalis ta pačia tvarka: <strong>1) įvedimas</strong> – paklausk duomenų, <strong>2) skaičiavimas</strong> – apskaičiuok, <strong>3) išvedimas</strong> – parodyk rezultatą. Prieš rašydamas programą, pagalvok, kas bus kiekvienoje dalyje.</p>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 6 -->
+<h2 id="round">6. Apvalinimas: round()</h2>
+
+<p>Skaičiuojant su trupmenomis, rezultatas kartais būna ilgas. Sukurk failą <code>kaina.py</code>:</p>
+<pre><code>kaina = float(input("Prekės kaina: "))
+kiekis = int(input("Kiekis: "))
+suma = kaina * kiekis
+print("Mokėti:", suma, "Eur")</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Prekės kaina: <em class="in">0.1</em>
+Kiekis: <em class="in">3</em>
+Mokėti: 0.30000000000000004 Eur</code></pre>
+
+<p>Tai ne tavo klaida: kompiuteris trupmeninius skaičius saugo apytiksliai, todėl gale kartais atsiranda „uodega“. Ją pašalina komanda <code>round()</code>, kuri skaičių suapvalina:</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>Užrašas</th><th>Ką daro</th><th>Rezultatas</th></tr></thead>
+  <tbody>
+    <tr><td><code>round(3.14159, 2)</code></td><td>Suapvalina iki 2 skaitmenų po kablelio</td><td><code>3.14</code></td></tr>
+    <tr><td><code>round(10 / 3, 1)</code></td><td>Suapvalina iki 1 skaitmens po kablelio</td><td><code>3.3</code></td></tr>
+    <tr><td><code>round(3.7)</code></td><td>Suapvalina iki sveikojo skaičiaus</td><td><code>4</code></td></tr>
+  </tbody>
+</table></div>
+
+<p>Pakeisk paskutinę programos eilutę:</p>
+<pre><code>print("Mokėti:", round(suma, 2), "Eur")</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Prekės kaina: <em class="in">0.1</em>
+Kiekis: <em class="in">3</em>
+Mokėti: 0.3 Eur</code></pre>
+
+<p>Pinigų sumas visada apvalink iki 2 skaitmenų po kablelio.</p>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 7 -->
+<h2 id="klaidos">7. Naujos klaidos</h2>
+
+<p>Su įvedimu atsiranda naujos rūšies klaida: programa parašyta teisingai, bet vartotojas įveda netinkamus duomenis. Paleisk <code>suma.py</code> ir vietoj skaičiaus įvesk žodį <code>penki</code>.</p>
+
+<figure>
+  <img src="img/05-valueerror.png" width="1117" height="743" loading="lazy" alt="Thonny: įvedus žodį „penki“, komandų eilutėje raudonas pranešimas ValueError">
+  <figcaption>Pranešimas <code>ValueError</code>: komanda <code>int()</code> negali žodžio „penki“ paversti skaičiumi.</figcaption>
+</figure>
+
+<p>Klaidos pranešimą skaityk taip pat, kaip praėjusią pamoką: rask eilutės numerį (<code>line</code>) ir perskaityk paskutinę eilutę.</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>Kas nutiko</th><th>Python pranešimas</th><th>Kas negerai</th><th>Kaip taisyti</th></tr></thead>
+  <tbody>
+    <tr><td>Programa laukia sveikojo skaičiaus, įvesta <code>penki</code></td><td><code>ValueError: invalid literal for int() with base 10: 'penki'</code></td><td>Žodžio negalima paversti skaičiumi</td><td>Paleisk iš naujo ir įvesk skaitmenimis: <code>5</code></td></tr>
+    <tr><td>Programa laukia sveikojo skaičiaus, įvesta <code>3.5</code></td><td><code>ValueError: invalid literal for int() with base 10: '3.5'</code></td><td><code>int()</code> nepriima trupmenų</td><td>Programoje vietoj <code>int()</code> rašyk <code>float()</code></td></tr>
+    <tr><td>Įvesta <code>3,5</code> su kableliu</td><td><code>ValueError: could not convert string to float: '3,5'</code></td><td>Trupmena įvesta su kableliu</td><td>Įvesk su tašku: <code>3.5</code></td></tr>
+    <tr><td><code>amzius = input("Metai: ")</code><br><code>print(amzius + 1)</code></td><td><code>TypeError: can only concatenate str (not "int") to str</code></td><td>Prie teksto bandoma pridėti skaičių – pamiršta <code>int()</code></td><td><code>amzius = int(input("Metai: "))</code></td></tr>
+    <tr><td><code>a = int(input("Skaičius: ")</code></td><td><code>SyntaxError: '(' was never closed</code></td><td>Trūksta antro uždarančio skliausto</td><td><code>a = int(input("Skaičius: "))</code></td></tr>
+  </tbody>
+</table></div>
+
+<p>Du nauji klaidų pavadinimai:</p>
+<ul>
+  <li><code>ValueError</code> – netinkama reikšmė: tekstas, kurio negalima paversti skaičiumi.</li>
+  <li><code>TypeError</code> – netinkamas tipas: veiksmas atliekamas su tekstu ir skaičiumi kartu.</li>
+</ul>
+
+<p>Pavojingiausia klaida ta, apie kurią Python nepraneša: pamiršus <code>int()</code>, suma <code>5 + 3</code> tampa <code>53</code>, ir programa veikia toliau. Todėl kiekvieną programą patikrink su skaičiais, kurių atsakymą žinai.</p>
+
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Paleisk <code>plotas.py</code> ir ilgį įvesk su kableliu: <code>2,5</code>. Perskaityk pranešimą, rask jame eilutės numerį ir klaidos pavadinimą. Tada paleisk dar kartą ir įvesk teisingai.</p>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 8 -->
+<h2 id="uzduotys">8. Praktinės užduotys</h2>
+
+<p>Kiekvieną užduotį atlik atskirame faile ir įrašyk aplanke <code>python</code>. A lygio užduotys privalomos visiems. B ir C lygio užduotis rinkis, jei A lygis pavyko.</p>
+<p>Kiekvienos programos pirmoje eilutėje komentaru parašyk savo vardą ir ką programa daro. Kiekvieną programą išbandyk su pavyzdyje nurodytais duomenimis – turi gauti tokį patį rezultatą.</p>
+
+<h3>A lygis: pagrindai</h3>
+
+<div class="task">
+  <h4><span class="level a">A</span>1 užduotis. Pasisveikinimas · <code>pasisveikinimas.py</code></h4>
+  <p>Programa paklausia vardo ir klasės, tada pasisveikina:</p>
+  <pre class="out"><code>Koks tavo vardas? <em class="in">Rasa</em>
+Kurioje klasėje mokaisi? <em class="in">9a</em>
+Labas, Rasa! Tu mokaisi 9a klasėje.</code></pre>
+</div>
+
+<div class="task">
+  <h4><span class="level a">A</span>2 užduotis. Amžius · <code>amzius.py</code></h4>
+  <p>Programa paklausia, kuriais metais gimei, ir apskaičiuoja, kiek metų tau sukanka 2026 metais:</p>
+  <pre class="out"><code>Kuriais metais gimei? <em class="in">2011</em>
+2026 metais tau sukanka 15 metų</code></pre>
+</div>
+
+<div class="task">
+  <h4><span class="level a">A</span>3 užduotis. Stačiakampis · <code>staciakampis2.py</code></h4>
+  <p>Programa paklausia stačiakampio ilgio ir pločio (sveikieji skaičiai), apskaičiuoja ir išveda perimetrą ir plotą:</p>
+  <pre class="out"><code>Įvesk ilgį: <em class="in">8</em>
+Įvesk plotį: <em class="in">5</em>
+Perimetras: 26
+Plotas: 40</code></pre>
+  <p>Paleisk dar kartą su 12 ir 7. Turi gauti 38 ir 84.</p>
+</div>
+
+<h3>B lygis: įtvirtinimas</h3>
+
+<div class="task">
+  <h4><span class="level b">B</span>4 užduotis. Klaidų medžioklė · <code>klaidos2.py</code></h4>
+  <p>Šioje programoje yra 4 klaidos. Surink ją tiksliai tokią, paleisk ir taisyk po vieną klaidą. Įvedus <code>Rasa</code> ir <code>15</code>, programa turi išvesti <code>Rasa po metų tau bus 16</code>.</p>
+  <pre><code>vardas = input("Koks tavo vardas? )
+amzius = Input("Kiek tau metų? ")
+po_metu = amzius + 1
+print(vardas, "po metų tau bus" po_metu)</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>1 eilutė: neuždarytos kabutės. 2 eilutė: <code>Input</code> parašyta didžiąja raide ir trūksta <code>int()</code> – be jos 3 eilutėje gausi <code>TypeError</code>. 4 eilutė: trūksta kablelio prieš <code>po_metu</code>.</p>
+    <pre><code>vardas = input("Koks tavo vardas? ")
+amzius = int(input("Kiek tau metų? "))
+po_metu = amzius + 1
+print(vardas, "po metų tau bus", po_metu)</code></pre>
+  </details>
+</div>
+
+<div class="task">
+  <h4><span class="level b">B</span>5 užduotis. Spėk rezultatą · <code>spejimas2.py</code></h4>
+  <p>Nepaleidęs programos, ant popieriaus užsirašyk, ką ji išves, jei vartotojas įves <code>7</code>. Tada surink, paleisk ir palygink.</p>
+  <pre><code>a = input("Įvesk skaičių: ")
+b = int(a)
+print(a + a)
+print(b + b)
+print(a * 3)</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>Programa išves <code>77</code>, <code>14</code> ir <code>777</code>. Kintamasis <code>a</code> yra tekstas <code>"7"</code>: sudedami tekstai sujungiami, o dauginant tekstas pakartojamas. Kintamasis <code>b</code> yra skaičius 7, todėl <code>b + b</code> yra 14.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4><span class="level b">B</span>6 užduotis. Kelionė · <code>kelione.py</code></h4>
+  <p>Programa paklausia atstumo kilometrais ir automobilio greičio (km/h). Ji apskaičiuoja, kiek valandų truks kelionė, ir rezultatą suapvalina iki 1 skaitmens po kablelio. Atstumas ir greitis gali būti trupmeniniai.</p>
+  <pre class="out"><code>Atstumas (km): <em class="in">100</em>
+Greitis (km/h): <em class="in">70</em>
+Kelionė truks 1.4 val.</code></pre>
+</div>
+
+<h3>C lygis: iššūkis</h3>
+
+<div class="task">
+  <h4><span class="level c">C</span>7 užduotis. Vidurkis · <code>vidurkis.py</code></h4>
+  <p>Programa paklausia trijų pažymių ir išveda jų vidurkį, suapvalintą iki 2 skaitmenų po kablelio.</p>
+  <pre class="out"><code>Pirmas pažymys: <em class="in">7</em>
+Antras pažymys: <em class="in">9</em>
+Trečias pažymys: <em class="in">10</em>
+Vidurkis: 8.67</code></pre>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Prisimink veiksmų tvarką: dalyba atliekama anksčiau už sudėtį. Sumą rašyk skliaustuose.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4><span class="level c">C</span>8 užduotis. Laikas · <code>laikas2.py</code></h4>
+  <p>Praėjusią pamoką filmo trukmę įrašei į kodą. Dabar programa turi paklausti trukmės minutėmis ir išvesti ją valandomis ir minutėmis:</p>
+  <pre class="out"><code>Filmo trukmė minutėmis: <em class="in">135</em>
+Filmas trunka 2 val. 15 min.</code></pre>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Naudok veiksmus <code>//</code> ir <code>%</code> su skaičiumi 60.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4><span class="level c">C</span>9 užduotis. Pirkinys · <code>pirkinys.py</code></h4>
+  <p>Programa paklausia prekės kainos, prekių kiekio ir kiek pinigų pirkėjas padavė. Ji išveda, kiek reikia mokėti ir kokia grąža. Sumas apvalink iki 2 skaitmenų po kablelio.</p>
+  <pre class="out"><code>Prekės kaina: <em class="in">1.35</em>
+Kiekis: <em class="in">4</em>
+Sumokėta: <em class="in">10</em>
+Mokėti: 5.4 Eur
+Grąža: 4.6 Eur</code></pre>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Kaina ir sumokėta suma – trupmeniniai skaičiai, kiekis – sveikasis. Pirma apskaičiuok mokėtiną sumą ir įsimink ją kintamajame, tada iš sumokėtos sumos ją atimk.</p>
+  </details>
+</div>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 9 -->
+<h2 id="pasitikrink">9. Pasitikrink</h2>
+
+<p>Atsakyk į klausimus nepaleisdamas Thonny. Atsakymą užsirašyk ir tik tada atverk teisingą.</p>
+
+<details>
+  <summary>1. Kokio tipo reikšmę programai perduoda <code>input()</code>, jei vartotojas įveda 25?</summary>
+  <p>Tekstą (<code>str</code>): <code>"25"</code>. Komanda <code>input()</code> visada perduoda tekstą.</p>
+</details>
+<details>
+  <summary>2. Ką išves <code>print("4" + "6")</code>?</summary>
+  <p><code>46</code> – tekstai sujungiami.</p>
+</details>
+<details>
+  <summary>3. Ką išves <code>print(int("4") + int("6"))</code>?</summary>
+  <p><code>10</code> – abu tekstai paversti skaičiais ir sudėti.</p>
+</details>
+<details>
+  <summary>4. Kurią komandą rinksiesi klausdamas prekės kainos: <code>int()</code> ar <code>float()</code>?</summary>
+  <p><code>float()</code>, nes kaina gali būti su centais, pavyzdžiui, 1.35.</p>
+</details>
+<details>
+  <summary>5. Kokia klaida eilutėje <code>a = int(input("Skaičius: ")</code>?</summary>
+  <p>Trūksta antro uždarančio skliausto. Python praneš <code>SyntaxError: '(' was never closed</code>.</p>
+</details>
+<details>
+  <summary>6. Programa laukia <code>float(input(...))</code>, vartotojas įveda <code>2,5</code>. Kas nutiks?</summary>
+  <p>Klaida <code>ValueError</code>: trupmeną reikia įvesti su tašku – <code>2.5</code>.</p>
+</details>
+<details>
+  <summary>7. Ką išves <code>print(round(7.268, 1))</code>?</summary>
+  <p><code>7.3</code> – suapvalinta iki 1 skaitmens po kablelio.</p>
+</details>
+<details>
+  <summary>8. Kaip langelyje <span class="menu">Kintamieji</span> atskirti, ar kintamajame tekstas, ar skaičius?</summary>
+  <p>Tekstas rodomas kabutėse (<code>'5'</code>), skaičius – be kabučių (<code>5</code>).</p>
+</details>
+
+<p>Jei teisingai atsakei į 6 ar daugiau klausimų, pamokos medžiagą supratai. Jei mažiau – grįžk prie skyriaus, kuriame suklydai, ir pakartok jo pavyzdžius.</p>
+</section>
+
+<section class="dalis">
+<!-- ============================================================ 10 -->
+<h2 id="atsiskaitymas">10. Atsiskaitymas</h2>
+
+<p>Atsiskaitymui atsiųsk tris A lygio programas: <code>pasisveikinimas.py</code>, <code>amzius.py</code> ir <code>staciakampis2.py</code>. Jei atlikai B ar C lygio užduočių, pridėk ir jas.</p>
+<ol>
+  <li>Kiekvieną programą paleisk dar kartą su pavyzdžio duomenimis ir įsitikink, kad ji veikia be klaidų.</li>
+  <li>Patikrink, ar kiekvienos programos pirmoje eilutėje yra komentaras su tavo vardu.</li>
+  <li>Failus prisek prie laiško ir išsiųsk adresu <strong>vidas.darbai@gmail.com</strong>.</li>
+  <li>Laiško temoje parašyk klasę, vardą, pavardę ir „Python 2 pamoka“.</li>
+</ol>
+
+<h3>Įsivertink</h3>
+<p>Pamoką įveikei, jei gali pasakyti:</p>
+<ul>
+  <li>moku paklausti vartotojo duomenų komanda <code>input()</code> ir įsiminti juos kintamajame;</li>
+  <li>žinau, kad <code>input()</code> visada perduoda tekstą;</li>
+  <li>moku įvestą tekstą paversti skaičiumi ir žinau, kada rinktis <code>int()</code>, o kada <code>float()</code>;</li>
+  <li>moku blokinę schemą su įvedimu, skaičiavimu ir išvedimu užrašyti programa;</li>
+  <li>moku suapvalinti rezultatą komanda <code>round()</code>;</li>
+  <li>gavęs <code>ValueError</code> ar <code>TypeError</code>, suprantu, kas nutiko.</li>
+</ul>
+
+<h3>Svarbiausia iš šios pamokos</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Kas</th><th>Kaip rašoma</th><th>Pavyzdys</th></tr></thead>
+  <tbody>
+    <tr><td>Teksto įvedimas</td><td><code>vardas = input("klausimas ")</code></td><td><code>miestas = input("Miestas: ")</code></td></tr>
+    <tr><td>Sveikojo skaičiaus įvedimas</td><td><code>vardas = int(input("klausimas "))</code></td><td><code>metai = int(input("Metai: "))</code></td></tr>
+    <tr><td>Trupmeninio skaičiaus įvedimas</td><td><code>vardas = float(input("klausimas "))</code></td><td><code>kaina = float(input("Kaina: "))</code></td></tr>
+    <tr><td>Apvalinimas</td><td><code>round(skaičius, skaitmenys)</code></td><td><code>round(suma, 2)</code></td></tr>
+    <tr><td>Programos planas</td><td colspan="2">Įvedimas → skaičiavimas → išvedimas</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Kitoje pamokoje</h3>
+<p>Kol kas tavo programos visada vykdo tas pačias komandas iš eilės. Kitoje pamokoje išmoksi komandą <code>if</code>: programa patikrins sąlygą ir pati pasirinks, ką daryti, – kaip blokinės schemos rombas.</p>
+
+<p><a href="../python-1/">← 1 pamoka. Pirmoji programa su Python</a></p>
+</section>
+
+</article>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 9–10 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+<script>
+/* Atsarginė apsauga: kopijuojant pažymėtą tekstą, kodo blokai į iškarpinę nepatenka */
+(function () {
+  var root = document.querySelector('.py-pamoka');
+  if (!root) return;
+  root.addEventListener('copy', function (e) {
+    var sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    var box = document.createElement('div');
+    for (var i = 0; i < sel.rangeCount; i++) box.appendChild(sel.getRangeAt(i).cloneContents());
+    var anchor = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+    var inCode = anchor && anchor.closest && anchor.closest('pre, code');
+    var codes = box.querySelectorAll('pre, code');
+    if (!inCode && codes.length === 0) return;
+    for (var j = 0; j < codes.length; j++) codes[j].parentNode.removeChild(codes[j]);
+    e.preventDefault();
+    if (e.clipboardData) e.clipboardData.setData('text/plain', inCode ? '' : box.textContent);
+  });
+  root.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.closest && e.target.closest('pre, code')) e.preventDefault();
+  });
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>
