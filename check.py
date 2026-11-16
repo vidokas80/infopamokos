@@ -164,7 +164,8 @@ def check_built():
               f"7-8/isoriniai-irenginiai-ir-prievadai/img/{n}" for n in set(re.findall(r'(prievadai-\d\d-[\w-]+\.webp)', (ROOT / "src" / "7-8" / "isoriniai-irenginiai-ir-prievadai" / "index.html").read_text(encoding="utf-8")))) + tuple(
               f"7-8/excel-1/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "7-8" / "excel-1" / "index.html").read_text(encoding="utf-8"))) + tuple(
               f"9-10/python-1/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "9-10" / "python-1" / "index.html").read_text(encoding="utf-8"))) + (
-              "9-10/python-2/index.html",) + tuple(
+              "9-10/python-2/index.html", "7-8/excel-2/index.html") + tuple(
+              f"7-8/excel-2/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "7-8" / "excel-2" / "index.html").read_text(encoding="utf-8"))) + tuple(
               f"9-10/python-2/img/{n}" for n in re.findall(r'src="img/([^"]+)"', (ROOT / "src" / "9-10" / "python-2" / "index.html").read_text(encoding="utf-8"))):
         if not (DIST / f).exists():
             err(f"dist/{f} nerastas")

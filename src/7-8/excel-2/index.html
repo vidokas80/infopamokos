@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Excel pradžiamokslis · 2 pamoka. Diagramos – infopamokos.lt</title>
+<meta name="description" content="Antra Excel pradžiamokslio pamoka 7–8 klasei: kaip iš lentelės sukurti stulpelinę, skritulinę ir linijinę diagramą.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/excel.css">
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#7">7 klasė</a> <span aria-hidden="true">/</span> Excel pradžiamokslis</p>
+
+<nav class="xl-nav" aria-label="Pamokų navigacija">
+  <a href="../excel-1/">← 1 pamoka: funkcijos</a>
+  <span>Excel pradžiamokslis</span>
+</nav>
+
+<header class="top">
+  <div class="eyebrow">Excel pradžiamokslis · 2 pamoka</div>
+  <h1>Diagramos: kaip skaičius paversti paveikslu</h1>
+  <p class="lead">Lentelėje skaičius reikia skaityti, o diagramoje viskas matyti iš karto. Šioje pamokoje iš paprastos lentelės sukursi tris skirtingas diagramas ir išmoksi pasirinkti tinkamą.</p>
+  <div class="xl-meta">
+      <span class="chip">7 klasė</span>
+  </div>
+</header>
+
+<main class="xl">
+  <section class="goals-box">
+    <p class="box-title">Po šios pamokos mokėsi:</p>
+    <ul class="goals">
+      <li>pažymėti duomenis ir įterpti diagramą;</li>
+      <li>sukurti stulpelinę, skritulinę ir linijinę diagramą;</li>
+      <li>pridėti pavadinimą, duomenų žymas ir ašių pavadinimus;</li>
+      <li>nuspręsti, kuri diagrama tinka tavo duomenims.</li>
+    </ul>
+  </section>
+
+  <section id="kas-yra">
+    <h2>1. Kas yra diagrama?</h2>
+    <p><strong>Diagrama</strong> – tai duomenų paveikslas. Ji parodo tą patį, ką ir lentelė, tik taip, kad atsakymą pamatai nespėjęs perskaityti nė vieno skaičiaus: kas didžiausias, kas mažiausias, kas auga, o kas mažėja.</p>
+    <p>Dažniausiai naudojamos trys diagramų rūšys. Pažiūrėk, kaip jos atrodo:</p>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Stulpelinė</h3>
+        <svg viewBox="0 0 250 190" role="img" aria-label="Stulpelinė diagrama: krepšinis 9, futbolas 6, plaukimas 4, šokiai 5, tinklinis 2">
+          <line x1="30" y1="160" x2="245" y2="160" class="ax"/>
+          <line x1="30" y1="10" x2="30" y2="160" class="ax"/>
+          <g font-size="10" class="tick" text-anchor="end">
+            <text x="26" y="163">0</text><text x="26" y="88">5</text><text x="26" y="14">10</text>
+          </g>
+          <line x1="30" y1="85" x2="245" y2="85" class="gl"/>
+          <g class="col">
+            <rect x="42" y="25" width="28" height="135"/>
+            <rect x="84" y="70" width="28" height="90"/>
+            <rect x="126" y="100" width="28" height="60"/>
+            <rect x="168" y="85" width="28" height="75"/>
+            <rect x="210" y="130" width="28" height="30"/>
+          </g>
+          <g font-size="9" class="lab" text-anchor="middle">
+            <text x="56" y="174">Krepš.</text><text x="98" y="174">Futb.</text><text x="140" y="174">Plauk.</text><text x="182" y="174">Šokiai</text><text x="224" y="174">Tinkl.</text>
+          </g>
+        </svg>
+        <p>Lygina dydžius: kuris stulpelis aukštesnis, to ir daugiau.</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Skritulinė</h3>
+        <div class="pie" role="img" aria-label="Skritulinė diagrama: krepšinis 35 %, futbolas 23 %, plaukimas 15 %, šokiai 19 %, tinklinis 8 %"></div>
+        <ul class="legend">
+          <li><span class="k1"></span>Krepšinis</li>
+          <li><span class="k2"></span>Futbolas</li>
+          <li><span class="k3"></span>Plaukimas</li>
+          <li><span class="k4"></span>Šokiai</li>
+          <li><span class="k5"></span>Tinklinis</li>
+        </ul>
+        <p>Rodo, kokią visumos dalį sudaro kiekviena grupė.</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Linijinė</h3>
+        <svg viewBox="0 0 250 190" role="img" aria-label="Linijinė diagrama: savaitės temperatūra 3, 5, 4, 1, minus 1, 2, 6 laipsniai">
+          <line x1="30" y1="10" x2="30" y2="150" class="ax"/>
+          <line x1="30" y1="100" x2="245" y2="100" class="ax"/>
+          <g font-size="10" class="tick" text-anchor="end">
+            <text x="26" y="103">0</text><text x="26" y="43">5</text><text x="26" y="127">−2</text>
+          </g>
+          <line x1="30" y1="40" x2="245" y2="40" class="gl"/>
+          <polyline class="line" stroke-width="2.5" points="45,64 77,40 109,52 141,88 173,112 205,76 237,28"/>
+          <g class="pt">
+            <circle cx="45" cy="64" r="3.5"/><circle cx="77" cy="40" r="3.5"/><circle cx="109" cy="52" r="3.5"/><circle cx="141" cy="88" r="3.5"/><circle cx="173" cy="112" r="3.5"/><circle cx="205" cy="76" r="3.5"/><circle cx="237" cy="28" r="3.5"/>
+          </g>
+          <g font-size="9" class="lab" text-anchor="middle">
+            <text x="45" y="170">Pr</text><text x="77" y="170">An</text><text x="109" y="170">Tr</text><text x="141" y="170">Kt</text><text x="173" y="170">Pn</text><text x="205" y="170">Št</text><text x="237" y="170">Sk</text>
+          </g>
+        </svg>
+        <p>Rodo, kaip kas nors keičiasi laikui bėgant.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="duomenys">
+    <h2>2. Pasiruošk duomenis</h2>
+    <p>Diagrama visada kuriama iš lentelės. 7a klasės mokinių paklausė, kokią sporto šaką jie mėgsta labiausiai. Atidaryk „Excel“ ir surašyk rezultatus tiksliai taip:</p>
+
+    <div class="sheetbox narrowsheet">
+      <div class="scroll">
+      <table class="sheet">
+        <tr><th></th><th>A</th><th>B</th></tr>
+        <tr><th>1</th><td class="h"><span class="v">Sporto šaka</span></td><td class="h"><span class="v">Mokinių skaičius</span></td></tr>
+        <tr><th>2</th><td><span class="v">Krepšinis</span></td><td class="n"><span class="v">9</span></td></tr>
+        <tr><th>3</th><td><span class="v">Futbolas</span></td><td class="n"><span class="v">6</span></td></tr>
+        <tr><th>4</th><td><span class="v">Plaukimas</span></td><td class="n"><span class="v">4</span></td></tr>
+        <tr><th>5</th><td><span class="v">Šokiai</span></td><td class="n"><span class="v">5</span></td></tr>
+        <tr><th>6</th><td><span class="v">Tinklinis</span></td><td class="n"><span class="v">2</span></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="tip">
+      <p class="box-title">Gera lentelė – gera diagrama</p>
+      <p style="margin:0">Pirmoje eilutėje turi būti <strong>antraštės</strong>, kairiajame stulpelyje – <strong>pavadinimai</strong>, dešiniajame – <strong>skaičiai</strong>. Nepalik tuščių eilučių ir nerašyk prie skaičių žodžių (ne „9 mokiniai“, o tiesiog „9“).</p>
+    </div>
+  </section>
+
+  <section id="stulpeline">
+    <h2>3. Pirmoji diagrama – stulpelinė</h2>
+    <ol class="steps">
+      <li><strong>Pažymėk visą lentelę</strong> kartu su antraštėmis: spustelėk langelį <kbd>A1</kbd> ir nuspaudęs pelės klavišą tempk iki <kbd>B6</kbd>.</li>
+      <li>Atidaryk skirtuką <span class="ui">Įterpimas</span> <span class="en">(angl. Insert)</span>.</li>
+      <li>Grupėje <span class="ui">Diagramos</span> <span class="en">(Charts)</span> spustelėk stulpelių piktogramą – <span class="ui">Įterpti stulpelinę arba juostinę diagramą</span>.
+        <figure class="fig">
+          <img src="img/excel-2-diagramos.png" width="1491" height="187" alt="Excel skirtukas „Įterpimas“: grupėje „Diagramos“ raudonai apibraukti stulpelinės, linijinės ir skritulinės diagramų mygtukai">
+          <figcaption>Skirtukas „Įterpimas“, grupė „Diagramos“. Apibraukti trys mygtukai iš viršaus į apačią: <strong>stulpelinė</strong>, <strong>linijinė</strong> ir <strong>skritulinė</strong> diagrama.</figcaption>
+        </figure>
+      </li>
+      <li>Skiltyje <span class="ui">Dvimatė stulpelinė diagrama</span> pasirink pirmąjį variantą.</li>
+    </ol>
+    <p>Lape atsiras diagrama. Ją gali tempti už krašto į kitą vietą, o už kampų – didinti arba mažinti.</p>
+
+    <figure class="fig">
+      <img src="img/excel-2-01.png" width="1371" height="1027" loading="lazy" alt="Pažymėta lentelė A1:B6 ir išskleistas stulpelinių diagramų meniu skirtuke „Įterpimas“">
+      <figcaption>Pažymėta lentelė ir išskleistas stulpelinių diagramų meniu.</figcaption>
+    </figure>
+
+    <div class="tip">
+      <p class="box-title">Greitasis būdas</p>
+      <p style="margin:0">Pažymėk lentelę ir paspausk <kbd>Alt</kbd> + <kbd>F1</kbd> – „Excel“ iš karto įterps stulpelinę diagramą.</p>
+    </div>
+
+    <div class="warn">
+      <p class="box-title">Diagrama pati atsinaujina</p>
+      <p style="margin:0">Pakeisk langelyje <kbd>B6</kbd> skaičių 2 į 8 ir stebėk tinklinio stulpelį. Diagrama susieta su lentele, todėl jos nereikia kurti iš naujo. Paskui grąžink 2.</p>
+    </div>
+  </section>
+
+  <section id="dalys">
+    <h2>4. Sutvarkyk diagramą</h2>
+    <p>Diagrama be pavadinimo – kaip paveikslas be parašo: neaišku, ką ji rodo. Spustelėk diagramą ir šalia jos dešinėje pamatysi mygtuką <span class="ui">+</span> – <span class="ui">Diagramos elementai</span> <span class="en">(Chart Elements)</span>. Čia varnelėmis įjungiamos ir išjungiamos diagramos dalys.</p>
+
+    <div class="tbl">
+      <table>
+        <tr><th>Dalis</th><th>Ką ji rodo</th><th>Kaip pakeisti</th></tr>
+        <tr><td>Diagramos pavadinimas <span class="en">(Chart Title)</span></td><td>Apie ką ši diagrama</td><td>Spustelėk pavadinimą du kartus ir įrašyk savo, pvz., „Mėgstamiausia 7a klasės sporto šaka“</td></tr>
+        <tr><td>Duomenų žymos <span class="en">(Data Labels)</span></td><td>Tikslų skaičių virš kiekvieno stulpelio</td><td>Uždėk varnelę meniu <span class="ui">+</span></td></tr>
+        <tr><td>Ašių pavadinimai <span class="en">(Axis Titles)</span></td><td>Kas atidėta horizontaliai ir vertikaliai</td><td>Uždėk varnelę ir įrašyk „Sporto šaka“ bei „Mokinių skaičius“</td></tr>
+        <tr><td>Legenda <span class="en">(Legend)</span></td><td>Ką reiškia kiekviena spalva</td><td>Kai duomenų eilutė viena, legendos nereikia – varnelę nuimk</td></tr>
+      </table>
+    </div>
+
+    <figure class="fig">
+      <img src="img/excel-2-02.png" width="1541" height="1179" loading="lazy" alt="Stulpelinė diagrama ir šalia jos atidarytas sąrašas „Diagramos elementai“ su varnelėmis">
+      <figcaption>Diagramos elementai įjungiami varnelėmis.</figcaption>
+    </figure>
+
+    <h3 class="sub">Spalvos ir stilius</h3>
+    <p>Kol diagrama pažymėta, viršuje matai papildomą skirtuką <span class="ui">Diagramos dizainas</span> <span class="en">(Chart Design)</span>. Jame gali išsirinkti paruoštą stilių, mygtuku <span class="ui">Keisti spalvas</span> pakeisti spalvų rinkinį, o mygtuku <span class="ui">Keisti diagramos tipą</span> <span class="en">(Change Chart Type)</span> – paversti diagramą kitos rūšies diagrama.</p>
+  </section>
+
+  <section id="skrituline">
+    <h2>5. Skritulinė diagrama</h2>
+    <p>Skritulinė diagrama atsako į klausimą <strong>„kokia dalis?“</strong>. Visas skritulys – tai visa klasė (26 mokiniai), o kiekviena išpjova – viena sporto šaka.</p>
+    <ol class="steps">
+      <li>Vėl pažymėk langelius <kbd>A1:B6</kbd>.</li>
+      <li><span class="ui">Įterpimas</span> → skritulio piktograma (apatinis apibrauktas mygtukas) <span class="ui">Įterpti skritulinę arba žiedinę diagramą</span> → <span class="ui">Skritulinė</span> <span class="en">(Pie)</span>.</li>
+      <li>Meniu <span class="ui">+</span> įjunk <span class="ui">Duomenų žymos</span>.</li>
+      <li>Kad vietoj skaičių matytum procentus: spustelėk rodyklę šalia <span class="ui">Duomenų žymos</span> → <span class="ui">Daugiau parinkčių</span>. Dešinėje atsidariusiame lange pažymėk <span class="ui">Procentai</span>, o varnelę prie <span class="ui">Reikšmė</span> nuimk.</li>
+    </ol>
+
+    <figure class="fig">
+      <img src="img/excel-2-03.png" width="1840" height="1184" loading="lazy" alt="Skritulinė diagrama su procentais ir šone atidarytos duomenų žymų parinktys, kuriose pažymėta „Procentai“">
+      <figcaption>Dešinėje – duomenų žymų parinktys su pažymėta varnele „Procentai“. Skritulinėje diagramoje legenda būtina – be jos neaišku, kuri spalva ką reiškia.</figcaption>
+    </figure>
+
+    <div class="warn">
+      <p class="box-title">Kada skritulinė netinka</p>
+      <p style="margin:0">Skritulinė diagrama tinka tik tada, kai dalys sudaro <strong>vieną visumą</strong> ir jų nedaug (iki 5–6). Savaitės temperatūrų ar mokinių ūgių į skritulį dėti negalima – jų suma nieko nereiškia.</p>
+    </div>
+  </section>
+
+  <section id="linijine">
+    <h2>6. Linijinė diagrama</h2>
+    <p>Linijinė diagrama rodo <strong>kitimą laike</strong>: temperatūrą per savaitę, tavo ūgį per kelerius metus, žingsnių skaičių kasdien. Naujame lape (apačioje spustelėk <span class="ui">+</span>) surašyk savaitės vidurdienio temperatūras:</p>
+
+    <div class="sheetbox narrowsheet">
+      <div class="scroll">
+      <table class="sheet">
+        <tr><th></th><th>A</th><th>B</th></tr>
+        <tr><th>1</th><td class="h"><span class="v">Diena</span></td><td class="h"><span class="v">Temperatūra, °C</span></td></tr>
+        <tr><th>2</th><td><span class="v">Pirmadienis</span></td><td class="n"><span class="v">3</span></td></tr>
+        <tr><th>3</th><td><span class="v">Antradienis</span></td><td class="n"><span class="v">5</span></td></tr>
+        <tr><th>4</th><td><span class="v">Trečiadienis</span></td><td class="n"><span class="v">4</span></td></tr>
+        <tr><th>5</th><td><span class="v">Ketvirtadienis</span></td><td class="n"><span class="v">1</span></td></tr>
+        <tr><th>6</th><td><span class="v">Penktadienis</span></td><td class="n"><span class="v">-1</span></td></tr>
+        <tr><th>7</th><td><span class="v">Šeštadienis</span></td><td class="n"><span class="v">2</span></td></tr>
+        <tr><th>8</th><td><span class="v">Sekmadienis</span></td><td class="n"><span class="v">6</span></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="tip">
+      <p class="box-title">Prisimink automatinį užpildymą</p>
+      <p style="margin:0">Įrašyk tik „Pirmadienis“, tada tempk langelio kampe esantį kvadratėlį žemyn – „Excel“ kitas dienas surašys pats.</p>
+    </div>
+
+    <ol class="steps">
+      <li>Pažymėk <kbd>A1:B8</kbd>.</li>
+      <li><span class="ui">Įterpimas</span> → linijos piktograma (vidurinis apibrauktas mygtukas) <span class="ui">Įterpti linijinę arba plokštuminę diagramą</span> → <span class="ui">Linijinė su žymekliais</span> <span class="en">(Line with Markers)</span>.</li>
+      <li>Pakeisk pavadinimą į „Savaitės temperatūra“ ir įjunk duomenų žymas.</li>
+    </ol>
+    <p>Pažiūrėk į liniją: iš karto matyti, kad šalčiausia buvo penktadienį, o savaitgalį atšilo. Lentelėje to taip greitai nepastebėtum.</p>
+
+    <figure class="fig">
+      <img src="img/excel-2-04.png" width="1844" height="1180" loading="lazy" alt="Temperatūrų lentelė ir linijinė diagrama „Savaitės temperatūra“ su duomenų žymomis">
+      <figcaption>Linija leidžiasi žemiau nulio – penktadienį buvo −1 °C.</figcaption>
+    </figure>
+  </section>
+
+  <section id="pasirinkimas">
+    <h2>7. Kurią diagramą pasirinkti?</h2>
+    <div class="tbl">
+      <table>
+        <tr><th>Jei nori parodyti…</th><th>Rinkis</th><th>Pavyzdys</th></tr>
+        <tr><td>kas didesnis, kas mažesnis</td><td><strong>Stulpelinę</strong></td><td>Kiek knygų perskaitė kiekvienas draugas</td></tr>
+        <tr><td>kokią visumos dalį sudaro kiekviena grupė</td><td><strong>Skritulinę</strong></td><td>Kaip klasė balsavo dėl ekskursijos vietos</td></tr>
+        <tr><td>kaip kas nors keitėsi laikui bėgant</td><td><strong>Linijinę</strong></td><td>Tavo matematikos pažymių vidurkis kiekvieną mėnesį</td></tr>
+      </table>
+    </div>
+
+    <h3 class="sub">Dažniausios klaidos</h3>
+    <ul>
+      <li><strong>Pažymėta ne viskas.</strong> Jei nepažymėsi antraščių ar pavadinimų stulpelio, diagramoje vietoj sporto šakų matysi 1, 2, 3…</li>
+      <li><strong>Pažymėta per daug.</strong> Eilutės „Iš viso“ į diagramą neįtrauk – ji bus už visus didesnė ir sugadins vaizdą.</li>
+      <li><strong>Nėra pavadinimo.</strong> „Diagramos pavadinimas“ – tai ne pavadinimas, o vieta jam įrašyti.</li>
+      <li><strong>Ne ta rūšis.</strong> Jei abejoji, rinkis stulpelinę – ji tinka beveik visada.</li>
+    </ul>
+  </section>
+
+  <section id="uzduotys">
+    <h2>8. Užduotys</h2>
+
+    <div class="uzd">
+      <h3>1 užduotis. Klasės augintiniai</h3>
+      <p>Sukurk lentelę ir <strong>stulpelinę</strong> diagramą. Pridėk pavadinimą, duomenų žymas ir abiejų ašių pavadinimus, o legendą išjunk.</p>
+      <div class="tbl">
+      <table>
+        <tr><th>Augintinis</th><th>Mokinių skaičius</th></tr>
+        <tr><td>Šuo</td><td>8</td></tr>
+        <tr><td>Katė</td><td>10</td></tr>
+        <tr><td>Žuvytės</td><td>3</td></tr>
+        <tr><td>Žiurkėnas</td><td>2</td></tr>
+        <tr><td>Neturi</td><td>5</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="uzd">
+      <h3>2 užduotis. Kam išleidžiu kišenpinigius</h3>
+      <p>Sukurk <strong>skritulinę</strong> diagramą su procentais. Kuriai sričiai tenka didžiausia dalis? Langelyje po lentele funkcija <kbd>=SUM(…)</kbd> apskaičiuok, kiek eurų išleista iš viso (į diagramą šio langelio neįtrauk).</p>
+      <div class="tbl">
+      <table>
+        <tr><th>Išlaidos</th><th>Suma, €</th></tr>
+        <tr><td>Užkandžiai</td><td>8</td></tr>
+        <tr><td>Žaidimai</td><td>6</td></tr>
+        <tr><td>Taupymas</td><td>4</td></tr>
+        <tr><td>Kita</td><td>2</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="uzd">
+      <h3>3 užduotis. Mano savaitė</h3>
+      <p>Sugalvok ir surašyk savo duomenis: kiek minučių kiekvieną savaitės dieną praleidai prie telefono (arba sportavai, skaitei). Sukurk <strong>linijinę</strong> diagramą. Po lentele funkcijomis <kbd>=AVERAGE(…)</kbd>, <kbd>=MAX(…)</kbd> ir <kbd>=MIN(…)</kbd> rask vidurkį, didžiausią ir mažiausią reikšmę. Ar jos sutampa su tuo, ką matai diagramoje?</p>
+    </div>
+  </section>
+
+  <section id="pasitikrink" class="quiz">
+    <h2>9. Pasitikrink</h2>
+    <p>Spustelėk, tavo manymu, teisingą atsakymą.</p>
+
+    <div class="q">
+      <h3>1. Kuriame skirtuke yra diagramų mygtukai?</h3>
+      <div class="opts">
+      <button type="button" class="opt">Pagrindinis</button>
+      <button type="button" class="opt" data-ok>Įterpimas</button>
+      <button type="button" class="opt">Formulės</button>
+      </div>
+      <div class="fb" data-fb="Diagramos įterpiamos iš skirtuko „Įterpimas“ (Insert)."></div>
+    </div>
+
+    <div class="q">
+      <h3>2. Nori parodyti, kaip per metus keitėsi tavo ūgis. Kuri diagrama tinka geriausiai?</h3>
+      <div class="opts">
+      <button type="button" class="opt">Skritulinė</button>
+      <button type="button" class="opt">Stulpelinė</button>
+      <button type="button" class="opt" data-ok>Linijinė</button>
+      </div>
+      <div class="fb" data-fb="Kitimą laike geriausiai rodo linijinė diagrama."></div>
+    </div>
+
+    <div class="q">
+      <h3>3. Klasė balsavo, kur važiuoti į ekskursiją. Nori parodyti, kokia klasės dalis pasirinko kiekvieną vietą.</h3>
+      <div class="opts">
+      <button type="button" class="opt" data-ok>Skritulinė</button>
+      <button type="button" class="opt">Linijinė</button>
+      <button type="button" class="opt">Tinka bet kuri</button>
+      </div>
+      <div class="fb" data-fb="Visumos dalis rodo skritulinė diagrama."></div>
+    </div>
+
+    <div class="q">
+      <h3>4. Pakeitei skaičių lentelėje. Kas nutiks diagramai?</h3>
+      <div class="opts">
+      <button type="button" class="opt">Nieko – ją reikės kurti iš naujo</button>
+      <button type="button" class="opt" data-ok>Ji pasikeis pati</button>
+      <button type="button" class="opt">Ji išnyks</button>
+      </div>
+      <div class="fb" data-fb="Diagrama susieta su lentele ir atsinaujina automatiškai."></div>
+    </div>
+
+    <div class="q">
+      <h3>5. Kas yra legenda?</h3>
+      <div class="opts">
+      <button type="button" class="opt">Diagramos pavadinimas</button>
+      <button type="button" class="opt">Skaičiai virš stulpelių</button>
+      <button type="button" class="opt" data-ok>Paaiškinimas, ką reiškia kiekviena spalva</button>
+      </div>
+      <div class="fb" data-fb="Legenda paaiškina spalvas; skaičiai virš stulpelių vadinami duomenų žymomis."></div>
+    </div>
+
+    <p class="score" id="score" aria-live="polite"></p>
+  </section>
+
+  <nav class="xl-nav xl-nav-end" aria-label="Pamokų navigacija">
+    <a href="../excel-1/">← 1 pamoka: funkcijos</a>
+    <span>Excel pradžiamokslis · 2 pamoka</span>
+  </nav>
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Excel pradžiamokslis 7 klasei. Medžiaga parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+
+<script>
+(function () {
+  var questions = document.querySelectorAll('.quiz .q');
+  var answered = 0, correct = 0;
+  questions.forEach(function (q) {
+    var buttons = q.querySelectorAll('button');
+    var fb = q.querySelector('.fb');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (q.dataset.done) return;
+        q.dataset.done = '1';
+        answered++;
+        var ok = b.hasAttribute('data-ok');
+        if (ok) { correct++; b.classList.add('ok'); }
+        else { b.classList.add('bad'); q.querySelector('[data-ok]').classList.add('ok'); }
+        fb.textContent = (ok ? 'Teisingai! ' : 'Ne visai. ') + fb.dataset.fb;
+        buttons.forEach(function (x) { x.disabled = true; });
+        if (answered === questions.length) {
+          document.getElementById('score').textContent = 'Tavo rezultatas: ' + correct + ' iš ' + questions.length + '.';
+        }
+      });
+    });
+  });
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>

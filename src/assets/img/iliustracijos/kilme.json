@@ -175,5 +175,13 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-16"
+ },
+ "pamoka-excel-2.webp": {
+  "aprasymas": "Over-the-shoulder view from behind: a teenage girl sits at a desk with her back turned to the viewer, we see the back of her head, her shoulder and hoodie in the left foreground. Past her shoulder we look at a desktop monitor showing a spreadsheet grid on the left side and, next to it, a simple column chart with five teal bars of different heights and a small pie chart with colored slices. A keyboard and mouse on the desk, a notebook beside them. Her face is not visible. Keep the monitor and her shoulder centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. The screen shows only abstract shapes (grid lines, bars, pie slices), never text, letters, numbers or logos.",
+  "alt": "Vaizdas per mokinės petį: kompiuterio ekrane skaičiuoklės lentelė, stulpelinė ir skritulinė diagramos.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-16"
  }
 }
