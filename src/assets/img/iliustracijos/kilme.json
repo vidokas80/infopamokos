@@ -301,5 +301,21 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-22"
+ },
+ "antraste-python-3.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, short colored lines and simple diagram shapes. Scene: a wooden school desk with a laptop showing a code editor with short colored lines where some lines are indented; next to it sits a friendly stylized green-and-blue toy snake. On the desk lies a sheet of paper with a hand-drawn flowchart where a yellow diamond shape splits into two arrows going left and right. Beside it stands a small wooden toy signpost with two blank arrow-shaped boards pointing in opposite directions. Behind on the right: a bookshelf with plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane programos kodas su įtraukomis; šalia žaislinė gyvatėlė, lapas su blokine schema, kurioje rombas išsišakoja į dvi puses, ir rodyklė į dvi puses.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22"
+ },
+ "pamoka-python-3.webp": {
+  "aprasymas": "A teenage boy at a laptop thinking about a decision: above the laptop floats a large yellow diamond shape with two arrows branching left (green) and right (orange). A friendly stylized toy snake sits next to the laptop. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes, never text, letters, numbers or logos.",
+  "alt": "Mokinys prie nešiojamojo kompiuterio, virš jo rombas su dviem rodyklėmis į skirtingas puses; šalia žaislinė gyvatėlė.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22"
  }
 }

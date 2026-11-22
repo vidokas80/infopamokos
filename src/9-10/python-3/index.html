@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3 pamoka. Sąlyga: if, else, elif – infopamokos.lt</title>
+<meta name="description" content="9 klasės informatikos pamoka: sąlygos sakinys Python kalba – palyginimo ženklai, if, else, elif, įtrauka, klaidos IndentationError ir SyntaxError, praktinės užduotys.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Pamokos papildomi stiliai. Šriftai, spalvos, antraštės, lentelės ir nuorodos – iš site.css. */
+.py-pamoka{max-width:48rem;padding-block:1rem 3rem}
+.py-pamoka h2{margin-top:2.8rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.py-pamoka h3{margin-top:1.8rem}
+.py-pamoka .lead{margin-bottom:1.2rem}
+.py-pamoka li{margin-bottom:.3rem}
+
+/* Kodas */
+.py-pamoka code{font-family:var(--f-mono);font-size:.88em;background:var(--code-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.py-pamoka pre{font-family:var(--f-mono);font-size:.9rem;line-height:1.5;background:var(--code-bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:.75rem 1rem;margin:0 0 1rem;overflow-x:auto}
+/* Kodo kopijuoti negalima: mokinys jį surenka pats */
+.py-pamoka pre, .py-pamoka code {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  -webkit-touch-callout: none; cursor: default;
+}
+.py-pamoka pre code{background:none;border:0;padding:0;white-space:pre;font-size:inherit}
+.py-pamoka pre.out{border-left-color:var(--ok);background:var(--surface)}
+.py-pamoka .label{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.py-pamoka .menu{font-family:var(--f-display);font-weight:600;white-space:nowrap}
+.py-pamoka kbd{font-family:var(--f-mono);font-size:.82em;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--muted);border-bottom-width:2px;border-radius:5px;padding:1px 6px;white-space:nowrap}
+.py-pamoka td.num,.py-pamoka th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Paveikslėliai */
+.py-pamoka figure{margin:1.2rem 0 1.5rem}
+.py-pamoka figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+.py-pamoka figcaption{font-size:.88rem;color:var(--muted);margin-top:.45rem}
+.py-pamoka .n{display:inline-block;min-width:1.5em;height:1.5em;line-height:1.5em;text-align:center;border-radius:50%;background:var(--warm);color:var(--paper);font-family:var(--f-display);font-weight:700;font-size:.85em}
+
+/* Spalvoti langeliai */
+.py-pamoka .box{border-radius:6px;padding:.85rem 1.1rem;margin:1.2rem 0}
+.py-pamoka .box > :last-child{margin-bottom:0}
+.py-pamoka .box.rule{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.py-pamoka .box.try{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.py-pamoka .box.warn{background:var(--warm-soft);border-left:4px solid var(--warm)}
+.py-pamoka .box strong.t{display:block;font-family:var(--f-display);margin-bottom:4px}
+
+/* Pamokos turinys (svetainės nav.toc skirtas šoniniam meniu – čia jį perrašome) */
+.py-pamoka nav.toc{position:static;font-family:var(--f-body);font-size:1rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.2rem;margin:1.4rem 0}
+.py-pamoka nav.toc strong{display:block;font-family:var(--f-display);margin-bottom:.4rem}
+.py-pamoka nav.toc ol{display:block;margin:0;columns:2;column-gap:2rem;list-style:none;padding:0}
+.py-pamoka nav.toc li{break-inside:avoid}
+.py-pamoka nav.toc a{display:inline;padding:0;color:var(--accent);text-decoration:underline;background:none;border:0;border-radius:0;white-space:normal}
+.py-pamoka nav.toc a:hover{background:none}
+
+/* Užduotys */
+.py-pamoka .task{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:0 0 1rem}
+.py-pamoka .task > :last-child{margin-bottom:0}
+.py-pamoka .task h4{font-family:var(--f-display);font-weight:600;margin:0 0 .4rem;font-size:1.02rem}
+.py-pamoka .level{display:inline-block;font-family:var(--f-mono);font-size:.78rem;font-weight:700;border-radius:4px;padding:1px 8px;margin-right:6px;color:var(--paper)}
+.py-pamoka .level.a{background:var(--ok)}
+.py-pamoka .level.b{background:var(--accent)}
+.py-pamoka .level.c{background:var(--warm)}
+
+/* Išskleidžiami atsakymai: rėmelis ir antraštė – iš svetainės, čia tik turinio tarpai */
+.py-pamoka details{margin:0 0 .7rem}
+.py-pamoka summary{color:var(--accent)}
+.py-pamoka details > :not(summary){margin:.6rem .9rem}
+.py-pamoka details > :last-child{margin-bottom:.8rem}
+.py-pamoka .task details{background:var(--paper)}
+
+/* NAUJA 2 pamokoje: vartotojo surinktas tekstas rezultate ir blokinė schema */
+.py-pamoka pre.out .in{color:var(--accent);font-weight:700;font-style:normal}
+.py-pamoka .schema{display:block;width:100%;max-width:21rem;height:auto;margin:0 auto}
+.py-pamoka .schema .sh{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.py-pamoka .schema .ar{stroke:var(--ink);stroke-width:1.6;fill:none}
+.py-pamoka .schema text{font-family:var(--f-display);font-size:14px;fill:var(--ink);text-anchor:middle}
+
+/* Pamokos dalys: kiekvienas skyrius – atskiras rėmelis su fonu ir spalvota antrašte */
+.py-pamoka .dalis{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 1.4rem 1.3rem;margin:2.2rem 0}
+.py-pamoka .dalis > h2{margin:0 -1.4rem 1.1rem;padding:.85rem 1.4rem;border:0;border-bottom:1px solid var(--line);border-radius:11px 11px 0 0;background:var(--accent-soft);scroll-margin-top:1rem}
+.py-pamoka .dalis > :last-child{margin-bottom:0}
+.py-pamoka .dalis .task,.py-pamoka .dalis details,.py-pamoka .dalis pre.out{background:var(--paper)}
+.py-pamoka .dalis .task details{background:var(--surface)}
+
+@media (max-width:600px){
+  .py-pamoka nav.toc ol{columns:1}
+  .py-pamoka .dalis{padding:0 .9rem 1rem;border-radius:10px}
+  .py-pamoka .dalis > h2{margin:0 -.9rem 1rem;padding:.75rem .9rem;border-radius:9px 9px 0 0}
+}
+@media print{
+  .py-pamoka{max-width:none;font-size:11pt}
+  .py-pamoka figure,.py-pamoka pre,.py-pamoka .task,.py-pamoka .box{break-inside:avoid}
+  .py-pamoka details{border:0;padding:0}
+  .py-pamoka .dalis{border:0;padding:0;background:none}
+  .py-pamoka .dalis > h2{margin:1.5rem 0 .8rem;padding:0;background:none}
+}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../">9–10 klasės</a> <span aria-hidden="true">/</span> 3 pamoka</p>
+
+<div class="lesson-hero py-hero">
+  <div class="lesson-hero-t">
+    <div class="eyebrow">9 klasė · Programavimo pradmenys · Darbo aplinka: Thonny · Trukmė: 45 min</div>
+    <h1>3 pamoka. Sąlyga: if, else, elif</h1>
+    <p class="lead">Šioje pamokoje tavo programos išmoks rinktis: patikrins sąlygą ir pagal atsakymą atliks vienus ar kitus veiksmus. Viską gali atlikti savarankiškai: skaityk iš eilės, kiekvieną pavyzdį surink pats ir paleisk.</p>
+  </div>
+  <img src="../../assets/img/iliustracijos/antraste-python-3.webp" width="1536" height="864" alt="Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane programos kodas su įtraukomis; šalia žaislinė gyvatėlė, lapas su blokine schema, kurioje rombas išsišakoja į dvi puses, ir rodyklė į dvi puses.">
+</div>
+
+<article class="py-pamoka">
+
+<h3>Ko išmoksi</h3>
+<ul>
+  <li>palyginti skaičius ir tekstus ženklais <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>;</li>
+  <li>parašyti sąlygos sakinį su <code>if</code> ir <code>else</code>;</li>
+  <li>pasirinkti vieną iš kelių atvejų su <code>elif</code>;</li>
+  <li>teisingai naudoti dvitaškį ir įtrauką;</li>
+  <li>blokinę schemą su rombu užrašyti Python programa;</li>
+  <li>atpažinti ir pataisyti dažniausias sąlygos sakinio klaidas.</li>
+</ul>
+
+<nav class="toc" aria-label="Pamokos turinys">
+  <strong>Pamokos eiga</strong>
+  <ol>
+    <li><a href="#kodel">1. Kodėl programai reikia rinktis</a> · 3 min</li>
+    <li><a href="#palyginimas">2. Palyginimo ženklai</a> · 5 min</li>
+    <li><a href="#if">3. Komanda if</a> · 8 min</li>
+    <li><a href="#else">4. if ir else: dvi šakos</a> · 7 min</li>
+    <li><a href="#elif">5. elif: daugiau atvejų</a> · 7 min</li>
+    <li><a href="#klaidos">6. Naujos klaidos</a> · 5 min</li>
+    <li><a href="#uzduotys">7. Praktinės užduotys</a> · 10 min</li>
+    <li><a href="#pasitikrink">8. Pasitikrink</a></li>
+    <li><a href="#atsiskaitymas">9. Atsiskaitymas</a></li>
+  </ol>
+</nav>
+
+<div class="box rule">
+  <strong class="t">Svarbiausia taisyklė</strong>
+  <p>Kodo nekopijuok – surink jį klaviatūra pats. Kiekvieną programą paleisk kelis kartus taip, kad suveiktų <strong>kiekviena</strong> sąlygos šaka.</p>
+</div>
+
+<section class="dalis">
+<h2 id="kodel">1. Kodėl programai reikia rinktis</h2>
+<p>Iki šiol tavo programos visada atlikdavo tuos pačius veiksmus iš eilės: paklausia, apskaičiuoja, išveda. Tačiau gyvenime dažnai sprendžiame: <em>jei lyja, imu skėtį, kitaip – ne</em>. Programos taip pat turi mokėti rinktis.</p>
+<p>Blokinėse schemose pasirinkimą žymėjai <strong>rombu</strong>: jame užrašyta sąlyga, iš jo išeina dvi rodyklės – „Taip“ ir „Ne“. Toks algoritmas vadinamas <strong>šakotuoju</strong>. Python kalboje rombą atitinka komanda <code>if</code>.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Blokinėje schemoje</th><th>Python kalboje</th><th>Kada mokėmės</th></tr></thead>
+  <tbody>
+    <tr><td>Duomenų išvedimas (lygiagretainis)</td><td><code>print()</code></td><td>1 pamoką</td></tr>
+    <tr><td>Veiksmas, priskyrimas (stačiakampis)</td><td><code>=</code> ir aritmetiniai veiksmai</td><td>1 pamoką</td></tr>
+    <tr><td>Duomenų įvedimas (lygiagretainis)</td><td><code>input()</code></td><td>2 pamoką</td></tr>
+    <tr><td>Sąlyga (rombas)</td><td><code>if</code>, <code>else</code>, <code>elif</code></td><td><strong>Šią pamoką</strong></td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<section class="dalis">
+<h2 id="palyginimas">2. Palyginimo ženklai</h2>
+<p>Sąlyga – tai klausimas, į kurį atsakymas yra „taip“ arba „ne“. Python atsako žodžiais <code>True</code> (tiesa, taip) ir <code>False</code> (netiesa, ne). Išbandyk komandų eilutėje – spustelėk prie <code>&gt;&gt;&gt;</code>, surink palyginimą ir paspausk <kbd>Enter</kbd>.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Ženklas</th><th>Ką reiškia</th><th>Pavyzdys</th><th>Atsakymas</th></tr></thead>
+  <tbody>
+    <tr><td><code>&gt;</code></td><td>daugiau</td><td><code>7 &gt; 3</code></td><td><code>True</code></td></tr>
+    <tr><td><code>&lt;</code></td><td>mažiau</td><td><code>7 &lt; 3</code></td><td><code>False</code></td></tr>
+    <tr><td><code>&gt;=</code></td><td>daugiau arba lygu</td><td><code>5 &gt;= 5</code></td><td><code>True</code></td></tr>
+    <tr><td><code>&lt;=</code></td><td>mažiau arba lygu</td><td><code>4 &lt;= 3</code></td><td><code>False</code></td></tr>
+    <tr><td><code>==</code></td><td>lygu</td><td><code>2 + 2 == 4</code></td><td><code>True</code></td></tr>
+    <tr><td><code>!=</code></td><td>nelygu</td><td><code>5 != 5</code></td><td><code>False</code></td></tr>
+  </tbody>
+</table></div>
+<figure>
+  <img src="img/01-palyginimai.png" width="1114" height="940" alt="Thonny komandų eilutė: palyginimai 7 > 3, 7 < 3, 5 >= 5, 2 + 2 == 4 ir &quot;Vilnius&quot; == &quot;vilnius&quot; su atsakymais True, False, True, True, False" loading="lazy">
+  <figcaption>Komandų eilutėje Python į kiekvieną palyginimą iš karto atsako <code>True</code> arba <code>False</code>.</figcaption>
+</figure>
+<div class="box warn">
+  <p><strong>Vienas ar du lygybės ženklai?</strong> <code>=</code> reiškia „priskirti“: <code>x = 5</code> įrašo 5 į kintamąjį. <code>==</code> reiškia „ar lygu?“: <code>x == 5</code> tik patikrina ir atsako <code>True</code> arba <code>False</code>. Sąlygoje visada rašyk <code>==</code>.</p>
+</div>
+<p>Tekstus taip pat galima lyginti. Python tikrina kiekvieną raidę, todėl didžiosios ir mažosios raidės skiriasi:</p>
+<pre><code>&gt;&gt;&gt; "Vilnius" == "Vilnius"
+True
+&gt;&gt;&gt; "Vilnius" == "vilnius"
+False</code></pre>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Komandų eilutėje patikrink: <code>10 / 2 == 5</code>, <code>3 != 4</code>, <code>"labas" == "Labas"</code>. Prieš paspausdamas <kbd>Enter</kbd> spėk, ką atsakys Python.</p>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="if">3. Komanda if</h2>
+<p>Komanda <code>if</code> (angl. <em>jei</em>) patikrina sąlygą. Jei sąlyga teisinga, vykdomos po ja <strong>pastumtos</strong> eilutės. Jei neteisinga – jos praleidžiamos.</p>
+<h3>Parašyk ir paleisk</h3>
+<p>Sukurk failą <code>testas.py</code> ir surink:</p>
+<pre><code>taskai = int(input("Kiek surinkai taškų? "))
+if taskai &gt;= 50:
+    print("Sveikinu, testą išlaikei!")
+print("Ačiū, kad dalyvavai.")</code></pre>
+<p>Paleisk du kartus: pirmą kartą įvesk 72, antrą – 30.</p>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Kiek surinkai taškų? <em class="in">72</em>
+Sveikinu, testą išlaikei!
+Ačiū, kad dalyvavai.</code></pre>
+<pre class="out"><code>Kiek surinkai taškų? <em class="in">30</em>
+Ačiū, kad dalyvavai.</code></pre>
+<figure>
+  <img src="img/02a-if-taip.png" width="1112" height="759" alt="Thonny langas: programa testas.py, įvesta 72, komandų eilutėje išvesta Sveikinu, testą išlaikei! ir Ačiū, kad dalyvavai." loading="lazy">
+  <figcaption>Įvesta 72: sąlyga teisinga, todėl įvykdoma ir pastumta eilutė.</figcaption>
+</figure>
+<figure>
+  <img src="img/02b-if-ne.png" width="1115" height="759" alt="Thonny langas: programa testas.py, įvesta 30, komandų eilutėje išvesta tik Ačiū, kad dalyvavai." loading="lazy">
+  <figcaption>Įvesta 30: sąlyga neteisinga, pastumta eilutė praleista. Langelyje <span class="menu">Kintamieji</span> matyti <code>taskai</code> reikšmė.</figcaption>
+</figure>
+<p>Antrą kartą sveikinimo nebuvo: sąlyga <code>30 &gt;= 50</code> neteisinga, todėl pastumta eilutė praleista. Paskutinė eilutė nepastumta – ji nepriklauso <code>if</code> ir vykdoma visada.</p>
+
+<h3>Kaip sudaryta komanda</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Dalis</th><th>Ką reiškia</th></tr></thead>
+  <tbody>
+    <tr><td><code>if</code></td><td>Komandos vardas. Rašomas mažosiomis raidėmis</td></tr>
+    <tr><td><code>taskai &gt;= 50</code></td><td>Sąlyga – klausimas, į kurį atsakoma „taip“ arba „ne“</td></tr>
+    <tr><td><code>:</code></td><td>Dvitaškis sąlygos gale. Be jo bus klaida</td></tr>
+    <tr><td>4 tarpai eilutės pradžioje</td><td><strong>Įtrauka.</strong> Pastumtos eilutės priklauso <code>if</code> ir vykdomos tik tada, kai sąlyga teisinga</td></tr>
+  </tbody>
+</table></div>
+<div class="box rule">
+  <strong class="t">Įtrauka Python kalboje svarbi</strong>
+  <p>1 pamokoje rašei, kad tarpai eilutės pradžioje turi reikšmę. Štai kodėl: pagal įtrauką Python supranta, kurios eilutės priklauso sąlygai. Po dvitaškio paspaudus <kbd>Enter</kbd>, Thonny pats pastumia kitą eilutę. Kad grįžtum į eilutės pradžią, ištrink tarpus klavišu <kbd>Backspace</kbd>.</p>
+</div>
+<p>Sąlygai gali priklausyti ir kelios eilutės – visos jos turi būti vienodai pastumtos:</p>
+<pre><code>if taskai &gt;= 50:
+    print("Sveikinu, testą išlaikei!")
+    print("Tavo taškai:", taskai)</code></pre>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Papildyk programą <code>testas.py</code>: jei surinkta 100 taškų, tegul ji dar išveda <code>Tobulas rezultatas!</code>. Prireiks antros <code>if</code> komandos su ženklu <code>==</code>.</p>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="else">4. if ir else: dvi šakos</h2>
+<p>Dažnai reikia atlikti vienus veiksmus, kai sąlyga teisinga, ir kitus – kai neteisinga. Tam yra žodis <code>else</code> (angl. <em>kitaip</em>). Pažiūrėk į blokinę schemą:</p>
+<figure>
+  <svg class="schema" viewBox="0 0 360 450" role="img" aria-label="Blokinė schema: Pradžia, įvesti taskai, sąlyga taskai >= 50; jei taip – išvesti Išlaikei, jei ne – išvesti Neišlaikei; Pabaiga">
+    <defs>
+      <marker id="rod3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+    <g style="color:var(--ink)">
+      <rect class="sh" x="115" y="8" width="130" height="40" rx="20"/>
+      <text x="180" y="33">Pradžia</text>
+      <line class="ar" x1="180" y1="48" x2="180" y2="78" marker-end="url(#rod3)"/>
+
+      <polygon class="sh" points="90,80 290,80 270,124 70,124"/>
+      <text x="180" y="107">Įvesti taskai</text>
+      <line class="ar" x1="180" y1="124" x2="180" y2="154" marker-end="url(#rod3)"/>
+
+      <polygon class="sh" points="180,156 280,206 180,256 80,206"/>
+      <text x="180" y="211">taskai &gt;= 50</text>
+
+      <polyline class="ar" points="80,206 70,206 70,286" marker-end="url(#rod3)"/>
+      <text class="lb" x="52" y="198">Taip</text>
+      <polyline class="ar" points="280,206 290,206 290,286" marker-end="url(#rod3)"/>
+      <text class="lb" x="310" y="198">Ne</text>
+
+      <polygon class="sh" points="22,288 148,288 138,336 2,336"/>
+      <text x="74" y="317">Išvesti „Išlaikei“</text>
+      <polygon class="sh" points="232,288 358,288 348,336 212,336" />
+      <text x="286" y="317">Išvesti „Neišlaikei“</text>
+
+      <polyline class="ar" points="70,336 70,370 180,370"/>
+      <polyline class="ar" points="290,336 290,370 180,370"/>
+      <line class="ar" x1="180" y1="370" x2="180" y2="398" marker-end="url(#rod3)"/>
+
+      <rect class="sh" x="115" y="400" width="130" height="40" rx="20"/>
+      <text x="180" y="425">Pabaiga</text>
+    </g>
+  </svg>
+  <figcaption>Šakotasis algoritmas: pagal sąlygą vykdoma tik viena iš dviejų šakų.</figcaption>
+</figure>
+<p>Sukurk failą <code>testas2.py</code>:</p>
+<pre><code>taskai = int(input("Kiek surinkai taškų? "))
+if taskai &gt;= 50:
+    print("Išlaikei")
+else:
+    print("Neišlaikei")</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Kiek surinkai taškų? <em class="in">43</em>
+Neišlaikei</code></pre>
+<div class="tbl"><table>
+  <thead><tr><th>Schemos blokas</th><th>Programos eilutė</th></tr></thead>
+  <tbody>
+    <tr><td>Įvesti taskai</td><td><code>taskai = int(input("Kiek surinkai taškų? "))</code></td></tr>
+    <tr><td>Rombas su sąlyga</td><td><code>if taskai &gt;= 50:</code></td></tr>
+    <tr><td>Šaka „Taip“</td><td>pastumtos eilutės po <code>if</code></td></tr>
+    <tr><td>Šaka „Ne“</td><td><code>else:</code> ir pastumtos eilutės po juo</td></tr>
+  </tbody>
+</table></div>
+<div class="box warn">
+  <p><code>else</code> rašomas <strong>be sąlygos</strong>, bet su dvitaškiu: <code>else:</code>. Jis pradedamas toje pačioje vietoje kaip <code>if</code> – ne pastumtas.</p>
+</div>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Parašyk programą, kuri paklausia, koks oras – lyja ar ne. Jei vartotojas įveda <code>taip</code>, programa išveda <code>Pasiimk skėtį</code>, kitaip – <code>Skėčio nereikia</code>.</p>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="elif">5. elif: daugiau atvejų</h2>
+<p>Kartais galimų atvejų daugiau nei du. Tada tarp <code>if</code> ir <code>else</code> rašomas <code>elif</code> – sutrumpinimas iš <em>else if</em> („kitaip, jei“). Sukurk failą <code>oras.py</code>:</p>
+<pre><code>temperatura = float(input("Kiek laipsnių lauke? "))
+if temperatura &lt; 0:
+    print("Šalta – apsirenk šiltai")
+elif temperatura &lt; 15:
+    print("Vėsu – pasiimk striukę")
+else:
+    print("Šilta – striukės nereikia")</code></pre>
+<span class="label">Rezultatas</span>
+<pre class="out"><code>Kiek laipsnių lauke? <em class="in">8</em>
+Vėsu – pasiimk striukę</code></pre>
+<figure>
+  <img src="img/03-elif.png" width="1121" height="703" alt="Thonny langas: programa oras.py su if, elif ir else, įvesta 8, išvesta Vėsu – pasiimk striukę; langelyje Kintamieji temperatura 8.0" loading="lazy">
+  <figcaption>Programa <code>oras.py</code>: įvedus 8, įvykdoma <code>elif</code> šaka. Kintamasis <code>temperatura</code> yra <code>8.0</code>, nes skaičius paverstas komanda <code>float()</code>.</figcaption>
+</figure>
+<p>Python tikrina sąlygas <strong>iš viršaus į apačią</strong> ir vykdo tik <strong>pirmą</strong> šaką, kurios sąlyga teisinga. Kitos šakos praleidžiamos.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Įvesta</th><th><code>temperatura &lt; 0</code></th><th><code>temperatura &lt; 15</code></th><th>Išvedama</th></tr></thead>
+  <tbody>
+    <tr><td><code>-3</code></td><td><code>True</code> – vykdoma</td><td>netikrinama</td><td>Šalta – apsirenk šiltai</td></tr>
+    <tr><td><code>8</code></td><td><code>False</code></td><td><code>True</code> – vykdoma</td><td>Vėsu – pasiimk striukę</td></tr>
+    <tr><td><code>22</code></td><td><code>False</code></td><td><code>False</code></td><td>Šilta – striukės nereikia (<code>else</code>)</td></tr>
+  </tbody>
+</table></div>
+<p>Atkreipk dėmesį: kai įvesta <code>-3</code>, sąlyga <code>-3 &lt; 15</code> taip pat teisinga, bet Python jos net netikrina – pirmoji šaka jau įvykdyta. Todėl sąlygų tvarka svarbi.</p>
+<div class="box rule">
+  <strong class="t">Įsimink</strong>
+  <p><code>elif</code> šakų gali būti kiek nori. <code>else</code> – nebūtinas, bet jei yra, jis visada paskutinis. Iš visos <code>if</code> – <code>elif</code> – <code>else</code> grandinės įvykdoma <strong>daugiausia viena</strong> šaka.</p>
+</div>
+
+<details>
+  <summary>Giliau: kelios sąlygos kartu – and ir or</summary>
+  <p>Kartais reikia patikrinti dvi sąlygas iš karto:</p>
+  <ul>
+    <li><code>and</code> („ir“) – teisinga tik tada, kai teisingos <strong>abi</strong> sąlygos;</li>
+    <li><code>or</code> („arba“) – teisinga, kai teisinga <strong>bent viena</strong> sąlyga.</li>
+  </ul>
+<pre><code>pazymys = int(input("Pažymys: "))
+if pazymys &lt; 1 or pazymys &gt; 10:
+    print("Tokio pažymio nėra")
+elif pazymys &gt;= 9 and pazymys &lt;= 10:
+    print("Puikiai")
+else:
+    print("Pažymys įrašytas")</code></pre>
+  <p>Šių žodžių prireiks C lygio užduotims.</p>
+</details>
+
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Programoje <code>oras.py</code> sukeisk pirmas dvi sąlygas vietomis: pirma <code>temperatura &lt; 15</code>, paskui <code>temperatura &lt; 0</code>. Paleisk su <code>-3</code>. Kodėl dabar programa nebeparašo „Šalta“?</p>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="klaidos">6. Naujos klaidos</h2>
+<p>Klaidos pranešimą skaityk taip pat, kaip anksčiau: rask eilutės numerį (<code>line</code>) ir perskaityk paskutinę pranešimo eilutę.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Klaidingas kodas</th><th>Python pranešimas</th><th>Kas negerai</th><th>Kaip taisyti</th></tr></thead>
+  <tbody>
+    <tr><td><code>if taskai &gt;= 50</code></td><td><code>SyntaxError: expected ':'</code></td><td>Trūksta dvitaškio sąlygos gale</td><td><code>if taskai &gt;= 50:</code></td></tr>
+    <tr><td><code>if taskai &gt;= 50:</code><br><code>print("Išlaikei")</code></td><td><code>IndentationError: expected an indented block after 'if' statement on line 2</code></td><td>Eilutė po <code>if</code> nepastumta</td><td>Eilutės pradžioje padėk 4 tarpus</td></tr>
+    <tr><td><code>if taskai = 50:</code></td><td><code>SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</code></td><td>Vietoj palyginimo parašytas priskyrimas</td><td><code>if taskai == 50:</code></td></tr>
+    <tr><td><code>taskai = input("Taškai: ")</code><br><code>if taskai &gt;= 50:</code></td><td><code>TypeError: '&gt;=' not supported between instances of 'str' and 'int'</code></td><td>Tekstas lyginamas su skaičiumi – pamiršta <code>int()</code></td><td><code>taskai = int(input("Taškai: "))</code></td></tr>
+    <tr><td><code>    print("Labas")</code> be <code>if</code> virš jos</td><td><code>IndentationError: unexpected indent</code></td><td>Eilutė pastumta be reikalo</td><td>Ištrink tarpus eilutės pradžioje</td></tr>
+  </tbody>
+</table></div>
+<figure>
+  <img src="img/04-truksta-dvitaskio.png" width="1115" height="764" alt="Thonny langas: eilutėje if taskai >= 50 trūksta dvitaškio, komandų eilutėje raudonas pranešimas SyntaxError: expected ':', dešinėje langelis Asistentas" loading="lazy">
+  <figcaption>Trūksta dvitaškio: pranešime nurodyta eilutė (<code>line 2</code>), o ženklas <code>^</code> rodo vietą, kur dvitaškio pasigedo Python.</figcaption>
+</figure>
+<figure>
+  <img src="img/05-indentationerror.png" width="1115" height="759" alt="Thonny langas: eilutė po if nepastumta, komandų eilutėje raudonas pranešimas IndentationError: expected an indented block after 'if' statement on line 2" loading="lazy">
+  <figcaption>Eilutė po <code>if</code> nepastumta. Langelis <span class="menu">Asistentas</span> klaidą paaiškina plačiau, bet angliškai.</figcaption>
+</figure>
+<p>Pranešimo tekstas gali šiek tiek skirtis, jei tavo kompiuteryje kita Python versija, bet klaidos pavadinimas (<code>SyntaxError</code>, <code>IndentationError</code>, <code>TypeError</code>) bus tas pats.</p>
+<p>Naujas klaidos pavadinimas:</p>
+<ul>
+  <li><code>IndentationError</code> – įtraukos klaida: eilutė pastumta ne ten, kur reikia, arba nepastumta ten, kur reikia.</li>
+</ul>
+<div class="box warn">
+  <p>Pavojingiausia klaida ta, apie kurią Python nepraneša: sąlyga parašyta neteisingai, pavyzdžiui, <code>taskai &gt; 50</code> vietoj <code>taskai &gt;= 50</code>. Tada lygiai 50 taškų surinkęs mokinys „neišlaiko“. Todėl programą visada išbandyk ir su <strong>ribine</strong> reikšme – šiuo atveju su 50.</p>
+</div>
+<div class="box try">
+  <strong class="t">Pabandyk pats</strong>
+  <p>Programoje <code>testas2.py</code> tyčia ištrink dvitaškį po <code>else</code> ir paleisk. Perskaityk pranešimą, rask eilutės numerį, tada klaidą pataisyk.</p>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="uzduotys">7. Praktinės užduotys</h2>
+<p>Kiekvieną užduotį atlik atskirame faile ir įrašyk aplanke <code>python</code>. A lygio užduotys privalomos visiems. B ir C lygio užduotis rinkis, jei A lygis pavyko.</p>
+<p>Kiekvienos programos pirmoje eilutėje komentaru parašyk savo vardą ir ką programa daro. Kiekvieną programą paleisk tiek kartų, kad išbandytum <strong>visas</strong> šakas.</p>
+
+<h3>A lygis: pagrindai</h3>
+<div class="task">
+  <h4><span class="level a">A</span>1 užduotis. Slaptažodis · <code>slaptazodis.py</code></h4>
+  <p>Programa paklausia slaptažodžio. Jei įvesta <code>katinas</code>, ji išveda <code>Prisijungta</code>, kitaip – <code>Neteisingas slaptažodis</code>.</p>
+  <pre class="out"><code>Slaptažodis: <em class="in">katinas</em>
+Prisijungta</code></pre>
+  <pre class="out"><code>Slaptažodis: <em class="in">Katinas</em>
+Neteisingas slaptažodis</code></pre>
+</div>
+<div class="task">
+  <h4><span class="level a">A</span>2 užduotis. Lyginis ar nelyginis · <code>lyginis.py</code></h4>
+  <p>Programa paklausia sveikojo skaičiaus ir išveda, ar jis lyginis, ar nelyginis.</p>
+  <pre class="out"><code>Įvesk skaičių: <em class="in">7</em>
+7 yra nelyginis skaičius</code></pre>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Prisimink 1 pamokos veiksmą <code>%</code> – dalybos liekaną. Lyginio skaičiaus liekana, dalijant iš 2, lygi 0: <code>skaicius % 2 == 0</code>.</p>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level a">A</span>3 užduotis. Pilnametystė · <code>pilnametyste.py</code></h4>
+  <p>Programa paklausia amžiaus. Jei žmogui 18 metų ar daugiau, ji išveda <code>Tu pilnametis</code>. Kitaip apskaičiuoja ir išveda, kiek metų liko iki pilnametystės.</p>
+  <pre class="out"><code>Kiek tau metų? <em class="in">15</em>
+Iki pilnametystės liko metų: 3</code></pre>
+  <p>Išbandyk su 15, 18 ir 25.</p>
+</div>
+
+<h3>B lygis: įtvirtinimas</h3>
+<div class="task">
+  <h4><span class="level b">B</span>4 užduotis. Klaidų medžioklė · <code>klaidos3.py</code></h4>
+  <p>Šioje programoje yra 4 klaidos. Surink ją tiksliai tokią, paleisk ir taisyk po vieną klaidą. Įvedus <code>5</code>, programa turi išvesti <code>Teigiamas</code>, įvedus <code>0</code> – <code>Nulis</code>, įvedus <code>-3</code> – <code>Neigiamas</code>.</p>
+  <pre><code>skaicius = input("Įvesk skaičių: ")
+if skaicius &gt; 0
+print("Teigiamas")
+elif skaicius = 0:
+    print("Nulis")
+else:
+    print("Neigiamas")</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>1 eilutė: trūksta <code>int()</code> – be jos 2 eilutėje gausi <code>TypeError</code>. 2 eilutė: trūksta dvitaškio. 3 eilutė: nepastumta. 4 eilutė: vietoj <code>==</code> parašyta <code>=</code>.</p>
+    <pre><code>skaicius = int(input("Įvesk skaičių: "))
+if skaicius &gt; 0:
+    print("Teigiamas")
+elif skaicius == 0:
+    print("Nulis")
+else:
+    print("Neigiamas")</code></pre>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level b">B</span>5 užduotis. Spėk rezultatą · <code>spejimas3.py</code></h4>
+  <p>Nepaleidęs programos, ant popieriaus užsirašyk, ką ji išves. Tada surink, paleisk ir palygink.</p>
+  <pre><code>x = 7
+if x &gt; 10:
+    print("A")
+elif x &gt; 5:
+    print("B")
+elif x &gt; 3:
+    print("C")
+else:
+    print("D")
+print("E")</code></pre>
+  <details>
+    <summary>Rodyti atsakymą</summary>
+    <p>Programa išves <code>B</code> ir <code>E</code>. Sąlyga <code>7 &gt; 10</code> neteisinga, <code>7 &gt; 5</code> teisinga – išvedama <code>B</code>, o likusios šakos praleidžiamos, nors <code>7 &gt; 3</code> irgi teisinga. Eilutė <code>print("E")</code> nepastumta, todėl vykdoma visada.</p>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level b">B</span>6 užduotis. Bilieto kaina · <code>bilietas.py</code></h4>
+  <p>Muziejuje vaikams iki 7 metų įėjimas nemokamas, mokiniams iki 18 metų bilietas kainuoja 3 Eur, kitiems – 6 Eur. Programa paklausia amžiaus ir išveda bilieto kainą.</p>
+  <pre class="out"><code>Kiek tau metų? <em class="in">14</em>
+Bilieto kaina: 3 Eur</code></pre>
+  <p>Išbandyk su 5, 7, 17, 18 ir 40. Ar teisingai suveikia ribinės reikšmės 7 ir 18?</p>
+</div>
+
+<h3>C lygis: iššūkis</h3>
+<div class="task">
+  <h4><span class="level c">C</span>7 užduotis. Didesnis skaičius · <code>didesnis.py</code></h4>
+  <p>Programa paklausia dviejų skaičių ir išveda didesnįjį. Jei skaičiai lygūs, ji išveda <code>Skaičiai lygūs</code>. Funkcijos <code>max()</code> naudoti negalima.</p>
+  <pre class="out"><code>Pirmas skaičius: <em class="in">12</em>
+Antras skaičius: <em class="in">31</em>
+Didesnis skaičius: 31</code></pre>
+</div>
+<div class="task">
+  <h4><span class="level c">C</span>8 užduotis. Keliamieji metai · <code>keliamieji.py</code></h4>
+  <p>Metai yra keliamieji, jei jie dalijasi iš 4, bet nesidalija iš 100. Išimtis: metai, kurie dalijasi iš 400, irgi keliamieji. Programa paklausia metų ir išveda, ar jie keliamieji.</p>
+  <pre class="out"><code>Metai: <em class="in">2024</em>
+2024 – keliamieji metai</code></pre>
+  <p>Patikrink: 2024 ir 2000 – keliamieji, 2025 ir 1900 – ne.</p>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Prireiks <code>and</code> ir <code>or</code> (žr. 5 skyrių „Giliau“). „Dalijasi iš 4“ užrašoma <code>metai % 4 == 0</code>, „nesidalija iš 100“ – <code>metai % 100 != 0</code>.</p>
+  </details>
+</div>
+<div class="task">
+  <h4><span class="level c">C</span>9 užduotis. Trikampis · <code>trikampis.py</code></h4>
+  <p>Programa paklausia trijų trikampio kraštinių ilgių ir išveda, koks tai trikampis: <code>lygiakraštis</code> (visos kraštinės lygios), <code>lygiašonis</code> (lygios dvi kraštinės) ar <code>įvairiakraštis</code> (visos skirtingos).</p>
+  <pre class="out"><code>a = <em class="in">5</em>
+b = <em class="in">5</em>
+c = <em class="in">8</em>
+Trikampis lygiašonis</code></pre>
+  <details>
+    <summary>Rodyti patarimą</summary>
+    <p>Pirma patikrink, ar lygios visos trys kraštinės: <code>a == b and b == c</code>. Jei ne – ar lygios bent dvi: <code>a == b or b == c or a == c</code>. Sąlygų tvarka svarbi.</p>
+  </details>
+</div>
+</section>
+
+<section class="dalis">
+<h2 id="pasitikrink">8. Pasitikrink</h2>
+<p>Atsakyk į klausimus nepaleisdamas Thonny. Atsakymą užsirašyk ir tik tada atverk teisingą.</p>
+
+<details>
+  <summary>1. Kuo skiriasi <code>x = 5</code> ir <code>x == 5</code>?</summary>
+  <p><code>x = 5</code> įrašo 5 į kintamąjį <code>x</code>. <code>x == 5</code> tik patikrina, ar <code>x</code> lygus 5, ir atsako <code>True</code> arba <code>False</code>.</p>
+</details>
+<details>
+  <summary>2. Ką atsakys Python: <code>8 &gt;= 8</code>?</summary>
+  <p><code>True</code> – ženklas <code>&gt;=</code> reiškia „daugiau arba lygu“.</p>
+</details>
+<details>
+  <summary>3. Ką atsakys Python: <code>"Labas" == "labas"</code>?</summary>
+  <p><code>False</code> – didžiosios ir mažosios raidės skiriasi.</p>
+</details>
+<details>
+  <summary>4. Ką išves programa: <code>x = 4</code>, <code>if x &gt; 5:</code>, pastumta <code>print("A")</code>, nepastumta <code>print("B")</code>?</summary>
+  <p>Tik <code>B</code>. Sąlyga <code>4 &gt; 5</code> neteisinga, todėl pastumta eilutė praleidžiama, o nepastumta vykdoma visada.</p>
+</details>
+<details>
+  <summary>5. Ko trūksta eilutėje <code>if amzius &lt; 18</code>?</summary>
+  <p>Dvitaškio gale: <code>if amzius &lt; 18:</code>. Be jo Python praneš <code>SyntaxError: expected ':'</code>.</p>
+</details>
+<details>
+  <summary>6. Ką išves programa <code>oras.py</code>, įvedus <code>-5</code>?</summary>
+  <p>Tik <code>Šalta – apsirenk šiltai</code>. Pirma teisinga sąlyga yra <code>-5 &lt; 0</code>, todėl likusios šakos praleidžiamos.</p>
+</details>
+<details>
+  <summary>7. Kiek šakų gali būti įvykdyta grandinėje <code>if</code> – <code>elif</code> – <code>else</code>?</summary>
+  <p>Daugiausia viena – pirmoji, kurios sąlyga teisinga. Jei yra <code>else</code>, įvykdoma lygiai viena šaka.</p>
+</details>
+<details>
+  <summary>8. Kaip užrašyti sąlygą „skaičius lyginis“?</summary>
+  <p><code>skaicius % 2 == 0</code> – lyginio skaičiaus dalybos iš 2 liekana lygi 0.</p>
+</details>
+
+<p>Jei teisingai atsakei į 6 ar daugiau klausimų, pamokos medžiagą supratai. Jei mažiau – grįžk prie skyriaus, kuriame suklydai, ir pakartok jo pavyzdžius.</p>
+</section>
+
+<section class="dalis">
+<h2 id="atsiskaitymas">9. Atsiskaitymas</h2>
+<p>Atsiskaitymui atsiųsk tris A lygio programas: <code>slaptazodis.py</code>, <code>lyginis.py</code> ir <code>pilnametyste.py</code>. Jei atlikai B ar C lygio užduočių, pridėk ir jas.</p>
+<ol>
+  <li>Kiekvieną programą paleisk dar kartą ir patikrink, ar veikia <strong>visos</strong> jos šakos.</li>
+  <li>Patikrink, ar kiekvienos programos pirmoje eilutėje yra komentaras su tavo vardu.</li>
+  <li>Failus prisek prie laiško ir išsiųsk adresu <a href="mailto:vidas.darbai@gmail.com">vidas.darbai@gmail.com</a>.</li>
+  <li>Laiško temoje parašyk klasę, vardą, pavardę ir „Python 3 pamoka“.</li>
+</ol>
+
+<h3>Įsivertink</h3>
+<p>Pamoką įveikei, jei gali pasakyti:</p>
+<ul>
+  <li>moku palyginti skaičius ir tekstus ir žinu, kuo skiriasi <code>=</code> ir <code>==</code>;</li>
+  <li>moku parašyti sąlygą su <code>if</code> ir <code>else</code>, nepamirštu dvitaškio ir įtraukos;</li>
+  <li>moku pasirinkti vieną iš kelių atvejų su <code>elif</code> ir suprantu, kodėl sąlygų tvarka svarbi;</li>
+  <li>moku blokinę schemą su rombu užrašyti programa;</li>
+  <li>gavęs <code>IndentationError</code> ar <code>SyntaxError: expected ':'</code>, žinau, ką taisyti.</li>
+</ul>
+
+<h3>Svarbiausia iš šios pamokos</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Kas</th><th>Kaip rašoma</th><th>Pavyzdys</th></tr></thead>
+  <tbody>
+    <tr><td>Palyginimas</td><td><code>==</code> <code>!=</code> <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></td><td><code>taskai &gt;= 50</code></td></tr>
+    <tr><td>Viena šaka</td><td><code>if sąlyga:</code></td><td><code>if x &gt; 0:</code></td></tr>
+    <tr><td>Dvi šakos</td><td><code>if sąlyga:</code> … <code>else:</code></td><td><code>else:</code></td></tr>
+    <tr><td>Daugiau šakų</td><td><code>if</code> … <code>elif sąlyga:</code> … <code>else:</code></td><td><code>elif x == 0:</code></td></tr>
+    <tr><td>Įtrauka</td><td>4 tarpai šakos eilutėse</td><td><code>    print("Taip")</code></td></tr>
+  </tbody>
+</table></div>
+
+<h3>Kitoje pamokoje</h3>
+<p>Dabar tavo programos moka rinktis, bet kiekvieną veiksmą vis dar atlieka vieną kartą. Toliau išmoksi kartoti veiksmus – kaip blokinėse schemose, kur rodyklė grįžta atgal.</p>
+
+<p><a href="../python-2/">← 2 pamoka. Duomenų įvedimas: input()</a></p>
+</section>
+
+</article>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 9–10 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+<script>
+/* Atsarginė apsauga: kopijuojant pažymėtą tekstą, kodo blokai į iškarpinę nepatenka */
+(function () {
+  var root = document.querySelector('.py-pamoka');
+  if (!root) return;
+  root.addEventListener('copy', function (e) {
+    var sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    var box = document.createElement('div');
+    for (var i = 0; i < sel.rangeCount; i++) box.appendChild(sel.getRangeAt(i).cloneContents());
+    var anchor = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+    var inCode = anchor && anchor.closest && anchor.closest('pre, code');
+    var codes = box.querySelectorAll('pre, code');
+    if (!inCode && codes.length === 0) return;
+    for (var j = 0; j < codes.length; j++) codes[j].parentNode.removeChild(codes[j]);
+    e.preventDefault();
+    if (e.clipboardData) e.clipboardData.setData('text/plain', inCode ? '' : box.textContent);
+  });
+  root.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.closest && e.target.closest('pre, code')) e.preventDefault();
+  });
+})();
+</script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>
