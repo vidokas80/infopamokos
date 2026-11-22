@@ -285,5 +285,21 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-22"
+ },
+ "antraste-excel-3.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes, grid lines and colored blocks. Scene: a wooden school desk prepared for a small research project: a laptop showing an abstract spreadsheet grid next to a colorful column chart; beside it a globe, an open atlas with a simple map, a magnifying glass, a notebook with a hand-drawn pie chart and colored pencils. Behind on the right: a bookshelf with plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane lentelė ir stulpelinė diagrama; šalia gaublys, atlasas, didinamasis stiklas ir sąsiuvinis su skrituline diagrama.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22"
+ },
+ "pamoka-excel-3.webp": {
+  "aprasymas": "A teenage girl at a laptop doing a small research project: on the screen an abstract spreadsheet grid and a simple column chart; next to the laptop a small globe and a magnifying glass. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes, never text, letters, numbers or logos.",
+  "alt": "Mokinė prie nešiojamojo kompiuterio tyrinėja duomenis: ekrane lentelė ir stulpelinė diagrama, šalia gaublys ir didinamasis stiklas.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22"
  }
 }

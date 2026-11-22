@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Excel pradžiamokslis · Atsiskaitomasis darbas – infopamokos.lt</title>
+<meta name="description" content="7 klasės Excel pradžiamokslis: atsiskaitomasis darbas. Pasirink temą, surask duomenis internete, apskaičiuok su funkcijomis ir nubraižyk tinkamą diagramą.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/excel.css">
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#7">7 klasė</a> <span aria-hidden="true">/</span> Excel pradžiamokslis</p>
+
+<nav class="xl-nav" aria-label="Pamokų navigacija">
+  <a href="../excel-2/">← 2 pamoka: diagramos</a>
+  <span>Excel pradžiamokslis</span>
+</nav>
+
+<header class="top">
+  <div class="lesson-hero">
+    <div class="lesson-hero-t">
+      <div class="eyebrow">Excel pradžiamokslis · Atsiskaitomasis darbas</div>
+      <h1>Atsiskaitomasis darbas: nuo duomenų iki diagramos</h1>
+      <p class="lead">Pasirink vieną iš penkių temų, susirask duomenis internete, apskaičiuok juos funkcijomis ir parodyk tinkama diagrama.</p>
+    </div>
+    <img src="../../assets/img/iliustracijos/antraste-excel-3.webp" width="1536" height="864" alt="Mokyklinis stalas su nešiojamuoju kompiuteriu, kurio ekrane lentelė ir stulpelinė diagrama; šalia gaublys, atlasas, didinamasis stiklas ir sąsiuvinis su skrituline diagrama.">
+  </div>
+  <div class="xl-meta">
+      <span class="chip">7 klasė</span>
+      <span class="chip">Atsiskaitomasis darbas</span>
+      <span class="chip">Reikia: SUM, AVERAGE, MIN, MAX, COUNT ir diagramų</span>
+  </div>
+</header>
+
+<main class="xl">
+  <section>
+    <div class="num">01</div>
+    <h2>Ką turi padaryti</h2>
+    <p>Šis darbas parodys, ką išmokai Excel pamokose. Duomenų niekas neparuošė – juos surasi pats, kaip tikras tyrėjas.</p>
+    <ol class="steps">
+      <li><p><strong>Pasirink temą.</strong> Žemiau yra penkios temos. Rinkis tą, kuri tau įdomiausia.</p></li>
+      <li><p><strong>Surask duomenis internete.</strong> Ieškok patikimuose šaltiniuose: enciklopedijose, oficialiose statistikos ar mokslo įstaigų svetainėse. Užsirašyk, iš kur paėmei duomenis.</p></li>
+      <li><p><strong>Sukurk lentelę.</strong> Lentelę Excel lape surašyk tiksliai pagal temos kontūrą: tie patys stulpeliai, tos pačios eilutės, toje pačioje vietoje. Skaičius rašyk be žodžių ir vienetų – vienetai jau nurodyti antraštėje.</p></li>
+      <li><p><strong>Apskaičiuok.</strong> Žalsvuose langeliuose įrašyk formules su funkcijomis, kurias nurodo tema. Skaičiuoti turi Excel, ne tu.</p></li>
+      <li><p><strong>Nubraižyk diagramą.</strong> Kokią diagramą braižyti, nuspręsk pats – pagal tai, ką rodo tavo duomenys. Prie kiekvienos temos yra klausimas, kuris padės apsispręsti.</p></li>
+      <li><p><strong>Paaiškink pasirinkimą.</strong> Po diagrama įrašyk vieną sakinį: <em>„Pasirinkau … diagramą, nes …“</em>.</p></li>
+      <li><p><strong>Išsaugok ir pateik.</strong> Failą pavadink <code>Vardas_Pavarde_tema.xlsx</code> ir pateik mokytojui taip, kaip jis nurodė.</p></li>
+    </ol>
+
+    <div class="tip">
+      <p class="box-title">Kaip skaityti lentelės kontūrą</p>
+      <p style="margin:0">Pilki langeliai su <span class="ph-demo">…</span> – čia įrašyk rastus skaičius. Žalsvi langeliai su <span class="calc-demo">=?</span> – čia įrašyk formulę. Langelyje šalia „Šaltinis“ įklijuok interneto adresą, iš kurio paėmei duomenis.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <h2>Pasirink temą</h2>
+    <div class="temos">
+      <a class="tema-k" href="#tema-1"><span class="ico" aria-hidden="true">🌍</span><b>1. Žemės plutos sudėtis</b><small>8 skaičiai · procentai</small></a>
+      <a class="tema-k" href="#tema-2"><span class="ico" aria-hidden="true">👥</span><b>2. Pasaulio gyventojai pagal žemynus</b><small>6 skaičiai · milijonai</small></a>
+      <a class="tema-k" href="#tema-3"><span class="ico" aria-hidden="true">📉</span><b>3. Lietuvos gyventojų skaičius per 35 metus</b><small>8 skaičiai · tūkstančiai</small></a>
+      <a class="tema-k" href="#tema-4"><span class="ico" aria-hidden="true">🏞️</span><b>4. Lietuvos upės</b><small>16 skaičių · kilometrai</small></a>
+      <a class="tema-k" href="#tema-5"><span class="ico" aria-hidden="true">🪐</span><b>5. Saulės sistemos planetos</b><small>16 skaičių · km ir vienetai</small></a>
+    </div>
+  </section>
+
+  <!-- ===================== 1 TEMA ===================== -->
+  <section id="tema-1" class="tema">
+    <div class="num">Tema 1</div>
+    <h2>🌍 Žemės plutos sudėtis</h2>
+    <p>Žemės pluta – kietas viršutinis mūsų planetos sluoksnis. Ją sudaro daug cheminių elementų, bet beveik visą jos masę sudaro vos aštuoni. Išsiaiškink, kokią plutos dalį sudaro kiekvienas iš jų.</p>
+    <div class="xl-meta"><span class="chip">Surinkti: 8 skaičius</span><span class="chip">Vienetai: %</span><span class="chip">Kur ieškoti: enciklopedijoje, ieškok „Žemės pluta“ arba „cheminių elementų paplitimas Žemės plutoje“</span></div>
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Cheminis elementas</span></td><td class="h"><span class="v">Dalis Žemės plutoje, %</span></td></tr>
+          <tr><th>2</th><td><span class="v">Deguonis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>3</th><td><span class="v">Silicis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>4</th><td><span class="v">Aliuminis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>5</th><td><span class="v">Geležis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>6</th><td><span class="v">Kalcis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>7</th><td><span class="v">Natris</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>8</th><td><span class="v">Kalis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>9</th><td><span class="v">Magnis</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>10</th><td><span class="v">Kiti elementai</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>11</th><td></td><td></td></tr>
+          <tr><th>12</th><td><span class="v">Iš viso</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>13</th><td><span class="v">Didžiausia dalis</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>14</th><td><span class="v">Mažiausia dalis</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>15</th><td><span class="v">Kiek elementų</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>16</th><td></td><td></td></tr>
+          <tr><th>17</th><td><span class="v">Šaltinis</span></td><td class="src"><span class="v">interneto adresas</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub">Ką daryti</h3>
+        <ol class="todo">
+          <li>Į langelius <code>B2:B9</code> įrašyk, kiek procentų plutos masės sudaro kiekvienas elementas.</li>
+          <li>Langelyje <code>B10</code> apskaičiuok, kiek liko kitiems elementams: nuo 100 atimk aštuonių elementų sumą, <code>=100-SUM(B2:B9)</code>.</li>
+          <li><code>B12</code> – visų dalių suma su <code>SUM</code>. Jei viskas teisingai, gausi 100.</li>
+          <li><code>B13</code> ir <code>B14</code> – didžiausia ir mažiausia dalis su <code>MAX</code> ir <code>MIN</code> (bloke <code>B2:B9</code>).</li>
+          <li><code>B15</code> – kiek elementų surašei, su <code>COUNT</code> (bloke <code>B2:B9</code>).</li>
+          <li>Nubraižyk diagramą iš langelių <code>A1:B10</code>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="ask"><p class="box-title">🤔 Kurią diagramą rinktis?</p><p style="margin:0">Visi elementai kartu sudaro visą plutą – 100 %. Kuri diagrama geriausiai parodo, kokią <strong>visumos dalį</strong> sudaro kiekvienas elementas?</p></div>
+  </section>
+
+  <!-- ===================== 2 TEMA ===================== -->
+  <section id="tema-2" class="tema">
+    <div class="num">Tema 2</div>
+    <h2>👥 Pasaulio gyventojai pagal žemynus</h2>
+    <p>Žemėje gyvena daugiau kaip 8 milijardai žmonių, bet žemynuose jų gyvena labai nevienodai. Išsiaiškink, kiek žmonių gyvena kiekviename žemyne.</p>
+    <div class="xl-meta"><span class="chip">Surinkti: 6 skaičius</span><span class="chip">Vienetai: milijonai</span><span class="chip">Kur ieškoti: enciklopedijoje ar statistikos svetainėje, ieškok „žemynų gyventojų skaičius“</span></div>
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Žemynas</span></td><td class="h"><span class="v">Gyventojų, mln.</span></td></tr>
+          <tr><th>2</th><td><span class="v">Azija</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>3</th><td><span class="v">Afrika</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>4</th><td><span class="v">Europa</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>5</th><td><span class="v">Šiaurės Amerika</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>6</th><td><span class="v">Pietų Amerika</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>7</th><td><span class="v">Australija ir Okeanija</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>8</th><td></td><td></td></tr>
+          <tr><th>9</th><td><span class="v">Iš viso pasaulyje</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>10</th><td><span class="v">Vidutiniškai žemyne</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>11</th><td><span class="v">Daugiausia</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>12</th><td><span class="v">Mažiausiai</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>13</th><td><span class="v">Kiek žemynų</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>14</th><td></td><td></td></tr>
+          <tr><th>15</th><td><span class="v">Duomenų metai</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>16</th><td><span class="v">Šaltinis</span></td><td class="src"><span class="v">interneto adresas</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub">Ką daryti</h3>
+        <ol class="todo">
+          <li>Į langelius <code>B2:B7</code> įrašyk gyventojų skaičių milijonais. Skaičių suapvalink iki sveikojo: ne 1 481 234 567, o 1481.</li>
+          <li>Visi skaičiai turi būti tų pačių metų. Metus įrašyk į <code>B15</code>.</li>
+          <li><code>B9</code> – visų žemynų suma su <code>SUM</code>. Palygink ją su pasaulio gyventojų skaičiumi, kurį rasi tame pačiame šaltinyje.</li>
+          <li><code>B10</code> – vidurkis su <code>AVERAGE</code>, <code>B11</code> ir <code>B12</code> – su <code>MAX</code> ir <code>MIN</code>, <code>B13</code> – su <code>COUNT</code> (visur blokas <code>B2:B7</code>).</li>
+          <li>Nubraižyk diagramą iš langelių <code>A1:B7</code>.</li>
+        </ol>
+        <div class="note"><b>Kodėl nėra Antarktidos?</b> Antarktidoje nuolatinių gyventojų nėra – ten gyvena tik mokslininkai, kurie atvyksta laikinai.</div>
+      </div>
+    </div>
+    <div class="ask"><p class="box-title">🤔 Kurią diagramą rinktis?</p><p style="margin:0">Čia tinka daugiau nei viena diagrama. Pirmiausia nuspręsk, ką nori parodyti: <strong>kuris žemynas didžiausias</strong>, ar <strong>kokią pasaulio gyventojų dalį</strong> sudaro kiekvienas žemynas? Savo pasirinkimą pagrįsk.</p></div>
+  </section>
+
+  <!-- ===================== 3 TEMA ===================== -->
+  <section id="tema-3" class="tema">
+    <div class="num">Tema 3</div>
+    <h2>📉 Lietuvos gyventojų skaičius per 35 metus</h2>
+    <p>Kiek žmonių gyvena Lietuvoje ir kaip tas skaičius keitėsi nuo 1990 metų? Surask gyventojų skaičių kas penkerius metus.</p>
+    <div class="xl-meta"><span class="chip">Surinkti: 8 skaičius</span><span class="chip">Vienetai: tūkstančiai</span><span class="chip">Kur ieškoti: Valstybės duomenų agentūra (osp.stat.gov.lt), enciklopedija</span></div>
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Metai</span></td><td class="h"><span class="v">Gyventojų, tūkst.</span></td></tr>
+          <tr><th>2</th><td class="n"><span class="v">1990</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>3</th><td class="n"><span class="v">1995</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>4</th><td class="n"><span class="v">2000</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>5</th><td class="n"><span class="v">2005</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>6</th><td class="n"><span class="v">2010</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>7</th><td class="n"><span class="v">2015</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>8</th><td class="n"><span class="v">2020</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>9</th><td class="n"><span class="v">2025</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>10</th><td></td><td></td></tr>
+          <tr><th>11</th><td><span class="v">Vidutiniškai</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>12</th><td><span class="v">Daugiausia</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>13</th><td><span class="v">Mažiausiai</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>14</th><td><span class="v">Kiek metų duomenų</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>15</th><td><span class="v">Pokytis 1990–2025</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>16</th><td></td><td></td></tr>
+          <tr><th>17</th><td><span class="v">Šaltinis</span></td><td class="src"><span class="v">interneto adresas</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub">Ką daryti</h3>
+        <ol class="todo">
+          <li>Į langelius <code>B2:B9</code> įrašyk gyventojų skaičių tūkstančiais, kiekvienų metų pradžioje (sausio 1 d.). Pavyzdžiui, 2 857 000 gyventojų rašyk kaip 2857.</li>
+          <li><code>B11</code> – vidurkis su <code>AVERAGE</code>, <code>B12</code> ir <code>B13</code> – su <code>MAX</code> ir <code>MIN</code>, <code>B14</code> – su <code>COUNT</code> (visur blokas <code>B2:B9</code>).</li>
+          <li><code>B15</code> – kiek gyventojų skaičius pasikeitė: <code>=B9-B2</code>. Jei rezultatas neigiamas, gyventojų sumažėjo.</li>
+          <li>Nubraižyk diagramą iš langelių <code>A1:B9</code>.</li>
+        </ol>
+        <div class="note"><b>Kodėl čia nėra SUM?</b> Sudėti skirtingų metų gyventojų skaičius neturi prasmės – tai tie patys žmonės, suskaičiuoti kelis kartus.</div>
+      </div>
+    </div>
+    <div class="ask"><p class="box-title">🤔 Kurią diagramą rinktis?</p><p style="margin:0">Pirmame stulpelyje – metai. Ką svarbiausia parodyti: kaip gyventojų skaičius <strong>keitėsi laikui bėgant</strong>? Kuri diagrama tai rodo geriausiai?</p></div>
+    <div class="warn"><p class="box-title">Excel gudrybė</p><p style="margin:0">Excel gali palaikyti metų stulpelį skaičiais ir nubraižyti juos kaip antrą duomenų eilutę. Jei taip nutiko, metus įrašyk kaip tekstą: prieš skaičių padėk apostrofą, pvz., <code>'1990</code>.</p></div>
+  </section>
+
+  <!-- ===================== 4 TEMA ===================== -->
+  <section id="tema-4" class="tema">
+    <div class="num">Tema 4</div>
+    <h2>🏞️ Lietuvos upės</h2>
+    <p>Lietuvoje teka tūkstančiai upių ir upelių. Kai kurios didžiosios upės prasideda ar baigiasi kitose šalyse, todėl jų visas ilgis ir ilgis Lietuvoje skiriasi. Palygink aštuonias dideles Lietuvos upes.</p>
+    <div class="xl-meta"><span class="chip">Surinkti: 16 skaičių</span><span class="chip">Vienetai: km</span><span class="chip">Kur ieškoti: enciklopedijoje, ieškok kiekvienos upės atskirai</span></div>
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Upė</span></td><td class="h"><span class="v">Visas ilgis, km</span></td><td class="h"><span class="v">Ilgis Lietuvoje, km</span></td></tr>
+          <tr><th>2</th><td><span class="v">Nemunas</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>3</th><td><span class="v">Neris</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>4</th><td><span class="v">Venta</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>5</th><td><span class="v">Šešupė</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>6</th><td><span class="v">Šventoji</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>7</th><td><span class="v">Merkys</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>8</th><td><span class="v">Minija</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>9</th><td><span class="v">Nevėžis</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>10</th><td></td><td></td><td></td></tr>
+          <tr><th>11</th><td><span class="v">Iš viso</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>12</th><td><span class="v">Vidutinis ilgis</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>13</th><td><span class="v">Ilgiausia</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>14</th><td><span class="v">Trumpiausia</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>15</th><td><span class="v">Kiek upių</span></td><td class="calc"><span class="v">=?</span></td><td></td></tr>
+          <tr><th>16</th><td></td><td></td><td></td></tr>
+          <tr><th>17</th><td><span class="v">Šaltinis</span></td><td class="src" colspan="2"><span class="v">interneto adresas</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub">Ką daryti</h3>
+        <ol class="todo">
+          <li>Į stulpelį <code>B</code> įrašyk visą kiekvienos upės ilgį, į stulpelį <code>C</code> – kiek kilometrų ji teka Lietuvoje. Jei upė visa teka Lietuvoje, abu skaičiai bus vienodi.</li>
+          <li>11–14 eilutėse apskaičiuok <strong>abiem stulpeliams</strong>: sumą (<code>SUM</code>), vidurkį (<code>AVERAGE</code>), didžiausią (<code>MAX</code>) ir mažiausią (<code>MIN</code>) reikšmę. Stulpelyje <code>B</code> naudok bloką <code>B2:B9</code>, stulpelyje <code>C</code> – <code>C2:C9</code>.</li>
+          <li><code>B15</code> – kiek upių surašei, su <code>COUNT</code>.</li>
+          <li>Nubraižyk diagramą iš langelių <code>A1:C9</code> – joje bus abu stulpeliai.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="ask"><p class="box-title">🤔 Kurią diagramą rinktis?</p><p style="margin:0">Ar upių ilgiai kartu sudaro kokią nors visumą, ar juos tiesiog <strong>lyginame</strong> tarpusavyje? Ir kuri diagrama leis vienoje vietoje parodyti abu stulpelius – visą ilgį ir ilgį Lietuvoje?</p></div>
+  </section>
+
+  <!-- ===================== 5 TEMA ===================== -->
+  <section id="tema-5" class="tema">
+    <div class="num">Tema 5</div>
+    <h2>🪐 Saulės sistemos planetos</h2>
+    <p>Saulės sistemoje yra aštuonios planetos. Jos labai skiriasi dydžiu, o kai kurios turi dešimtis palydovų. Palygink jas.</p>
+    <div class="xl-meta"><span class="chip">Surinkti: 16 skaičių</span><span class="chip">Vienetai: km ir vienetai</span><span class="chip">Kur ieškoti: enciklopedijoje, NASA svetainėje (angliškai)</span></div>
+    <div class="two">
+      <div class="sheetbox">
+        <div class="scroll">
+        <table class="sheet">
+          <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+          <tr><th>1</th><td class="h"><span class="v">Planeta</span></td><td class="h"><span class="v">Skersmuo, km</span></td><td class="h"><span class="v">Palydovų skaičius</span></td></tr>
+          <tr><th>2</th><td><span class="v">Merkurijus</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>3</th><td><span class="v">Venera</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>4</th><td><span class="v">Žemė</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>5</th><td><span class="v">Marsas</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>6</th><td><span class="v">Jupiteris</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>7</th><td><span class="v">Saturnas</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>8</th><td><span class="v">Uranas</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>9</th><td><span class="v">Neptūnas</span></td><td class="ph"><span class="v">…</span></td><td class="ph"><span class="v">…</span></td></tr>
+          <tr><th>10</th><td></td><td></td><td></td></tr>
+          <tr><th>11</th><td><span class="v">Vidutiniškai</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>12</th><td><span class="v">Daugiausia</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>13</th><td><span class="v">Mažiausiai</span></td><td class="calc"><span class="v">=?</span></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>14</th><td><span class="v">Palydovų iš viso</span></td><td></td><td class="calc"><span class="v">=?</span></td></tr>
+          <tr><th>15</th><td><span class="v">Kiek planetų</span></td><td class="calc"><span class="v">=?</span></td><td></td></tr>
+          <tr><th>16</th><td></td><td></td><td></td></tr>
+          <tr><th>17</th><td><span class="v">Šaltinis</span></td><td class="src" colspan="2"><span class="v">interneto adresas ir data</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub">Ką daryti</h3>
+        <ol class="todo">
+          <li>Į stulpelį <code>B</code> įrašyk kiekvienos planetos skersmenį kilometrais, į stulpelį <code>C</code> – kiek ji turi palydovų.</li>
+          <li>11–13 eilutėse abiem stulpeliams apskaičiuok vidurkį (<code>AVERAGE</code>), didžiausią (<code>MAX</code>) ir mažiausią (<code>MIN</code>) reikšmę.</li>
+          <li><code>C14</code> – kiek palydovų turi visos planetos kartu, su <code>SUM</code>. <code>B15</code> – kiek planetų surašei, su <code>COUNT</code>.</li>
+          <li>Nubraižyk <strong>dvi</strong> diagramas: vieną iš skersmenų (<code>A1:B9</code>), kitą iš palydovų skaičiaus (<code>A1:A9</code> ir <code>C1:C9</code>). Kad pažymėtum du atskirus blokus, laikyk nuspaudęs <kbd>Ctrl</kbd>.</li>
+        </ol>
+        <div class="note"><b>Atsargiai su palydovais.</b> Astronomai vis atranda naujų palydovų, todėl skirtingose svetainėse skaičiai gali skirtis. Rinkis vieną šaltinį ir šalia adreso įrašyk datą, kada jį peržiūrėjai.</div>
+      </div>
+    </div>
+    <div class="ask"><p class="box-title">🤔 Kurią diagramą rinktis?</p><p style="margin:0">Ar planetų skersmenys sudaro kokią nors visumą, ar juos <strong>lyginame</strong>? Kurioje diagramoje bus aiškiausiai matyti, kad Jupiteris daug didesnis už Merkurijų?</p></div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <h2>Diagrama: ką turi turėti</h2>
+    <p>Prisimink, ką išmokai apie diagramas. Kad ir kokią diagramą pasirinktum, joje turi būti:</p>
+    <ul class="goals">
+      <li><strong>pavadinimas</strong>, iš kurio aišku, ką rodo diagrama, pvz., „Lietuvos gyventojų skaičius 1990–2025 m.“;</li>
+      <li><strong>duomenų žymos</strong> – tikslūs skaičiai prie stulpelių, taškų ar išpjovų;</li>
+      <li><strong>ašių pavadinimai</strong> su vienetais, jei diagrama turi ašis;</li>
+      <li><strong>legenda</strong>, jei be jos neaišku, ką reiškia spalvos (skritulinėje ar dviejų eilučių diagramoje);</li>
+      <li>po diagrama – sakinys <em>„Pasirinkau … diagramą, nes …“</em>.</li>
+    </ul>
+    <div class="tbl">
+      <table>
+        <tr><th>Jei nori parodyti…</th><th>Tinka</th></tr>
+        <tr><td>kas didesnis, kas mažesnis</td><td>stulpelinė</td></tr>
+        <tr><td>kokią visumos dalį sudaro kiekviena grupė</td><td>skritulinė</td></tr>
+        <tr><td>kaip kas nors keitėsi laikui bėgant</td><td>linijinė</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <h2>Pasitikrink prieš pateikdamas</h2>
+    <ul class="check-list">
+      <li><label><input type="checkbox"> Lentelė surašyta pagal kontūrą: tie patys stulpeliai ir eilutės, tose pačiose vietose.</label></li>
+      <li><label><input type="checkbox"> Visi skaičiai įrašyti be žodžių ir vienetų, trupmenos – su kableliu.</label></li>
+      <li><label><input type="checkbox"> Visi žalsvi langeliai apskaičiuoti formulėmis, ne įrašyti ranka.</label></li>
+      <li><label><input type="checkbox"> Įrašytas šaltinio adresas.</label></li>
+      <li><label><input type="checkbox"> Diagrama turi pavadinimą, duomenų žymas ir, jei reikia, ašių pavadinimus bei legendą.</label></li>
+      <li><label><input type="checkbox"> Po diagrama parašyta, kodėl pasirinkai šią diagramą.</label></li>
+      <li><label><input type="checkbox"> Failas pavadintas <code>Vardas_Pavarde_tema.xlsx</code>.</label></li>
+    </ul>
+    <p class="foot">Excel pradžiamokslis · Atsiskaitomasis darbas</p>
+  </section>
+
+  <nav class="xl-nav xl-nav-end" aria-label="Pamokų navigacija">
+    <a href="../excel-2/">← 2 pamoka: diagramos</a>
+    <span>Excel pradžiamokslis · Atsiskaitomasis darbas</span>
+  </nav>
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Excel pradžiamokslis 7 klasei. Medžiaga parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>
