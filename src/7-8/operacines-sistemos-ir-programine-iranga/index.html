@@ -18,6 +18,11 @@
 #osp .g-stats.ex{color:inherit;font-size:inherit;margin-top:0} /* site.css .ex skirtas VBE sąvokų pavyzdžiams */
 #osp .sq .why{font-style:normal} /* site.css .why (VBE testų paaiškinimai) yra pasviręs */
 .lesson-osp{padding-block:.6rem 3rem}
+/* Siuntimo mokytojui mygtuko pranešimas (mygtukas – pamokos .btn) */
+#osp .send-msg{color:var(--acc);font-weight:700;flex-basis:100%}
+#osp .send-msg.bad{color:#c2410c}
+#osp .send-msg:empty{display:none}
+#osp button.btn:disabled{opacity:.6;cursor:default}
 </style>
 </head>
 <body>
@@ -298,8 +303,7 @@ font-size:15px;color:var(--txt);background:var(--bg);border-radius:18px;padding:
     <li>paaiškinti, kas yra programinė įranga ir kuo ji skiriasi nuo aparatinės įrangos;</li>
     <li>apibrėžti operacinės sistemos paskirtį ir pagrindines funkcijas;</li>
     <li>išvardyti ir atpažinti populiariausias operacines sistemas;</li>
-    <li>atskirti skirtingus programinės įrangos tipus;</li>
-    <li>tęsti skyriaus projektinį darbą.</li>
+    <li>atskirti skirtingus programinės įrangos tipus.</li>
   </ul>
 </div>
 
@@ -902,6 +906,45 @@ ov('<div class="g-card"><div class="g-big">🎻💻</div><h2>Kompiuterio orkestr
 <footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 7–8 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
 </div>
 
+<script>
+/* Praktinės užduoties „Tyrinėju PĮ“ atsakymų siuntimas mokytojui į „Google“ formą „Mano dažniausiai naudojamos programos“.
+   Pamokos kodas nekeičiamas: mygtukas pridedamas šalia „Kopijuoti atsakymus“ ir ima tuos pačius laukus [data-k].
+   Atsakymai keliauja tik į mokytojo formą (docs.google.com), niekur kitur. */
+(function(){
+  var FORM="https://docs.google.com/forms/d/e/1FAIpQLSeGDNl2U5uhITvZZQ4BSQBeR81aHZTvQ4xUV6LyyOISiKjDlQ/formResponse";
+  var MAP={ // pamokos lauko data-k → formos klausimo ID
+    "Vardas":"entry.642234173",
+    "OS ir versija":"entry.730925227",
+    "1 programa":"entry.614774089",
+    "1 programos paskirtis":"entry.797435608",
+    "2 programa":"entry.1655358037",
+    "2 programos paskirtis":"entry.730279224",
+    "3 programa":"entry.1669660719",
+    "3 programos paskirtis":"entry.1563339672",
+    "Įrenginys":"entry.1687435733",
+    "Tvarkyklės versija":"entry.483155776",
+    "Be tvarkyklės":"entry.811992727"
+  };
+  var root=document.getElementById("osp"), copy=root&&root.querySelector("#osp-copy"); if(!copy) return;
+  var btn=document.createElement("button"); btn.className="btn"; btn.type="button"; btn.textContent="📤 Siųsti mokytojui";
+  var msg=document.createElement("span"); msg.className="send-msg"; msg.setAttribute("aria-live","polite");
+  copy.parentNode.insertBefore(btn,copy);
+  copy.parentNode.appendChild(msg);
+  function say(t,bad){msg.textContent=t; msg.classList.toggle("bad",!!bad);}
+  btn.addEventListener("click",function(){
+    var fields=[].slice.call(root.querySelectorAll("[data-k]")), data=new URLSearchParams(), name="";
+    fields.forEach(function(el){ var k=el.getAttribute("data-k"), v=(el.value||"").trim(); if(k==="Vardas") name=v; if(MAP[k]&&v) data.append(MAP[k],v); });
+    if(!name){ say("Pirmiausia įrašyk savo vardą ir pavardę.",true); root.querySelector('[data-k="Vardas"]').focus(); return; }
+    btn.disabled=true; say("Siunčiama…");
+    // „Google“ formos atsakymo neparodo (no-cors), todėl sėkme laikome išsiųstą užklausą be tinklo klaidos
+    fetch(FORM,{method:"POST",mode:"no-cors",body:data}).then(function(){
+      var t=new Date(); say("✓ Išsiųsta mokytojui "+t.getHours()+":"+String(t.getMinutes()).padStart(2,"0")+". Jei ką pataisysi, gali siųsti dar kartą.");
+    }).catch(function(){
+      say("Nepavyko išsiųsti – patikrink interneto ryšį arba nukopijuok atsakymus ir nusiųsk mokytojui.",true);
+    }).then(function(){ setTimeout(function(){btn.disabled=false;},4000); });
+  });
+})();
+</script>
 <script src="../../assets/js/bot.js"></script>
 </body>
 </html>
