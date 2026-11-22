@@ -223,5 +223,67 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-16"
+ },
+ "os-01-antraste.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. The main character is a teenage boy (about 14) with curly reddish-brown hair, freckles, a blue zip-up hoodie over a grey t-shirt and blue jeans. Scene: the boy sits at a desktop computer on a wooden desk and looks at the monitor with interest; the screen shows several overlapping program windows and colorful generic app icons. Warm light peach background (#fbebdb) like a cozy classroom wall. Wide landscape composition: the LEFT THIRD of the image is completely empty plain warm peach background with nothing on it (space for a title); the boy, desk and computer are in the right two thirds.",
+  "alt": "Mokinys dirba kompiuteriu, ekrane matyti langai ir programų piktogramos",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 1400×788, kokybė 80)"
+ },
+ "os-02-misle.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. Scene: an old compact silver digital photo camera (generic, no brand) lying on a wooden desk, and next to it a large blue hand-drawn question mark symbol. Square composition, plain warm cream background.",
+  "alt": "Senas skaitmeninis fotoaparatas ir klaustukas",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 700×700, kokybė 80)"
+ },
+ "os-03-be-programu.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. The main character is a teenage boy (about 14) with curly reddish-brown hair, freckles, a blue zip-up hoodie over a grey t-shirt and blue jeans. Scene: the boy sits at a desktop computer and confusedly presses keyboard keys, frowning, with small question marks above his head; the monitor screen is completely black and empty, nothing appears on it. Wide landscape composition, plain warm cream background.",
+  "alt": "Mokinys spaudo klaviatūrą, bet tuščiame juodame ekrane nieko neatsiranda",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 1200×675, kokybė 80)"
+ },
+ "os-04-dirigentas.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. Scene: a cheerful conductor in a dark tailcoat with a baton conducts an orchestra made of animated, smiling computer parts with little arms: a processor chip, a memory (RAM) stick, a hard disk drive, a printer, a computer mouse and a keyboard. Each part plays its own musical instrument (violin, flute, drum, trumpet, cello, triangle). Wide landscape composition, warm cream background, simple stage.",
+  "alt": "Dirigentas diriguoja orkestrui, kurį sudaro kompiuterio dalys",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 1200×675, kokybė 80)"
+ },
+ "os-05-tyrinejimas.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. Scene: in a cozy classroom (bookshelf, globe, plants, green chalkboard) three teenagers gather around a desktop computer and examine a generic system information window (a window with an icon and several rows of abstract grey bars). The curly reddish-brown haired boy with freckles in a blue hoodie points at the screen; a boy with dark curly hair and glasses in a green plaid shirt looks closely; a girl with wavy auburn hair and a hair clip in a lavender sweater writes notes in a notebook. Wide landscape composition.",
+  "alt": "Mokiniai tyrinėja kompiuterio sistemos informaciją ir užsirašo",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 1200×675, kokybė 80)"
+ },
+ "os-06-apibendrinimas.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with detailed textured pencil shading, soft natural colors with blue accents, warm and friendly, semi-realistic cartoon proportions, clean light background. No text, no letters, no numbers, no logos, no brand names, no trademarks anywhere; computer screens show only generic made-up icons and simple windows with abstract shapes. The main character is a teenage boy (about 14) with curly reddish-brown hair, freckles, a blue zip-up hoodie over a grey t-shirt and blue jeans. Scene: the boy sits happily at a working desktop computer and smiles. Around him, arranged like layers in an arc, float symbols: an outer layer of colorful generic app icons, a middle layer with a large gear (the operating system), and an inner layer of devices: a printer, a mouse and a monitor. Wide landscape composition, plain warm cream background.",
+  "alt": "Mokinys prie veikiančio kompiuterio, aplink jį programinės įrangos sluoksniai",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22",
+  "vieta": "src/7-8/operacines-sistemos-ir-programine-iranga/img/ (apkirpta ir sumažinta iki 1200×675, kokybė 80)"
+ },
+ "pamoka-os.webp": {
+  "aprasymas": "A teenage boy at a desktop computer; on the monitor a few overlapping program windows and colorful generic app icons. Above the computer floats a large teal gear symbol (the operating system) connected with thin lines to small icons of a printer, a mouse and a keyboard. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes, never text, letters, numbers or logos.",
+  "alt": "Mokinys prie kompiuterio, virš jo krumpliaratis, sujungtas su spausdintuvu, pele ir klaviatūra.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-22"
  }
 }

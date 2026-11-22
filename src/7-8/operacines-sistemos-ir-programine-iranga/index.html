@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2.2. Operacinės sistemos ir programinė įranga – infopamokos.lt</title>
+<meta name="description" content="8 klasės informatikos pamoka: operacinės sistemos ir programinė įranga – OS funkcijos, populiariausios OS, programinės įrangos tipai, žaidimas „Kompiuterio orkestras“.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Svetainės bendrų taisyklių (site.css) poveikio pamokai atstatymas. Pačios pamokos stiliai – #osp bloke, nekeisti. */
+#osp h1,#osp h2,#osp h3{font-family:inherit;letter-spacing:normal;text-wrap:wrap}
+#osp .lead{max-width:none}
+#osp .note{margin-bottom:0;font-size:inherit}
+#osp .note b{font-family:inherit}
+#osp .g-stats.ex{color:inherit;font-size:inherit;margin-top:0} /* site.css .ex skirtas VBE sąvokų pavyzdžiams */
+#osp .sq .why{font-style:normal} /* site.css .why (VBE testų paaiškinimai) yra pasviręs */
+.lesson-osp{padding-block:.6rem 3rem}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#8">8 klasė</a> <span aria-hidden="true">/</span> Operacinės sistemos ir programinė įranga</p>
+<main class="lesson-osp">
+<!-- ===== PAMOKOS TURINYS: PRADŽIA ===== -->
+<div id="osp">
+<style>
+#osp{--ink:#1c2536;--mut:#5b667c;--line:#d9e0ec;--blue:#2563c9;--blue2:#e8f0fe;--acc:#0e9f8f;--gold:#f5a524;
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;color:var(--ink);max-width:1180px;margin:0 auto;line-height:1.55;text-align:left}
+#osp *{box-sizing:border-box}
+#osp button{all:unset;box-sizing:border-box;cursor:pointer;font-family:inherit}
+#osp h1,#osp h2,#osp h3,#osp p,#osp ul,#osp ol{margin:0;padding:0}
+#osp img{max-width:100%}
+#osp .hero{position:relative;background:#fbebdb;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:16px}
+#osp .hero img{display:block;width:100%;height:auto}
+#osp .hero-t{position:absolute;left:4%;top:7%;width:29%;z-index:1}
+#osp .hero h1{font-size:clamp(19px,2.5vw,30px);line-height:1.15;color:#16305f;font-weight:800}
+#osp .hero p{margin-top:8px;font-size:clamp(13px,1.35vw,16px);line-height:1.4;color:#34435c}
+#osp .hero .tag{display:inline-block;background:var(--blue);color:#fff;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin-bottom:10px;letter-spacing:.04em}
+@media (max-width:860px){#osp .hero-t{position:static;width:auto;padding:20px 20px 4px}#osp .hero h1{font-size:26px}#osp .hero p{font-size:16px}}
+#osp .wide{display:block;width:100%;max-width:780px;height:auto;border-radius:14px;margin:0 auto 16px}
+#osp .sum{display:grid;grid-template-columns:1fr minmax(260px,430px);gap:20px;align-items:center}
+#osp .sum img{display:block;width:100%;height:auto;border-radius:14px}
+@media (max-width:860px){#osp .sum{grid-template-columns:1fr}}
+#osp .s{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}
+#osp .s>h2{font-size:23px;line-height:1.25;margin-bottom:6px;color:var(--ink);font-weight:800}
+#osp .s>h2 span{color:var(--blue)}
+#osp .lead{color:var(--mut);margin-bottom:14px}
+#osp h3{font-size:18px;font-weight:800;color:var(--ink);margin:18px 0 8px}
+#osp ul.ck{list-style:none}
+#osp ul.ck li{padding:5px 0 5px 30px;position:relative}
+#osp ul.ck li:before{content:"✓";position:absolute;left:0;top:5px;width:21px;height:21px;border-radius:50%;background:var(--acc);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center}
+/* mįslė */
+#osp .rid{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:center}
+@media (max-width:700px){#osp .rid{grid-template-columns:1fr}}
+#osp .rid img{display:block;width:100%;max-width:320px;height:auto;border-radius:14px;margin:0 auto}
+#osp .opts{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+#osp .opt{display:block;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;background:#fff;transition:.15s}
+#osp .opt:hover{border-color:var(--blue);background:var(--blue2)}
+#osp .opt.ok{border-color:#1faa59;background:#e5f8ec}
+#osp .opt.bad{border-color:#e5484d;background:#fdeaea}
+#osp .opt.off{pointer-events:none}
+#osp .note{background:#fff7e0;border-left:5px solid var(--gold);border-radius:10px;padding:12px 14px;margin-top:12px}
+#osp .note.hide{display:none}
+/* sąvokos */
+#osp .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+#osp .term{display:block;border:2px solid var(--line);border-radius:14px;padding:13px 15px;background:#fff;min-height:92px;transition:.15s}
+#osp .term:hover{border-color:var(--blue)}
+#osp .term b{display:block;font-size:17px;color:var(--blue)}
+#osp .term i{display:block;color:var(--mut);font-size:13px}
+#osp .term span{display:none;margin-top:6px;font-size:15px}
+#osp .term em{display:block;margin-top:6px;font-style:normal;font-size:13px;color:var(--mut)}
+#osp .term.open{background:var(--blue2);border-color:var(--blue)}
+#osp .term.open span{display:block}
+#osp .term.open em{display:none}
+/* palyginimas */
+#osp .cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+@media (max-width:700px){#osp .cmp{grid-template-columns:1fr}}
+#osp .cmp>div{border-radius:14px;padding:16px;border:1px solid var(--line)}
+#osp .cmp .hw{background:#eaf3ff}
+#osp .cmp .sw{background:#fff2e3}
+#osp .cmp h3{margin:0 0 6px}
+#osp .cmp .ex{margin-top:8px;font-size:14px;color:var(--mut)}
+#osp .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+#osp .chip{background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 11px;font-size:14px;font-weight:600}
+/* OS funkcijos */
+#osp .fn{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:6px 0 16px}
+#osp .fn>div{background:#f4f7fc;border:1px solid var(--line);border-radius:14px;padding:14px}
+#osp .fn u{text-decoration:none;font-size:30px;display:block;line-height:1.1;margin-bottom:6px}
+#osp .fn b{display:block;font-size:17px;margin-bottom:4px}
+#osp .fn p{font-size:15px;color:#34435c}
+/* OS sąrašas */
+#osp .osg{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+@media (max-width:860px){#osp .osg{grid-template-columns:1fr}}
+#osp .osg h3{margin:0 0 8px}
+#osp .osl{display:flex;flex-direction:column;gap:8px}
+#osp .osi{display:flex;gap:12px;align-items:center;background:#f4f7fc;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+#osp .osi u{text-decoration:none;font-size:30px;flex:none;width:40px;text-align:center}
+#osp .osi b{display:block}
+#osp .osi span{color:var(--mut);font-size:14px}
+/* PĮ tipai */
+#osp .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:860px){#osp .cols{grid-template-columns:1fr}}
+#osp .col{border-radius:14px;padding:14px;border:1px solid var(--line)}
+#osp .col.c1{background:#fff2e3}
+#osp .col.c2{background:#e7f8f3}
+#osp .col.c3{background:#f1ecff}
+#osp .col h3{margin:0 0 2px}
+#osp .col>p{font-size:14px;color:var(--mut);margin-bottom:10px}
+#osp .dev{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:10px;padding:8px 10px;margin-top:6px;font-size:15px}
+#osp .dev u{text-decoration:none;font-size:24px;line-height:1.1;flex:none;width:30px;text-align:center}
+#osp .dev b{display:block}
+#osp .dev span{color:var(--mut);font-size:14px}
+/* forma */
+#osp .form{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:10px 0}
+#osp label{display:block;font-size:14px;font-weight:700;color:var(--ink)}
+#osp input,#osp textarea{display:block;width:100%;margin-top:4px;padding:9px 11px;border:2px solid var(--line);border-radius:10px;font:inherit;font-weight:400;color:var(--ink);background:#fff}
+#osp input:focus,#osp textarea:focus{outline:none;border-color:var(--blue)}
+#osp textarea{min-height:74px;resize:vertical}
+#osp .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:10px 18px;border-radius:12px;transition:.15s}
+#osp .btn:hover{background:#1b4fa6}
+#osp .btn.gh{background:#eef2f8;color:var(--ink)}
+#osp ol.steps{padding-left:22px}
+#osp ol.steps li{margin:6px 0}
+#osp .tip{background:#eef4ff;border-radius:10px;padding:8px 12px;font-size:14px;margin-top:4px;color:#34435c}
+#osp .prow{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-bottom:8px}
+@media (max-width:600px){#osp .prow{grid-template-columns:1fr}}
+/* testas */
+#osp .sq{max-width:560px;margin:0 auto;text-align:center}
+#osp .sq .scr{background:#27303f;border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;color:#fff;font-weight:700;gap:6px}
+#osp .sq .em{font-size:56px;line-height:1.1}
+#osp .sq .prog{color:var(--mut);font-size:14px;font-weight:700;margin-bottom:8px}
+#osp .sq .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}
+#osp .sq .big{font-size:44px}
+#osp .sq .why{margin-top:10px;color:var(--mut);font-size:15px;min-height:24px}
+
+/* ====== ŽAIDIMAS ====== */
+#osp .g{--bg:#0f1522;--panel:#161e2e;--panel2:#1e2840;--gl:#2a3652;--txt:#e9eef8;--gm:#98a5c0;--ga:#4fd1c5;--ok:#46d37b;--bad:#ff5d6c;--gg:#ffcc4d;
+font-size:15px;color:var(--txt);background:var(--bg);border-radius:18px;padding:14px;position:relative;line-height:1.45;margin-bottom:16px}
+#osp .g-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+#osp .g-title{font-size:20px;font-weight:800;margin-right:auto}
+#osp .g-tabs{display:flex;gap:6px;flex-wrap:wrap}
+#osp .g-tab{background:var(--panel2);color:var(--gm);padding:8px 13px;border-radius:10px;font-size:14px;font-weight:600;transition:.15s}
+#osp .g-tab:hover{color:var(--txt)}
+#osp .g-tab.on{background:var(--ga);color:#052522}
+#osp .g-ib{background:var(--panel2);padding:7px 11px;border-radius:10px;font-size:16px}
+#osp .g-main{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(270px,1fr);gap:12px;align-items:start}
+@media (max-width:880px){#osp .g-main{grid-template-columns:1fr}}
+#osp .g-stage{position:relative;background:#0a0e17;border:1px solid var(--gl);border-radius:14px;overflow:hidden;min-height:440px}
+#osp .g-task{display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:72px;background:linear-gradient(90deg,#1c2a48,#141d33);border-bottom:1px solid var(--gl)}
+#osp .g-plug{flex:none;background:#0a0e17;border:1px solid var(--gl);border-radius:10px;display:grid;place-items:center;width:58px;height:50px;font-size:30px}
+#osp .g-plug.hide{display:none}
+#osp .g-lbl{font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+#osp .g-tgt{font-size:18px;font-weight:800;color:var(--gg)}
+#osp .g-tgt.sm{font-size:15px;font-weight:600;color:#ffe08a}
+#osp .g-hint{margin-left:auto;background:#2b3756;padding:7px 11px;border-radius:10px;font-size:14px;white-space:nowrap}
+#osp .g-hint.hide{display:none}
+#osp .g-wrap svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+#osp .g-wrap.lay{max-width:620px;margin:0 auto;padding:8px 8px 64px}
+#osp .g-wrap.bins{max-width:700px;margin:0 auto;padding:10px 10px 60px}
+#osp .g-toast{position:absolute;left:50%;bottom:14px;transform:translate(-50%,20px);background:#222c44;border:1px solid var(--gl);padding:9px 14px;border-radius:12px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;max-width:92%;width:max-content;text-align:center;box-shadow:0 8px 24px #0008;z-index:4}
+#osp .g-toast.show{opacity:1;transform:translate(-50%,0)}
+#osp .g-toast.ok{border-color:var(--ok);background:#143826}
+#osp .g-toast.bad{border-color:var(--bad);background:#3d1820}
+#osp .g-ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,18,.86);padding:16px;z-index:5}
+#osp .g-ov.show{display:flex}
+#osp .g-card{background:var(--panel);border:1px solid var(--gl);border-radius:16px;padding:20px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 50px #000a}
+#osp .g-card h2{margin:4px 0 8px;font-size:22px;color:var(--txt);line-height:1.2;font-weight:800}
+#osp .g-card p{color:var(--gm);margin:6px 0 14px}
+#osp .g-big{font-size:42px;line-height:1.1}
+#osp .g-btns{display:flex;flex-direction:column;gap:8px}
+#osp .g-btn{display:block;background:var(--panel2);border:1px solid var(--gl);padding:11px 14px;border-radius:12px;font-weight:700;text-align:center;transition:.15s;color:var(--txt)}
+#osp .g-btn:hover{background:#2a3655}
+#osp .g-btn.pri{background:var(--ga);color:#052522;border-color:transparent}
+#osp .g-btn small{display:block;font-weight:500;opacity:.75;font-size:13px}
+#osp .g-stars{font-size:34px;color:var(--gg);letter-spacing:4px}
+#osp .g-stars .dim{color:#3a4560}
+#osp .g-res{display:flex;justify-content:center;gap:10px;margin:10px 0}
+#osp .g-res div{background:var(--panel2);border-radius:12px;padding:8px 14px;color:var(--gm);font-size:13px}
+#osp .g-res b{display:block;font-size:20px;color:var(--txt)}
+#osp .g-side{display:flex;flex-direction:column;gap:10px}
+#osp .g-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+#osp .g-stats div{background:var(--panel);border:1px solid var(--gl);border-radius:10px;padding:6px 4px;text-align:center;font-size:11px;color:var(--gm);text-transform:uppercase}
+#osp .g-stats b{display:block;font-size:18px;color:var(--txt);text-transform:none}
+#osp .g-stats.ex div.x{opacity:.3}
+#osp .g-box{background:var(--panel);border:1px solid var(--gl);border-radius:14px;padding:12px}
+#osp .g-box.hide{display:none}
+#osp .g-h{font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:8px}
+#osp .g-list{display:flex;flex-direction:column;gap:5px}
+#osp .g-item{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:9px;background:#1b2337;border:1px solid transparent;font-size:14px;transition:.15s;color:var(--txt)}
+#osp .g-item:hover{background:#222c45}
+#osp .g-item u{text-decoration:none;font-size:18px;width:24px;text-align:center;flex:none}
+#osp .g-ck{width:20px;height:20px;border-radius:6px;border:2px solid #44507a;flex:none;display:grid;place-items:center;font-size:13px;font-weight:900;margin-left:auto}
+#osp .g-item.done{color:var(--gm)}
+#osp .g-item.done .g-ck{background:var(--ok);border-color:var(--ok);color:#06210f}
+#osp .g-info h3{margin:0;font-size:19px;color:var(--ga);line-height:1.25}
+#osp .g-en{font-size:13px;color:var(--gm);font-style:italic;margin:2px 0 8px}
+#osp .g-info p{margin:0 0 9px}
+#osp .g-an{background:#1d2a45;border-left:4px solid var(--ga);padding:8px 10px;border-radius:8px;margin-bottom:8px;font-size:14px}
+#osp .g-fact{background:#2a2617;border-left:4px solid var(--gg);padding:8px 10px;border-radius:8px;font-size:14px}
+#osp .g-mut{color:var(--gm)}
+#osp .g-info.pop{animation:ginfo .35s}
+@keyframes ginfo{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+#osp .hit{cursor:pointer;transition:filter .15s}
+#osp .hit:hover{filter:drop-shadow(0 0 5px #8ff) drop-shadow(0 0 2px #8ff) brightness(1.12)}
+#osp .fl-bad{animation:gbad .6s}
+#osp .fl-ok{animation:gok .9s}
+#osp .hit.help{animation:ghelp 1s ease-in-out infinite}
+@keyframes gbad{0%,100%{filter:none}25%,75%{filter:drop-shadow(0 0 8px #ff3b4f) drop-shadow(0 0 3px #ff3b4f)}}
+@keyframes gok{0%{filter:none}30%{filter:drop-shadow(0 0 12px #46ff8a) drop-shadow(0 0 4px #46ff8a) brightness(1.3)}100%{filter:none}}
+@keyframes ghelp{0%,100%{filter:drop-shadow(0 0 2px #ffcc4d)}50%{filter:drop-shadow(0 0 14px #ffcc4d) drop-shadow(0 0 5px #ffcc4d) brightness(1.35)}}
+#osp .badge{pointer-events:none;transform-box:fill-box;transform-origin:center;animation:gbadge .45s cubic-bezier(.3,1.6,.6,1)}
+@keyframes gbadge{from{transform:scale(0)}to{transform:scale(1)}}
+#osp .ln{fill:#fff;font-weight:800;font-size:19px;text-anchor:middle;pointer-events:none}
+#osp .ls{fill:#fffffff0;font-size:12.5px;text-anchor:middle;pointer-events:none}
+#osp .le{font-size:28px;text-anchor:middle;pointer-events:none}
+#osp .lt{fill:#c9d4ea;font-size:13px;font-weight:800;text-anchor:middle}
+#osp .rt{fill:#98a5c0;font-size:12.5px;font-weight:700;text-anchor:middle}
+#osp .sig{pointer-events:none}
+#osp .bz{cursor:pointer}
+#osp .bz .bg{transition:filter .15s}
+#osp .bz:hover .bg{filter:brightness(1.4)}
+#osp .bt{fill:#fff;font-weight:800;font-size:17px;pointer-events:none}
+#osp .bd{fill:#c9d4ea;font-size:12px;pointer-events:none}
+#osp .ve{font-size:25px;text-anchor:middle;pointer-events:none}
+#osp .vn{font-size:10px;fill:#e9eef8;text-anchor:middle;pointer-events:none;font-weight:600}
+#osp .fz{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 16px 70px;max-width:640px;margin:0 auto}
+@media (max-width:520px){#osp .fz{grid-template-columns:1fr}}
+#osp .ft{display:block;position:relative;background:var(--panel2);border:2px solid var(--gl);border-radius:16px;padding:16px 14px;text-align:center;transition:.15s;color:var(--txt);min-height:140px}
+#osp .ft:hover{border-color:var(--ga);background:#24304d}
+#osp .ft u{text-decoration:none;display:block;font-size:40px;line-height:1.1}
+#osp .ft b{display:block;font-size:16px;margin-top:6px}
+#osp .ft span{display:block;font-size:13px;color:var(--gm);margin-top:3px}
+#osp .ft i{position:absolute;top:8px;right:10px;font-style:normal;background:#0a0e17;border-radius:99px;padding:1px 9px;font-size:13px;font-weight:800;color:var(--gg)}
+#osp .ft.fl-ok{border-color:var(--ok);background:#143826}
+#osp .ft.fl-bad{border-color:var(--bad);background:#3d1820}
+#osp .g:fullscreen{border-radius:0;overflow:auto}
+</style>
+
+<!-- ============ ANTRAŠTĖ ============ -->
+<div class="hero">
+  <div class="hero-t">
+    <div class="tag">8 KLASĖ · INFORMATIKA</div>
+    <h1>Operacinės sistemos ir programinė įranga</h1>
+    <p>Kas „vadovauja“ kompiuteriui, kai jį įjungi? Susipažink su dirigentu – operacine sistema – ir kitomis programomis.</p>
+  </div>
+  <img data-img="os-01-antraste.webp" width="1400" height="788" alt="Mokinys dirba kompiuteriu, ekrane matyti langai ir programų piktogramos">
+</div>
+
+<!-- ============ MĮSLĖ ============ -->
+<div class="s">
+  <h2>🤔 Pradžiai – <span>mįslė</span></h2>
+  <div class="rid">
+    <img data-img="os-02-misle.webp" width="700" height="700" loading="lazy" alt="Senas skaitmeninis fotoaparatas ir klaustukas">
+    <div>
+      <p><b>Viena populiariausių pasaulyje operacinių sistemų iš pradžių buvo kuriama visai ne telefonams, o skaitmeniniams fotoaparatams.</b> Kaip manai, kuri?</p>
+      <div class="opts" id="osp-rid">
+        <button class="opt" data-r="0">🪟 „Windows“</button>
+        <button class="opt" data-r="1">🤖 „Android“</button>
+        <button class="opt" data-r="0">🍏 „iOS“</button>
+      </div>
+      <div class="note hide" id="osp-ridn"><b>Tai – „Android“!</b> Ši operacinė sistema iš pradžių buvo kuriama kaip skaitmeninių fotoaparatų programinė įranga. Tik vėliau kūrėjai suprato jos galimybes ir pritaikė ją telefonams – tai pakeitė visą mobiliųjų technologijų rinką. Šiandien „Android“ naudoja dauguma išmaniųjų telefonų. O kas apskritai yra operacinė sistema ir kodėl be jos neveiktų joks kompiuteris? Tuoj sužinosi!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIKSLAI ============ -->
+<div class="s">
+  <h2>🎯 Šiandien <span>išmoksi</span></h2>
+  <ul class="ck">
+    <li>paaiškinti, kas yra programinė įranga ir kuo ji skiriasi nuo aparatinės įrangos;</li>
+    <li>apibrėžti operacinės sistemos paskirtį ir pagrindines funkcijas;</li>
+    <li>išvardyti ir atpažinti populiariausias operacines sistemas;</li>
+    <li>atskirti skirtingus programinės įrangos tipus;</li>
+    <li>tęsti skyriaus projektinį darbą.</li>
+  </ul>
+</div>
+
+<!-- ============ SĄVOKOS ============ -->
+<div class="s">
+  <h2>📖 Svarbiausios <span>sąvokos</span></h2>
+  <p class="lead">Pirmiausia pabandyk paaiškinti sąvoką pats, o tada paspausk kortelę ir pasitikrink.</p>
+  <div class="terms">
+    <button class="term"><b>Programinė įranga (PĮ)</b><i>angl. software</i><em>👆 spausk ir pasitikrink</em><span>Neapčiuopiamos kompiuterio dalys: duomenys, programos, instrukcijos, skirtos kompiuterio užduotims atlikti.</span></button>
+    <button class="term"><b>Operacinė sistema (OS)</b><i>angl. operating system</i><em>👆 spausk ir pasitikrink</em><span>Pagrindinė programa, kuri valdo visą kompiuterio aparatinę įrangą ir kitą programinę įrangą, sudarydama sąlygas naudotojui bendrauti su kompiuteriu.</span></button>
+    <button class="term"><b>Naudotojo sąsaja</b><i>angl. user interface</i><em>👆 spausk ir pasitikrink</em><span>Būdas, kuriuo naudotojas bendrauja su kompiuteriu ar programa.</span></button>
+    <button class="term"><b>Sisteminė programinė įranga</b><i>angl. system software</i><em>👆 spausk ir pasitikrink</em><span>Kompiuterio veikimą valdančios ir palaikančios programos.</span></button>
+    <button class="term"><b>Tvarkyklė</b><i>angl. driver</i><em>👆 spausk ir pasitikrink</em><span>Speciali programa, per kurią OS valdo tam tikrą aparatinės įrangos įrenginį.</span></button>
+    <button class="term"><b>Programinė įranga naudotojo užduotims</b><i>angl. application software</i><em>👆 spausk ir pasitikrink</em><span>Programos, skirtos konkrečioms naudotojo užduotims atlikti.</span></button>
+    <button class="term"><b>Programavimo programinė įranga</b><i>angl. programming software</i><em>👆 spausk ir pasitikrink</em><span>Įvairios priemonės, skirtos naujoms programoms kurti.</span></button>
+  </div>
+</div>
+
+<!-- ============ KAS YRA PĮ ============ -->
+<div class="s">
+  <h2>💡 Kas yra <span>programinė įranga?</span></h2>
+  <p class="lead">Praėjusiose pamokose kalbėjome apie kompiuterio „kūną“ – visus fizinius aparatinės įrangos komponentus, kuriuos galime paliesti. Tačiau be programinės įrangos net patys galingiausi komponentai būtų beverčiai.</p>
+  <div class="cmp">
+    <div class="hw">
+      <h3>🔧 Aparatinė įranga</h3>
+      <p>Fiziniai, apčiuopiami ir matomi įtaisai.</p>
+      <div class="chips"><span class="chip">🖱️ pelė</span><span class="chip">🖥️ monitorius</span><span class="chip">🔲 procesorius</span><span class="chip">⌨️ klaviatūra</span></div>
+      <p class="ex">Galima paliesti ir pamatyti.</p>
+    </div>
+    <div class="sw">
+      <h3>💾 Programinė įranga</h3>
+      <p>Instrukcijos ir programos, nurodančios aparatinei įrangai, ką daryti.</p>
+      <div class="chips"><span class="chip">„Windows“</span><span class="chip">„Word“</span><span class="chip">„Minecraft“</span><span class="chip">„Chrome“</span></div>
+      <p class="ex">Nepaliesi ir nepamatysi – matai tik jos darbo rezultatą.</p>
+    </div>
+  </div>
+  <img class="wide" data-img="os-03-be-programu.webp" width="1200" height="675" loading="lazy" alt="Mokinys spaudo klaviatūrą, bet tuščiame ekrane nieko neatsiranda">
+  <div class="note"><b>🔍 Pavyzdys.</b> Klaviatūra (aparatinė įranga) neveiks, kol nebus įdiegta programa, kuri supras, kurį mygtuką paspaudė naudotojas, ir parodys raidę ekrane.</div>
+</div>
+
+<!-- ============ OS ============ -->
+<div class="s">
+  <h2>🎻 Kompiuterio „širdis“: <span>operacinė sistema</span></h2>
+  <p class="lead">Kiekvienas kompiuteris ar išmanusis įrenginys turi pagrindinę programą, kuri valdo visą jo veiklą. Ši programa vadinama <b>operacine sistema (OS)</b>. Ji paleidžiama pirmiausia, vos įjungus kompiuterį.</p>
+  <h3>OS funkcijos</h3>
+  <div class="fn">
+    <div><u>🔧</u><b>Valdo aparatinę įrangą</b><p>Užtikrina, kad visos kompiuterio dalys (procesorius, atmintis, standusis diskas, spausdintuvas) veiktų tinkamai ir bendrautų tarpusavyje.</p></div>
+    <div><u>🚀</u><b>Tvarko programas</b><p>Leidžia naudotojui paleisti ir valdyti įvairias programas: naršyklę, žaidimus ir kt.</p></div>
+    <div><u>📁</u><b>Valdo failus ir aplankus</b><p>Padeda tvarkyti ir saugoti failus standžiajame diske.</p></div>
+    <div><u>🖱️</u><b>Suteikia naudotojo sąsają</b><p>Sudaro sąlygas dirbti kompiuteriu. Dažniausiai tai grafinė naudotojo sąsaja (angl. <i>GUI – graphical user interface</i>): piktogramos, meniu, valdymas pele.</p></div>
+  </div>
+  <img class="wide" data-img="os-04-dirigentas.webp" width="1200" height="675" loading="lazy" alt="Dirigentas diriguoja orkestrui, kurį sudaro kompiuterio dalys">
+  <div class="note"><b>🎼 Įsidėmėk.</b> Operacinė sistema, tarsi orkestrą valdantis dirigentas, užtikrina, kad kiekvienas aparatinės ir programinės įrangos komponentas veiktų sklandžiai ir darniai.</div>
+</div>
+
+<!-- ============ POPULIARIAUSIOS OS ============ -->
+<div class="s">
+  <h2>🌍 Populiariausios <span>operacinės sistemos</span></h2>
+  <p class="lead">Skirtingiems įrenginiams sukurtos skirtingos operacinės sistemos.</p>
+  <div class="osg">
+    <div>
+      <h3>💻 Kompiuterių</h3>
+      <div class="osl">
+        <div class="osi"><u>🪟</u><div><b>„Microsoft Windows“</b><span>Populiariausia asmeninių kompiuterių OS.</span></div></div>
+        <div class="osi"><u>🍏</u><div><b>„macOS“ („Apple“)</b><span>OS, naudojama „Apple“ kompiuteriuose („Mac“).</span></div></div>
+        <div class="osi"><u>🐧</u><div><b>„Linux“</b><span>Atvirojo kodo OS, turinti daug skirtingų versijų ir dažnai naudojama serveriuose.</span></div></div>
+      </div>
+    </div>
+    <div>
+      <h3>📱 Mobiliųjų įrenginių</h3>
+      <div class="osl">
+        <div class="osi"><u>🤖</u><div><b>„Android“ („Google“)</b><span>Populiariausia išmaniųjų telefonų ir planšečių OS.</span></div></div>
+        <div class="osi"><u>🍏</u><div><b>„iOS“ („Apple“)</b><span>OS, naudojama „Apple iPhone“ ir „iPad“ įrenginiuose.</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>💡 Ar žinai?</b> „Linux“ talismanas – pingvinas Tuksas. O „Android“ sukurta „Linux“ pagrindu, todėl šios dvi OS – tolimos giminaitės.</div>
+</div>
+
+<!-- ============ PĮ TIPAI ============ -->
+<div class="s">
+  <h2>🧩 Programinės įrangos <span>tipai</span></h2>
+  <p class="lead">Be operacinės sistemos, kompiuteriuose naudojama ir kitokia programinė įranga. Ją skirstome į tris grupes.</p>
+  <div class="cols">
+    <div class="col c1">
+      <h3>⚙️ Sisteminė PĮ</h3>
+      <p>Programos, kuriomis OS valdo ir palaiko kompiuterio veikimą.</p>
+      <div class="dev"><u>🪟</u><div><b>Operacinė sistema</b><span>„Windows“, „macOS“, „Linux“, „Android“, „iOS“.</span></div></div>
+      <div class="dev"><u>🗣️</u><div><b>Tvarkyklės</b><span>Padeda OS „suprasti“ konkrečius įrenginius ir su jais bendrauti, pvz., spausdintuvo, vaizdo plokštės tvarkyklės.</span></div></div>
+    </div>
+    <div class="col c2">
+      <h3>🧑‍💻 PĮ naudotojo užduotims</h3>
+      <p>Kasdien naudojamos programos, skirtos konkrečioms užduotims atlikti.</p>
+      <div class="dev"><u>📝</u><div><b>Tekstų rengyklės</b><span>„Word“, „Google Docs“</span></div></div>
+      <div class="dev"><u>🌐</u><div><b>Interneto naršyklės</b><span>„Chrome“, „Firefox“</span></div></div>
+      <div class="dev"><u>🎮</u><div><b>Žaidimai</b><span>„Minecraft“, „Fortnite“</span></div></div>
+      <div class="dev"><u>🎨</u><div><b>Grafikos programos</b><span>„Paint“, „Photoshop“</span></div></div>
+      <div class="dev"><u>🎵</u><div><b>Muzikos grotuvai</b><span>„Spotify“, „iTunes“</span></div></div>
+    </div>
+    <div class="col c3">
+      <h3>💻 Programavimo PĮ</h3>
+      <p>Įvairios priemonės, skirtos naujoms programoms kurti.</p>
+      <div class="dev"><u>☕</u><div><b>„Java“</b><span>Programavimo kalba.</span></div></div>
+      <div class="dev"><u>🐍</u><div><b>„Python“</b><span>Programavimo kalba.</span></div></div>
+      <div class="dev"><u>🧰</u><div><b>Programavimo aplinkos</b><span>Programos, kuriose programuotojai rašo instrukcijas kompiuteriui.</span></div></div>
+    </div>
+  </div>
+  <div class="note"><b>🧱 Kaip visa tai susiję?</b> Paprasti naudotojai sąveikauja su <b>programomis</b>. Programa kreipiasi į <b>OS</b>, OS – į <b>tvarkyklę</b>, o tvarkyklė valdo <b>įrenginį</b>. OS ir tvarkyklės dažniausiai lieka nematomos. Kaip keliauja signalas tarp šių sluoksnių, ištirk žaidime!</div>
+</div>
+
+<!-- ============ ŽAIDIMAS ============ -->
+<div class="g" id="osp-g">
+  <div class="g-top">
+    <div class="g-title">🎻 Kompiuterio orkestras</div>
+    <div class="g-tabs">
+      <button class="g-tab" data-mode="explore">🔍 Tyrinėk</button>
+      <button class="g-tab" data-mode="l1">🗂️ 1 lygis: Rūšiuok</button>
+      <button class="g-tab" data-mode="l2">🎼 2 lygis: Dirigentas</button>
+      <button class="g-tab" data-mode="l3">⚡ 3 lygis: Signalo kelias</button>
+    </div>
+    <div class="g-tools">
+      <button class="g-ib" data-act="sound" title="Garsas">🔊</button>
+      <button class="g-ib" data-act="fs" title="Visas ekranas">⛶</button>
+    </div>
+  </div>
+  <div class="g-main">
+    <div class="g-stage">
+      <div class="g-task"><div class="g-plug hide"></div><div><div class="g-lbl"></div><div class="g-tgt"></div></div><button class="g-hint" data-act="hint">💡 Užuomina</button></div>
+      <div class="g-wrap"></div>
+      <div class="g-toast"></div>
+      <div class="g-ov"></div>
+    </div>
+    <aside class="g-side">
+      <div class="g-stats"></div>
+      <div class="g-box g-listbox"><div class="g-h g-lh"></div><div class="g-list"></div></div>
+      <div class="g-box g-info"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ PRAKTINĖ UŽDUOTIS ============ -->
+<div class="s">
+  <h2>🕵️ Praktinė užduotis: <span>tyrinėju PĮ</span></h2>
+  <p class="lead">Ištirk kompiuterį, kuriuo dirbi, ir užpildyk laukus. Atsakymus nukopijuok į tekstų rengyklę.</p>
+  <img class="wide" data-img="os-05-tyrinejimas.webp" width="1200" height="675" loading="lazy" alt="Mokiniai tyrinėja kompiuterio sistemos informaciją">
+  <ol class="steps">
+    <li>Atidaryk tekstų rengyklę („Word“, „Google Docs“) – į ją įklijuosi atsakymus.</li>
+    <li>Nustatyk, kokia OS įdiegta tavo klasės kompiuteryje, ir užsirašyk jos pavadinimą bei versiją (pvz., „Windows 11“, „macOS Ventura“).
+      <div class="tip">🪟 <b>„Windows“:</b> dešiniuoju pelės mygtuku spustelėk „Šis kompiuteris“ ir pasirink „Ypatybės“.<br>🍏 <b>„Mac“:</b> spausk „Apple“ meniu → „Apie šį Mac“.</div></li>
+    <li>Atidaryk 3 programas, kurias dažnai naudoji (pvz., naršyklę, žaidimą, tekstų rengyklę). Užsirašyk jų pavadinimus ir paskirtį.</li>
+    <li>Ar žinojai, kad spausdintuvui, vaizdo kamerai ar net garso plokštei reikia tvarkyklių? Surask bent vieno įrenginio (pvz., vaizdo plokštės ar spausdintuvo) tvarkyklės informaciją. Užsirašyk įrenginio pavadinimą ir tvarkyklės versiją (jei pavyksta ją rasti).
+      <div class="tip">🪟 <b>„Windows“:</b> atidaryk „Įrenginių tvarkytuvę“ (<i>Device Manager</i>), dešiniuoju pelės mygtuku spustelėk įrenginį → „Ypatybės“ → skirtukas „Tvarkyklė“.<br>🍏 <b>„Mac“:</b> „Apple“ meniu → „Apie šį Mac“ → „Sistemos ataskaita“ (<i>System Report</i>).</div></li>
+  </ol>
+  <div class="form">
+    <label>Vardas ir pavardė<input data-k="Vardas" type="text"></label>
+    <label>OS pavadinimas ir versija<input data-k="OS ir versija" type="text" placeholder="pvz., Windows 11"></label>
+  </div>
+  <h3>Mano dažniausiai naudojamos programos</h3>
+  <div class="prow"><label>1 programa<input data-k="1 programa" type="text"></label><label>Paskirtis<input data-k="1 programos paskirtis" type="text"></label></div>
+  <div class="prow"><label>2 programa<input data-k="2 programa" type="text"></label><label>Paskirtis<input data-k="2 programos paskirtis" type="text"></label></div>
+  <div class="prow"><label>3 programa<input data-k="3 programa" type="text"></label><label>Paskirtis<input data-k="3 programos paskirtis" type="text"></label></div>
+  <h3>Tvarkyklė</h3>
+  <div class="form">
+    <label>Įrenginio pavadinimas<input data-k="Įrenginys" type="text"></label>
+    <label>Tvarkyklės versija<input data-k="Tvarkyklės versija" type="text"></label>
+  </div>
+  <label>Kas nutiktų, jei kompiuteryje nebūtų spausdintuvo tvarkyklės? Paaiškink.<textarea data-k="Be tvarkyklės"></textarea></label>
+  <p style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn" id="osp-copy">📋 Kopijuoti atsakymus</button><button class="btn gh" id="osp-clear">Išvalyti</button><span id="osp-copied" style="color:var(--acc);font-weight:700"></span></p>
+  <p class="lead" style="margin:8px 0 0;font-size:14px">Nukopijuotus atsakymus įklijuok į tekstų rengyklę ir išsaugok arba nusiųsk mokytojui.</p>
+</div>
+
+<!-- ============ PASITIKRINK ============ -->
+<div class="s">
+  <h2>✅ Pasitikrink: <span>kuri OS?</span></h2>
+  <p class="lead">Ar atpažinsi, kokia operacinė sistema veikia įrenginyje?</p>
+  <div class="sq" id="osp-sq"></div>
+</div>
+
+<!-- ============ APIBENDRINIMAS ============ -->
+<div class="s">
+  <h2>📝 Ką <span>sužinojome</span></h2>
+  <div class="sum">
+  <ul class="ck">
+    <li><b>Programinė įranga</b> – neapčiuopiamos kompiuterio dalys (programos, instrukcijos, duomenys), nurodančios aparatinei įrangai, ką daryti.</li>
+    <li><b>Operacinė sistema</b> – pagrindinė programa, kuri valdo aparatinę įrangą, tvarko programas, failus ir aplankus bei suteikia naudotojo sąsają.</li>
+    <li>Populiariausios OS: <b>„Windows“, „macOS“, „Linux“</b> kompiuteriuose, <b>„Android“, „iOS“</b> mobiliuosiuose įrenginiuose.</li>
+    <li>PĮ tipai: <b>sisteminė</b> (OS, tvarkyklės), <b>naudotojo užduotims</b> (rengyklės, naršyklės, žaidimai), <b>programavimo</b> („Java“, „Python“).</li>
+  </ul>
+  <img data-img="os-06-apibendrinimas.webp" width="1200" height="675" loading="lazy" alt="Mokinys prie veikiančio kompiuterio, aplink jį programinės įrangos sluoksniai">
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var root=document.getElementById('osp');
+function q(s,c){return (c||root).querySelector(s);}
+function qa(s,c){return Array.prototype.slice.call((c||root).querySelectorAll(s));}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+/* ===== PAVEIKSLĖLIŲ ADRESAS: jei failai laikomi kitur, pakeiskite tik šią eilutę ===== */
+var IMG='img/';
+qa('img[data-img]').forEach(function(el){el.src=IMG+el.getAttribute('data-img');});
+
+/* ================= MĮSLĖ, SĄVOKOS ================= */
+q('#osp-rid').addEventListener('click',function(e){
+ var b=e.target.closest('.opt');if(!b)return;
+ b.classList.add(b.getAttribute('data-r')==='1'?'ok':'bad');
+ if(b.getAttribute('data-r')==='1'){qa('#osp-rid .opt').forEach(function(o){o.classList.add('off');});q('#osp-ridn').classList.remove('hide');}
+});
+qa('.term').forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('open');});});
+
+/* ================= FORMA ================= */
+(function(){
+ var KEY='osp-tyrineju-pi',fields=qa('[data-k]');
+ try{var sv=JSON.parse(localStorage.getItem(KEY)||'{}');fields.forEach(function(el){if(sv[el.getAttribute('data-k')])el.value=sv[el.getAttribute('data-k')];});}catch(e){}
+ function save(){var o={};fields.forEach(function(el){o[el.getAttribute('data-k')]=el.value;});try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+ fields.forEach(function(el){el.addEventListener('input',save);});
+ function msg(t){var m=q('#osp-copied');m.textContent=t;setTimeout(function(){m.textContent='';},3000);}
+ q('#osp-copy').addEventListener('click',function(){
+  var txt='TYRINĖJU PROGRAMINĘ ĮRANGĄ\n\n'+fields.map(function(el){return el.getAttribute('data-k')+': '+(el.value||'–');}).join('\n');
+  function fb(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');msg('✓ Nukopijuota!');}catch(e){msg('Nepavyko nukopijuoti');}document.body.removeChild(ta);}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){msg('✓ Nukopijuota!');},fb);else fb();
+ });
+ q('#osp-clear').addEventListener('click',function(){fields.forEach(function(el){el.value='';});save();});
+})();
+
+/* ================= PASITIKRINK: KURI OS? ================= */
+(function(){
+ var box=q('#osp-sq');
+ var OSN=['„Windows“','„macOS“','„Linux“','„Android“','„iOS“'];
+ var ALL=[
+  {e:'📱',t:'„Apple iPhone“ telefonas',a:4,x:'„Apple“ telefonuose naudojama „iOS“.'},
+  {e:'📱',t:'„Samsung“ išmanusis telefonas',a:3,x:'Dauguma ne „Apple“ telefonų veikia su „Android“.'},
+  {e:'💻',t:'„MacBook“ nešiojamasis kompiuteris',a:1,x:'„Apple“ kompiuteriuose („Mac“) naudojama „macOS“.'},
+  {e:'🖥️',t:'Populiariausia asmeninių kompiuterių OS',a:0,x:'„Windows“ – populiariausia asmeninių kompiuterių OS.'},
+  {e:'🗄️',t:'Interneto svetainių serveris su atvirojo kodo OS',a:2,x:'„Linux“ – atvirojo kodo OS, dažnai naudojama serveriuose.'},
+  {e:'📲',t:'„Apple iPad“ planšetė',a:4,x:'„iOS“ naudojama „iPhone“ ir „iPad“ įrenginiuose.'},
+  {e:'🐧',t:'OS, kurios talismanas – pingvinas',a:2,x:'Pingvinas Tuksas – „Linux“ simbolis.'},
+  {e:'📷',t:'OS, kuri iš pradžių buvo kuriama fotoaparatams',a:3,x:'„Android“ iš pradžių buvo skaitmeninių fotoaparatų PĮ.'}
+ ];
+ var qs,i,score,lock;
+ function start(){qs=shuffle(ALL.slice()).slice(0,6);i=0;score=0;show();}
+ function show(){
+  lock=false;
+  if(i>=qs.length){
+   box.innerHTML='<div class="big">'+(score===qs.length?'🏆':score>=4?'👍':'💪')+'</div><h3 style="margin:6px 0">Atpažinai '+score+' iš '+qs.length+'</h3><p class="lead">'+(score===qs.length?'Puiku – operacines sistemas pažįsti puikiai!':'Peržiūrėk populiariausių OS sąrašą aukščiau ir pabandyk dar kartą.')+'</p><button class="btn" data-a="re">🔁 Bandyti dar kartą</button>';
+   return;}
+  var cur=qs[i],o=shuffle([0,1,2,3,4].filter(function(n){return n!==cur.a;})).slice(0,3);o.push(cur.a);shuffle(o);
+  box.innerHTML='<div class="prog">'+(i+1)+' / '+qs.length+' · Kuri operacinė sistema?</div><div class="scr"><div class="em">'+cur.e+'</div><div>'+cur.t+'</div></div><div class="opts" style="margin-top:10px">'+o.map(function(n){return '<button class="opt" data-v="'+n+'">'+OSN[n]+'</button>';}).join('')+'</div><div class="why"></div>';
+ }
+ box.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.getAttribute('data-a')==='re'){start();return;}
+  var v=b.getAttribute('data-v');if(v===null||lock)return;lock=true;
+  var ok=+v===qs[i].a;if(ok)score++;
+  qa('.opt',box).forEach(function(o){o.classList.add('off');if(+o.getAttribute('data-v')===qs[i].a)o.classList.add('ok');});
+  if(!ok)b.classList.add('bad');
+  q('.why',box).textContent=(ok?'✅ ':'❌ ')+qs[i].x;
+  i++;setTimeout(show,ok?1300:2600);
+ });
+ start();
+})();
+
+/* ================================================================
+   ŽAIDIMAS „KOMPIUTERIO ORKESTRAS“
+   ================================================================ */
+var app=q('#osp-g');
+function $(s){return app.querySelector(s);}
+function $$(s){return Array.prototype.slice.call(app.querySelectorAll(s));}
+
+/* ---------- SLUOKSNIAI ---------- */
+var LAY={
+ user:{e:'🙋',short:'Naudotojas',name:'Naudotojas',en:'user',
+  desc:'Tai tu! Naudotojas dirba su programomis: rašo tekstą, naršo internete, žaidžia. Su kompiuteriu jis bendrauja per naudotojo sąsają – piktogramas, meniu ir langus, kuriuos valdo pele, klaviatūra ar pirštu.',
+  an:'🙋 Orkestre – klausytojas, kuris užsako kūrinį ir mėgaujasi muzika.',
+  fact:'Dauguma naudotojų niekada nemato nei tvarkyklių, nei OS „vidaus“ – jiems pakanka matyti programas.'},
+ prog:{e:'📝',short:'Programa',name:'Programa',en:'application',
+  desc:'Programinė įranga naudotojo užduotims: tekstų rengyklės, naršyklės, žaidimai, grafikos programos, muzikos grotuvai. Paprasti naudotojai daugiausia sąveikauja būtent su programomis.',
+  an:'🎼 Orkestre – natos: jose parašyta, kokį kūrinį reikia atlikti.',
+  fact:'Programa pati nieko neišspausdina ir nenupiešia – ji paprašo OS, o ši perduoda užduotį toliau.'},
+ os:{e:'⚙️',short:'Operacinė sistema',name:'Operacinė sistema (OS)',en:'OS – operating system',
+  desc:'Pagrindinė programa, valdanti visą kompiuterio aparatinę įrangą ir kitą programinę įrangą. Ji paleidžia programas, tvarko failus ir aplankus, suteikia naudotojo sąsają ir užtikrina, kad visos dalys veiktų darniai.',
+  an:'🎻 Orkestre – dirigentas, kuris nurodo kiekvienam muzikantui, kada ir ką groti.',
+  fact:'OS paleidžiama pirmiausia, vos įjungus kompiuterį, – tik tada galima paleisti kitas programas.'},
+ drv:{e:'🗣️',short:'Tvarkyklė',name:'Tvarkyklė',en:'driver',
+  desc:'Speciali programa, per kurią OS valdo tam tikrą aparatinės įrangos įrenginį. Ji padeda OS „suprasti“ įrenginį ir su juo bendrauti. Tvarkyklės priklauso sisteminei programinei įrangai.',
+  an:'🗣️ Orkestre – vertėjas, kuris dirigento nurodymus išverčia muzikantui, kalbančiam kita kalba.',
+  fact:'Kiekvienam įrenginiui reikia savo tvarkyklės. Daugumą jų OS įdiegia pati, vos prijungus įrenginį.'},
+ hw:{e:'🖨️',short:'Įrenginys',name:'Įrenginys (aparatinė įranga)',en:'hardware',
+  desc:'Fiziniai, apčiuopiami ir matomi įtaisai: spausdintuvas, pelė, klaviatūra, monitorius, procesorius. Jie atlieka darbą, bet patys nežino, ką daryti, – nurodymus jiems duoda programinė įranga.',
+  an:'🥁 Orkestre – muzikantai su instrumentais: būtent jie ir groja.',
+  fact:'Be programinės įrangos net galingiausias kompiuteris būtų tik krūva metalo ir plastiko.'}
+};
+var LAY_IDS=['user','prog','os','drv','hw'];
+var LY={user:20,prog:130,os:240,drv:370,hw:480};
+var LC={user:'#6b5bd2',prog:'#d9822b',os:'#bb6418',drv:'#2f9a4a',hw:'#2f6fd0'};
+var DEF_SUB={user:'tu – žmogus prie kompiuterio',prog:'„Word“, naršyklė, žaidimai…',os:'„Windows“, „macOS“, „Linux“…',drv:'spausdintuvo, vaizdo plokštės…',hw:'spausdintuvas, pelė, monitorius…'};
+
+/* ---------- 1 LYGIS: RŪŠIAVIMAS ---------- */
+var BINS={
+ hw:{x:10,y:10,c:'#1b3566',s:'#3d68b8',e:'🔧',n:'Aparatinė įranga',d:'fiziniai įtaisai – galima paliesti'},
+ sys:{x:325,y:10,c:'#4d3214',s:'#b5772f',e:'⚙️',n:'Sisteminė PĮ',d:'OS ir tvarkyklės'},
+ app:{x:10,y:215,c:'#14462f',s:'#2f9a68',e:'🧑‍💻',n:'PĮ naudotojo užduotims',d:'kasdien naudojamos programos'},
+ prog:{x:325,y:215,c:'#33215e',s:'#7b5bd0',e:'💻',n:'Programavimo PĮ',d:'naujoms programoms kurti'}
+};
+var BIN_IDS=['hw','sys','app','prog'];
+var SORT=[
+ {e:'🖱️',n:'Pelė',s:'Pelė',b:'hw',w:'Pelę gali paliesti – tai aparatinė įranga.'},
+ {e:'🖥️',n:'Monitorius',s:'Monitorius',b:'hw',w:'Monitorius – fizinis įrenginys, todėl tai aparatinė įranga.'},
+ {e:'🔲',n:'Procesorius',s:'Procesorius',b:'hw',w:'Procesorius – fizinis lustas kompiuterio viduje, aparatinė įranga.'},
+ {e:'🖨️',n:'Spausdintuvas',s:'Spausdintuvas',b:'hw',w:'Spausdintuvas – fizinis įrenginys. O štai jo tvarkyklė jau būtų programinė įranga!'},
+ {e:'🪟',n:'„Windows“',s:'„Windows“',b:'sys',w:'„Windows“ – operacinė sistema, o OS priklauso sisteminei PĮ.'},
+ {e:'🐧',n:'„Linux“',s:'„Linux“',b:'sys',w:'„Linux“ – atvirojo kodo operacinė sistema, sisteminė PĮ.'},
+ {e:'🤖',n:'„Android“',s:'„Android“',b:'sys',w:'„Android“ – telefonų ir planšečių operacinė sistema, sisteminė PĮ.'},
+ {e:'🖨️',n:'Spausdintuvo tvarkyklė',s:'Spausd. tvark.',b:'sys',w:'Tvarkyklė padeda OS valdyti spausdintuvą – tai sisteminė PĮ.'},
+ {e:'🎞️',n:'Vaizdo plokštės tvarkyklė',s:'Vaizdo pl. tvark.',b:'sys',w:'Per šią tvarkyklę OS valdo vaizdo plokštę – tai sisteminė PĮ.'},
+ {e:'📝',n:'„Word“',s:'„Word“',b:'app',w:'„Word“ – tekstų rengyklė, skirta naudotojo užduotims.'},
+ {e:'🌐',n:'„Chrome“',s:'„Chrome“',b:'app',w:'„Chrome“ – interneto naršyklė, PĮ naudotojo užduotims.'},
+ {e:'🦊',n:'„Firefox“',s:'„Firefox“',b:'app',w:'„Firefox“ – interneto naršyklė, PĮ naudotojo užduotims.'},
+ {e:'⛏️',n:'„Minecraft“',s:'„Minecraft“',b:'app',w:'Žaidimai taip pat yra PĮ naudotojo užduotims.'},
+ {e:'🎨',n:'„Paint“',s:'„Paint“',b:'app',w:'„Paint“ – grafikos programa, PĮ naudotojo užduotims.'},
+ {e:'🎵',n:'„Spotify“',s:'„Spotify“',b:'app',w:'„Spotify“ – muzikos grotuvas, PĮ naudotojo užduotims.'},
+ {e:'☕',n:'„Java“',s:'„Java“',b:'prog',w:'„Java“ – programavimo kalba, kuria kuriamos naujos programos.'},
+ {e:'🐍',n:'„Python“',s:'„Python“',b:'prog',w:'„Python“ – programavimo kalba, programavimo PĮ.'},
+ {e:'🐱',n:'„Scratch“',s:'„Scratch“',b:'prog',w:'„Scratch“ – programavimo aplinka, kurioje programos kuriamos iš blokelių.'}
+];
+
+/* ---------- 2 LYGIS: OS FUNKCIJOS ---------- */
+var FN={
+ hw:{e:'🔧',n:'Valdo aparatinę įrangą',d:'kad visos dalys veiktų ir „susikalbėtų“'},
+ prog:{e:'🚀',n:'Tvarko programas',d:'paleidžia ir valdo programas'},
+ files:{e:'📁',n:'Valdo failus ir aplankus',d:'tvarko ir saugo failus diske'},
+ ui:{e:'🖱️',n:'Suteikia naudotojo sąsają',d:'piktogramos, meniu, langai'}
+};
+var FN_IDS=['hw','prog','files','ui'];
+var SIT=[
+ {t:'Prijungei naują pelę – po kelių sekundžių ji jau veikia.',f:'hw',e:'OS atpažino naują įrenginį, įdiegė jam tvarkyklę ir pradėjo jį valdyti.'},
+ {t:'Įkišai atmintuką, ir kompiuteris iškart jį atpažino.',f:'hw',e:'OS valdo aparatinę įrangą: ji „pastebi“ naujai prijungtą įrenginį ir leidžia juo naudotis.'},
+ {t:'Įkeliant žaidimą procesorius, operatyvioji atmintis ir diskas dirba kartu.',f:'hw',e:'OS užtikrina, kad visos kompiuterio dalys veiktų tinkamai ir bendrautų tarpusavyje.'},
+ {t:'Vienu metu atidarei naršyklę, muzikos grotuvą ir „Word“ – visos programos veikia.',f:'prog',e:'OS tvarko programas: leidžia joms veikti vienu metu ir persijungti tarp jų.'},
+ {t:'Žaidimas „pakibo“, ir tu jį priverstinai uždarai užduočių tvarkytuvėje.',f:'prog',e:'Per užduočių tvarkytuvę OS leidžia matyti ir valdyti veikiančias programas.'},
+ {t:'Dukart spustelėjai žaidimo piktogramą – žaidimas pasileido.',f:'prog',e:'Programas paleidžia operacinė sistema.'},
+ {t:'Sukūrei aplanką „Informatika“ ir perkėlei į jį savo darbus.',f:'files',e:'OS valdo failus ir aplankus: leidžia juos kurti, perkelti ir tvarkyti.'},
+ {t:'Ištrynei nereikalingą failą, ir jis atsidūrė šiukšlinėje.',f:'files',e:'Failų trynimas ir šiukšlinė – OS failų valdymo dalis.'},
+ {t:'Pervadinai nuotrauką iš „IMG_2041“ į „Ekskursija“.',f:'files',e:'Failų pavadinimus keisti leidžia OS, nes ji valdo failus diske.'},
+ {t:'Ekrane matai piktogramas, meniu ir langus, o viską valdai pele.',f:'ui',e:'Tai grafinė naudotojo sąsaja (GUI), kurią suteikia OS.'},
+ {t:'Pakeitei darbalaukio foną ir padidinai piktogramas.',f:'ui',e:'Darbalaukis ir jo išvaizda – OS naudotojo sąsajos dalis.'},
+ {t:'Telefone braukei pirštu per ekraną ir atidarei programų sąrašą.',f:'ui',e:'Jutikliniai gestai – mobiliosios OS naudotojo sąsajos dalis.'}
+];
+
+/* ---------- 3 LYGIS: SIGNALO KELIAS ---------- */
+var PATHS=[
+ {t:'Paspaudei klaviatūros klavišą „A“, ir raidė atsirado „Word“ dokumente.',prog:'📝 „Word“',hw:'⌨️ klaviatūra',p:['hw','drv','os','prog'],e:'Klaviatūra siunčia signalą → tvarkyklė jį „išverčia“ → OS perduoda jį programai → „Word“ parodo raidę.'},
+ {t:'„Word“ programoje paspaudei „Spausdinti“.',prog:'📝 „Word“',hw:'🖨️ spausdintuvas',p:['prog','os','drv','hw'],e:'„Word“ paprašo OS išspausdinti → OS perduoda užduotį spausdintuvo tvarkyklei → tvarkyklė nurodo spausdintuvui, ką daryti.'},
+ {t:'„Spotify“ groja dainą per garsiakalbius.',prog:'🎵 „Spotify“',hw:'🔊 garsiakalbiai',p:['prog','os','drv','hw'],e:'Grotuvas perduoda garsą OS → OS – garso plokštės tvarkyklei → garsiakalbiai groja.'},
+ {t:'Vaizdo skambučio metu kalbi į mikrofoną.',prog:'📞 vaizdo skambučių programa',hw:'🎤 mikrofonas',p:['hw','drv','os','prog'],e:'Mikrofonas įrašo garsą → tvarkyklė jį perduoda OS → OS – programai, kuri siunčia tavo balsą draugui.'},
+ {t:'„Minecraft“ piešia naują pasaulio vaizdą monitoriuje.',prog:'⛏️ „Minecraft“',hw:'🖥️ vaizdo plokštė ir monitorius',p:['prog','os','drv','hw'],e:'Žaidimas paprašo OS nupiešti vaizdą → OS – vaizdo plokštės tvarkyklei → vaizdo plokštė rodo vaizdą monitoriuje.'},
+ {t:'Pele spustelėjai mygtuką naršyklėje.',prog:'🌐 naršyklė',hw:'🖱️ pelė',p:['hw','drv','os','prog'],e:'Pelė siunčia spustelėjimo signalą → tvarkyklė → OS → naršyklė sužino, kurį mygtuką paspaudei.'}
+];
+
+/* ---------- SVG ---------- */
+function layersSvg(){
+ function arr(y1,y2){return '<line x1="310" y1="'+(y1+12)+'" x2="310" y2="'+(y2-12)+'" stroke="#7d6fd0" stroke-width="6"/><path d="M298,'+(y1+16)+' L310,'+(y1+3)+' L322,'+(y1+16)+'Z" fill="#7d6fd0"/><path d="M298,'+(y2-16)+' L310,'+(y2-3)+' L322,'+(y2-16)+'Z" fill="#7d6fd0"/>';}
+ function br(y1,y2){var m=(y1+y2)/2;return '<path d="M142,'+y1+' Q130,'+y1+' 130,'+(y1+12)+' V'+(m-12)+' Q130,'+m+' 120,'+m+' Q130,'+m+' 130,'+(m+12)+' V'+(y2-12)+' Q130,'+y2+' 142,'+y2+'" fill="none" stroke="#8fa0c4" stroke-width="2.5"/>';}
+ var s='<svg viewBox="0 0 640 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kompiuterio sluoksniai: naudotojas, programa, operacinė sistema, tvarkyklė, įrenginys">'+
+ arr(84,130)+arr(194,240)+arr(304,370)+arr(434,480)+
+ '<line x1="20" y1="337" x2="630" y2="337" stroke="#5b6a8f" stroke-width="2" stroke-dasharray="10 8"/>'+
+ br(130,434)+'<text x="62" y="278" class="lt">Programinė</text><text x="62" y="295" class="lt">įranga</text>'+
+ br(480,544)+'<text x="62" y="508" class="lt">Aparatinė</text><text x="62" y="525" class="lt">įranga</text>'+
+ '<text x="555" y="230" class="rt">👀 Naudotojas</text><text x="555" y="247" class="rt">mato ir valdo</text>'+
+ '<text x="555" y="420" class="rt">🙈 Paprastai</text><text x="555" y="437" class="rt">nematoma</text>';
+ LAY_IDS.forEach(function(id){var y=LY[id];
+  s+='<g class="hit" data-l="'+id+'"><rect x="150" y="'+y+'" width="320" height="64" rx="12" fill="'+LC[id]+'" stroke="#0007" stroke-width="2"/>'+
+   '<text x="186" y="'+(y+42)+'" class="le">'+LAY[id].e+'</text><text x="322" y="'+(y+29)+'" class="ln">'+LAY[id].short+'</text>'+
+   '<text x="322" y="'+(y+49)+'" class="ls" data-sub="'+id+'">'+DEF_SUB[id]+'</text><g data-stp="'+id+'"></g></g>';
+ });
+ s+='<circle class="sig" r="9" cx="310" cy="0" fill="#ffe066" stroke="#fff" stroke-width="2" style="display:none"/></svg>';
+ return s;
+}
+function binsSvg(){
+ var s='<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Keturios programinės ir aparatinės įrangos grupės">';
+ BIN_IDS.forEach(function(id){var b=BINS[id];
+  s+='<g class="bz" data-b="'+id+'"><rect class="bg" x="'+b.x+'" y="'+b.y+'" width="305" height="195" rx="14" fill="'+b.c+'" stroke="'+b.s+'" stroke-width="2.5"/>'+
+   '<text x="'+(b.x+16)+'" y="'+(b.y+30)+'" class="bt">'+b.e+' '+b.n+'</text><text x="'+(b.x+16)+'" y="'+(b.y+48)+'" class="bd">'+b.d+'</text><g class="put"></g></g>';
+ });
+ return s+'</svg>';
+}
+
+/* ---------- BŪSENA ---------- */
+var S={mode:null,score:0,mistakes:0,t0:0,timer:null,sound:true,busy:false,done:0,total:0,tries:0,target:null,found:{},queue:[],slots:{},cnt:{},step:0,stepMist:0,pathMist:0};
+var SV=null;
+
+/* ---------- GARSAS ---------- */
+var actx=null;
+function beep(fr,dur,type,gap){
+ if(!S.sound)return;
+ try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+  fr.forEach(function(v,i){var o=actx.createOscillator(),g=actx.createGain();o.type=type||'sine';o.frequency.value=v;
+   var t=actx.currentTime+i*(gap||.09);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.15,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+(dur||.12));
+   o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+(dur||.12)+.03);});
+ }catch(e){}
+}
+
+/* ---------- PAGALBINĖS ---------- */
+var toastT=null;
+function toast(msg,type,ms){var t=$('.g-toast');t.className='g-toast show '+(type||'');t.innerHTML=msg;clearTimeout(toastT);toastT=setTimeout(function(){t.className='g-toast';},ms||2400);}
+function flash(el,type){el.classList.remove('fl-ok','fl-bad');void el.getBoundingClientRect();el.classList.add('fl-'+type);setTimeout(function(){el.classList.remove('fl-'+type);},950);}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return m+':'+(x<10?'0':'')+x;}
+function elapsed(){return S.t0?Math.floor((Date.now()-S.t0)/1000):0;}
+function clearHelp(){$$('.hit').forEach(function(h){h.classList.remove('help');});}
+function helpLay(id){$$('.hit').forEach(function(h){if(h.getAttribute('data-l')===id)h.classList.add('help');});}
+function ov(html){var o=$('.g-ov');o.innerHTML=html;o.className='g-ov show';}
+function hideOv(){$('.g-ov').className='g-ov';}
+function stars(){var n=S.mistakes<=1?3:(S.mistakes<=4?2:1),st='';for(var i=0;i<3;i++)st+=i<n?'★':'<span class="dim">★</span>';return st;}
+function resHtml(){return '<div class="g-stars">'+stars()+'</div><div class="g-res"><div><b>'+S.score+'</b>taškų</div><div><b>'+S.mistakes+'</b>klaidų</div><div><b>'+fmt(elapsed())+'</b>laikas</div></div>';}
+
+/* ---------- ATVAIZDAVIMAS ---------- */
+function renderStats(){
+ var st=$('.g-stats'),lab=S.mode==='explore'?'Peržiūrėta':'Atlikta';
+ st.className='g-stats'+(S.mode==='explore'?' ex':'');
+ st.innerHTML='<div>'+lab+'<b>'+S.done+'/'+S.total+'</b></div><div class="x">Taškai<b>'+S.score+'</b></div><div class="x">Klaidos<b>'+S.mistakes+'</b></div><div class="x">Laikas<b>'+fmt(elapsed())+'</b></div>';
+}
+function setTask(lbl,txt,small,em,hint){
+ $('.g-lbl').textContent=lbl;var t=$('.g-tgt');t.textContent=txt;t.className='g-tgt'+(small?' sm':'');
+ var p=$('.g-plug');if(em){p.textContent=em;p.classList.remove('hide');}else{p.textContent='';p.classList.add('hide');}
+ $('.g-hint').classList.toggle('hide',!hint);
+}
+function info(html,pop){var i=$('.g-info');i.innerHTML=html;i.classList.remove('pop');if(pop){void i.offsetWidth;i.classList.add('pop');}}
+function layInfo(id,extra){var c=LAY[id];info('<div class="g-h">Aprašymas</div><h3>'+c.e+' '+c.name+'</h3><div class="g-en">angl. '+c.en+'</div>'+(extra?'<p><b>'+extra+'</b></p>':'')+'<p>'+c.desc+'</p><div class="g-an">'+c.an+'</div><div class="g-fact">💡 <b>Ar žinai?</b> '+c.fact+'</div>',true);}
+function renderList(){
+ var lb=$('.g-listbox');
+ if(S.mode==='explore'){lb.classList.remove('hide');$('.g-lh').textContent='Sluoksniai';
+  $('.g-list').innerHTML=LAY_IDS.map(function(id){return '<button class="g-item'+(S.found[id]?' done':'')+'" data-lay="'+id+'"><u>'+LAY[id].e+'</u>'+LAY[id].name+'<span class="g-ck">'+(S.found[id]?'✓':'')+'</span></button>';}).join('');}
+ else lb.classList.add('hide');
+}
+function setSub(id,txt){var el=SV&&SV.querySelector('[data-sub="'+id+'"]');if(el)el.textContent=txt;}
+
+/* ---------- SIGNALAS ---------- */
+var sigRaf=null;
+function moveSig(from,to){
+ var c=SV.querySelector('.sig');if(!c)return;cancelAnimationFrame(sigRaf);
+ var y2=LY[to]+32,y1=from?LY[from]+32:y2,t0=null;
+ c.style.display='';c.setAttribute('cy',y1);
+ function stepF(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/450);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;c.setAttribute('cy',(y1+(y2-y1)*k).toFixed(1));if(k<1)sigRaf=requestAnimationFrame(stepF);}
+ sigRaf=requestAnimationFrame(stepF);
+}
+
+/* ---------- REŽIMAI ---------- */
+function setMode(m){
+ S.mode=m;S.score=0;S.mistakes=0;S.done=0;S.tries=0;S.target=null;S.found={};S.busy=false;S.cnt={};
+ clearInterval(S.timer);S.t0=0;hideOv();cancelAnimationFrame(sigRaf);
+ $$('.g-tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m);});
+ var w=$('.g-wrap');
+ if(m==='explore'||m==='l3'){w.className='g-wrap lay';w.innerHTML=layersSvg();SV=w.querySelector('svg');}
+ if(m==='explore'){S.total=LAY_IDS.length;setTask('Tyrinėjimo režimas','Spausk ant sluoksnio ir sužinok, ką jis daro',true,null,false);
+  info('<div class="g-h">Aprašymas</div><p class="g-mut">👆 Kompiuteris veikia tarsi orkestras, sudarytas iš sluoksnių. Paspausk ant bet kurio sluoksnio arba jo pavadinimo sąraše.</p><p class="g-mut">Punktyrinė linija skiria tai, ką naudotojas mato, nuo to, kas paprastai lieka nematoma.</p>');}
+ if(m==='l1'){S.total=SORT.length;S.queue=shuffle(SORT.slice());w.className='g-wrap bins';w.innerHTML=binsSvg();SV=w.querySelector('svg');S.slots={hw:0,sys:0,app:0,prog:0};
+  info('<div class="g-h">Kaip žaisti</div><p class="g-mut">Viršuje rodomas daiktas arba programa. Paspausk tą grupę, kuriai jis priklauso.</p><p class="g-mut">Pirmiausia paklausk savęs: <b style="color:#e9eef8">ar tai galima paliesti?</b> Jei ne – ar tai valdo kompiuterį, padeda atlikti tavo užduotį ar skirta programoms kurti?</p><p class="g-mut">Iš pirmo karto – 10 taškų, iš antro – 5.</p>');
+  nextSort();}
+ if(m==='l2'){S.total=10;S.queue=shuffle(SIT.slice()).slice(0,10);w.className='g-wrap';
+  w.innerHTML='<div class="fz">'+FN_IDS.map(function(id){return '<button class="ft" data-f="'+id+'"><i>0</i><u>'+FN[id].e+'</u><b>'+FN[id].n+'</b><span>'+FN[id].d+'</span></button>';}).join('')+'</div>';
+  FN_IDS.forEach(function(id){S.cnt[id]=0;});
+  info('<div class="g-h">Kaip žaisti</div><p class="g-mut">Tu – dirigentas, t. y. operacinė sistema! Perskaityk situaciją ir nuspręsk, kurią savo funkciją atlieki.</p><p class="g-mut">Iš pirmo karto – 10 taškų, iš antro – 5.</p>');
+  nextSit();}
+ if(m==='l3'){S.total=PATHS.length;S.queue=shuffle(PATHS.slice());
+  info('<div class="g-h">Kaip žaisti</div><p class="g-mut">Viršuje aprašytas veiksmas. Spausk sluoksnius ta tvarka, kuria keliauja signalas – nuo pradžios iki pabaigos.</p><p class="g-mut">Pagalvok: ar veiksmą pradėjo <b style="color:#e9eef8">įrenginys</b> (pvz., tu paspaudei klavišą), ar <b style="color:#e9eef8">programa</b> (pvz., ji kažko paprašė)?</p><p class="g-mut">Be klaidų – 10 taškų, su viena klaida – 6.</p>');
+  nextPath();}
+ if(m!=='explore'){S.t0=Date.now();S.timer=setInterval(renderStats,1000);}
+ renderList();renderStats();
+}
+
+/* ---------- 1 LYGIS ---------- */
+function nextSort(){
+ if(S.done>=S.total){finish();return;}
+ S.target=S.queue[S.done];S.tries=0;S.busy=false;
+ setTask('Kuriai grupei tai priklauso?',S.target.n,false,S.target.e,true);
+}
+function clickBin(el){
+ if(S.busy||!S.target)return;
+ var b=el.getAttribute('data-b'),it=S.target;
+ if(b===it.b){
+  var pts=S.tries?5:10;S.busy=true;S.score+=pts;S.done++;
+  var n=S.slots[b]++,B=BINS[b],x=B.x+52+(n%3)*100,y=B.y+95+Math.floor(n/3)*58;
+  el.querySelector('.put').insertAdjacentHTML('beforeend','<g class="badge"><text class="ve" x="'+x+'" y="'+y+'">'+it.e+'</text><text class="vn" x="'+x+'" y="'+(y+16)+'">'+it.s+'</text></g>');
+  flash(el,'ok');beep([660,880]);toast('✅ Teisingai! +'+pts,'ok',1500);
+  info('<div class="g-h">Paaiškinimas</div><h3>'+it.e+' '+it.n+'</h3><div class="g-en">'+BINS[b].n+'</div><p>'+it.w+'</p>',true);
+  renderStats();setTimeout(nextSort,900);
+ }else{
+  S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
+  toast('❌ Ne visai. Ar tai galima paliesti? Ar tai valdo kompiuterį, padeda atlikti užduotį, ar skirta programoms kurti?','bad',3400);renderStats();
+ }
+}
+function sortHint(){
+ var b=S.target.b,h={hw:'Šį daiktą gali paimti į rankas.',sys:'Tai ne tavo užduočiai skirta programa – ji valdo patį kompiuterį ar jo įrenginį.',app:'Šią programą žmonės naudoja kasdien: rašyti, naršyti, žaisti, piešti ar klausytis muzikos.',prog:'Ją naudoja programuotojai, kurdami naujas programas.'};
+ if(S.tries<1)S.tries=1;toast('💡 '+h[b],'',4000);
+}
+
+/* ---------- 2 LYGIS ---------- */
+function nextSit(){
+ if(S.done>=S.total){finish();return;}
+ S.target=S.queue[S.done];S.tries=0;S.busy=false;
+ setTask('Situacija '+(S.done+1)+' iš '+S.total+' · Kurią funkciją atlieka OS?',S.target.t,true,'🎼',false);
+}
+function clickFn(el){
+ if(S.busy||!S.target)return;
+ var f=el.getAttribute('data-f'),it=S.target;
+ if(f===it.f){
+  var pts=S.tries?5:10;S.busy=true;S.score+=pts;S.done++;S.cnt[f]++;
+  el.querySelector('i').textContent=S.cnt[f];
+  flash(el,'ok');beep([660,880]);toast('✅ Teisingai! +'+pts,'ok',1500);
+  info('<div class="g-h">Paaiškinimas</div><h3>'+FN[f].e+' '+FN[f].n+'</h3><p class="g-mut">'+it.t+'</p><div class="g-an">'+it.e+'</div>',true);
+  renderStats();setTimeout(nextSit,1200);
+ }else{
+  S.tries++;S.mistakes++;flash(el,'bad');beep([220,170],.15,'square');
+  toast('❌ Ne ši funkcija. Kas čia svarbiausia: įrenginys, programa, failas ar tai, ką matai ekrane?','bad',3200);renderStats();
+ }
+}
+
+/* ---------- 3 LYGIS ---------- */
+function nextPath(){
+ if(S.done>=S.total){finish();return;}
+ var c=S.queue[S.done];S.target=c;S.step=0;S.stepMist=0;S.pathMist=0;S.busy=false;clearHelp();
+ $$('[data-stp]').forEach(function(g){g.innerHTML='';});
+ var sg=SV.querySelector('.sig');if(sg)sg.style.display='none';
+ setSub('prog',c.prog);setSub('hw',c.hw);setSub('user','tu');setSub('os','„Windows“, „macOS“…');setSub('drv','įrenginio tvarkyklė');
+ setTask('Veiksmas '+(S.done+1)+' iš '+S.total+' · Spausk sluoksnius signalo keliu',c.t,true,'⚡',true);
+}
+function clickLayer(el){
+ var id=el.getAttribute('data-l');
+ if(S.mode==='explore'){if(!S.found[id]){S.found[id]=1;S.done++;}flash(el,'ok');layInfo(id);renderList();renderStats();return;}
+ if(S.mode!=='l3'||S.busy||!S.target)return;
+ if(id==='user'){toast('🙋 Tu jau atlikai veiksmą. Dabar sek signalą tarp kompiuterio sluoksnių!','',2600);return;}
+ var c=S.target,exp=c.p[S.step];
+ if(id===exp){
+  var y=LY[id];
+  el.querySelector('[data-stp]').innerHTML='<g class="badge"><circle cx="446" cy="'+(y+32)+'" r="15" fill="#ffe066" stroke="#2a1a00" stroke-width="2"/><text x="446" y="'+(y+38)+'" font-size="16" font-weight="900" text-anchor="middle" fill="#2a1a00">'+(S.step+1)+'</text></g>';
+  moveSig(S.step?c.p[S.step-1]:null,id);clearHelp();flash(el,'ok');beep([520+S.step*120]);
+  S.step++;S.stepMist=0;
+  if(S.step===c.p.length){
+   var pts=[10,6,3][Math.min(S.pathMist,2)];S.busy=true;S.score+=pts;S.done++;
+   setTimeout(function(){beep([660,880]);},200);
+   toast('✅ Signalas pasiekė tikslą! +'+pts,'ok',1800);
+   info('<div class="g-h">Signalo kelias</div><h3>⚡ '+c.t+'</h3><div class="g-an">'+c.e+'</div><div class="g-fact">💡 Signalas niekada nepraleidžia sluoksnio: tarp programos ir įrenginio visada yra OS ir tvarkyklė.</div>',true);
+   renderStats();setTimeout(nextPath,2600);
+  }
+ }else{
+  S.mistakes++;S.pathMist++;S.stepMist++;flash(el,'bad');beep([220,170],.15,'square');
+  var msg=S.step===0?'❌ Ne čia prasideda. Ar veiksmą pradėjo įrenginys, ar programa?':'❌ Signalas negali „peršokti“ sluoksnio. Kuris sluoksnis yra greta ką tik pažymėto?';
+  if(S.stepMist>=2){helpLay(exp);msg='👀 Žiūrėk – kitas sluoksnis mirksi!';}
+  toast(msg,'bad',3000);renderStats();
+ }
+}
+function pathHint(){
+ if(!S.target||S.busy)return;
+ var c=S.target;
+ toast('💡 '+(c.p[0]==='hw'?'Veiksmą pradėjo įrenginys – signalas keliauja iš apačios į viršų.':'Veiksmą pradėjo programa – signalas keliauja iš viršaus į apačią.'),'',4000);
+}
+
+/* ---------- PABAIGA ---------- */
+function finish(){
+ clearInterval(S.timer);beep([523,659,784,1047],.2);S.target=null;
+ if(S.mode==='l1'){setTask('Užduotis atlikta','🎉 Viskas surūšiuota!',false,null,false);
+  ov('<div class="g-card"><div class="g-big">🎉</div><h2>Viskas surūšiuota!</h2>'+resHtml()+'<p>Dabar skiri aparatinę įrangą nuo programinės ir žinai tris programinės įrangos tipus.</p><div class="g-btns"><button class="g-btn pri" data-act="l2">🎼 2 lygis: Dirigentas<small>Kurią funkciją atlieka OS?</small></button><button class="g-btn" data-act="again">🔁 Žaisti dar kartą</button></div></div>');}
+ if(S.mode==='l2'){setTask('Užduotis atlikta','🎉 Orkestras groja darniai!',false,null,false);
+  ov('<div class="g-card"><div class="g-big">🎼</div><h2>Puikus dirigentas!</h2>'+resHtml()+'<p>Žinai visas keturias OS funkcijas: valdo aparatinę įrangą, tvarko programas, valdo failus ir aplankus, suteikia naudotojo sąsają.</p><div class="g-btns"><button class="g-btn pri" data-act="l3">⚡ 3 lygis: Signalo kelias<small>Kaip keliauja signalas tarp sluoksnių?</small></button><button class="g-btn" data-act="again">🔁 Žaisti dar kartą</button></div></div>');}
+ if(S.mode==='l3'){setTask('Užduotis atlikta','🎉 Visi signalai pasiekė tikslą!',false,null,false);
+  ov('<div class="g-card"><div class="g-big">'+(S.mistakes<=1?'🏆':'⚡')+'</div><h2>'+(S.mistakes<=1?'Tu – tikras kompiuterio žinovas!':'Visi signalai pasiekė tikslą!')+'</h2>'+resHtml()+'<p>Programa ↔ operacinė sistema ↔ tvarkyklė ↔ įrenginys – būtent taip programinė įranga valdo aparatinę.</p><div class="g-btns"><button class="g-btn pri" data-act="again">🔁 Žaisti dar kartą</button><button class="g-btn" data-act="explore">🔍 Tyrinėti sluoksnius</button></div></div>');}
+}
+
+/* ---------- PASPAUDIMAI ---------- */
+app.addEventListener('click',function(e){
+ var bz=e.target.closest('.bz');if(bz&&S.mode==='l1'){clickBin(bz);return;}
+ var h=e.target.closest('.hit');if(h){clickLayer(h);return;}
+ var b=e.target.closest('button');if(!b||!app.contains(b))return;
+ if(b.classList.contains('ft')){clickFn(b);return;}
+ var md=b.getAttribute('data-mode'),act=b.getAttribute('data-act'),ly=b.getAttribute('data-lay');
+ if(md){setMode(md);return;}
+ if(ly){layInfo(ly);clearHelp();helpLay(ly);if(!S.found[ly]){S.found[ly]=1;S.done++;}renderList();renderStats();setTimeout(clearHelp,2600);return;}
+ if(act==='hint'){if(S.mode==='l1'&&S.target&&!S.busy)sortHint();if(S.mode==='l3')pathHint();return;}
+ if(act==='sound'){S.sound=!S.sound;b.textContent=S.sound?'🔊':'🔇';return;}
+ if(act==='fs'){if(document.fullscreenElement)document.exitFullscreen();else if(app.requestFullscreen)app.requestFullscreen();return;}
+ if(act==='again'){setMode(S.mode);return;}
+ if(act==='l1'||act==='l2'||act==='l3'||act==='explore'){setMode(act);return;}
+});
+
+/* ---------- PRADŽIA ---------- */
+setMode('explore');
+ov('<div class="g-card"><div class="g-big">🎻💻</div><h2>Kompiuterio orkestras</h2><p>Kompiuteris veikia tarsi orkestras: programos – natos, operacinė sistema – dirigentas, tvarkyklės – vertėjai, o įrenginiai – muzikantai. Ar padėsi jiems groti darniai?</p><div class="g-btns">'+
+ '<button class="g-btn pri" data-act="l1">🗂️ 1 lygis: Rūšiuok<small>Aparatinė įranga ar koks PĮ tipas?</small></button>'+
+ '<button class="g-btn" data-act="l2">🎼 2 lygis: Dirigentas<small>Kurią funkciją atlieka OS?</small></button>'+
+ '<button class="g-btn" data-act="l3">⚡ 3 lygis: Signalo kelias<small>Sek signalą nuo programos iki įrenginio</small></button>'+
+ '<button class="g-btn" data-act="explore">🔍 Tyrinėk laisvai<small>Spausk ant sluoksnių ir skaityk aprašymus</small></button></div></div>');
+})();
+</script>
+</div>
+<!-- ===== PAMOKOS TURINYS: PABAIGA ===== -->
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 7–8 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>
