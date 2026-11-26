@@ -82,6 +82,7 @@
 .nb-name input{font:inherit;padding:.45rem .6rem;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);min-height:44px;width:min(100%,16rem)}
 .nb-pal{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
 .nb-pal .ng-btn{font-size:.85rem;padding:.4rem .6rem}
+.nb-gr{flex-basis:100%;margin:.4rem 0 0;font-family:var(--f-mono);font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .nb-svg{touch-action:none}
 .nb-cloud{fill:var(--warm-soft);stroke:var(--warm);stroke-width:1.6}
 .nb-router rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
@@ -313,12 +314,12 @@
   <h3>Praktinė užduotis: mano namų tinklas</h3>
   <p>Dabar nubraižyk <b>savo namų</b> tinklo schemą žaidime „Mano namų tinklas“.</p>
   <ol class="tight">
-    <li>Pagalvok, kurie įrenginiai tavo namuose jungiasi prie interneto: kompiuteriai, telefonai, planšetės, televizorius, žaidimų konsolė, spausdintuvas… Jei nežinai, paklausk tėvų.</li>
+    <li>Pagalvok, kurie įrenginiai tavo namuose jungiasi prie interneto: kompiuteriai, telefonai, planšetės, televizorius, žaidimų konsolė, spausdintuvas… Nepamiršk ir buities prietaisų: robotas siurblys, oro kondicionierius, išmanioji lemputė ar skalbimo mašina, valdoma telefonu. Jei nežinai, paklausk tėvų.</li>
     <li>Įrašyk savo vardą ir sudėk įrenginius į schemą. Kiekvieną įrenginį paspausk ir pasirink, kaip jis prijungtas: <b>laidu</b> ar <b>belaidžiu ryšiu</b>. <i>Kaip sužinoti?</i> Jei nuo įrenginio iki maršrutizatoriaus eina laidas su plačiu permatomu kištuku, tai eterneto laidas.</li>
     <li>Išbandyk du mygtukus: <b>išjunk maršrutizatorių</b> ir <b>nutrauk interneto kabelį</b>. Pastebėk, kuo skiriasi rezultatas.</li>
     <li>Atsisiųsk schemos paveikslėlį ir atsakyk į klausimus (žemiau žaidimo). Pateik juos mokytojui taip, kaip jis nurodys.</li>
   </ol>
-  <div class="note"><b>🔒 Saugumas.</b> Schemoje rašyk tik įrenginių pavadinimus. Niekada nerašyk tikro „Wi‑Fi“ tinklo pavadinimo ar slaptažodžio.</div>
+  <div class="note"><b>🏠 Daiktų internetas.</b> Prie tinklo šiandien jungiasi ne tik kompiuteriai ir telefonai, bet ir buities prietaisai: robotai siurbliai, oro kondicionieriai, šaldytuvai, lemputės, durų skambučiai. Jie vadinami <b>išmaniaisiais įrenginiais</b>, o jų visuma – <mark>daiktų internetu</mark> (angl. <i lang="en">Internet of Things</i>, IoT). Dažniausiai jie jungiasi per „Wi‑Fi“ ir valdomi telefono programėle. Kiekvienas prijungtas įrenginys – tarsi dar vienos durys į namų tinklą, todėl jų programinę įrangą reikia atnaujinti, o gamyklinius slaptažodžius pakeisti.</div>
 </section>
 
 <div class="ng" id="namai">
@@ -671,9 +672,18 @@ function onAct(el,fn){el.addEventListener("click",fn);el.addEventListener("keydo
     console:{e:"🎮",n:"Žaidimų konsolė",s:"Konsolė",wire:1,wifi:1},
     printer:{e:"🖨️",n:"Spausdintuvas",s:"Spausdintuvas",wire:1,wifi:1},
     speaker:{e:"🔊",n:"Išmanusis garsiakalbis",s:"Garsiakalbis",wire:0,wifi:1,no:"Išmanieji garsiakalbiai dažniausiai neturi eterneto lizdo ir jungiasi per „Wi‑Fi“."},
-    camera:{e:"📹",n:"Vaizdo kamera",s:"Kamera",wire:1,wifi:1}
+    camera:{e:"📹",n:"Vaizdo kamera",s:"Kamera",wire:1,wifi:1},
+    // išmanieji buities prietaisai (daiktų internetas) – dažniausiai tik „Wi‑Fi“
+    vacuum:{e:"🤖",n:"Robotas siurblys",s:"Siurblys",g:"home",wire:0,wifi:1},
+    aircon:{e:"❄️",n:"Oro kondicionierius",s:"Kondicionierius",g:"home",wire:0,wifi:1},
+    fridge:{e:"🧊",n:"Išmanusis šaldytuvas",s:"Šaldytuvas",g:"home",wire:0,wifi:1},
+    washer:{e:"🧺",n:"Skalbimo mašina",s:"Skalbimo mašina",g:"home",wire:0,wifi:1},
+    bulb:{e:"💡",n:"Išmanioji lemputė",s:"Lemputė",g:"home",wire:0,wifi:1},
+    thermo:{e:"🌡️",n:"Išmanusis termostatas",s:"Termostatas",g:"home",wire:0,wifi:1},
+    bell:{e:"🔔",n:"Vaizdo durų skambutis",s:"Skambutis",g:"home",wire:0,wifi:1}
   };
-  var KEY="ip-namu-tinklas-2", MAX=16, CLOUD=[48,44], H=330, LBL=14;
+  var NO_HOME="Išmanieji buities prietaisai dažniausiai neturi eterneto lizdo ir jungiasi per „Wi‑Fi“.";
+  var KEY="ip-namu-tinklas-2", MAX=18, CLOUD=[48,44], H=330, LBL=15;
   /* Vietos naujiems įrenginiams: tinklelis aplink maršrutizatorių (vidurinis stulpelis paliktas jam) */
   var SLOTS=[];[42,118,194,262].forEach(function(y){[42,122,278,358].forEach(function(x){SLOTS.push([x,y]);});});SLOTS.push([200,42],[200,262]);
   var st=load(), sel=null, refs={};
@@ -686,7 +696,11 @@ function onAct(el,fn){el.addEventListener("click",fn);el.addEventListener("keydo
   function dev(id){for(var i=0;i<st.devs.length;i++)if(st.devs[i].id===id)return st.devs[i];return null;}
   /* paletė */
   var pal=document.getElementById("nb-pal");
-  Object.keys(TYPES).forEach(function(k){var b=document.createElement("button");b.type="button";b.className="ng-btn";b.textContent="+ "+TYPES[k].e+" "+TYPES[k].n;b.addEventListener("click",function(){add(k);});pal.appendChild(b);});
+  [["","Kompiuteriai, telefonai ir pramogos"],["home","Išmanieji buities prietaisai"]].forEach(function(gr){
+    var h=document.createElement("p");h.className="nb-gr";h.textContent=gr[1];pal.appendChild(h);
+    Object.keys(TYPES).forEach(function(k){if((TYPES[k].g||"")!==gr[0])return;
+      var b=document.createElement("button");b.type="button";b.className="ng-btn";b.textContent="+ "+TYPES[k].e+" "+TYPES[k].n;b.addEventListener("click",function(){add(k);});pal.appendChild(b);});
+  });
   function freeSpot(){
     var R=st.router;
     function nearInet(p){var ax=CLOUD[0],ay=CLOUD[1]+12,dx=R[0]-ax,dy=R[1]-ay,L=dx*dx+dy*dy||1,t=clamp(((p[0]-ax)*dx+(p[1]-ay)*dy)/L,0,1);return Math.hypot(p[0]-ax-t*dx,p[1]-ay-t*dy)<26;}
@@ -778,7 +792,7 @@ function onAct(el,fn){el.addEventListener("click",fn);el.addEventListener("keydo
     [["wire","🔌 Laidu (eternetas)"],["wifi","📶 Belaidžiu ryšiu (Wi‑Fi)"],["none","Neprijungtas"]].forEach(function(o){
       var b=document.createElement("button");b.type="button";b.className="ng-btn";b.textContent=o[1];b.setAttribute("aria-pressed",String(d.conn===o[0]));
       b.addEventListener("click",function(){
-        if(o[0]==="wire"&&!TYPES[d.type].wire){msg.textContent=TYPES[d.type].no;return;}
+        if(o[0]==="wire"&&!TYPES[d.type].wire){msg.textContent=TYPES[d.type].no||NO_HOME;return;}
         d.conn=o[0];save();render();say(d.name+" – "+connTxt(d.conn)+".");
       });row.appendChild(b);});
     panel.appendChild(row);panel.appendChild(msg);
@@ -801,7 +815,7 @@ function onAct(el,fn){el.addEventListener("click",fn);el.addEventListener("keydo
   });
   nBtn.addEventListener("click",function(){
     st.netCut=!st.netCut;st.triedN=true;save();render();
-    if(st.netCut)say(st.routerOff?"Interneto kabelis nutrauktas. Įjunk maršrutizatorių ir pažiūrėk, kas vis dar veikia.":"Internetas neveikia, bet namų vietinis tinklas veikia: įrenginiai vis dar „mato“ vienas kitą per maršrutizatorių. Pavyzdžiui, telefonu galima atsispausdinti nuotrauką „Wi‑Fi“ spausdintuvu.","bad");
+    if(st.netCut)say(st.routerOff?"Interneto kabelis nutrauktas. Įjunk maršrutizatorių ir pažiūrėk, kas vis dar veikia.":"Internetas neveikia, bet namų vietinis tinklas veikia: įrenginiai vis dar „mato“ vienas kitą per maršrutizatorių. Pavyzdžiui, telefonu galima atsispausdinti nuotrauką „Wi‑Fi“ spausdintuvu. Tačiau prietaisų, kuriuos valdai programėle per internetą (pvz., įjungti kondicionierių būdamas mokykloje), dabar pasiekti nepavyks.","bad");
     else say("Interneto kabelis sutaisytas – internetas vėl veikia.","ok");
   });
   nameIn.value=st.name||"";
