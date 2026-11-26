@@ -88,6 +88,8 @@
         var again=el("button","quiz-reset","Bandyti dar kartą"); again.type="button"; again.addEventListener("click",restart);
         res.appendChild(again); res.hidden=false;
         wrap.querySelector(":scope > .quiz-reset").hidden=true; // apatinis mygtukas nebereikalingas – jis yra rezultate
+        // pranešame puslapiui (pvz., taškų skaičiavimui); rezultatai niekur nesiunčiami
+        try{ sec.dispatchEvent(new CustomEvent("quizdone",{bubbles:true,detail:{right:right,n:n}})); }catch(e){}
       }
       qs.forEach(function(q,i){
         var fs=el("fieldset","q"), lg=el("legend"), ex=el("p","expl"), name="lq"+si+"-"+i;
