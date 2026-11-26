@@ -57,16 +57,19 @@
 (function(){
   function el(t,c,txt){var e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;}
   function shuffle(a){a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t;} return a;}
-  function verdict(s,n){
-    var r=s/n;
-    if(r===1) return "Puiku! Pažįsti visas kompiuterio vidaus dalis.";
-    if(r>=.8) return "Labai gerai! Peržiūrėk paaiškinimus ten, kur suklydai.";
-    if(r>=.6) return "Gerai, bet dar pakartok teoriją apie dalis, kuriose suklydai.";
-    if(r>=.4) return "Pusiaukelėje. Perskaityk teoriją ir pažaisk žaidimą režimu „Tyrinėk“.";
-    return "Verta pradėti iš naujo: perskaityk teoriją, pažaisk žaidimą ir bandyk dar kartą.";
+  // Įvertinimo sakiniai (100 %, ≥80 %, ≥60 %, ≥40 %, mažiau). Pamoka gali pateikti savus: data-verdicts='["…","…","…","…","…"]'
+  var DEF=["Puiku! Pažįsti visas kompiuterio vidaus dalis.",
+    "Labai gerai! Peržiūrėk paaiškinimus ten, kur suklydai.",
+    "Gerai, bet dar pakartok teoriją apie dalis, kuriose suklydai.",
+    "Pusiaukelėje. Perskaityk teoriją ir pažaisk žaidimą režimu „Tyrinėk“.",
+    "Verta pradėti iš naujo: perskaityk teoriją, pažaisk žaidimą ir bandyk dar kartą."];
+  function verdict(s,n,v){
+    var r=s/n; v=v||DEF;
+    return v[r===1?0:r>=.8?1:r>=.6?2:r>=.4?3:4];
   }
   document.querySelectorAll("[data-quiz]").forEach(function(sec,si){
-    var data=JSON.parse(sec.querySelector('script[type="application/json"]').textContent), box=null;
+    var data=JSON.parse(sec.querySelector('script[type="application/json"]').textContent), box=null, own=null;
+    try{ own=sec.dataset.verdicts?JSON.parse(sec.dataset.verdicts):null; }catch(e){}
     function build(){
       var qs=shuffle(data), n=qs.length, done=0, right=0;
       var wrap=el("div","quiz lesson-q"), head=el("div","quiz-head"), score=el("span","quiz-score"), res=el("div","quiz-result");
@@ -81,7 +84,7 @@
       function finish(){
         res.innerHTML="";
         res.appendChild(el("p","quiz-big",right+" / "+n));
-        res.appendChild(el("p",null,verdict(right,n)));
+        res.appendChild(el("p",null,verdict(right,n,own)));
         var again=el("button","quiz-reset","Bandyti dar kartą"); again.type="button"; again.addEventListener("click",restart);
         res.appendChild(again); res.hidden=false;
         wrap.querySelector(":scope > .quiz-reset").hidden=true; // apatinis mygtukas nebereikalingas – jis yra rezultate

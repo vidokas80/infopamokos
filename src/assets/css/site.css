@@ -441,3 +441,6 @@ a.grade-card:hover{border-color:var(--accent);transform:translateY(-2px)}
   .ill-annot svg text{font-size:46px;stroke-width:16px}
   .ill-annot .ln,.ill-annot .acc{stroke-width:6}
 }
+
+/* Nuorodos pamokos pabaigoje: ankstesnė / kita pamoka */
+.lesson-nav{display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:2rem 0 1rem;font-family:var(--f-display);font-weight:600}

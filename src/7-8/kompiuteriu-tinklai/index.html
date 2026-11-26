@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2.3.1. Kompiuterių tinklai – infopamokos.lt</title>
+<meta name="description" content="8 klasės informatikos pamoka 2.3.1: kas yra kompiuterių tinklas, vietinis, platusis ir belaidis tinklas, tinklo įrenginiai, žvaigždinė, magistralinė ir žiedinė topologijos. Žaidimai „Mažas ar didelis?“, „Topologijų laboratorija“ ir „Mano namų tinklas“.">
+<link rel="icon" href="../../assets/img/bitukas.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+/* Šios pamokos žaidimai. Spalvos – tik per svetainės kintamuosius. */
+.ng{background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:1rem 1rem 1.1rem;margin:1.4rem 0 2rem}
+.ng-h{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.3rem}
+.ng-h h3{margin:0}
+.ng-tag{font-family:var(--f-mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--warm);background:var(--warm-soft);padding:.15rem .55rem;border-radius:99px}
+.ng p{margin:.45rem 0}
+.ng-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0}
+.ng-btn{font:600 .92rem/1.2 var(--f-display);border:1.5px solid var(--accent);background:var(--surface);color:var(--accent);border-radius:8px;padding:.55rem .85rem;cursor:pointer;min-height:44px}
+.ng-btn:hover{background:var(--accent-soft)}
+.ng-btn.pri,.ng-btn[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.ng-btn.warn[aria-pressed="true"]{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.ng-btn:disabled{opacity:.45;cursor:default;background:var(--surface);color:var(--accent)}
+.ng-status{background:var(--paper);border-left:4px solid var(--accent);border-radius:6px;padding:.6rem .8rem;margin:.6rem 0;font-size:.97rem;min-height:2.6rem}
+.ng-status.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.ng-status.bad{border-left-color:var(--bad)}
+.ng-svg{display:block;width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;user-select:none;-webkit-user-select:none}
+.ng-svg text{font-family:var(--f-display);fill:var(--ink)}
+.ng-svg .mut{fill:var(--muted)}
+.ng-svg .halo,.n-flash{paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+#lab-svg{max-width:560px;margin:0 auto}
+.n-link{stroke:var(--muted);stroke-width:2.5;fill:none;stroke-linecap:round}
+.n-link.bb{stroke:var(--accent);stroke-width:4}
+.n-link.wire{stroke:var(--accent);stroke-width:3.5}
+.n-link.wifi{stroke:var(--warm);stroke-width:2.6;stroke-dasharray:2 6}
+.n-link.cut{stroke:var(--bad);stroke-dasharray:6 5;stroke-width:2.5}
+.n-link.dead{stroke:var(--bad);opacity:.35}
+.n-hit{stroke:transparent;stroke-width:18;fill:none;cursor:pointer;pointer-events:stroke}
+.n-hit:focus-visible{stroke:var(--accent-soft)}
+.n-cutmark{font-size:15px}
+.n-dir{fill:var(--muted)}
+.n-term{fill:var(--ink)}
+.pc,.hub,.nb-dev,.nb-router{cursor:pointer;outline:none}
+.pc .scr{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.8}
+.pc .base{fill:var(--ink)}
+.pc .num{font-size:11px;font-weight:700}
+.pc.down .scr{fill:var(--paper);stroke:var(--bad);stroke-dasharray:3 2}
+.pc.down .num{fill:var(--bad)}
+.pc .x,.hub .x,.nb-router .x{stroke:var(--bad);stroke-width:3;stroke-linecap:round;display:none}
+.pc.broken .x,.hub.broken .x,.nb-router.down .x{display:inline}
+.pc.pick .scr{stroke:var(--accent);stroke-width:3}
+.pc.seen .scr{fill:var(--marker);stroke:var(--warm);stroke-width:3}
+.pc.recv .scr{fill:var(--accent);stroke:var(--accent)}
+.pc.recv .num{fill:var(--surface)}
+.pc:focus-visible .scr,.hub:focus-visible rect,.nb-dev:focus-visible .bg,.nb-router:focus-visible rect{stroke:var(--accent);stroke-width:3.5}
+.hub rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.8}
+.hub.broken rect{fill:var(--paper);stroke:var(--bad)}
+.hub .port{fill:var(--accent)}
+.n-flash{font-size:10px;font-weight:700;fill:var(--warm)}
+.n-pkt{fill:var(--warm);stroke:var(--surface);stroke-width:2}
+.ch-list{list-style:none;padding:0;margin:.5rem 0;display:grid;gap:.35rem}
+.ch-list li{display:flex;gap:.5rem;align-items:flex-start;font-size:.97rem}
+.ch-list li::before{content:"○";font-family:var(--f-mono);color:var(--muted);flex:none;width:1.1rem}
+.ch-list li.done::before{content:"✓";color:var(--ok);font-weight:700}
+.ch-list li.done{color:var(--muted)}
+.ch-prog{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+/* „Mažas ar didelis?“ */
+.srt-card{display:flex;gap:.9rem;align-items:center;background:var(--paper);border:1.5px dashed var(--line);border-radius:10px;padding:.9rem 1rem;min-height:5.6rem;font-size:1.05rem}
+.srt-emo{font-size:2.2rem;line-height:1;flex:none}
+.srt-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.7rem 0}
+.srt-btns .ng-btn{min-height:3.2rem}
+.srt-fb{min-height:3.2rem}
+.srt-fb b.r{color:var(--ok)} .srt-fb b.w{color:var(--bad)}
+.srt-top{display:flex;justify-content:space-between;gap:.5rem;font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+/* Topologijų mažosios schemos */
+.topo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.7rem;margin:1rem 0}
+.topo-grid .fig{margin:0}
+.topo-grid figcaption{text-align:center;font-family:var(--f-display);font-weight:600;color:var(--ink);font-size:.95rem}
+/* „Mano namų tinklas“ */
+.nb-name{display:flex;flex-wrap:wrap;gap:.4rem .7rem;align-items:center;margin:.6rem 0}
+.nb-name input{font:inherit;padding:.45rem .6rem;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);min-height:44px;width:min(100%,16rem)}
+.nb-pal{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.nb-pal .ng-btn{font-size:.85rem;padding:.4rem .6rem}
+.nb-svg{touch-action:none}
+.nb-cloud{fill:var(--warm-soft);stroke:var(--warm);stroke-width:1.6}
+.nb-router rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.nb-router .ant{stroke:var(--accent);stroke-width:2.5;stroke-linecap:round}
+.nb-router .led{fill:var(--ok)}
+.nb-router.down rect{fill:var(--paper);stroke:var(--bad)}
+.nb-router.down .led{fill:var(--muted)}
+.nb-dev .bg{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.nb-dev.none .bg{stroke-dasharray:3 3}
+.nb-dev.none{opacity:.6}
+.nb-dev.sel .bg{stroke:var(--accent);stroke-width:3}
+.nb-dev.dim{opacity:.45}
+.nb-dev .emo{font-size:19px}
+.nb-dev .lbl,.nb-router .lbl,.nb-lbl{font-size:10px;font-weight:600}
+.nb-legend .n-link{stroke-width:3}
+.nb-panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;margin:.6rem 0;font-size:.97rem}
+.nb-panel h4{margin:0 0 .4rem;font-family:var(--f-display);font-size:1rem}
+.nb-panel input{font:inherit;padding:.4rem .55rem;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-height:44px;width:min(100%,16rem)}
+.nb-msg{color:var(--warm);font-weight:600;margin:.4rem 0 0}
+.nb-sum{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="bot" id="bot">
+  <div class="bot-bubble" id="bot-bubble" hidden>
+    <p id="bot-text"></p>
+    <button type="button" class="bot-hide" id="bot-hide">Paslėpti Bituką</button>
+  </div>
+  <button type="button" class="bot-btn" id="bot-btn" aria-label="Bitukas, puslapio pagalbininkas. Paspausk, kad pasisveikintų.">
+    <svg viewBox="0 0 100 104" aria-hidden="true">
+      <g class="bot-head" id="bot-head">
+        <line x1="50" y1="23" x2="50" y2="9" class="bot-ant"/>
+        <circle cx="50" cy="7" r="4.5" class="bot-light" id="bot-light"/>
+        <rect x="10" y="22" width="80" height="56" rx="13" class="bot-case"/>
+        <rect x="18" y="30" width="64" height="40" rx="7" class="bot-screen"/>
+        <g class="bot-eyes" id="bot-eyes">
+          <circle cx="38" cy="46" r="9" class="bot-white"/>
+          <circle cx="62" cy="46" r="9" class="bot-white"/>
+          <circle cx="38" cy="46" r="4.5" class="bot-pupil" id="bot-pl"/>
+          <circle cx="62" cy="46" r="4.5" class="bot-pupil" id="bot-pr"/>
+        </g>
+        <path d="M41 61 Q50 65 59 61" class="bot-mouth" id="bot-mouth"/>
+      </g>
+      <rect x="44" y="78" width="12" height="9" class="bot-case"/>
+      <rect x="27" y="87" width="46" height="9" rx="4.5" class="bot-case"/>
+    </svg>
+  </button>
+</div>
+<div class="wrap">
+<p class="crumbs"><a href="../../">infopamokos.lt</a> <span aria-hidden="true">/</span> <a href="../#8">8 klasė</a> <span aria-hidden="true">/</span> 2.3.1 pamoka</p>
+<header class="top">
+  <div class="lesson-hero">
+    <div class="lesson-hero-t">
+      <div class="eyebrow">8 klasė · 2.3 · Tinklų veikimo principai</div>
+      <h1>Kompiuterių tinklai</h1>
+      <p class="lead">2.3.1. Tinklas aplink mus: kaip bendrauja kompiuteriai</p>
+    </div>
+    <img src="../../assets/img/iliustracijos/antraste-tinklai.webp" width="1536" height="864" alt="Mokyklinis stalas su belaidžiu maršrutizatoriumi, nuo kurio mėlyni laidai eina į nešiojamąjį ir stalinį kompiuterius; šalia telefonas ir planšetė, sujungti su maršrutizatoriumi belaidžiu ryšiu, ir lapas su žvaigždinės topologijos schema.">
+  </div>
+</header>
+
+<main class="lessons">
+<section class="topic lesson" id="kas-yra-tinklas">
+  <div class="key"><div class="key-label">Pamokos tikslai</div><ul>
+    <li>Suprasti, kas yra kompiuterių tinklas ir kam jis reikalingas.</li>
+    <li>Išvardyti ir atpažinti pagrindinius tinklų tipus.</li>
+    <li>Susipažinti su tinklo topologijomis ir jų privalumais bei trūkumais.</li>
+    <li>Nubraižyti savo namų tinklo schemą.</li>
+  </ul></div>
+
+  <h3>Kas yra kompiuterių tinklas</h3>
+  <p>Įsivaizduok: turi puikų kompiuterį, bet negali nusiųsti draugui nuotraukos, atsispausdinti referato klasės spausdintuvu ar pažiūrėti vaizdo įrašo internete. Nepatogu, tiesa? Kad įrenginiai galėtų „susikalbėti“, juos reikia sujungti.</p>
+  <p><mark>Kompiuterių tinklas</mark> – du ar daugiau kompiuterių ir kitų įrenginių (spausdintuvų, telefonų, televizorių), sujungtų tarpusavyje, kad galėtų dalytis duomenimis ir ištekliais. Įrenginiai jungiami <b>laidais</b> arba <b>belaidžiu ryšiu</b>.</p>
+  <p>Tinklas leidžia:</p>
+  <ul class="tight">
+    <li><b>dalytis duomenimis</b> – persiųsti nuotraukas, dokumentus, vaizdo įrašus;</li>
+    <li><b>dalytis ištekliais</b> – visa klasė gali naudotis vienu spausdintuvu ar skeneriu;</li>
+    <li><b>bendrauti</b> – rašyti el. laiškus ir žinutes, skambinti vaizdo skambučiu;</li>
+    <li><b>gauti informaciją</b> – naršyti internete, žiūrėti naujienas, mokytis.</li>
+  </ul>
+
+  <div class="note"><b>💡 Įdomus faktas.</b> Interneto pirmtakas – tinklas <span lang="en">ARPANET</span>, sukurtas JAV 1969 metais. 1969 m. spalio 29 d. iš Kalifornijos universiteto Los Andžele (UCLA) mokslininkai bandė nusiųsti žodį <code>LOGIN</code> į kitą kompiuterį už kelių šimtų kilometrų. Spėjo perduoti tik raides <code>L</code> ir <code>O</code> – tada sistema „nulūžo“. Visą žodį pavyko nusiųsti po valandos.</div>
+
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Ar tiesa, kad internetas sukurtas atlaikyti branduolinį karą?</summary><div>
+    <p>Tai dažnas mitas. <span lang="en">ARPANET</span> finansavo JAV gynybos departamento agentūra ARPA, o kūrė mokslininkai universitetuose. Branduolinio karo atvejį nagrinėjo kitas, su <span lang="en">ARPANET</span> nesusijęs tyrimas apie saugų karinį balso ryšį. Interneto istorikai pabrėžia, kad pats <span lang="en">ARPANET</span> tam kurtas nebuvo.</p>
+  </div></details>
+
+  <h3>Svarbiausios sąvokos</h3>
+  <dl class="terms">
+    <dt>Kompiuterių tinklas</dt><dd>du ar daugiau kompiuterių ir kitų įrenginių, sujungtų tarpusavyje, kad galėtų dalytis duomenimis ir ištekliais.</dd>
+    <dt>Vietinis tinklas <small>angl. LAN – <i lang="en">local area network</i></small></dt><dd>tinklas, jungiantis įrenginius nedidelėje teritorijoje: namuose, mokykloje, biure.</dd>
+    <dt>Platusis tinklas <small>angl. WAN – <i lang="en">wide area network</i></small></dt><dd>tinklas, apimantis didelę teritoriją ir jungiantis daug vietinių tinklų.</dd>
+    <dt>Belaidis tinklas</dt><dd>tinklas, kuriame įrenginiai jungiami ir duomenys perduodami be laidų, dažniausiai per „Wi‑Fi“.</dd>
+    <dt>Internetas</dt><dd>pasaulinis kompiuterių tinklas, jungiantis milijardus įrenginių visame pasaulyje.</dd>
+    <dt>Tinklo topologija</dt><dd>schema, rodanti, kaip tinkle išdėstyti ir sujungti kompiuteriai ir kiti įrenginiai.</dd>
+    <dt>Žvaigždinė topologija</dt><dd>visi įrenginiai jungiami prie vieno centrinio įrenginio – komutatoriaus arba maršrutizatoriaus.</dd>
+    <dt>Magistralinė topologija</dt><dd>visi įrenginiai jungiami prie vieno bendro laido – magistralės.</dd>
+    <dt>Žiedinė topologija</dt><dd>įrenginiai sujungti į uždarą ratą (žiedą), o duomenys keliauja viena kryptimi.</dd>
+  </dl>
+</section>
+
+<section class="topic lesson" id="tinklu-tipai">
+  <h3>Pagrindiniai tinklų tipai</h3>
+  <p><mark>Vietinis tinklas</mark> (LAN) apima nedidelę teritoriją: tavo namus, mokyklos kompiuterių klasę, biurą. Įrenginiai jame jungiami eterneto laidais arba belaidžiu ryšiu.</p>
+  <p><mark>Platusis tinklas</mark> (WAN) apima didelę teritoriją – miestą, šalį ar net visą pasaulį. Jis sujungia daug vietinių tinklų, nutolusių dideliu atstumu. Geriausiai žinomas plačiojo tinklo pavyzdys – <b>internetas</b>: didžiausias pasaulio tinklas, sujungęs milijardus įrenginių.</p>
+  <p><mark>Belaidis tinklas</mark> – tinklas, kuriame telefonai, planšetės, nešiojamieji kompiuteriai prisijungia be laidų. Dažniausiai tai būna vietinis tinklas, pavyzdžiui, namų ar mokyklos „Wi‑Fi“.</p>
+
+  <figure class="fig"><div class="fig-scroll"><svg class="narrow" viewBox="0 0 360 430" role="img" aria-label="Schema: viršuje namų vietinis tinklas – kompiuteris laidu, telefonas ir televizorius belaidžiu ryšiu prijungti prie maršrutizatoriaus. Namų maršrutizatorius sujungtas su internetu – plačiuoju tinklu. Apačioje mokyklos vietinis tinklas: maršrutizatorius, prie kurio prijungti du kompiuteriai ir spausdintuvas. Per internetą namų ir mokyklos tinklai gali bendrauti." xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="344" height="130" rx="12" class="box dash"/>
+    <text x="22" y="30" font-size="13" font-weight="600">Namų vietinis tinklas (LAN)</text>
+    <rect x="20" y="44" width="96" height="32" rx="6" class="box"/><text x="68" y="65" text-anchor="middle" font-size="12">Kompiuteris</text>
+    <rect x="132" y="44" width="96" height="32" rx="6" class="box"/><text x="180" y="65" text-anchor="middle" font-size="12">Telefonas</text>
+    <rect x="244" y="44" width="96" height="32" rx="6" class="box"/><text x="292" y="65" text-anchor="middle" font-size="12">Televizorius</text>
+    <line x1="68" y1="76" x2="150" y2="96" class="acc-line"/>
+    <line x1="180" y1="76" x2="180" y2="96" class="ln dash"/>
+    <line x1="292" y1="76" x2="210" y2="96" class="ln dash"/>
+    <rect x="110" y="96" width="140" height="30" rx="6" class="acc"/><text x="180" y="116" text-anchor="middle" font-size="12" font-weight="600">Maršrutizatorius</text>
+    <line x1="180" y1="126" x2="180" y2="182" class="acc-line"/>
+    <ellipse cx="180" cy="215" rx="160" ry="34" class="warm"/>
+    <text x="180" y="212" text-anchor="middle" font-size="13" font-weight="600">Internetas – platusis tinklas (WAN)</text>
+    <text x="180" y="230" text-anchor="middle" font-size="11" class="mut">jungia tinklus visame pasaulyje</text>
+    <line x1="180" y1="249" x2="180" y2="302" class="acc-line"/>
+    <rect x="8" y="290" width="344" height="132" rx="12" class="box dash"/>
+    <rect x="110" y="302" width="140" height="30" rx="6" class="acc"/><text x="180" y="322" text-anchor="middle" font-size="12" font-weight="600">Maršrutizatorius</text>
+    <line x1="150" y1="332" x2="68" y2="352" class="acc-line"/>
+    <line x1="180" y1="332" x2="180" y2="352" class="acc-line"/>
+    <line x1="210" y1="332" x2="292" y2="352" class="acc-line"/>
+    <rect x="20" y="352" width="96" height="32" rx="6" class="box"/><text x="68" y="373" text-anchor="middle" font-size="12">Kompiuteris</text>
+    <rect x="132" y="352" width="96" height="32" rx="6" class="box"/><text x="180" y="373" text-anchor="middle" font-size="12">Kompiuteris</text>
+    <rect x="244" y="352" width="96" height="32" rx="6" class="box"/><text x="292" y="373" text-anchor="middle" font-size="12">Spausdintuvas</text>
+    <text x="22" y="408" font-size="13" font-weight="600">Mokyklos vietinis tinklas (LAN)</text>
+  </svg></div><figcaption>Ištisinė linija – laidas, punktyrinė – belaidis ryšys. Kiekvienas vietinis tinklas per maršrutizatorių prisijungia prie interneto, todėl namų kompiuteris gali pasiekti mokyklos svetainę.</figcaption></figure>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Tinklas</th><th>Kokią teritoriją apima</th><th>Pavyzdžiai</th></tr></thead>
+    <tbody>
+      <tr><td><b>Vietinis (LAN)</b></td><td>namai, klasė, mokykla, biuras</td><td>kompiuterių klasė; namų „Wi‑Fi“</td></tr>
+      <tr><td><b>Platusis (WAN)</b></td><td>miestas, šalis, visas pasaulis</td><td>internetas; banko skyrių visoje šalyje tinklas</td></tr>
+      <tr><td><b>Belaidis</b></td><td>dažniausiai vietinis tinklas be laidų</td><td>kavinės ar bibliotekos „Wi‑Fi“</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="ng" id="rusiuokle">
+  <div class="ng-h"><span class="ng-tag">Žaidimas 1</span><h3>Mažas ar didelis?</h3></div>
+  <p>Perskaityk aprašymą ir nuspręsk: tai <b>vietinis</b> tinklas (nedidelė teritorija) ar <b>platusis</b> (didelė teritorija, jungia daug tinklų)?</p>
+  <div class="srt-top"><span id="srt-n"></span><span id="srt-s"></span></div>
+  <div class="srt-card" id="srt-card" aria-live="polite"></div>
+  <div class="srt-btns">
+    <button type="button" class="ng-btn" data-a="lan">🏠 Vietinis (LAN)</button>
+    <button type="button" class="ng-btn" data-a="wan">🌍 Platusis (WAN)</button>
+  </div>
+  <p class="srt-fb" id="srt-fb" aria-live="polite"></p>
+  <div class="ng-row"><button type="button" class="ng-btn pri" id="srt-next" hidden>Toliau →</button></div>
+</div>
+
+<section class="topic lesson" id="tinklo-irenginiai">
+  <h3>Kas sujungia tinklą: tinklo įrenginiai</h3>
+  <p>Kiekvienas kompiuteris, telefonas ar spausdintuvas tinkle turi <b>tinklo plokštę</b>: eterneto lizdą laidui arba „Wi‑Fi“ modulį belaidžiam ryšiui. O laidus ir ryšius sujungia specialūs tinklo įrenginiai.</p>
+  <dl class="terms">
+    <dt>Komutatorius <small>angl. <i lang="en">switch</i></small></dt><dd>turi daug lizdų laidams ir jungia įrenginius viename vietiniame tinkle. Gautus duomenis siunčia <b>tik tam įrenginiui</b>, kuriam jie skirti.</dd>
+    <dt>Maršrutizatorius <small>angl. <i lang="en">router</i></small></dt><dd>jungia skirtingus tinklus, pavyzdžiui, namų tinklą su internetu, ir parenka kelią, kuriuo keliaus duomenys.</dd>
+    <dt>Belaidės prieigos taškas <small>angl. <i lang="en">access point</i></small></dt><dd>leidžia įrenginiams prisijungti prie tinklo per „Wi‑Fi“.</dd>
+    <dt>Šakotuvas <small>angl. <i lang="en">hub</i></small></dt><dd>senesnis ir paprastesnis įrenginys: gautus duomenis siunčia <b>visiems</b> prijungtiems įrenginiams. Šiandien jį beveik visur pakeitė komutatoriai.</dd>
+  </dl>
+  <div class="note"><b>🏠 Namų „maršrutizatorius“ – trys viename.</b> Dėžutė su antenomis, kurią turi daugelis namų, viename korpuse sujungia <b>maršrutizatorių</b> (jungia namų tinklą su internetu), <b>komutatorių</b> (keli lizdai laidams) ir <b>belaidės prieigos tašką</b> („Wi‑Fi“). Todėl kasdien jį tiesiog vadiname maršrutizatoriumi.</div>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> Kuo skiriasi šakotuvas ir komutatorius?</summary><div>
+    <p><b>Šakotuvas</b> veikia kaip mokyklos garsiakalbis: ką jis gauna, tą „paskelbia“ visiems. Kiekvienas kompiuteris turi pats spręsti, ar žinutė skirta jam. Kai siunčiama daug duomenų, tinklas užsikemša.</p>
+    <p><b>Komutatorius</b> veikia kaip paštininkas: jis žino, kuris įrenginys prijungtas prie kurio lizdo, ir žinutę nuneša tik adresatui. Taip tinklas veikia greičiau ir saugiau.</p>
+  </div></details>
+</section>
+
+<section class="topic lesson" id="topologijos">
+  <h3>Tinklų topologijos: kaip jungiami kompiuteriai</h3>
+  <p><mark>Tinklo topologija</mark> – tai schema, rodanti, kaip tinkle išdėstyti ir sujungti įrenginiai: laidais ar belaidžiu ryšiu, ir kaip tinkle juda duomenys. Trys pagrindinės topologijos:</p>
+  <div class="topo-grid">
+    <figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 200 170" role="img" aria-label="Žvaigždinė topologija: šeši kompiuteriai atskirais laidais sujungti su vienu centriniu įrenginiu" xmlns="http://www.w3.org/2000/svg">
+      <g class="ln"><line x1="100" y1="85" x2="100" y2="23"/><line x1="100" y1="85" x2="154" y2="54"/><line x1="100" y1="85" x2="154" y2="116"/><line x1="100" y1="85" x2="100" y2="147"/><line x1="100" y1="85" x2="46" y2="116"/><line x1="100" y1="85" x2="46" y2="54"/></g>
+      <rect x="84" y="77" width="32" height="16" rx="3" class="acc"/>
+      <g class="box"><rect x="89" y="15" width="22" height="16" rx="2"/><rect x="143" y="46" width="22" height="16" rx="2"/><rect x="143" y="108" width="22" height="16" rx="2"/><rect x="89" y="139" width="22" height="16" rx="2"/><rect x="35" y="108" width="22" height="16" rx="2"/><rect x="35" y="46" width="22" height="16" rx="2"/></g>
+    </svg></div><figcaption>Žvaigždinė</figcaption></figure>
+    <figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 200 170" role="img" aria-label="Magistralinė topologija: keturi kompiuteriai trumpais laidais prijungti prie vieno bendro laido – magistralės, kurios galuose yra terminatoriai" xmlns="http://www.w3.org/2000/svg">
+      <g class="ln"><line x1="35" y1="56" x2="35" y2="85"/><line x1="80" y1="114" x2="80" y2="85"/><line x1="125" y1="56" x2="125" y2="85"/><line x1="170" y1="114" x2="170" y2="85"/></g>
+      <line x1="12" y1="85" x2="188" y2="85" class="acc-line"/>
+      <rect x="6" y="79" width="6" height="12" class="fillacc"/><rect x="188" y="79" width="6" height="12" class="fillacc"/>
+      <g class="box"><rect x="24" y="40" width="22" height="16" rx="2"/><rect x="69" y="114" width="22" height="16" rx="2"/><rect x="114" y="40" width="22" height="16" rx="2"/><rect x="159" y="114" width="22" height="16" rx="2"/></g>
+      <text x="100" y="160" text-anchor="middle" font-size="11" class="mut">magistralė</text>
+    </svg></div><figcaption>Magistralinė</figcaption></figure>
+    <figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 200 170" role="img" aria-label="Žiedinė topologija: šeši kompiuteriai sujungti į uždarą ratą, rodyklės rodo, kad duomenys keliauja viena kryptimi" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="tp-ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="arrowhead"/></marker></defs>
+      <g class="ln"><polyline points="100,23 127,38.5 154,54" marker-mid="url(#tp-ar)"/><polyline points="154,54 154,85 154,116" marker-mid="url(#tp-ar)"/><polyline points="154,116 127,131.5 100,147" marker-mid="url(#tp-ar)"/><polyline points="100,147 73,131.5 46,116" marker-mid="url(#tp-ar)"/><polyline points="46,116 46,85 46,54" marker-mid="url(#tp-ar)"/><polyline points="46,54 73,38.5 100,23" marker-mid="url(#tp-ar)"/></g>
+      <g class="box"><rect x="89" y="15" width="22" height="16" rx="2"/><rect x="143" y="46" width="22" height="16" rx="2"/><rect x="143" y="108" width="22" height="16" rx="2"/><rect x="89" y="139" width="22" height="16" rx="2"/><rect x="35" y="108" width="22" height="16" rx="2"/><rect x="35" y="46" width="22" height="16" rx="2"/></g>
+    </svg></div><figcaption>Žiedinė</figcaption></figure>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Topologija</th><th>Kaip sujungta</th><th>Privalumai</th><th>Trūkumai</th></tr></thead>
+    <tbody>
+      <tr><td><b>Žvaigždinė</b></td><td>kiekvienas įrenginys atskiru laidu ar belaidžiu ryšiu jungiamas prie centrinio įrenginio (komutatoriaus ar maršrutizatoriaus)</td><td>lengva prijungti naują įrenginį; nutrūkus vienam laidui, kiti įrenginiai veikia</td><td>sugedus centriniam įrenginiui, neveikia visas tinklas</td></tr>
+      <tr><td><b>Magistralinė</b></td><td>visi įrenginiai jungiami prie vieno bendro laido – magistralės; duomenis „mato“ visi</td><td>paprasta įrengti nedideliame tinkle, reikia mažiau kabelių</td><td>pažeidus magistralę, neveikia visas tinklas; sunku rasti gedimo vietą</td></tr>
+      <tr><td><b>Žiedinė</b></td><td>įrenginiai sujungti į uždarą ratą; duomenys keliauja viena kryptimi per kiekvieną įrenginį, kol pasiekia gavėją</td><td>kiekvienas įrenginys paeiliui gauna galimybę siųsti duomenis</td><td>nutrūkus ryšiui vienoje vietoje, gali sustoti visas tinklas; sunkiau prijungti naują įrenginį</td></tr>
+    </tbody>
+  </table></div>
+  <p>Šiandien dažniausiai naudojama <b>žvaigždinė topologija</b>: taip sujungti ir tavo namų tinklas, ir mokyklos kompiuterių klasė. Magistralinė ir žiedinė topologijos buvo populiarios anksčiau.</p>
+  <details class="deep"><summary><span class="deep-label">Giliau</span> O kokia interneto topologija?</summary><div>
+    <p>Internete daugybė maršrutizatorių sujungti tarpusavyje ne vienu, o keliais keliais – tarsi tinklas su daug mazgų. Tokia sandara vadinama <b>tinkline topologija</b>. Jei vienas ryšys nutrūksta, duomenys keliauja kitu keliu. Apie tai, kaip duomenys randa kelią internete, sužinosi kitoje pamokoje.</p>
+  </div></details>
+</section>
+
+<div class="ng" id="laboratorija">
+  <div class="ng-h"><span class="ng-tag">Žaidimas 2</span><h3>Topologijų laboratorija</h3></div>
+  <p>Išbandyk tris topologijas. <b>Spausk ant laido</b>, kad jį nukirptum, arba <b>ant įrenginio</b>, kad jį „sugadintum“ (spausk dar kartą – sutaisysi). Mygtuku <b>✉️ Siųsti žinutę</b> pasirink siuntėją ir gavėją ir stebėk, kaip keliauja duomenys. Atlik visas užduotis.</p>
+  <div class="ng-row" role="group" aria-label="Topologija">
+    <button type="button" class="ng-btn" data-topo="star" aria-pressed="true">Žvaigždinė</button>
+    <button type="button" class="ng-btn" data-topo="bus" aria-pressed="false">Magistralinė</button>
+    <button type="button" class="ng-btn" data-topo="ring" aria-pressed="false">Žiedinė</button>
+  </div>
+  <svg class="ng-svg" id="lab-svg" viewBox="0 0 360 260" role="group" aria-label="Tinklo schema: kompiuteriai ir laidai" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="ng-row">
+    <button type="button" class="ng-btn pri" id="lab-send">✉️ Siųsti žinutę</button>
+    <button type="button" class="ng-btn" id="lab-fix">🔧 Viską sutaisyti</button>
+  </div>
+  <p class="ng-status" id="lab-status" aria-live="polite"></p>
+  <p><b>Užduotys</b> <span class="ch-prog" id="lab-prog"></span></p>
+  <ul class="ch-list" id="lab-ch"></ul>
+</div>
+
+<section class="topic lesson" id="namu-tinklas">
+  <h3>Praktinė užduotis: mano namų tinklas</h3>
+  <p>Dabar nubraižyk <b>savo namų</b> tinklo schemą žaidime „Mano namų tinklas“.</p>
+  <ol class="tight">
+    <li>Pagalvok, kurie įrenginiai tavo namuose jungiasi prie interneto: kompiuteriai, telefonai, planšetės, televizorius, žaidimų konsolė, spausdintuvas… Jei nežinai, paklausk tėvų.</li>
+    <li>Įrašyk savo vardą ir sudėk įrenginius į schemą. Kiekvieną įrenginį paspausk ir pasirink, kaip jis prijungtas: <b>laidu</b> ar <b>belaidžiu ryšiu</b>. <i>Kaip sužinoti?</i> Jei nuo įrenginio iki maršrutizatoriaus eina laidas su plačiu permatomu kištuku, tai eterneto laidas.</li>
+    <li>Išbandyk du mygtukus: <b>išjunk maršrutizatorių</b> ir <b>nutrauk interneto kabelį</b>. Pastebėk, kuo skiriasi rezultatas.</li>
+    <li>Atsisiųsk schemos paveikslėlį ir atsakyk į klausimus (žemiau žaidimo). Pateik juos mokytojui taip, kaip jis nurodys.</li>
+  </ol>
+  <div class="note"><b>🔒 Saugumas.</b> Schemoje rašyk tik įrenginių pavadinimus. Niekada nerašyk tikro „Wi‑Fi“ tinklo pavadinimo ar slaptažodžio.</div>
+</section>
+
+<div class="ng" id="namai">
+  <div class="ng-h"><span class="ng-tag">Žaidimas 3</span><h3>Mano namų tinklas</h3></div>
+  <div class="nb-name"><label for="nb-vardas"><b>Tavo vardas:</b></label><input id="nb-vardas" maxlength="30" autocomplete="off" placeholder="pvz., Ugnė"></div>
+  <p>Spausk mygtuką, kad pridėtum įrenginį. Įrenginius galima tempti pele ar pirštu.</p>
+  <div class="nb-pal" id="nb-pal" role="group" aria-label="Pridėti įrenginį"></div>
+  <svg class="ng-svg nb-svg" id="nb-svg" viewBox="0 0 400 330" role="group" aria-label="Namų tinklo schema" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="nb-panel" id="nb-panel" aria-live="polite"></div>
+  <div class="ng-row">
+    <button type="button" class="ng-btn warn" id="nb-router" aria-pressed="false">⚡ Išjungti maršrutizatorių</button>
+    <button type="button" class="ng-btn warn" id="nb-net" aria-pressed="false">✂️ Nutraukti interneto kabelį</button>
+  </div>
+  <p class="ng-status" id="nb-status" aria-live="polite"></p>
+  <p class="nb-sum" id="nb-sum"></p>
+  <p><b>Ar viskas padaryta?</b></p>
+  <ul class="ch-list" id="nb-ch"></ul>
+  <div class="ng-row">
+    <button type="button" class="ng-btn pri" id="nb-png">⬇️ Atsisiųsti paveikslėlį</button>
+    <button type="button" class="ng-btn" id="nb-copy">📋 Kopijuoti aprašą</button>
+    <button type="button" class="ng-btn" id="nb-reset">🗑️ Pradėti iš naujo</button>
+  </div>
+  <p class="nb-sum">Schema išsaugoma tik šioje naršyklėje.</p>
+</div>
+
+<section class="topic lesson" id="klausimai">
+  <h3>Atsakyk į klausimus</h3>
+  <ol class="tight">
+    <li>Kiek įrenginių yra tavo namų tinkle? Kiek jų prijungta laidu, o kiek – belaidžiu ryšiu?</li>
+    <li>Kokia tavo namų tinklo topologija? Kodėl taip manai?</li>
+    <li>Kas nutiktų, jei sugestų maršrutizatorius?</li>
+    <li>Kuo skiriasi „neveikia internetas“ ir „sugedo maršrutizatorius“? Kuris namų tinklo įrenginys vis tiek galėtų veikti, kai nėra interneto?</li>
+    <li>Kodėl telefono negalima prijungti prie maršrutizatoriaus eterneto laidu?</li>
+  </ol>
+</section>
+
+<section class="topic lesson lesson-quiz" id="pasitikrink-231" data-quiz data-verdicts='["Puiku! Tinklus ir topologijas išmanai kaip tikras tinklų specialistas.","Labai gerai! Peržiūrėk paaiškinimus ten, kur suklydai.","Gerai, bet dar pakartok tinklų tipus ir topologijų lentelę.","Pusiaukelėje. Perskaityk teoriją ir dar kartą pažaisk „Topologijų laboratoriją“.","Verta pradėti iš naujo: perskaityk teoriją, pažaisk žaidimus ir bandyk dar kartą."]'>
+  <h3>Pasitikrink žinias</h3>
+  <p class="quiz-hint">13 klausimų apie tinklus ir topologijas. Po kiekvieno atsakymo iškart pamatysi, ar teisingai, ir paaiškinimą.</p>
+  <noscript><p>Testui reikia įjungto JavaScript.</p></noscript>
+  <script type="application/json">
+  [
+   {"t":"choice","q":"Kas yra kompiuterių tinklas?",
+    "a":["Du ar daugiau kompiuterių ir kitų įrenginių, sujungtų tarpusavyje, kad galėtų dalytis duomenimis ir ištekliais","Vienas labai galingas kompiuteris","Visos kompiuteryje įdiegtos programos","Laidai kompiuterio korpuso viduje"],
+    "e":"Tinklas – tai sujungti įrenginiai, kurie gali dalytis duomenimis (failais) ir ištekliais (pvz., spausdintuvu)."},
+   {"t":"choice","q":"Mokyklos kompiuterių klasėje 25 kompiuteriai sujungti su vienu komutatoriumi. Koks tai tinklas?",
+    "a":["Vietinis (LAN)","Platusis (WAN)","Internetas","Tai ne tinklas"],
+    "e":"Viena klasė – nedidelė teritorija, todėl tai vietinis tinklas."},
+   {"t":"choice","q":"Kuris pavyzdys – platusis tinklas (WAN)?",
+    "a":["Internetas","Namų „Wi‑Fi“ tinklas","Mokyklos kompiuterių klasė","Du kompiuteriai, sujungti vienu laidu"],
+    "e":"Internetas apima visą pasaulį ir jungia milijonus vietinių tinklų – tai didžiausias platusis tinklas."},
+   {"t":"tf","q":"Belaidžiame tinkle įrenginiai jungiami be laidų, dažniausiai per „Wi‑Fi“.","ok":true,
+    "e":"Teisinga. Namų, mokyklos ar kavinės „Wi‑Fi“ – belaidžio vietinio tinklo pavyzdžiai."},
+   {"t":"choice","q":"Visi kompiuteriai atskirais laidais prijungti prie vieno centrinio įrenginio. Kokia tai topologija?",
+    "a":["Žvaigždinė","Magistralinė","Žiedinė"],
+    "e":"Centrinis įrenginys su „spinduliais“ į kiekvieną kompiuterį – tai žvaigždė."},
+   {"t":"choice","q":"Žvaigždinės topologijos tinkle nutrūko laidas, jungiantis vieną kompiuterį. Kas nutiks?",
+    "a":["Neveiks tik tas kompiuteris, kiti dirbs toliau","Neveiks visas tinklas","Neveiks pusė kompiuterių","Nieko – laidas nereikalingas"],
+    "e":"Žvaigždėje kiekvienas kompiuteris turi savo laidą, todėl gedimas paliečia tik jį. Tai šios topologijos privalumas."},
+   {"t":"choice","q":"Kuri žvaigždinės topologijos vieta yra silpniausia?",
+    "a":["Centrinis įrenginys – komutatorius ar maršrutizatorius","Bet kuris kompiuteris","Spausdintuvas","Monitorius"],
+    "e":"Visi duomenys keliauja per centrinį įrenginį. Jam sugedus, neveikia visas tinklas."},
+   {"t":"choice","q":"Kurioje topologijoje duomenys keliauja ratu viena kryptimi per kiekvieną įrenginį?",
+    "a":["Žiedinėje","Žvaigždinėje","Magistralinėje"],
+    "e":"Žiede duomenys perduodami iš vieno įrenginio kitam, kol pasiekia gavėją."},
+   {"t":"tf","q":"Magistralinėje topologijoje pažeidus bendrą laidą – magistralę – sustoja visas tinklas.","ok":true,
+    "e":"Teisinga. Visi įrenginiai naudoja tą patį laidą, todėl jo pažeidimas sustabdo visą tinklą."},
+   {"t":"choice","q":"Kuris įrenginys sujungia namų tinklą su internetu?",
+    "a":["Maršrutizatorius","Spausdintuvas","Monitorius","Klaviatūra"],
+    "e":"Maršrutizatorius jungia skirtingus tinklus – namų vietinį tinklą ir internetą."},
+   {"t":"choice","q":"Namuose dingo internetas, bet maršrutizatorius veikia. Ar telefonu galima atsispausdinti nuotrauką „Wi‑Fi“ spausdintuvu?",
+    "a":["Taip – namų vietinis tinklas veikia ir be interneto","Ne – be interneto neveikia joks tinklas","Tik jei telefonas prijungtas laidu"],
+    "e":"Telefonas ir spausdintuvas yra tame pačiame vietiniame tinkle, todėl gali bendrauti per maršrutizatorių ir be interneto."},
+   {"t":"tf","q":"Internetas buvo sukurtas tam, kad atlaikytų branduolinį karą.","ok":false,
+    "e":"Neteisinga – tai mitas. Interneto pirmtaką ARPANET kūrė mokslininkai; branduolinį karą nagrinėjo kitas, nesusijęs tyrimas."},
+   {"t":"match","q":"Sujunk sąvoką su paaiškinimu.",
+    "p":[["Vietinis tinklas","namų, klasės ar biuro tinklas"],["Platusis tinklas","jungia tinklus dideliu atstumu"],["Topologija","įrenginių išdėstymo ir sujungimo schema"],["Komutatorius","duomenis siunčia tik tam įrenginiui, kuriam jie skirti"],["Maršrutizatorius","jungia skirtingus tinklus, pvz., namų tinklą su internetu"]],
+    "e":"Vietinis tinklas mažas, platusis – didelis; topologija – sujungimo schema; komutatorius jungia įrenginius viename tinkle, o maršrutizatorius – skirtingus tinklus."}
+  ]
+  </script>
+</section>
+
+<section class="topic lesson" id="saltiniai-231">
+  <aside class="sources"><h3>Šaltiniai</h3><ul>
+    <li><a href="https://emokykla.lt">Informatikos bendroji programa</a> <span class="src-note">– 7–8 klasių mokymo(si) turinys</span></li>
+    <li><a href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/">Internet Society: <i lang="en">A Brief History of the Internet</i></a> <span class="src-note">– ARPANET pradžia 1969 m., mitas apie branduolinį karą</span></li>
+    <li><a href="https://www.lk.cs.ucla.edu/internet_first_words.html">L. Kleinrock, UCLA: <i lang="en">The Day the Infant Internet Uttered its First Words</i></a> <span class="src-note">– pirmoji žinutė „LO“, 1969 m. spalio 29 d.</span></li>
+  </ul></aside>
+</section>
+
+<nav class="lesson-nav" aria-label="Pamokos"><a href="../operacines-sistemos-ir-programine-iranga/">← 2.2. Operacinės sistemos ir programinė įranga</a><a href="../#8">Visos 8 klasės pamokos</a></nav>
+</main>
+
+<footer><button type="button" class="bot-restore" id="bot-restore" hidden>Rodyti Bituką</button> Medžiaga 7–8 klasėms parengta pagal Informatikos bendrąją programą ir pildoma.</footer>
+</div>
+
+<script>
+/* Bendros pagalbinės funkcijos */
+var NS="http://www.w3.org/2000/svg";
+var RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+function S(tag,at,par){var e=document.createElementNS(NS,tag);for(var k in at)e.setAttribute(k,at[k]);if(par)par.appendChild(e);return e;}
+function T(txt,at,par){var e=S("text",at,par);e.textContent=txt;return e;}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function onAct(el,fn){el.addEventListener("click",fn);el.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn(e);}});}
+
+/* ===== Žaidimas 1: Mažas ar didelis? ===== */
+(function(){
+  var ITEMS=[
+    ["🏫","Mokyklos kompiuterių klasė: 20 kompiuterių sujungti laidais su vienu komutatoriumi.","lan","Viena klasė – nedidelė teritorija."],
+    ["🏠","Namų „Wi‑Fi“: telefonai, planšetė ir televizorius.","lan","Namai – nedidelė teritorija. Tai belaidis vietinis tinklas."],
+    ["🌍","Internetas.","wan","Internetas jungia tinklus visame pasaulyje – didžiausias platusis tinklas."],
+    ["🏦","Banko skyriai Vilniuje, Kaune ir Klaipėdoje sujungti į vieną tinklą.","wan","Skyriai skirtinguose miestuose – didelė teritorija, daug vietinių tinklų."],
+    ["🖨️","Biuras: šeši kompiuteriai naudojasi vienu spausdintuvu.","lan","Vienas biuras – nedidelė teritorija."],
+    ["📶","Mobiliojo ryšio operatoriaus tinklas visoje Lietuvoje.","wan","Tinklas apima visą šalį."],
+    ["🎮","Dvi žaidimų konsolės viename kambaryje sujungtos laidu.","lan","Net du sujungti įrenginiai jau yra tinklas – mažas vietinis."],
+    ["☕","Kavinės nemokamas „Wi‑Fi“ lankytojams.","lan","Viena kavinė – nedidelė teritorija. Tai belaidis vietinis tinklas."],
+    ["🛒","Prekybos tinklo parduotuvių kasos visoje Europoje siunčia duomenis į centrinį serverį.","wan","Parduotuvės skirtingose šalyse – labai didelė teritorija."],
+    ["📚","Bibliotekos skaitykla: kompiuteriai ir „Wi‑Fi“ viename pastate.","lan","Vienas pastatas – nedidelė teritorija."]
+  ];
+  var box=document.getElementById("rusiuokle"); if(!box) return;
+  var card=document.getElementById("srt-card"), fb=document.getElementById("srt-fb"), nEl=document.getElementById("srt-n"), sEl=document.getElementById("srt-s"), next=document.getElementById("srt-next");
+  var btns=[].slice.call(box.querySelectorAll("[data-a]")), list, i, score;
+  function start(){list=shuffle(ITEMS);i=0;score=0;show();}
+  function show(){
+    var it=list[i]; card.innerHTML=""; var em=document.createElement("span"); em.className="srt-emo"; em.setAttribute("aria-hidden","true"); em.textContent=it[0];
+    var tx=document.createElement("span"); tx.textContent=it[1]; card.appendChild(em); card.appendChild(tx);
+    fb.textContent=""; next.hidden=true; btns.forEach(function(b){b.disabled=false;b.hidden=false;});
+    nEl.textContent=(i+1)+" iš "+list.length; sEl.textContent="Taškai: "+score;
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){
+    var it=list[i], ok=b.dataset.a===it[2]; if(ok) score++;
+    btns.forEach(function(x){x.disabled=true;});
+    fb.innerHTML=""; var t=document.createElement("b"); t.className=ok?"r":"w"; t.textContent=ok?"Teisingai! ":"Ne visai. ";
+    fb.appendChild(t); fb.appendChild(document.createTextNode((ok?"":"Tai "+(it[2]==="lan"?"vietinis":"platusis")+" tinklas. ")+it[3]));
+    sEl.textContent="Taškai: "+score; next.textContent=i<list.length-1?"Toliau →":"Rezultatas →"; next.hidden=false; next.focus();
+  });});
+  next.addEventListener("click",function(){
+    if(i<list.length-1){i++;show();return;}
+    card.innerHTML=""; var em=document.createElement("span"); em.className="srt-emo"; em.textContent=score===list.length?"🏆":score>=7?"👍":"💪";
+    var tx=document.createElement("span"); tx.textContent="Teisingai atsakei "+score+" iš "+list.length+". "+(score===list.length?"Puiku – skiri vietinius ir plačiuosius tinklus!":"Prisimink: vietinis tinklas – vienoje vietoje (namai, klasė, pastatas), platusis – miestai, šalys, visas pasaulis.");
+    card.appendChild(em); card.appendChild(tx); fb.textContent=""; btns.forEach(function(b){b.hidden=true;});
+    next.textContent="🔁 Žaisti dar kartą"; next.onclick=function(){next.onclick=null;start();};
+  });
+  start();
+})();
+
+/* ===== Žaidimas 2: Topologijų laboratorija ===== */
+(function(){
+  var svg=document.getElementById("lab-svg"); if(!svg) return;
+  var status=document.getElementById("lab-status"), chUl=document.getElementById("lab-ch"), prog=document.getElementById("lab-prog");
+  var sendBtn=document.getElementById("lab-send"), fixBtn=document.getElementById("lab-fix");
+  var tbtns=[].slice.call(document.querySelectorAll("[data-topo]"));
+  function circ(ry){var r=[];for(var i=0;i<6;i++){var a=(-90+60*i)*Math.PI/180;r.push([180+100*Math.cos(a),130+ry*Math.sin(a)]);}return r;}
+  var XS=[18,50,102,154,206,258,310,342];
+  var TOPO={
+    star:{name:"žvaigždinė",pcs:circ(92),hub:[180,130]},
+    bus:{name:"magistralinė",pcs:[0,1,2,3,4,5].map(function(i){return [XS[i+1],i%2?198:62];})},
+    ring:{name:"žiedinė",pcs:circ(95)}
+  };
+  TOPO.star.links=TOPO.star.pcs.map(function(p,i){return {id:"s"+i,a:[180,130],b:p,pc:i,kind:"star",lab:"laidas tarp komutatoriaus ir "+(i+1)+" kompiuterio"};});
+  TOPO.bus.links=TOPO.bus.pcs.map(function(p,i){return {id:"d"+i,a:p,b:[p[0],130],pc:i,kind:"drop",lab:"laidas, jungiantis "+(i+1)+" kompiuterį su magistrale"};})
+    .concat(XS.slice(0,-1).map(function(x,k){return {id:"b"+k,a:[x,130],b:[XS[k+1],130],kind:"bb",lab:(k+1)+" magistralės atkarpa"};}));
+  TOPO.ring.links=TOPO.ring.pcs.map(function(p,i){return {id:"r"+i,a:p,b:TOPO.ring.pcs[(i+1)%6],from:i,kind:"ring",lab:"laidas tarp "+(i+1)+" ir "+((i+1)%6+1)+" kompiuterio"};});
+  var CH={
+    star:[["s-send","Nusiųsk žinutę iš vieno kompiuterio kitam. Per kurį įrenginį ji keliauja?"],["s-cut","Nukirpk laidą, jungiantį vieną kompiuterį. Kiek kompiuterių liko be ryšio?"],["s-hub","Sugadink vieną įrenginį taip, kad sustotų visas tinklas."]],
+    bus:[["b-send","Nusiųsk žinutę. Kurie kompiuteriai ją „mato“?"],["b-drop","Nukirpk laidą, jungiantį vieną kompiuterį su magistrale."],["b-bb","Nukirpk pačią magistralę. Kas nutiko?"]],
+    ring:[["r-send","Nusiųsk žinutę iš 1 į 6 kompiuterį. Per kiek kompiuterių ji keliauja?"],["r-cut","Nukirpk vieną laidą ir pabandyk nusiųsti žinutę."]]
+  };
+  var TOTAL=8, done={}, topo="star", broken={}, busy=false, pick=null, pcEls=[], layer;
+  try{done=JSON.parse(localStorage.getItem("ip-topo-ch")||"{}")||{};}catch(e){done={};}
+  function mark(id){if(done[id])return;done[id]=1;try{localStorage.setItem("ip-topo-ch",JSON.stringify(done));}catch(e){}renderCh();}
+  function renderCh(){
+    chUl.innerHTML=""; CH[topo].forEach(function(c){var li=document.createElement("li");li.textContent=c[1];if(done[c[0]])li.className="done";chUl.appendChild(li);});
+    var n=Object.keys(done).length; prog.textContent="· atlikta "+n+" iš "+TOTAL+(n>=TOTAL?" – visos! 🏆":"");
+  }
+  function say(t,cls){status.textContent=t;status.className="ng-status"+(cls?" "+cls:"");}
+  function bbOk(){for(var k=0;k<7;k++)if(broken["b"+k])return false;return true;}
+  function ringOk(){for(var i=0;i<6;i++)if(broken["r"+i]||broken["p"+i])return false;return true;}
+  function alive(i){
+    if(broken["p"+i]) return false;
+    if(topo==="star") return !broken.hub&&!broken["s"+i];
+    if(topo==="bus") return bbOk()&&!broken["d"+i];
+    return ringOk();
+  }
+  function countAlive(){var n=0;for(var i=0;i<6;i++)if(alive(i))n++;return n;}
+  function pcIcon(i,p){
+    var g=S("g",{"class":"pc",transform:"translate("+p[0]+" "+p[1]+")",tabindex:"0",role:"button","aria-label":(i+1)+" kompiuteris"},svg);
+    S("rect",{x:-22,y:-20,width:44,height:40,fill:"transparent"},g); // didesnis plotas pirštui
+    S("rect",{x:-15,y:-13,width:30,height:20,rx:2.5,"class":"scr"},g);
+    S("rect",{x:-3,y:7,width:6,height:4,"class":"base"},g);S("rect",{x:-9,y:11,width:18,height:2.5,rx:1,"class":"base"},g);
+    T(String(i+1),{x:0,y:1,"text-anchor":"middle","class":"num"},g);
+    S("path",{d:"M-11 -10L11 5M11 -10L-11 5","class":"x"},g);
+    onAct(g,function(){clickPc(i);}); return g;
+  }
+  function draw(){
+    svg.innerHTML=""; pcEls=[]; var t=TOPO[topo];
+    t.links.forEach(function(l){
+      var cut=!!broken[l.id], g=S("g",{},svg);
+      S("line",{x1:l.a[0],y1:l.a[1],x2:l.b[0],y2:l.b[1],"class":"n-link"+(l.kind==="bb"?" bb":"")+(cut?" cut":"")},g);
+      if(l.kind==="ring"){var mx=(l.a[0]+l.b[0])/2,my=(l.a[1]+l.b[1])/2,ang=Math.atan2(l.b[1]-l.a[1],l.b[0]-l.a[0])*180/Math.PI;
+        if(!cut) S("path",{d:"M-5 -4.5L5 0L-5 4.5z","class":"n-dir",transform:"translate("+mx+" "+my+") rotate("+ang+")"},g);}
+      if(cut) T("✂",{x:(l.a[0]+l.b[0])/2,y:(l.a[1]+l.b[1])/2+5,"text-anchor":"middle","class":"n-cutmark"},g);
+      var h=S("line",{x1:l.a[0],y1:l.a[1],x2:l.b[0],y2:l.b[1],"class":"n-hit",tabindex:"0",role:"button","aria-label":(cut?"Nukirptas ":"")+l.lab},g);
+      onAct(h,function(){clickLink(l);});
+    });
+    if(topo==="bus"){S("rect",{x:10,y:123,width:8,height:14,"class":"n-term"},svg);S("rect",{x:342,y:123,width:8,height:14,"class":"n-term"},svg);
+      T("terminatorius",{x:14,y:150,"font-size":"9","class":"mut"},svg);}
+    if(t.hub){var hg=S("g",{"class":"hub"+(broken.hub?" broken":""),transform:"translate(180 130)",tabindex:"0",role:"button","aria-label":"Komutatorius"},svg);
+      S("rect",{x:-27,y:-10,width:54,height:20,rx:4},hg);
+      for(var k=0;k<6;k++)S("rect",{x:-21+k*7.5,y:2,width:4.5,height:4,"class":"port"},hg);
+      T("komutatorius",{x:0,y:-14,"text-anchor":"middle","font-size":"10","class":"mut halo"},hg);
+      S("path",{d:"M-12 -8L12 8M12 -8L-12 8","class":"x"},hg);
+      onAct(hg,clickHub);}
+    t.pcs.forEach(function(p,i){var g=pcIcon(i,p);pcEls.push(g);});
+    layer=S("g",{},svg);
+    paint();
+  }
+  function paint(){
+    pcEls.forEach(function(g,i){g.classList.toggle("down",!alive(i));g.classList.toggle("broken",!!broken["p"+i]);g.classList.toggle("pick",!!pick&&!busy);});
+  }
+  function aliveMsg(){var n=countAlive();return " Ryšį turi "+n+" iš 6 kompiuterių.";}
+  function clickLink(l){
+    if(busy) return; if(pick){say("Pirmiausia pasirink kompiuterį – siuntėją arba gavėją. Atšaukti – mygtukas „✖ Atšaukti“.");return;}
+    if(broken[l.id]){delete broken[l.id];draw();say("Sutaisei: "+l.lab+"."+aliveMsg(),"ok");return;}
+    broken[l.id]=1; draw(); var m;
+    if(l.kind==="star"){m="Nukirpai laidą į "+(l.pc+1)+" kompiuterį. Neveikia tik jis – kiti dirba toliau. Tai žvaigždinės topologijos privalumas.";mark("s-cut");}
+    else if(l.kind==="drop"){m="Atsijungė tik "+(l.pc+1)+" kompiuteris – magistralė ir kiti kompiuteriai veikia.";mark("b-drop");}
+    else if(l.kind==="bb"){m="Magistralė nutrūko – neveikia VISAS tinklas! Be to, ilgame laide sunku rasti, kurioje vietoje jis pažeistas.";mark("b-bb");}
+    else m="Žiedas nutrūko – duomenys nebegali apeiti rato, todėl gali sustoti visas tinklas.";
+    say(m+aliveMsg(),"bad");
+  }
+  function clickHub(){
+    if(busy||pick) return;
+    if(broken.hub){delete broken.hub;draw();say("Sutaisei komutatorių."+aliveMsg(),"ok");return;}
+    broken.hub=1;draw();mark("s-hub");
+    say("Sugedo komutatorius – sustojo VISAS tinklas! Centrinis įrenginys – silpniausia žvaigždės vieta."+aliveMsg(),"bad");
+  }
+  function clickPc(i){
+    if(busy) return;
+    if(pick){
+      if(pick.a==null){pick.a=i;pcEls[i].classList.add("seen");say("Siuntėjas – "+(i+1)+" kompiuteris. Dabar spausk gavėją.");return;}
+      if(i===pick.a){say("Gavėjas turi būti kitas kompiuteris.");return;}
+      var a=pick.a;pick=null;sendBtn.textContent="✉️ Siųsti žinutę";send(a,i);return;
+    }
+    var key="p"+i;
+    if(broken[key]){delete broken[key];draw();say("Sutaisei "+(i+1)+" kompiuterį."+aliveMsg(),"ok");return;}
+    broken[key]=1;draw();
+    say(topo==="ring"?("Sugedo "+(i+1)+" kompiuteris. Jis nebeperduoda duomenų toliau, todėl žiedas nutrūko."+aliveMsg()):("Sugedo "+(i+1)+" kompiuteris, bet kiti dirba toliau."+aliveMsg()),"bad");
+  }
+  sendBtn.addEventListener("click",function(){
+    if(busy) return;
+    if(pick){pick=null;sendBtn.textContent="✉️ Siųsti žinutę";paint();pcEls.forEach(function(g){g.classList.remove("seen");});say("Siuntimas atšauktas.");return;}
+    pick={a:null};sendBtn.textContent="✖ Atšaukti";paint();say("Spausk kompiuterį, kuris siųs žinutę.");
+  });
+  fixBtn.addEventListener("click",function(){if(busy)return;broken={};pick=null;sendBtn.textContent="✉️ Siųsti žinutę";draw();say("Viskas sutaisyta. Visi 6 kompiuteriai turi ryšį.","ok");});
+  tbtns.forEach(function(b){b.addEventListener("click",function(){
+    if(busy) return; topo=b.dataset.topo; broken={}; pick=null; sendBtn.textContent="✉️ Siųsti žinutę";
+    tbtns.forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});
+    draw(); renderCh(); intro();
+  });});
+  function intro(){
+    say({star:"Žvaigždinė topologija: kiekvienas kompiuteris atskiru laidu prijungtas prie komutatoriaus.",
+      bus:"Magistralinė topologija: visi kompiuteriai trumpais laidais prijungti prie vieno bendro laido – magistralės. Jos galuose – terminatoriai, kurie neleidžia signalui atsispindėti.",
+      ring:"Žiedinė topologija: kompiuteriai sujungti į ratą, rodyklės rodo, kuria kryptimi keliauja duomenys."}[topo]);
+  }
+  function P(p,tag){return {x:p[0],y:p[1],tag:tag};}
+  function mid(a,b){return [(a[0]+b[0])/2,(a[1]+b[1])/2];}
+  function flash(i,cls,txt){var g=pcEls[i];g.classList.add(cls);var p=TOPO[topo].pcs[i];
+    var t=T(txt,{x:p[0],y:p[1]-18,"text-anchor":"middle","class":"n-flash"},layer);
+    if(cls!=="recv") setTimeout(function(){g.classList.remove(cls);t.remove();},1300);}
+  function run(tracks,onV,fin){
+    var sp=0.16, O=tracks.map(function(t){var seg=[],L=0;for(var i=1;i<t.length;i++){L+=Math.hypot(t[i].x-t[i-1].x,t[i].y-t[i-1].y);seg.push(L);}
+      return {t:t,seg:seg,L:L,vi:0,dot:S("circle",{r:6,"class":"n-pkt",cx:t[0].x,cy:t[0].y},layer)};});
+    function end(){setTimeout(function(){O.forEach(function(o){o.dot.remove();});fin();},RM?300:250);}
+    if(RM){O.forEach(function(o){for(var i=1;i<o.t.length;i++)onV(o.t[i]);var p=o.t[o.t.length-1];o.dot.setAttribute("cx",p.x);o.dot.setAttribute("cy",p.y);});return end();}
+    var st=null;
+    function fr(ts){if(st===null)st=ts;var d=(ts-st)*sp,all=true;
+      O.forEach(function(o){if(!o.seg.length)return;var dd=Math.min(d,o.L);if(d<o.L)all=false;
+        while(o.vi<o.seg.length&&dd>=o.seg[o.vi]){o.vi++;onV(o.t[o.vi]);}
+        var i=0;while(i<o.seg.length-1&&dd>o.seg[i])i++;var s0=i?o.seg[i-1]:0,len=o.seg[i]-s0,f=len?(dd-s0)/len:1,a=o.t[i],b=o.t[i+1];
+        o.dot.setAttribute("cx",a.x+(b.x-a.x)*f);o.dot.setAttribute("cy",a.y+(b.y-a.y)*f);});
+      if(all)end();else requestAnimationFrame(fr);}
+    requestAnimationFrame(fr);
+  }
+  function finish(msg,cls,chId){busy=false;sendBtn.disabled=false;fixBtn.disabled=false;say(msg,cls);if(chId)mark(chId);
+    setTimeout(function(){pcEls.forEach(function(g){g.classList.remove("recv","seen");});[].slice.call(layer.querySelectorAll("text")).forEach(function(t){t.remove();});},2600);}
+  function send(a,b){
+    paint(); pcEls.forEach(function(g){g.classList.remove("seen");});
+    var t=TOPO[topo], A=t.pcs[a], B=t.pcs[b];
+    if(broken["p"+a]){say((a+1)+" kompiuteris sugedęs – jis negali siųsti žinutės.","bad");return;}
+    busy=true; sendBtn.disabled=true; fixBtn.disabled=true; say("Žinutė keliauja…");
+    if(topo==="star"){
+      var pts=[P(A)],fail=null;
+      if(broken["s"+a]){pts.push(P(mid(A,t.hub)));fail="Žinutė nepasiekė komutatoriaus – nukirptas siuntėjo laidas.";}
+      else{pts.push(P(t.hub));
+        if(broken.hub)fail="Komutatorius sugedęs – žinutė toliau nekeliauja.";
+        else if(broken["s"+b]){pts.push(P(mid(t.hub,B)));fail="Gavėjo laidas nukirptas – žinutė nepasiekė "+(b+1)+" kompiuterio.";}
+        else{pts.push(P(B,"B"));if(broken["p"+b])fail=(b+1)+" kompiuteris sugedęs – žinutės priimti negali.";}}
+      run([pts],function(v){if(v.tag==="B"&&!fail)flash(b,"recv","✓ gavo");},function(){
+        if(fail)finish(fail,"bad");else finish("Žinutė iš "+(a+1)+" kompiuterio nukeliavo į komutatorių, o šis ją nusiuntė tik gavėjui – "+(b+1)+" kompiuteriui. Kiti kompiuteriai jos negavo.","ok","s-send");});
+    } else if(topo==="bus"){
+      var tap=[A[0],130], dropFail=broken["d"+a];
+      var p1=[P(A),P(dropFail?mid(A,tap):tap)];
+      run([p1],function(){},function(){
+        if(dropFail){finish("Siuntėjo laidas nukirptas – žinutė nepasiekė magistralės.","bad");return;}
+        var bok=bbOk(), ti=a+1; // a kompiuterio jungties vieta XS masyve
+        function side(dir){var tr=[P(tap)],k=ti;
+          while(true){var nk=k+dir;if(nk<0||nk>7)break;var seg="b"+Math.min(k,nk);
+            if(broken[seg]){tr.push(P([(XS[k]+XS[nk])/2,130]));break;}
+            tr.push(P([XS[nk],130],(nk>=1&&nk<=6)?nk-1:null));k=nk;}
+          return tr;}
+        var got=false;
+        run([side(-1),side(1)],function(v){
+          if(v.tag==null||!bok) return; var j=v.tag;
+          if(broken["d"+j]||broken["p"+j]) return;
+          if(j===b){got=true;flash(j,"recv","✓ priėmė");} else flash(j,"seen","mato");
+        },function(){
+          if(!bok)finish("Magistralė nukirpta – signalas atsispindi nuo nutrūkusio galo ir trukdo, todėl žinutės negavo niekas.","bad");
+          else if(!got)finish("Žinutė keliavo magistrale, bet "+(b+1)+" kompiuteris atjungtas arba sugedęs – jis jos negavo.","bad");
+          else finish("Žinutė keliavo bendru laidu į abi puses. Ją „matė“ visi kompiuteriai, bet priėmė tik "+(b+1)+" – kiti suprato, kad ji skirta ne jiems.","ok","b-send");
+        });
+      });
+    } else {
+      var pts=[P(A)],fail=null,i=a,steps=0,passedB=false;
+      while(true){var n=(i+1)%6;
+        if(broken["r"+i]){pts.push(P(mid(t.pcs[i],t.pcs[n])));fail=passedB?"cut-after":"cut";break;}
+        pts.push(P(t.pcs[n],n));
+        if(broken["p"+n]&&n!==a){fail=passedB?"cut-after":"dead";break;}
+        if(n===b)passedB=true; if(n===a)break; i=n; steps++;}
+      var mid1=(b-a+6)%6-1;
+      run([pts],function(v){var j=v.tag;if(j==null||j===a||broken["p"+j])return;if(j===b)flash(j,"recv","✓ gavo");else flash(j,"seen","perduoda");},function(){
+        if(fail==="cut"||fail==="dead"){finish("Žiedas nutrūko – žinutė nepasiekė "+(b+1)+" kompiuterio. Vienas gedimas sustabdo visą žiedą.","bad",ringOk()?null:"r-cut");pcEls[b].classList.remove("recv");}
+        else if(fail==="cut-after")finish((b+1)+" kompiuteris žinutę gavo, bet ji negalėjo grįžti siuntėjui – siuntėjas nežino, ar žinutė pristatyta. Nutrūkęs žiedas trikdo visą tinklą.","bad","r-cut");
+        else finish("Žinutė keliavo ratu viena kryptimi: pakeliui ją perdavė "+mid1+" kompiuteriai, "+(b+1)+" ją priėmė, o apėjusi visą ratą ji grįžo siuntėjui – taip šis sužino, kad žinutė pristatyta.","ok",(a===0&&b===5)?"r-send":null);
+      });
+    }
+  }
+  draw(); renderCh(); intro();
+})();
+
+/* ===== Žaidimas 3: Mano namų tinklas ===== */
+(function(){
+  var svg=document.getElementById("nb-svg"); if(!svg) return;
+  var TYPES={
+    pc:{e:"🖥️",n:"Stalinis kompiuteris",s:"Kompiuteris",wire:1,wifi:1},
+    laptop:{e:"💻",n:"Nešiojamasis kompiuteris",s:"Nešiojamasis",wire:1,wifi:1},
+    phone:{e:"📱",n:"Telefonas",s:"Telefonas",wire:0,wifi:1,no:"Telefonas neturi eterneto lizdo, todėl jungiasi tik belaidžiu ryšiu."},
+    tablet:{e:"📲",n:"Planšetė",s:"Planšetė",wire:0,wifi:1,no:"Planšetė neturi eterneto lizdo, todėl jungiasi tik belaidžiu ryšiu."},
+    tv:{e:"📺",n:"Televizorius",s:"Televizorius",wire:1,wifi:1},
+    console:{e:"🎮",n:"Žaidimų konsolė",s:"Konsolė",wire:1,wifi:1},
+    printer:{e:"🖨️",n:"Spausdintuvas",s:"Spausdintuvas",wire:1,wifi:1},
+    speaker:{e:"🔊",n:"Išmanusis garsiakalbis",s:"Garsiakalbis",wire:0,wifi:1,no:"Išmanieji garsiakalbiai dažniausiai neturi eterneto lizdo ir jungiasi per „Wi‑Fi“."},
+    camera:{e:"📹",n:"Vaizdo kamera",s:"Kamera",wire:1,wifi:1}
+  };
+  var KEY="ip-namu-tinklas-2", MAX=16, CLOUD=[48,44], H=330, LBL=14;
+  /* Vietos naujiems įrenginiams: tinklelis aplink maršrutizatorių (vidurinis stulpelis paliktas jam) */
+  var SLOTS=[];[42,118,194,262].forEach(function(y){[42,122,278,358].forEach(function(x){SLOTS.push([x,y]);});});SLOTS.push([200,42],[200,262]);
+  var st=load(), sel=null, refs={};
+  var panel=document.getElementById("nb-panel"), status=document.getElementById("nb-status"), sum=document.getElementById("nb-sum"), chUl=document.getElementById("nb-ch");
+  var rBtn=document.getElementById("nb-router"), nBtn=document.getElementById("nb-net"), nameIn=document.getElementById("nb-vardas");
+  function fresh(){return {devs:[],router:[200,156],routerOff:false,netCut:false,triedR:false,triedN:false,name:"",seq:1};}
+  function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.devs&&s.router)return s;}catch(e){}return fresh();}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function dev(id){for(var i=0;i<st.devs.length;i++)if(st.devs[i].id===id)return st.devs[i];return null;}
+  /* paletė */
+  var pal=document.getElementById("nb-pal");
+  Object.keys(TYPES).forEach(function(k){var b=document.createElement("button");b.type="button";b.className="ng-btn";b.textContent="+ "+TYPES[k].e+" "+TYPES[k].n;b.addEventListener("click",function(){add(k);});pal.appendChild(b);});
+  function freeSpot(){
+    var R=st.router;
+    function nearInet(p){var ax=CLOUD[0],ay=CLOUD[1]+12,dx=R[0]-ax,dy=R[1]-ay,L=dx*dx+dy*dy||1,t=clamp(((p[0]-ax)*dx+(p[1]-ay)*dy)/L,0,1);return Math.hypot(p[0]-ax-t*dx,p[1]-ay-t*dy)<26;}
+    var free=SLOTS.filter(function(p){
+      return Math.hypot(p[0]-CLOUD[0],p[1]-CLOUD[1])>50 && !nearInet(p) && !(Math.abs(p[0]-R[0])<70&&Math.abs(p[1]-R[1])<45) &&
+        st.devs.every(function(d){return Math.hypot(d.x-p[0],d.y-p[1])>40;});});
+    free.sort(function(a,b){return Math.hypot(a[0]-R[0],(a[1]-R[1])*1.4)-Math.hypot(b[0]-R[0],(b[1]-R[1])*1.4);});
+    return free[0]||[clamp(R[0]+(Math.random()*200-100),24,376),clamp(R[1]+(Math.random()*160-80),26,H-40)];
+  }
+  function add(k){
+    if(st.devs.length>=MAX){say("Daugiau nei "+MAX+" įrenginių į schemą nebetelpa.");return;}
+    var same=st.devs.filter(function(d){return d.type===k;}).length, p=freeSpot();
+    var d={id:"d"+(st.seq++),type:k,x:p[0],y:p[1],conn:"none",name:TYPES[k].s+(same?" "+(same+1):"")};
+    st.devs.push(d); sel=d.id; save(); render();
+    say("Pridėjai: "+d.name+". Dabar pasirink, kaip jis prijungtas prie maršrutizatoriaus.");
+  }
+  function say(t,cls){status.textContent=t;status.className="ng-status"+(cls?" "+cls:"");}
+  /* piešimas */
+  function render(){
+    svg.innerHTML=""; refs={};
+    var gl=S("g",{},svg), gn=S("g",{},svg), R=st.router;
+    // debesis
+    var c=S("g",{"aria-hidden":"true"},gn);
+    S("path",{d:"M30 58a15 15 0 0 1 4-29a20 20 0 0 1 37-6a16 16 0 0 1 24 13a12 12 0 0 1-3 22z","class":"nb-cloud",transform:"translate("+(CLOUD[0]-62)+" "+(CLOUD[1]-44)+")"},c);
+    T("Internetas",{x:CLOUD[0],y:CLOUD[1]+30,"text-anchor":"middle","class":"nb-lbl halo"},c);
+    refs.inet=S("line",{"class":"n-link wire"+(st.netCut?" cut":"")+(st.routerOff&&!st.netCut?" dead":"")},gl);
+    refs.inetCut=st.netCut?T("✂",{"text-anchor":"middle","class":"n-cutmark"},gl):null;
+    st.devs.forEach(function(d){
+      if(d.conn!=="none") refs["l"+d.id]=S("line",{"class":"n-link "+d.conn+(st.routerOff?" dead":"")},gl);
+      var g=S("g",{"class":"nb-dev"+(d.conn==="none"?" none":"")+(sel===d.id?" sel":"")+(st.routerOff?" dim":""),tabindex:"0",role:"button","aria-label":d.name+", "+connTxt(d.conn)},gn);
+      S("circle",{r:19,"class":"bg"},g);
+      T(TYPES[d.type].e,{y:7,"text-anchor":"middle","class":"emo"},g);
+      T(d.name.length>LBL?d.name.slice(0,LBL-1)+"…":d.name,{y:32,"text-anchor":"middle","class":"lbl halo"},g);
+      refs[d.id]=g; drag(g,d);
+    });
+    var rg=S("g",{"class":"nb-router"+(st.routerOff?" down":"")+(sel==="router"?" sel":""),tabindex:"0",role:"button","aria-label":"Maršrutizatorius"+(st.routerOff?", išjungtas":"")},gn);
+    S("line",{x1:-18,y1:-11,x2:-24,y2:-26,"class":"ant"},rg);S("line",{x1:18,y1:-11,x2:24,y2:-26,"class":"ant"},rg);
+    S("rect",{x:-30,y:-11,width:60,height:22,rx:6},rg);
+    for(var k=0;k<4;k++)S("circle",{cx:-13+k*8.7,cy:2,r:2.2,"class":"led"},rg);
+    T("Maršrutizatorius",{y:26,"text-anchor":"middle","class":"lbl halo"},rg);
+    S("path",{d:"M-12 -8L12 8M12 -8L-12 8","class":"x"},rg);
+    refs.router=rg; drag(rg,null);
+    // legenda ir autorius
+    var lg=S("g",{"class":"nb-legend",transform:"translate(10 320)"},svg);
+    S("line",{x1:0,y1:-4,x2:22,y2:-4,"class":"n-link wire"},lg);T("laidas",{x:27,y:0,"font-size":"10","class":"mut"},lg);
+    S("line",{x1:72,y1:-4,x2:94,y2:-4,"class":"n-link wifi"},lg);T("belaidis (Wi‑Fi)",{x:99,y:0,"font-size":"10","class":"mut"},lg);
+    T(st.name?"Mano namų tinklas · "+st.name:"Mano namų tinklas",{x:392,y:320,"text-anchor":"end","font-size":"10","font-weight":"600"},svg);
+    geom(); renderPanel(); renderInfo();
+  }
+  function geom(){
+    var R=st.router;
+    refs.router.setAttribute("transform","translate("+R[0]+" "+R[1]+")");
+    var ix=CLOUD[0], iy=CLOUD[1]+12;
+    refs.inet.setAttribute("x1",ix);refs.inet.setAttribute("y1",iy);refs.inet.setAttribute("x2",R[0]);refs.inet.setAttribute("y2",R[1]);
+    if(refs.inetCut){refs.inetCut.setAttribute("x",(ix+R[0])/2);refs.inetCut.setAttribute("y",(iy+R[1])/2+5);}
+    st.devs.forEach(function(d){refs[d.id].setAttribute("transform","translate("+d.x+" "+d.y+")");
+      var l=refs["l"+d.id];if(l){l.setAttribute("x1",R[0]);l.setAttribute("y1",R[1]);l.setAttribute("x2",d.x);l.setAttribute("y2",d.y);}});
+  }
+  function toSvg(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+  function drag(g,d){
+    var start=null,moved=false,off=[0,0];
+    g.addEventListener("pointerdown",function(e){if(e.button>0)return;var p=toSvg(e),o=d?[d.x,d.y]:st.router;start=[p.x,p.y];off=[p.x-o[0],p.y-o[1]];moved=false;try{g.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
+    g.addEventListener("pointermove",function(e){if(!start)return;var p=toSvg(e);if(!moved&&Math.hypot(p.x-start[0],p.y-start[1])<4)return;moved=true;
+      var x=clamp(p.x-off[0],24,376),y=clamp(p.y-off[1],26,H-40);if(d){d.x=x;d.y=y;}else st.router=[x,y];geom();});
+    g.addEventListener("pointerup",function(){if(!start)return;start=null;if(moved){save();}else select(d?d.id:"router");});
+    g.addEventListener("pointercancel",function(){start=null;});
+    g.addEventListener("keydown",function(e){
+      var mv={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[e.key];
+      if(mv){e.preventDefault();var o=d?[d.x,d.y]:st.router,x=clamp(o[0]+mv[0],24,376),y=clamp(o[1]+mv[1],26,H-40);if(d){d.x=x;d.y=y;}else st.router=[x,y];geom();save();}
+      else if(e.key==="Enter"||e.key===" "){e.preventDefault();select(d?d.id:"router",true);}
+    });
+  }
+  function select(id,kb){sel=id;render();var p=panel.querySelector("input");if(kb&&p)p.focus();}
+  function connTxt(c){return c==="wire"?"prijungtas laidu":c==="wifi"?"prijungtas belaidžiu ryšiu":"neprijungtas";}
+  function renderPanel(){
+    panel.innerHTML="";
+    if(sel==="router"){
+      panel.innerHTML="<h4>Maršrutizatorius</h4><p>Namų maršrutizatorius – trys viename: jis jungia namų tinklą su internetu, turi lizdus laidams (kaip komutatorius) ir „Wi‑Fi“ (belaidės prieigos taškas). Visi tavo namų įrenginiai jungiasi prie jo – todėl tai <b>žvaigždinė topologija</b>.</p>";
+      return;}
+    var d=dev(sel);
+    if(!d){panel.innerHTML="<p>Spausk įrenginį schemoje, kad pasirinktum, kaip jis prijungtas, pakeistum pavadinimą ar jį pašalintum.</p>";return;}
+    var h=document.createElement("h4");h.textContent=TYPES[d.type].e+" "+d.name;panel.appendChild(h);
+    var lab=document.createElement("label");lab.textContent="Pavadinimas: ";var inp=document.createElement("input");inp.maxLength=20;inp.value=d.name;
+    inp.addEventListener("input",function(){d.name=inp.value.trim()||TYPES[d.type].s;h.textContent=TYPES[d.type].e+" "+d.name;save();});
+    inp.addEventListener("change",render);
+    lab.appendChild(inp);panel.appendChild(lab);
+    var row=document.createElement("div");row.className="ng-row";row.setAttribute("role","group");row.setAttribute("aria-label","Kaip prijungtas");
+    var msg=document.createElement("p");msg.className="nb-msg";
+    [["wire","🔌 Laidu (eternetas)"],["wifi","📶 Belaidžiu ryšiu (Wi‑Fi)"],["none","Neprijungtas"]].forEach(function(o){
+      var b=document.createElement("button");b.type="button";b.className="ng-btn";b.textContent=o[1];b.setAttribute("aria-pressed",String(d.conn===o[0]));
+      b.addEventListener("click",function(){
+        if(o[0]==="wire"&&!TYPES[d.type].wire){msg.textContent=TYPES[d.type].no;return;}
+        d.conn=o[0];save();render();say(d.name+" – "+connTxt(d.conn)+".");
+      });row.appendChild(b);});
+    panel.appendChild(row);panel.appendChild(msg);
+    var del=document.createElement("button");del.type="button";del.className="ng-btn";del.textContent="🗑️ Pašalinti įrenginį";
+    del.addEventListener("click",function(){st.devs=st.devs.filter(function(x){return x!==d;});sel=null;save();render();say("Įrenginys pašalintas.");});
+    panel.appendChild(del);
+  }
+  function renderInfo(){
+    var n=st.devs.length, w=0, f=0, z=0; st.devs.forEach(function(d){if(d.conn==="wire")w++;else if(d.conn==="wifi")f++;else z++;});
+    sum.textContent="Įrenginių: "+n+" · laidu: "+w+" · belaidžiu ryšiu: "+f+(z?" · neprijungta: "+z:"");
+    rBtn.setAttribute("aria-pressed",String(!!st.routerOff));rBtn.textContent=st.routerOff?"⚡ Įjungti maršrutizatorių":"⚡ Išjungti maršrutizatorių";
+    nBtn.setAttribute("aria-pressed",String(!!st.netCut));nBtn.textContent=st.netCut?"🔧 Sutaisyti interneto kabelį":"✂️ Nutraukti interneto kabelį";
+    var items=[[n>=4,"Schemoje yra bent 4 įrenginiai."],[n>0&&z===0,"Visi įrenginiai prijungti (laidu arba belaidžiu ryšiu)."],[st.triedR,"Išbandei, kas nutinka išjungus maršrutizatorių."],[st.triedN,"Išbandei, kas nutinka nutrūkus interneto kabeliui."],[!!st.name,"Įrašei savo vardą."]];
+    chUl.innerHTML="";items.forEach(function(it){var li=document.createElement("li");li.textContent=it[1];if(it[0])li.className="done";chUl.appendChild(li);});
+  }
+  rBtn.addEventListener("click",function(){
+    st.routerOff=!st.routerOff;st.triedR=true;save();render();
+    if(st.routerOff)say("Maršrutizatorius išjungtas: neveikia nei internetas, nei namų tinklas – įrenginiai nebemato vienas kito. Visi jie jungėsi prie vieno centrinio įrenginio (žvaigždinė topologija), o šis sustojo.","bad");
+    else say("Maršrutizatorius vėl veikia – visi prijungti įrenginiai vėl tinkle.","ok");
+  });
+  nBtn.addEventListener("click",function(){
+    st.netCut=!st.netCut;st.triedN=true;save();render();
+    if(st.netCut)say(st.routerOff?"Interneto kabelis nutrauktas. Įjunk maršrutizatorių ir pažiūrėk, kas vis dar veikia.":"Internetas neveikia, bet namų vietinis tinklas veikia: įrenginiai vis dar „mato“ vienas kitą per maršrutizatorių. Pavyzdžiui, telefonu galima atsispausdinti nuotrauką „Wi‑Fi“ spausdintuvu.","bad");
+    else say("Interneto kabelis sutaisytas – internetas vėl veikia.","ok");
+  });
+  nameIn.value=st.name||"";
+  nameIn.addEventListener("input",function(){st.name=nameIn.value.trim();save();renderInfo();});
+  nameIn.addEventListener("change",render);
+  document.getElementById("nb-reset").addEventListener("click",function(){
+    if(st.devs.length&&!confirm("Ištrinti visą schemą ir pradėti iš naujo?"))return;
+    var nm=st.name;st=fresh();st.name=nm;sel=null;save();render();say("Schema išvalyta. Pridėk savo namų įrenginius.");
+  });
+  function describe(){
+    var L=["Mano namų tinklas"+(st.name?" ("+st.name+")":""),""];
+    st.devs.forEach(function(d){L.push("– "+d.name+": "+connTxt(d.conn));});
+    var w=st.devs.filter(function(d){return d.conn==="wire";}).length,f=st.devs.filter(function(d){return d.conn==="wifi";}).length;
+    L.push("","Iš viso įrenginių: "+st.devs.length+" (laidu: "+w+", belaidžiu ryšiu: "+f+").");
+    L.push("Visi įrenginiai jungiami prie maršrutizatoriaus – žvaigždinė topologija. Maršrutizatorius jungia namų tinklą su internetu.");
+    return L.join("\n");
+  }
+  document.getElementById("nb-copy").addEventListener("click",function(){
+    var txt=describe();
+    function fallback(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");say("Aprašas nukopijuotas – įklijuok jį ten, kur nurodė mokytojas.","ok");}catch(e){say("Nepavyko nukopijuoti.");}ta.remove();}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){say("Aprašas nukopijuotas – įklijuok jį ten, kur nurodė mokytojas.","ok");},fallback);else fallback();
+  });
+  document.getElementById("nb-png").addEventListener("click",function(){
+    if(!st.devs.length){say("Pirmiausia pridėk bent vieną įrenginį.");return;}
+    var keepSel=sel;sel=null;render();
+    // paveikslėlis visada šviesus – patogiau spausdinti ir peržiūrėti
+    var root=document.documentElement, oldTheme=root.getAttribute("data-theme"); root.setAttribute("data-theme","light");
+    var clone=svg.cloneNode(true), src=svg.querySelectorAll("*"), dst=clone.querySelectorAll("*");
+    var props=["fill","stroke","stroke-width","stroke-dasharray","stroke-linecap","stroke-linejoin","paint-order","opacity","font-size","font-weight","font-family","display"];
+    for(var i=0;i<src.length;i++){var cs=getComputedStyle(src[i]),s="";props.forEach(function(p){s+=p+":"+cs.getPropertyValue(p)+";";});dst[i].setAttribute("style",s);}
+    var bg=getComputedStyle(svg).backgroundColor;
+    if(oldTheme==null)root.removeAttribute("data-theme");else root.setAttribute("data-theme",oldTheme);
+    var r=document.createElementNS(NS,"rect");r.setAttribute("width","400");r.setAttribute("height",String(H));r.setAttribute("fill",bg);clone.insertBefore(r,clone.firstChild);
+    clone.setAttribute("width","1200");clone.setAttribute("height",String(H*3));
+    var data=new XMLSerializer().serializeToString(clone), img=new Image();
+    img.onload=function(){var cv=document.createElement("canvas");cv.width=1200;cv.height=H*3;cv.getContext("2d").drawImage(img,0,0,1200,H*3);
+      cv.toBlob(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="namu-tinklas"+(st.name?"-"+st.name.replace(/[^\wąčęėįšųūž-]+/gi,"-"):"")+".png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},2000);say("Paveikslėlis atsisiųstas.","ok");},"image/png");};
+    img.onerror=function(){say("Nepavyko sukurti paveikslėlio. Padaryk ekrano nuotrauką.");};
+    img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(data);
+    sel=keepSel;render();
+  });
+  render();
+  say(st.devs.length?"Tęsk savo schemą.":"Pradėk: pridėk pirmą savo namų įrenginį.");
+})();
+</script>
+<script src="../../assets/js/pamokos.js"></script>
+<script src="../../assets/js/bot.js"></script>
+</body>
+</html>

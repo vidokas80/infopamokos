@@ -317,5 +317,21 @@
   "modelis": "gpt-image-2",
   "kokybe": "medium",
   "data": "2026-11-22"
+ },
+ "antraste-tinklai.webp": {
+  "aprasymas": "Hand-drawn colored pencil illustration with soft textured shading, warm cream paper-like background, accents of bright blue and warm light wood, cozy and cheerful school classroom corner, detailed but clean. Wide landscape composition. The LEFT THIRD of the image is an empty plain cream wall with nothing on it at all (space for a title), all objects are placed in the right two thirds. No people. No text, no letters, no numbers, no logos, no brand names anywhere; any screens and papers show only abstract shapes and simple diagram shapes. Scene: a wooden school desk with a small white home Wi-Fi router with two antennas in the middle; blue network cables run from the router to a laptop and to a desktop computer; a smartphone and a tablet lie nearby with soft curved wireless arcs drawn in the air between them and the router. On the desk lies a sheet of paper with a hand-drawn star-shaped network diagram: small squares connected by lines to one central square. Behind on the right: a bookshelf with a globe, plants and a window with green leaves.",
+  "alt": "Mokyklinis stalas su belaidžiu maršrutizatoriumi, nuo kurio mėlyni laidai eina į nešiojamąjį ir stalinį kompiuterius; šalia telefonas ir planšetė, sujungti su maršrutizatoriumi belaidžiu ryšiu, ir lapas su žvaigždinės topologijos schema.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-26"
+ },
+ "pamoka-tinklai.webp": {
+  "aprasymas": "A small cozy room: in the center a white home Wi-Fi router on a shelf; around it a laptop, a desktop computer, a smartphone, a tablet, a printer and a game console, each connected to the router either with a blue cable or with soft dotted wireless arcs, together forming a star shape. Keep the main subject centered, with some calm empty space at the top and bottom so the image can be cropped to 16:9. Any screens show only abstract shapes, never text, letters, numbers or logos.",
+  "alt": "Namų maršrutizatorius, laidais ir belaidžiu ryšiu sujungtas su kompiuteriais, telefonu, planšete, spausdintuvu ir žaidimų konsole.",
+  "paslauga": "openai",
+  "modelis": "gpt-image-2",
+  "kokybe": "medium",
+  "data": "2026-11-26"
  }
 }
